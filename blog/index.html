@@ -1,0 +1,29 @@
+---
+layout: default
+title: Blog
+---
+<!--
+This is from http://jmcglone.com/guides/github-pages/ aka the default layout
+	<h1>{{ page.title }}</h1>
+	<ul class="posts">
+
+	  {% for post in site.categories.blog %}
+	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	  {% endfor %}
+	</ul>
+-->
+<!-- Use this instead. this is from the original index.html -->
+<div class="posts">
+  {% for post in site.categories.blog %}
+    <article class="post">
+
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }} </a></h1>
+
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
+
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More... (written {{ post.date | date_to_string}})</a>
+    </article>
+  {% endfor %}
+</div>

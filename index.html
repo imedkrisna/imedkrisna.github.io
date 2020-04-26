@@ -1,0 +1,61 @@
+---
+layout: default
+title: Welcome to my blog
+---
+<div class="blurb">
+	<h1>Welcome to my website!</h1>
+	<p> The website is mainly used for my blog. I write in mostly Indonesian, but sometimes in english. Why in Indonesian? Well, 
+		I feel like we have already a lot of great Indonesian scholar these days, who writes a lot of good piece. However, mostly are
+		written in english. Not that it is bad, but <a href="https://www.ef.co.id/epi/">most Indonesians have a low understanding of english.</a>
+		I believe in better access to education, and this is one way I can try to contribute to Indonesia! I do ocassionally write in english, both in this blog and other places.<p>
+	<p>Do check my <a href="https://imedkrisna.github.io/about/">about</a> page for more information about me and my research, Scroll further down to see the content my blogs (find the "english" tag to find articles done in english), or just hit the blog tab! Thanks for stopping by!<p>
+	<h1>Selamat datang di <i>website</i> saya!!</h1>
+	<p> Nama saya Krisna, atau sering juga dipanggil Imed. Saya sekarang sedang menempuh pendidikan doktorat di bidang ekonomi
+		di Australian National University, disponsori oleh Australia Awards. Thesis saya mengenai perdagangan internasional. <p>
+	<p> Website ini dibuat untuk mengakomodir kebutuhan personal website sebagai mahasiswa phd dan nantinya sebagai akademik.
+		Banyak mahasiswa doktorat yang punya personal <i>website</i> yang isinya kayak CV aja gitu. Nah supaya situs saya gak
+		sepi, sekalian aja saya jadiin blog. Sebelumnya saya sudah pernah ngeblog di <a href="https://medium.com/@imedkrisna">medium</a> dan <a href="https://imedimud.wordpress.com/">wordpress</a>.
+		Meskipun Hosting di github lebih ribet daripada di medium dan wordpress, tapi
+		bisa embed macem-macem (misalnya file pdf di CV dan youtube), dan bisa pake \(LaTeX\). <p>
+	<p> blog saya sendiri isinya macem-macem. lebih ke pengalaman dan pemikiran saya, serta hal-hal yang berbau kebijakan ekonomi,
+		khususnya ekonomi makro, perdagangan internasional, dan pertumbuhan industri. <p>
+	<p> Di atas ada tautan untuk navigasi. Blog untuk semua page blog saya, tapi kalo mau nyari tags, skrol aja ke bawah. 
+		Cek juga tautan <a href="https://imedkrisna.github.io/about/>about</a> saya yah hehe. Terima kasih sudah mampir di blog saya!!<p>
+	<p> Paragraf terakhir ini saya dedikasikan untuk disclaimer, dan juga ucapan terima kasih. Saya bukan web developer, jadi masih banyak hal tentang membangun website yang saya tidak paham. Saya belajar dari mbah gugel. Cek blog post saya tentang <a href="https://imedimud.github.io/The-New-Blog/">membuat blog dengan Jekyll dan github</a> jika anda juga pengen coba dan pengen bantuin saya benerin web ini :D.
+		Di postingan saya itu ada beberapa link sumber belajar saya. Namun di sini juga akan saya list beberapa yang sangat berperan membantu saya belajar bikin blog ini. Terima kasih pada oknum-oknum ini karena telah jadi sumber ilmu gratisan untuk saya. Diantaranya:<p>
+	<ul>
+  <li>Template blog ini saya fork langsung dari <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">Barry Clark</a></li>
+  <li>Beberapa tips buat kostumisasi saya contek dari <a href="http://jmcglone.com/guides/github-pages/">Jonathan McGlone</a>. masih sering saya intip sampe sekarang</li>
+  <li>Pake \(LaTeX\) saya kopas dari <a href="http://csega.github.io/mypost/2017/03/28/how-to-set-up-mathjax-on-jekyll-and-github-properly.html">CSega</a>. Cek juga <a href="http://zjuwhw.github.io/2017/06/04/MathJax.html">zjuwhw</a>. Juga lihat <a href="https://www.mathjax.org/">MathJax</a></li>
+		<li>cek juga situs resmi <a href="https://jekyllrb.com/docs/">Jekyll</a> dan <a href="https://www.w3schools.com/html/default.asp">W3Schools</a> dan tentu saja <a href="https://stackoverflow.com/">Stack Overflow</a>
+
+</ul>
+</div><!-- /.blurb -->
+<!--
+this is the original home
+<div class="posts">
+  {% for post in site.posts %}
+    <article class="post">
+
+      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+
+      <div class="entry">
+        {{ post.excerpt }}
+      </div>
+
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    </article>
+  {% endfor %}
+</div>
+-->
+
+<!-- putting categories on my home -->
+{% for category in site.tags %}
+  <h3>{{ category[0] }}</h3>
+  <ul>
+    {% for post in category[1] %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+
+  </ul>
+{% endfor %}

@@ -1,0 +1,26 @@
+thorbecke2019:
+  name: Willem Thorbecke
+  year: 2019
+  title: Why Japan Lost its Comparative Advantage in Producing Electronics Parts and Components
+  journal: Journal of the Japanese and International Economies
+  vol: 54
+  no:
+  link: https://doi.org/10.1016/j.jjie.2019.101050
+
+amiti2007:
+  name: Amiti and Konings
+  year: 2007
+  title: "Trade Liberalization, Intermediate Inputs, and Productivity: Evidence from Indonesia"
+  journal: The American Economic Review
+  vol: 97
+  no: 5
+  pp: "1611-1638"
+  link: "https://doi.org/10.1257/aer.97.5.1611"
+
+henningsen2011:
+  name: Henningsen and Henningsen
+  year: 2011
+  title: "Econometric Estimation of the Constant Elasticity of Substitution Function in R: Package micEconCES"
+  journal: FOI Working Paper
+  vol: 9
+  link: "https://ideas.repec.org/p/foi/wpaper/2011_9.html"
