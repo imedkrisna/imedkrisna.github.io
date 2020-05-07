@@ -13,7 +13,7 @@ Dalam review ini, saya mau mencoba membahas sedikit di tiga poin yang menurut sa
 
 Balik ke tiga poin saya.
 
-## Kritik terhadap PDB: Apakah Value = PDB?
+## Kritik terhadap PDB: Apakah Produktivitas = PDB?
 
 Mudah untuk melupakan apa tujuan semula sebuah negara ketika kita sudah terlalu lama menggunakan satu indikator sebagai kunci sukses. PDB saat ini seolah sudah menjadi tujuan utama bagi perangkat negara mulai dari level pegawai sampai Presiden. Apapun yang terjadi, PDB harus selalu tumbuh! Kadang-kadang saya suka mikir, saking seringnya kita mempertanyakan kenapa PDB tidak tumbuh, kadang kita lupa mempertanyakan apakah PDB adalah indikator yang tepat? Kenapa kita begitu ingin menaikkan PDB segitunya? Seberapa besar sih yang kita korbankan demi PDB?
 
@@ -45,7 +45,7 @@ Teknologi yang "dikembangkan" oleh starap dan entrepreneur biasanya merupakan ha
 
 Selain itu, beliau juga mengkritik kehebatan entrepreneur dengan memberikan contoh beberapa usaha milik negara yang diprivatisasi, di mana privatisasi tidak membuat performa perusahaan tersebut membaik dan malah makin buruk.
 
-##### Highly Recommended!!
+## Highly Recommended!!
 
 Ada banyak lagi poin menarik di buku itu, termasuk sedikit pelajaran sejarah. Tapi tiga poin di atas yang paling saya ingat sampai sekarang. Bu Mariana tidak menyebutkan solusi secara konkrit selain mengajak kita untuk lebih memikirkan soal nilai, sebuah fundamental penentuan produktivitas, daripada hanya sekedar harga yang begitu rapuh (dalam kasus saham, bisa berubah hanya dalam hitungan detik). Selain itu, Bu Mariana juga mengajak kita untuk mengurangi ke-halu-an kita terhadap starap dan entrepreneurship, dan lebih menghargai peran pemerintah dalam ekonomi. Yah kayak skandinavian countries gitu lah. Tetap kapitalisme, tapi mixed economy.
 
