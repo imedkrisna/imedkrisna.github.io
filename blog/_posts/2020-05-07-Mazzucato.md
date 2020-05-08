@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Value of Everything: Sebuah Review"
+title: "The Value of Everything: Sebuah Ulasan"
 categories: [blog]
 tags: [Review]
 ---
