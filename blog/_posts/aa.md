@@ -1,11 +1,7 @@
 ---
 title: "Jumlah tes COVID-19 per hari di Indonesia"
-tags : [COVID-19]
+tags : [coronavirus COVID-19]
 categories : [blog]
-output:
-  html_document: 
-    keep_md: true
-  pdf_document: default
 ---
 
 Sepertinya pemerintah semakin semangat menyongsong "New Normal" dan mulai membuka ekonominya. Telah beredar buku pedoman bagaimana menghadapi "New Normal" [dari BPOM](https://investor.id/lifestyle/bpom-menerbitkan-buku-panduan-lengkap-covid19). Berita bahwa mal akan dibuka santer beredar di mana-mana(tapi katanya [summarecon mal bekasi gak jadi buka](https://metro.tempo.co/read/1346375/ini-agenda-presiden-jokowi-ke-bekasi-siang-ini-bukan-buka-mal). Ntahlah akupun bingung). Ekonomi akan kembali bergeliat!
