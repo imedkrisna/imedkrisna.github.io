@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Jumlah tes COVID-19 per hari di Indonesia"
 tags : [coronavirus COVID-19]
 categories : [blog]
