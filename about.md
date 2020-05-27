@@ -23,7 +23,7 @@ I am an ocassional gamer, still watch DotA 2 tournaments although I play it no m
 - Gupta, Krisna. (In press). "The Importance of Financial Liberalisation to Economic Growth: The Case of Indonesia". *Bulletin of Indonesian Economic Study*. [DOI: 10.1080/00074918.2020.1747596](https://doi-org.virtual.anu.edu.au/10.1080/00074918.2020.1747596)
 
 ### Book Review
-- Gupta, Krisna. (2020). "World Trade Evolution: Growth, Productivity and Employment edited by Lili Yan Ing and Miaojie Yu (eds) Routledge‐ERIA, Studies in Development Economics, Oxon and New York, 2019 Pp.481. ISBN 978 1 138 48003 2". *Asian-Pacific Economic Literature*. [https://doi.org/DOI:10.1111/apel.12291](https://doi.org/DOI:10.1111/apel.12291)
+- Gupta, Krisna. (2020). "World Trade Evolution: Growth, Productivity and Employment ‐ edited by Lili Yan Ing and Miaojie Yu". *Asian-Pacific Economic Literature*. [https://doi.org/DOI:10.1111/apel.12291](https://doi.org/DOI:10.1111/apel.12291)
 
 ### Proceedings
 - Gupta, Krisna, Intan Vierke, Arif Ibrahim, Joni Suwandi dan Arifin Selowidodo. 2019. "Boosting Global Competitiveness in Indonesia: is Industri 4.0 the answer?". in Abdullah, Widiaty and Abdullah (eds). [*Global Competitiveness: Business Transformation in the Digital Era*](https://www.taylorfrancis.com/books/e/9780429202629). London: Routledge.
