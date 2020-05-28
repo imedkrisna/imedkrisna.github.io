@@ -28,7 +28,6 @@ sns.lineplot(x=x, y=y1, data=c)
 
 ![png](/images/output_1_1.png)
 
-
 Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW.
 
 jumlah tes hariannya adalah titik-titik dan garis item, sementara garis biru menunjukkan smoothed new tests, alias yang diperhalus.
@@ -56,5 +55,5 @@ cn=c[(c['iso_code'] == 'IDN') | (c['iso_code'] == 'VNM') | (c['iso_code'] == 'MY
 sns.lineplot(x="date", y="new_tests", hue="iso_code", style="iso_code",data=cn)
 ```
 
-![png](/images/output_3_1.png)
 
+![png](/images/output_3_1.png)
