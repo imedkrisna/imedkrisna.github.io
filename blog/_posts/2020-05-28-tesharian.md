@@ -26,15 +26,7 @@ sns.lineplot(x=x, y=y, data=c)
 sns.lineplot(x=x, y=y1, data=c)
 ```
 
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x22c2cd70b48>
-
-
-
-
-![png](output_1_1.png)
+![png](/images/output_1_1.png)
 
 
 Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW.
@@ -64,18 +56,5 @@ cn=c[(c['iso_code'] == 'IDN') | (c['iso_code'] == 'VNM') | (c['iso_code'] == 'MY
 sns.lineplot(x="date", y="new_tests", hue="iso_code", style="iso_code",data=cn)
 ```
 
+![png](/images/output_3_1.png)
 
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x22c2cce65c8>
-
-
-
-
-![png](output_3_1.png)
-
-
-
-```python
-
-```
