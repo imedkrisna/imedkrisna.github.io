@@ -43,6 +43,7 @@ Oh iya, datanya dari pemerintah pusat, sementara data pemerintah pusat adalah ha
 BTW, negara lain juga “new tests”-nya agak aneh. New Zealand dan Malaysia juga volatil sementara Jepang nggak report new tests nya (tapi totalnya ada). Vietnam malah mendadak turun trus ilang di tengah jalan. Jadi mungkin ini sebabnya Pak Jokowi sangat percaya diri he he he he.
 
 
+
 ```python
 import pandas as pd
 import seaborn as sns; sns.set()
@@ -57,3 +58,7 @@ sns.lineplot(x="date", y="new_tests", hue="iso_code", style="iso_code",data=cn)
 
 
 ![png](/images/output_3_1.png)
+
+Ini saya pake tes harian, bukan tes harian per 1,000 penduduk. soalnya kalo pake tes harian, negara laen jauh bgt di atas. Indo jadi kayak garis lurus doang hahaha. Eniwe sebenernya di sini saya mau coba pake argumen "berani open karena kapasitas testing sudah ditingkatkan". Kalau pake argumen ini kayaknya lumayan, secara tren kita udah naik. Tentu saja apakah itu dah cukup atau belum, masih subyek debat yang saya yakin udah banyak yang bahas.
+
+Akhir kata, alasan dibalik keputusan membuka kembali ekonomi tentu ada banyak, tidak hanya tes aja. Saya tidak coba membahas alasan-alasan yang lain selain peningkatan kapasitas testing. Postingan kali ini simply cuma untuk ngasi liat gambaran singkat bagaimana perkembangan testing harian kita. Cukup lah yang lain biar menjadi perdebatan orang-orang yang lebih ahli hehe.
