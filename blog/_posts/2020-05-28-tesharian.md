@@ -28,7 +28,7 @@ sns.lineplot(x=x, y=y1, data=c)
 
 ![png](/images/output_1_1.png)
 
-Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW.
+Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW. Garis biru adalah jumlah tes harian yang beneran harian (makanya volatil, tergantung kondisi lapangan), sementara yang merah adalah pertumbuhan rata-rata (alias jumlah tes harian yang diperhalus kurva-nya).
 
 jumlah tes hariannya adalah titik-titik dan garis item, sementara garis biru menunjukkan smoothed new tests, alias yang diperhalus.
 
