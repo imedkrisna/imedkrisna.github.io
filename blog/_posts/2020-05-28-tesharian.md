@@ -25,15 +25,6 @@ plt.figure(figsize=(15,5))
 sns.lineplot(x=x, y=y, data=c)
 sns.lineplot(x=x, y=y1, data=c)
 ```
-
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x22c2cd70b48>
-
-
-
-
 ![png](/image/output_1_1.png)
 
 
@@ -63,14 +54,6 @@ plt.figure(figsize=(15,10))
 cn=c[(c['iso_code'] == 'IDN') | (c['iso_code'] == 'VNM') | (c['iso_code'] == 'MYS') | (c['iso_code'] == 'JPN') | (c['iso_code'] == 'NZL')]
 sns.lineplot(x="date", y="new_tests", hue="iso_code", style="iso_code",data=cn)
 ```
-
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x22c2cce65c8>
-
-
-
 
 ![png](/image/output_3_1.png)
 
