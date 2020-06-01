@@ -26,15 +26,7 @@ sns.lineplot(x=x, y=y, data=c)
 sns.lineplot(x=x, y=y1, data=c)
 ```
 
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x248ab12e948>
-
-
-
-
-![png](output_1_1.png)
+![png](/images/output_1_1.png)
 
 
 Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW.
@@ -62,15 +54,7 @@ cn=c[(c['iso_code'] == 'IDN') | (c['iso_code'] == 'VNM') | (c['iso_code'] == 'MY
 sns.lineplot(x="date", y="new_tests", hue="iso_code", style="iso_code",data=cn)
 ```
 
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x248ad551288>
-
-
-
-
-![png](output_3_1.png)
+![png](/images/output_3_1.png)
 
 
 Ini saya pake tes harian, bukan tes harian per 1,000 penduduk. soalnya kalo pake tes harian, negara laen jauh bgt di atas. Indo jadi kayak garis lurus doang hahaha. Eniwe sebenernya di sini saya mau coba pake argumen “berani open karena kapasitas testing sudah ditingkatkan”. Kalau pake argumen ini kayaknya lumayan, secara tren kita udah naik. Tentu saja apakah itu dah cukup atau belum, masih subyek debat yang saya yakin udah banyak yang bahas.
