@@ -26,22 +26,28 @@ sns.lineplot(x=x, y=y, data=c)
 sns.lineplot(x=x, y=y1, data=c)
 ```
 
-![png](/images/output_1_1.png)
 
-Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW. Garis biru adalah jumlah tes harian yang beneran harian (makanya volatil, tergantung kondisi lapangan), sementara yang merah adalah pertumbuhan rata-rata (alias jumlah tes harian yang diperhalus kurva-nya).
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x248ab12e948>
+
+
+
+
+![png](output_1_1.png)
+
+
+Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW.
 
 jumlah tes hariannya adalah titik-titik dan garis item, sementara garis biru menunjukkan smoothed new tests, alias yang diperhalus.
 
 Jumlah tes harian Indonesia keliatan banget bolong-bolongnya, dan keliatannya sampai 26 Mei 2020, jumlah tes harian kita masih volatil banget. Naik turunnya agak ga jelas. Beberapa pendapat yang saya lihat di twitter sih bilangnya jumlah tes harian emang sulit diperkirakan karena faktornya nggak cuma jumlah swab yang dilakukan, tapi juga antrian sampel-sampel tersebut di lab. Jadi bisa jadi angka yang muncul itu sebenernya hasil swab kemaren yang baru di-tes hari ini.
 
-Saya nggak terlalu ngikutin sih perdebatan testing COVID-19 hahaha maaf. Dah lama nggak update COVID-19, cuma gara-gara tiba-tiba ada rame-rame pembukaan ekonomi kembali, jadinya penasaran. Selain itu, katanya Bio Farma sudah berhasil bikin PCR test kit sendiri, [bahkan diklaim sanggup bikin 100,000 per hari](https://tirto.id/jokowi-klaim-indonesia-produksi-alat-rapid-tes-pcr-100-ribu-hari-fzhZ) jadinya mestinya tes hariannya meroket dong (tentu saja asumsinya logistik ke lab dan proses di lab-nya lancar dan cukup kapasitas). Tapi keliatannya klaim tersebut belum terwujud di jumlah tes harian ya?
-
-Jadi penasaran apa yang membuat pemerintah merasa percaya diri membuka ekonomi kalau tes hariannya masih aneh gitu. Pastinya alasan ini adalah sesuatu yang saya nggak tau. Bisa jadi PCR test nya baru akan meroket per hari ini, cuma publik belom tau aja hehe.
+Saya nggak terlalu ngikutin sih perdebatan testing COVID-19 hahaha maaf. Dah lama nggak update COVID-19, cuma gara-gara tiba-tiba ada rame-rame pembukaan ekonomi kembali, jadinya penasaran. Selain itu, katanya Bio Farma sudah berhasil bikin PCR test kit sendiri, [bahkan diklaim sanggup bikin 100,000 per hari](https://tirto.id/jokowi-klaim-indonesia-produksi-alat-rapid-tes-pcr-100-ribu-hari-fzhZ). Dengan asumsinya logistik ke lab dan proses di lab-nya lancar dan cukup kapasitas, sepertinya masif testing dapat dilakukan. Mudah-mudahan peningkatan ini berlanjut terus dan bisa *sustainable* di masa *new normal* ini.
 
 Oh iya, datanya dari pemerintah pusat, sementara data pemerintah pusat adalah hasil tes mereka plus tes yang dilakukan oleh pemerintah daerah (dan mungkin swasta?). Meskipun kita nggak tau data selain dari pemerintah pusat, setidaknya pemerintah daerah tau data daerahnya sendiri. hehe.
 
 BTW, negara lain juga “new tests”-nya agak aneh. New Zealand dan Malaysia juga volatil sementara Jepang nggak report new tests nya (tapi totalnya ada). Vietnam malah mendadak turun trus ilang di tengah jalan. Jadi mungkin ini sebabnya Pak Jokowi sangat percaya diri he he he he.
-
 
 
 ```python
@@ -57,8 +63,16 @@ sns.lineplot(x="date", y="new_tests", hue="iso_code", style="iso_code",data=cn)
 ```
 
 
-![png](/images/output_3_1.png)
 
-Ini saya pake tes harian, bukan tes harian per 1,000 penduduk. soalnya kalo pake tes harian, negara laen jauh bgt di atas. Indo jadi kayak garis lurus doang hahaha. Eniwe sebenernya di sini saya mau coba pake argumen "berani open karena kapasitas testing sudah ditingkatkan". Kalau pake argumen ini kayaknya lumayan, secara tren kita udah naik. Tentu saja apakah itu dah cukup atau belum, masih subyek debat yang saya yakin udah banyak yang bahas.
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x248ad551288>
+
+
+
+
+![png](output_3_1.png)
+
+
+Ini saya pake tes harian, bukan tes harian per 1,000 penduduk. soalnya kalo pake tes harian, negara laen jauh bgt di atas. Indo jadi kayak garis lurus doang hahaha. Eniwe sebenernya di sini saya mau coba pake argumen “berani open karena kapasitas testing sudah ditingkatkan”. Kalau pake argumen ini kayaknya lumayan, secara tren kita udah naik. Tentu saja apakah itu dah cukup atau belum, masih subyek debat yang saya yakin udah banyak yang bahas.
 
 Akhir kata, alasan dibalik keputusan membuka kembali ekonomi tentu ada banyak, tidak hanya tes aja. Saya tidak coba membahas alasan-alasan yang lain selain peningkatan kapasitas testing. Postingan kali ini simply cuma untuk ngasi liat gambaran singkat bagaimana perkembangan testing harian kita. Cukup lah yang lain biar menjadi perdebatan orang-orang yang lebih ahli hehe.
