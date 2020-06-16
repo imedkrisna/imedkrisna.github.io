@@ -29,9 +29,11 @@ sns.lineplot(x=x, y=y1, data=c)
 ![png](/images/output_1_1.png)
 
 
-Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya update harian sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW.
+Gambar di atas menunjukkan jumlah “new test” per hari. saya ambil datanya dari [our world in data](https://ourworldindata.org/coronavirus-data). Datanya di-update setiap hari sesuai dengan laporan pemerintah. di sumbu x saya kasih tanggal, sementara di sumbu y adalah variabel yang namanya “new_tests” kalo di dataset aslinya. Intinya mah ini adalah tes harian CMIIW.
 
 jumlah tes hariannya adalah titik-titik dan garis item, sementara garis biru menunjukkan smoothed new tests, alias yang diperhalus.
+
+Intermezzo dikit, kode di atas dirun pake python versi 3.7. Data langsung dibaca dari portal online-nya our world in data, jadinya setiap di-run, bakal langsung update data terbaru. Kalo anda punya python di komputer masing-masing, bisa langsung dikopas tuh kode di atas kalo penasaran data terbaru kayak apa.
 
 Jumlah tes harian Indonesia keliatan banget bolong-bolongnya, dan keliatannya sampai 26 Mei 2020, jumlah tes harian kita masih volatil banget. Naik turunnya agak ga jelas. Beberapa pendapat yang saya lihat di twitter sih bilangnya jumlah tes harian emang sulit diperkirakan karena faktornya nggak cuma jumlah swab yang dilakukan, tapi juga antrian sampel-sampel tersebut di lab. Jadi bisa jadi angka yang muncul itu sebenernya hasil swab kemaren yang baru di-tes hari ini.
 
