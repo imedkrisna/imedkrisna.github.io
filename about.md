@@ -33,6 +33,7 @@ I am an ocassional gamer, still watch DotA 2 tournaments although I play it no m
 ### Popular Publications / Oped
 - Gupta, Krisna. 2020. "Managing investment, trade deficit: are omnibus law panacea for growth?". *The Jakarta Post Academic Opinion*. [Link](https://www.thejakartapost.com/academia/2020/01/31/managing-investment-trade-deficit-are-omnibus-laws-panacea-for-growth.html)
 - Pasaribu, Donny and Krisna Gupta. 2020. "Will IA-CEPA be the boost to Australia-Indonesia relations leaders are banking on?", *Indonesia At Melbourne*. [link](https://indonesiaatmelbourne.unimelb.edu.au/will-ia-cepa-be-the-boost-to-the-australia-indonesia-relationship-leaders-are-banking-on/)
+- Patunru, Arianto and Krisna Gupta. 2020. "Indonesia's PPE export ban backfires", *East Asia Forum*. [link](https://www.eastasiaforum.org/2020/06/16/indonesias-ppe-export-ban-backfires/)
 
 ## Teaching Experience
 
