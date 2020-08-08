@@ -6,6 +6,8 @@ permalink: /about/
 
 My name is Krisna Gupta. My friends called me Krisna or Imed, and I suggest you to do the same! I am an economics PhD students at Crawford School of Public Policy, Australian National University (Check out my profile page [here](https://crawford.anu.edu.au/people/phd/krisna-gupta)). My research is about the impact of trade and investment liberalization, in particular to Industries in Indonesia. I hold a master degree in economics from [Universitas Indonesia](http://ppie.feb.ui.ac.id/kurikulum/kurikulum-program-s2-linkage/) and [VU University Amsterdam](https://sbe.vu.nl/en/). it was a joint degree.
 
+My research revolves really around Indonesia. Having a background in planning division in Indonesian Ministry of Industry, I am drawn to policies on trade and industry and how they can help Indonesia grow using manufacturing as its driver. Trade Agreements, Global Value Chain, Non-Tariff Measures and investment policies are among things I read a lot about. I use both structural model such as CGE (mainly GTAP Model) and empirical econometrics, mostly panel data regression and PPLM, a relatively recent method in gravity model. COVID-19 skewed my activity a little bit, that is, I wrote quite a lot on COVID-19 in Indonesia.
+
 I was a bureaucrat at Ministry of Industry in Indonesia, working in planning and evaluation division, before pursuing a master degree. Not too long after I finished my master degree, I switch to academic career path, became a lecturer  (fungsional dosen) at [Politeknik APP Jakarta](https://poltekapp.ac.id/), a diploma school under Ministry of Industry. My plan after finishing my PhD is to go back to Politeknik APP.
 
 I blog for fun, mostly in Indonesian, with some english exception. Check out my previous [medium blog](https://medium.com/@imedkrisna). My main hobby is singing. I take my guitar and bug my wife with my voice when I am bored or sad or happy. I love J-Rocks (L`arc\~en\~ciel and One OK Rock in particular) and alternatives (anything play in F,G,or A &#128518;), but also listens to mainstreams.
@@ -64,3 +66,7 @@ I am an ocassional gamer, still watch DotA 2 tournaments although I play it no m
 
 Check out links below. I ocassionally sing and upload them in youtube :D I also play Smule. Hit the mic icon down there to visit my smule page. I mostly sing L'Arc-En-Ciel (or Laruku in short). Check out one example here :D
 <iframe frameborder="0" width="100%" height="125" src="https://www.smule.com/recording/larc-en-ciel-living-in-your-eyes-hitomi-no-junin-hitomi-no-juunin/988877746_3354266952/frame"></iframe>
+
+In Australia, I often times team-up with other Indonesian students to perform a mini accoustic band. I often play a Cajon. I also team-up with my old bandmates called BandIDs to produce a youtube video. I sing in these collaborations and my friends do the rest. This is one of the video hahahaha! 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/K5UkBlE5zZg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
