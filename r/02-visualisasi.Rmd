@@ -15,4 +15,9 @@ library(ggplot2)
 library(dplyr)
 ```
 
+Kita akan menggunakan data yang telah disiapkan di [situs buku ini](https://imedkrisna.github.io/rbook).
+
+```{r}
+dagang<-read.csv(url("https://imedkrisna.github.io/r/databi.csv"))
+```
 
