@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  8 AUG 2020 17:34
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  8 AUG 2020 17:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -883,10 +883,6 @@ File: Modul-belajar-R_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
 Package natbib Warning: Citation `R-bookdown' on page 9 undefined on input line
  298.
 
-
-Package natbib Warning: Citation `xie2015' on page 9 undefined on input line 29
-8.
-
 [9
 
 ] [10]
@@ -914,12 +910,7 @@ Package natbib Warning: There were undefined citations.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 328.
 [19]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 328.
-(./Modul-belajar-R.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+(./Modul-belajar-R.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 328.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 328.
 Package rerunfilecheck Info: File `Modul-belajar-R.out' has not changed.
