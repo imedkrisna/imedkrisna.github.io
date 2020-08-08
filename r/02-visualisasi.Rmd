@@ -4,20 +4,45 @@
 Visualisasi data yang baik amat diperlukan guna mengkomunikasikan data yang kita miliki kepada orang lain. Visualisasi data dapat berbentuk tabel, grafik garis, grafik batang, dan lain sebagainya. Kali ini kita akan belajar cara melakukan visualisasi data dengan R.
 
 Pada modul ini, kita akan menggunakan paket bernama `ggplot2` dan paket bernama `dplyr`. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan 
-```{r}
-install.packages("ggplot2")
-install.packages("dplyr")
+```{r echo=FALSE}
+# install.packages("ggplot2")
+# install.packages("dplyr")
 ```
 
 Jangan lupa bahwa kita harus terkoneksi dengan internet untuk menginstall paket tersebut. Kita juga harus memanggil paket tersebut dengan 
-```{r}
+```{r echo=FALSE}
 library(ggplot2)
 library(dplyr)
 ```
 
 Kita akan menggunakan data yang telah disiapkan di [situs buku ini](https://imedkrisna.github.io/rbook).
 
-```{r}
+```{r fig.cap="ekspor bulanan Indonesia 2010-2020"}
 dagang<-read.csv(url("https://imedkrisna.github.io/r/databi.csv"))
+library(lubridate)
+dagang$bulan<-dmy(dagang$bulan) # untuk membuat bulan menjadi waktu
+head(dagang)
+```
+data tersebut merupakan nilai ekspor per bulan Indonesia yang didapat dari [Statistik Ekonomi dan Keuangan Indonesia (SEKI)](https://www.bi.go.id/id/statistik/seki/terkini/eksternal/Contents/Default.aspx), Bank Indonesia, setelah sebelumnya diolah terlebih dahulu untuk mendapatkan tabel seperti di atas. Data dalam ribu USD.
+
+## Grafik
+Data serial waktu (_time series_) seperti ini memang paling cocok divisualisasikan dengan menggunakan grafik garis. Kita akan mencoba menggambar grafik ekspor biji kopi. kode yang dapat digunakan adalah
+
+```{r fig.cap="ekspor bulanan biji kopi"}
+grafik<-ggplot(dagang,aes(x=bulan,y=kopi))
+grafik<-grafik+geom_line()+scale_x_date(date_breaks="1 year", date_labels = "%Y")
+print(grafik)
+```
+
+Grafik di atas menunjukan perkembangan ekspor bulanan biji kopi Indonesia sejak Januari 2010 sampai Mei 2020. 
+
+## Latihan
+Apakah anda dapat menggambar grafik yang sama untuk ekspor kertas? Tuliskan kode-nya di bawah ini
+```{r}
+# kode untuk menggambar grafik ekspor kertas
+
+
+
+
 ```
 

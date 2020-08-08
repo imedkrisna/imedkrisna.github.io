@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  8 AUG 2020 17:35
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.8)  8 AUG 2020 20:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -492,7 +492,11 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip62
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count297
-) (./Modul-belajar-R.aux)
+) (./Modul-belajar-R.aux
+
+LaTeX Warning: Label `pendahuluan' multiply defined.
+
+)
 \openout1 = `Modul-belajar-R.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 125.
@@ -876,54 +880,182 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 207.
 [8]
 Chapter 2.
-File: Modul-belajar-R_files/figure-latex/nice-fig-1.pdf Graphic file (type pdf)
-
-<use Modul-belajar-R_files/figure-latex/nice-fig-1.pdf>
-
-Package natbib Warning: Citation `R-bookdown' on page 9 undefined on input line
- 298.
-
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
 [9
 
-] [10]
-Chapter 3.
-[11
+] [10
 
-] [12
+]
+Chapter 3.
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ##        bulan  kopi   the rempah tembakau cokelat udang tan
+ilain tekstil   kayu[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 1 2010-01-01 36312 11889  18540     6425  127962 54958   1
+05325  836334 214095[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 2 2010-02-01 36858 11734  16752     4728   67117 60874   1
+25776  814565 241661[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 3 2010-03-01 39535 14239  24954     8512  114329 68049   1
+11998  916195 254687[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 4 2010-04-01 45247 13074  21440    10471   17260 69619   1
+23098  870609 234767[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 5 2010-05-01 60271 12302  25826     6909  127798 63006   1
+19479  888548 229760[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 6 2010-06-01 77593 12322  30163     7282   60956 83919   1
+20270  981359 239067[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ##    sawit  kimia   logam   alat semen kertas  karet minyak 
+elpiji manufakturlain[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 1 565344 254486  593539 526702  2989 288466 505683 296280 
+    NA        1899732[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 2 805257 256887  548909 581052  6039 298346 631605 325349 
+    NA        1951675[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 3 928524 283782 1002479 683638  8087 350199 773076 246641 
+    NA        2284053[] 
+ []
+
+[11]
+Overfull \hbox (85.5pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 4 600508 303844  678313 676969  8881 357734 772325 319986 
+    NA        2314475[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 5 788746 332051  654923 677666  8809 357008 791302 389152 
+    NA        2240443[] 
+ []
+
+
+Overfull \hbox (85.5pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 6 864754 237749  681485 670858  5943 345368 780795 234197 
+    NA        2385290[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ##   tembaga nikel batubara bauksit  crude     gas gascair ta
+mbanglain   emas[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 1  263670 39735  1344304   24857 718273 1049665  754473   
+    23575  58107[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 2  446785 34594  1348624   22999 826872  945454  689446   
+    43447  55722[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 3  724134 50842  1520672   42212 913640 1026612  724647   
+    32253  76236[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 4  322333 34815  1399697   33987 866674 1141495  830103   
+    29723 120110[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 5  545442 48632  1277285   33129 903487 1136135  823827   
+    25486 163462[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 279--279
+[]\TU/lmtt/m/n/10 ## 6  341779 41563  1510298   43588 885780 1028868  752482   
+    20895 146505[] 
+ []
+
+File: Modul-belajar-R_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (ty
+pe pdf)
+<use Modul-belajar-R_files/figure-latex/unnamed-chunk-8-1.pdf>
+[12] [13] [14
 
 ]
 Chapter 4.
-[13] [14
-
-]
-Chapter 5.
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
 [15] [16
 
 ]
+Chapter 5.
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
+[17] [18
+
+]
 Chapter 6.
-(./Modul-belajar-R.bbl [17] [18
-
-])
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 328.
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no 🚧 in font [lmroman10-regular]:mapping=tex-text;!
+No file Modul-belajar-R.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
 [19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 328.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
 (./Modul-belajar-R.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 328.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 328.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 332.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 332.
 Package rerunfilecheck Info: File `Modul-belajar-R.out' has not changed.
-(rerunfilecheck)             Checksum: AE10184FF4994AF0B1B00959E315F78F;1456.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 328.
+(rerunfilecheck)             Checksum: 07DFE3429C7789E3B7E15DAC1E4B27DD;1696.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 332.
  ) 
 Here is how much of TeX's memory you used:
- 17475 strings out of 481704
- 309123 string characters out of 5932201
- 728314 words of memory out of 5000000
- 34322 multiletter control sequences out of 15000+600000
- 541555 words of font info for 84 fonts, out of 8000000 for 9000
+ 17471 strings out of 481704
+ 309096 string characters out of 5932201
+ 726314 words of memory out of 5000000
+ 34318 multiletter control sequences out of 15000+600000
+ 541563 words of font info for 85 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,8n,118p,909b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,6n,118p,909b,459s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on Modul-belajar-R.pdf (19 pages).
