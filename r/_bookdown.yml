@@ -1,0 +1,5 @@
+book_filename: "Modul belajar R"
+language:
+  ui:
+    chapter_name: "Bab "
+delete_merged_file: true
