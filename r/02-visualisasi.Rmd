@@ -1,0 +1,18 @@
+# Visualisasi Data
+
+## Pendahuluan
+Visualisasi data yang baik amat diperlukan guna mengkomunikasikan data yang kita miliki kepada orang lain. Visualisasi data dapat berbentuk tabel, grafik garis, grafik batang, dan lain sebagainya. Kali ini kita akan belajar cara melakukan visualisasi data dengan R.
+
+Pada modul ini, kita akan menggunakan paket bernama `ggplot2` dan paket bernama `dplyr`. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan 
+```{r}
+install.packages("ggplot2")
+install.packages("dplyr")
+```
+
+Jangan lupa bahwa kita harus terkoneksi dengan internet untuk menginstall paket tersebut. Kita juga harus memanggil paket tersebut dengan 
+```{r}
+library(ggplot2)
+library(dplyr)
+```
+
+
