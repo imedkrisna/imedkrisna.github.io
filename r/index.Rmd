@@ -17,6 +17,9 @@ description: "belum ada deskripsi"
 ## Modul apa ini?
 Modul ini merupakan panduan mahasiswa dalam mengaplikasikan teori tentang statistika dan analisis data ke dalam standar praktik di dunia usaha. Khususnya, modul ini bertujuan untuk membantu mahasiswa menggunakan R, sebuah bahasa pemrograman _open source_ yang banyak digunakan oleh analis data untuk menganalisis data menggunakan statistik, dan melakukan visualisasi data. Lebih lengkap tentang R dapat ditemukan di [https://www.r-project.org/](https://www.r-project.org/)
 
+## Pengetahuan yang diperlukan
+Modul ini mengasumsikan bahwa mahasiswa telah mampu menggunakan komputer dan mengakses internet. Mengetik dan _point-and-click_ windows _interface_ dianggap tidak perlu diajarkan. Modul ini juga mengasumsikan pengetahuan mengenai statistik. Mahasiswa dianggap telah mengerti teori inferensi statistik (mean,median, dan modus), sampling, probabilitas, maupun regresi. Kemampuan menggunakan _spreadsheet_ seperti Microsoft Excel atau Google Sheet merupakan pengetahuan yang sangat membantu, meskipun tidak diperlukan.
+
 ## Kenapa R?
 
 Ada beberapa aplikasi yang dapat digunakan untuk menganalisis data, seperti Microsoft Excel, EViews, SPSS, dan lain sebagainya. Beberapa alasan mengapa modul ini ditulis dengan menggunakan R:

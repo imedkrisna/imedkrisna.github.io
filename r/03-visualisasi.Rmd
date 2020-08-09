@@ -10,18 +10,19 @@ Pada modul ini, kita akan menggunakan paket bernama `ggplot2` dan paket bernama 
 ```
 
 Jangan lupa bahwa kita harus terkoneksi dengan internet untuk menginstall paket tersebut. Kita juga harus memanggil paket tersebut dengan 
-```{r echo=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 library(dplyr)
+library(tidyverse)
 ```
 
-Kita akan menggunakan data yang telah disiapkan di [situs buku ini](https://imedkrisna.github.io/rbook).
+Kita akan menggunakan data yang telah disiapkan di [situs buku ini](https://imedkrisna.github.io/r/docs/index.html).
 
-```{r fig.cap="ekspor bulanan Indonesia 2010-2020"}
+```{r message=FALSE, warning=FALSE, fig.cap="ekspor bulanan Indonesia 2010-2020"}
 dagang<-read.csv(url("https://imedkrisna.github.io/r/databi.csv"))
 library(lubridate)
 dagang$bulan<-dmy(dagang$bulan) # untuk membuat bulan menjadi waktu
-head(dagang)
+head(dagang %>% select(bulan, udang, kopi, tembakau, sawit, tekstil,logam, kertas, crude))
 ```
 data tersebut merupakan nilai ekspor per bulan Indonesia yang didapat dari [Statistik Ekonomi dan Keuangan Indonesia (SEKI)](https://www.bi.go.id/id/statistik/seki/terkini/eksternal/Contents/Default.aspx), Bank Indonesia, setelah sebelumnya diolah terlebih dahulu untuk mendapatkan tabel seperti di atas. Data dalam ribu USD.
 
