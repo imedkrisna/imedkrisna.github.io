@@ -249,7 +249,7 @@ Lalu di yes yes saja sampai update selesai.
 
 Visualisasi data yang baik amat diperlukan guna mengkomunikasikan data yang kita miliki kepada orang lain. Visualisasi data dapat berbentuk tabel, grafik garis, grafik batang, dan lain sebagainya. Kali ini kita akan belajar cara melakukan visualisasi data dengan R.
 
-Pada modul ini, kita akan menggunakan paket bernama \texttt{ggplot2} dan paket bernama \texttt{dplyr}. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan
+Pada modul ini, kita akan menggunakan paket bernama \texttt{ggplot2} dan paket bernama \texttt{dplyr}. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan `install.packages(nama\_paket)'.
 
 Jangan lupa bahwa kita harus terkoneksi dengan internet untuk menginstall paket tersebut. Kita juga harus memanggil paket tersebut dengan
 
@@ -258,41 +258,215 @@ Jangan lupa bahwa kita harus terkoneksi dengan internet untuk menginstall paket 
 \KeywordTok{library}\NormalTok{(ggplot2)}
 \KeywordTok{library}\NormalTok{(dplyr)}
 \KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(pander)}
+\KeywordTok{library}\NormalTok{(lubridate)}
 \end{Highlighting}
 \end{Shaded}
 
-Kita akan menggunakan data yang telah disiapkan di \href{https://imedkrisna.github.io/r/docs/index.html}{situs buku ini}.
+Langkah pertama adalah mengambil dataset terlebih dahulu. Kita akan menggunakan data yang telah disiapkan di \href{https://imedkrisna.github.io/r/docs/index.html}{situs buku ini}.
+
+data tersebut merupakan nilai ekspor per bulan Indonesia yang didapat dari \href{https://www.bi.go.id/id/statistik/seki/terkini/eksternal/Contents/Default.aspx}{Statistik Ekonomi dan Keuangan Indonesia (SEKI)}, Bank Indonesia, setelah sebelumnya diolah terlebih dahulu untuk mendapatkan tabel seperti di atas. Data dalam ribu USD.
+
+Kita tarik dari situs buku tersebut dengan kode berikut
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# menarik data dari situs buku ini}
 \NormalTok{dagang<-}\KeywordTok{read.csv}\NormalTok{(}\KeywordTok{url}\NormalTok{(}\StringTok{"https://imedkrisna.github.io/r/databi.csv"}\NormalTok{))}
-\KeywordTok{library}\NormalTok{(lubridate)}
-\NormalTok{dagang}\OperatorTok{$}\NormalTok{bulan<-}\KeywordTok{dmy}\NormalTok{(dagang}\OperatorTok{$}\NormalTok{bulan) }\CommentTok{# untuk membuat bulan menjadi waktu}
-\KeywordTok{head}\NormalTok{(dagang }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(bulan, udang, kopi, tembakau, sawit, tekstil,logam, kertas, crude))}
+
+\CommentTok{# gunakan paket libridate dan command dmy untuk membuat bulan menjadi waktu}
+\NormalTok{dagang}\OperatorTok{$}\NormalTok{bulan<-}\KeywordTok{dmy}\NormalTok{(dagang}\OperatorTok{$}\NormalTok{bulan)}
+
+\CommentTok{# panggil 6 baris teratas}
+\KeywordTok{head}\NormalTok{(dagang)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##        bulan udang  kopi tembakau  sawit tekstil   logam kertas  crude
-## 1 2010-01-01 54958 36312     6425 565344  836334  593539 288466 718273
-## 2 2010-02-01 60874 36858     4728 805257  814565  548909 298346 826872
-## 3 2010-03-01 68049 39535     8512 928524  916195 1002479 350199 913640
-## 4 2010-04-01 69619 45247    10471 600508  870609  678313 357734 866674
-## 5 2010-05-01 63006 60271     6909 788746  888548  654923 357008 903487
-## 6 2010-06-01 83919 77593     7282 864754  981359  681485 345368 885780
+##        bulan  kopi   teh rempah tembakau cokelat udang tanilain tekstil   kayu
+## 1 2010-01-01 36312 11889  18540     6425  127962 54958   105325  836334 214095
+## 2 2010-02-01 36858 11734  16752     4728   67117 60874   125776  814565 241661
+## 3 2010-03-01 39535 14239  24954     8512  114329 68049   111998  916195 254687
+## 4 2010-04-01 45247 13074  21440    10471   17260 69619   123098  870609 234767
+## 5 2010-05-01 60271 12302  25826     6909  127798 63006   119479  888548 229760
+## 6 2010-06-01 77593 12322  30163     7282   60956 83919   120270  981359 239067
+##    sawit  kimia   logam   alat semen kertas  karet minyak elpiji manufakturlain
+## 1 565344 254486  593539 526702  2989 288466 505683 296280     NA        1899732
+## 2 805257 256887  548909 581052  6039 298346 631605 325349     NA        1951675
+## 3 928524 283782 1002479 683638  8087 350199 773076 246641     NA        2284053
+## 4 600508 303844  678313 676969  8881 357734 772325 319986     NA        2314475
+## 5 788746 332051  654923 677666  8809 357008 791302 389152     NA        2240443
+## 6 864754 237749  681485 670858  5943 345368 780795 234197     NA        2385290
+##   tembaga nikel batubara bauksit  crude     gas gascair tambanglain   emas
+## 1  263670 39735  1344304   24857 718273 1049665  754473       23575  58107
+## 2  446785 34594  1348624   22999 826872  945454  689446       43447  55722
+## 3  724134 50842  1520672   42212 913640 1026612  724647       32253  76236
+## 4  322333 34815  1399697   33987 866674 1141495  830103       29723 120110
+## 5  545442 48632  1277285   33129 903487 1136135  823827       25486 163462
+## 6  341779 41563  1510298   43588 885780 1028868  752482       20895 146505
 \end{verbatim}
 
-data tersebut merupakan nilai ekspor per bulan Indonesia yang didapat dari \href{https://www.bi.go.id/id/statistik/seki/terkini/eksternal/Contents/Default.aspx}{Statistik Ekonomi dan Keuangan Indonesia (SEKI)}, Bank Indonesia, setelah sebelumnya diolah terlebih dahulu untuk mendapatkan tabel seperti di atas. Data dalam ribu USD.
+Seperti anda lihat, data tersebut kurang begitu cantik untuk dilihat. Ketika kita bekerja, kita tidak terlalu memusingkan bentuk dari tabel atau grafik, selama informasi yang diberikan oleh data tersebut dapat kita mengerti dengan mudah. Namun, klien atau bos kita di kantor mungkin akan memerlukan visualisasi data yang lebih representatif. Kita akan mencoba mengatur visualisasi data berikutnya.
+
+Untuk keperluan sendiri, anda juga dapat menggunakan \emph{command} `View(nama\_dataset)' untuk melihat datanya dengan lebih baik.
+
+\hypertarget{tabel}{%
+\section{Tabel}\label{tabel}}
+
+Tabel adalah salah satu bentuk visualisasi data yang tidak terlalu populer untuk ditampilkan dalam berbagai publikasi populer. Namun, tabel dapat memberikan detil yang jauh lebih baik dibandingkan bentuk visualisasi data lainnya. Anda akan lebih sering melihat tabel di publikasi akademis atau laporan-laporan yang sifatnya lebih ke menunjukkan hal-hal detil seperti laporan keuangan atau ekspor-impor.
+
+Untuk menulis tabel tersebut, kita akan menggunakan paket \texttt{pander} dan \texttt{tidyverse}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# melihat tabel dengan hanya variabel tertentu saja}
+\KeywordTok{pander}\NormalTok{(}\KeywordTok{head}\NormalTok{(dagang }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(bulan, udang, kopi, tembakau, sawit, tekstil,logam, kertas)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}cccccccc@{}}
+\toprule
+\begin{minipage}[b]{0.13\columnwidth}\centering
+bulan\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+udang\strut
+\end{minipage} & \begin{minipage}[b]{0.08\columnwidth}\centering
+kopi\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+tembakau\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\centering
+sawit\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+tekstil\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+logam\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+kertas\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.13\columnwidth}\centering
+2010-01-01\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+54958\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+36312\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+6425\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+565344\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+836334\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+593539\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+288466\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\centering
+2010-02-01\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+60874\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+36858\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+4728\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+805257\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+814565\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+548909\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+298346\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\centering
+2010-03-01\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+68049\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+39535\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+8512\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+928524\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+916195\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+1002479\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+350199\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\centering
+2010-04-01\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+69619\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+45247\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+10471\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+600508\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+870609\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+678313\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+357734\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\centering
+2010-05-01\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+63006\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+60271\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+6909\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+788746\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+888548\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+654923\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+357008\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.13\columnwidth}\centering
+2010-06-01\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+83919\strut
+\end{minipage} & \begin{minipage}[t]{0.08\columnwidth}\centering
+77593\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+7282\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\centering
+864754\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+981359\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+681485\strut
+\end{minipage} & \begin{minipage}[t]{0.10\columnwidth}\centering
+345368\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+hanya dengan menggunakan \texttt{pander} saja, kita sudah mendapatkan tabel yang terlihat bagus dan representatif. Anda dapat melihat opsi-opsi untuk paket pander dengan menggunakan kode \texttt{?pander} atau lihat di google.
 
 \hypertarget{grafik}{%
 \section{Grafik}\label{grafik}}
 
-Data serial waktu (\emph{time series}) seperti ini memang paling cocok divisualisasikan dengan menggunakan grafik garis. Kita akan mencoba menggambar grafik ekspor biji kopi. kode yang dapat digunakan adalah
+Data serial waktu (\emph{time series}) seperti ini memang paling cocok divisualisasikan dengan menggunakan grafik garis. Kita akan mencoba menggambar grafik ekspor biji kopi. Ada beberapa hal yang terjadi ketika kita menggambar grafik dengan menggunakan \texttt{ggplot}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# perintah ggplot ke sebuah variabel yang saya namakan grafik}
 \NormalTok{grafik<-}\KeywordTok{ggplot}\NormalTok{(dagang,}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{bulan,}\DataTypeTok{y=}\NormalTok{kopi))}
+\CommentTok{# ggplot telah meletakkan bulan di sumbu x dan kopi di sumbu y}
+
+\CommentTok{# akan tetapi, untuk menggambarkan garisnya, kita perlu menambahkan perintah geoline()}
 \NormalTok{grafik<-grafik}\OperatorTok{+}\KeywordTok{geom_line}\NormalTok{()}\OperatorTok{+}\KeywordTok{scale_x_date}\NormalTok{(}\DataTypeTok{date_breaks=}\StringTok{"1 year"}\NormalTok{, }\DataTypeTok{date_labels =} \StringTok{"%Y"}\NormalTok{)}
+
+\CommentTok{# panggil dengan print}
 \KeywordTok{print}\NormalTok{(grafik)}
 \end{Highlighting}
 \end{Shaded}
@@ -305,14 +479,20 @@ Data serial waktu (\emph{time series}) seperti ini memang paling cocok divisuali
 
 Grafik di atas menunjukan perkembangan ekspor bulanan biji kopi Indonesia sejak Januari 2010 sampai Mei 2020.
 
+perintah \texttt{geom\_line()} juga dapat diatur opsinya untuk membuatnya jadi garis putus-putus, misalnya, atau mengubah warnanya. perintah \texttt{scale\_x\_date()} digunakan untuk membuat tanda x-nya menampilkan interval tahunan.
+
 \hypertarget{latihan}{%
 \section{Latihan}\label{latihan}}
 
-Apakah anda dapat menggambar grafik yang sama untuk ekspor kertas? Tuliskan kode-nya di bawah ini
+Apakah anda dapat menggambar grafik yang sama untuk ekspor kertas? Buatlah menjadi garis putus-putus dan warna merah. Tuliskan kode-nya di bawah ini
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# kode untuk menggambar grafik ekspor kertas}
+\CommentTok{# awal kode}
+
+
+
+\CommentTok{# akhir kode}
 \end{Highlighting}
 \end{Shaded}
 

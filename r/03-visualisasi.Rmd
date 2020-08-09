@@ -3,47 +3,76 @@
 ## Pendahuluan
 Visualisasi data yang baik amat diperlukan guna mengkomunikasikan data yang kita miliki kepada orang lain. Visualisasi data dapat berbentuk tabel, grafik garis, grafik batang, dan lain sebagainya. Kali ini kita akan belajar cara melakukan visualisasi data dengan R.
 
-Pada modul ini, kita akan menggunakan paket bernama `ggplot2` dan paket bernama `dplyr`. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan 
-```{r echo=FALSE}
-# install.packages("ggplot2")
-# install.packages("dplyr")
-```
+Pada modul ini, kita akan menggunakan paket bernama `ggplot2` dan paket bernama `dplyr`. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan 'install.packages(nama_paket)'.
 
 Jangan lupa bahwa kita harus terkoneksi dengan internet untuk menginstall paket tersebut. Kita juga harus memanggil paket tersebut dengan 
 ```{r message=FALSE, warning=FALSE}
 library(ggplot2)
 library(dplyr)
 library(tidyverse)
-```
-
-Kita akan menggunakan data yang telah disiapkan di [situs buku ini](https://imedkrisna.github.io/r/docs/index.html).
-
-```{r message=FALSE, warning=FALSE, fig.cap="ekspor bulanan Indonesia 2010-2020"}
-dagang<-read.csv(url("https://imedkrisna.github.io/r/databi.csv"))
+library(pander)
 library(lubridate)
-dagang$bulan<-dmy(dagang$bulan) # untuk membuat bulan menjadi waktu
-head(dagang %>% select(bulan, udang, kopi, tembakau, sawit, tekstil,logam, kertas, crude))
 ```
+
+Langkah pertama adalah mengambil dataset terlebih dahulu. Kita akan menggunakan data yang telah disiapkan di [situs buku ini](https://imedkrisna.github.io/r/docs/index.html).
+
 data tersebut merupakan nilai ekspor per bulan Indonesia yang didapat dari [Statistik Ekonomi dan Keuangan Indonesia (SEKI)](https://www.bi.go.id/id/statistik/seki/terkini/eksternal/Contents/Default.aspx), Bank Indonesia, setelah sebelumnya diolah terlebih dahulu untuk mendapatkan tabel seperti di atas. Data dalam ribu USD.
 
+Kita tarik dari situs buku tersebut dengan kode berikut
+```{r message=FALSE, warning=FALSE}
+# menarik data dari situs buku ini
+dagang<-read.csv(url("https://imedkrisna.github.io/r/databi.csv"))
+
+# gunakan paket libridate dan command dmy untuk membuat bulan menjadi waktu
+dagang$bulan<-dmy(dagang$bulan)
+
+# panggil 6 baris teratas
+head(dagang)
+```
+
+Seperti anda lihat, data tersebut kurang begitu cantik untuk dilihat. Ketika kita bekerja, kita tidak terlalu memusingkan bentuk dari tabel atau grafik, selama informasi yang diberikan oleh data tersebut dapat kita mengerti dengan mudah. Namun, klien atau bos kita di kantor mungkin akan memerlukan visualisasi data yang lebih representatif. Kita akan mencoba mengatur visualisasi data berikutnya.
+
+Untuk keperluan sendiri, anda juga dapat menggunakan _command_ 'View(nama_dataset)' untuk melihat datanya dengan lebih baik.
+
+## Tabel
+Tabel adalah salah satu bentuk visualisasi data yang tidak terlalu populer untuk ditampilkan dalam berbagai publikasi populer. Namun, tabel dapat memberikan detil yang jauh lebih baik dibandingkan bentuk visualisasi data lainnya. Anda akan lebih sering melihat tabel di publikasi akademis atau laporan-laporan yang sifatnya lebih ke menunjukkan hal-hal detil seperti laporan keuangan atau ekspor-impor.
+
+Untuk menulis tabel tersebut, kita akan menggunakan paket `pander` dan `tidyverse`.
+
+```{r message=FALSE, result='asis', warning=FALSE, fig.cap="ekspor bulanan Indonesia 2010-2020"}
+
+# melihat tabel dengan hanya variabel tertentu saja
+pander(head(dagang %>% select(bulan, udang, kopi, tembakau, sawit, tekstil,logam, kertas)))
+```
+
+hanya dengan menggunakan `pander` saja, kita sudah mendapatkan tabel yang terlihat bagus dan representatif. Anda dapat melihat opsi-opsi untuk paket pander dengan menggunakan kode `?pander` atau lihat di google.
+
 ## Grafik
-Data serial waktu (_time series_) seperti ini memang paling cocok divisualisasikan dengan menggunakan grafik garis. Kita akan mencoba menggambar grafik ekspor biji kopi. kode yang dapat digunakan adalah
+Data serial waktu (_time series_) seperti ini memang paling cocok divisualisasikan dengan menggunakan grafik garis. Kita akan mencoba menggambar grafik ekspor biji kopi. Ada beberapa hal yang terjadi ketika kita menggambar grafik dengan menggunakan `ggplot`.
 
 ```{r fig.cap="ekspor bulanan biji kopi"}
+# perintah ggplot ke sebuah variabel yang saya namakan grafik
 grafik<-ggplot(dagang,aes(x=bulan,y=kopi))
+# ggplot telah meletakkan bulan di sumbu x dan kopi di sumbu y
+
+# akan tetapi, untuk menggambarkan garisnya, kita perlu menambahkan perintah geoline()
 grafik<-grafik+geom_line()+scale_x_date(date_breaks="1 year", date_labels = "%Y")
+
+# panggil dengan print
 print(grafik)
 ```
 
-Grafik di atas menunjukan perkembangan ekspor bulanan biji kopi Indonesia sejak Januari 2010 sampai Mei 2020. 
+Grafik di atas menunjukan perkembangan ekspor bulanan biji kopi Indonesia sejak Januari 2010 sampai Mei 2020.
+
+perintah `geom_line()` juga dapat diatur opsinya untuk membuatnya jadi garis putus-putus, misalnya, atau mengubah warnanya. perintah `scale_x_date()` digunakan untuk membuat tanda x-nya menampilkan interval tahunan.
 
 ## Latihan
-Apakah anda dapat menggambar grafik yang sama untuk ekspor kertas? Tuliskan kode-nya di bawah ini
+Apakah anda dapat menggambar grafik yang sama untuk ekspor kertas? Buatlah menjadi garis putus-putus dan warna merah. Tuliskan kode-nya di bawah ini
 ```{r}
-# kode untuk menggambar grafik ekspor kertas
+# awal kode
 
 
 
-
+# akhir kode
 ```
 

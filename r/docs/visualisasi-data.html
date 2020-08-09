@@ -153,8 +153,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="manipulasi-data.html"><a href="manipulasi-data.html"><i class="fa fa-check"></i><b>3</b> Manipulasi Data</a></li>
 <li class="chapter" data-level="4" data-path="visualisasi-data.html"><a href="visualisasi-data.html"><i class="fa fa-check"></i><b>4</b> Visualisasi Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="index.html"><a href="index.html#pendahuluan"><i class="fa fa-check"></i><b>4.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="4.2" data-path="visualisasi-data.html"><a href="visualisasi-data.html#grafik"><i class="fa fa-check"></i><b>4.2</b> Grafik</a></li>
-<li class="chapter" data-level="4.3" data-path="visualisasi-data.html"><a href="visualisasi-data.html#latihan"><i class="fa fa-check"></i><b>4.3</b> Latihan</a></li>
+<li class="chapter" data-level="4.2" data-path="visualisasi-data.html"><a href="visualisasi-data.html#tabel"><i class="fa fa-check"></i><b>4.2</b> Tabel</a></li>
+<li class="chapter" data-level="4.3" data-path="visualisasi-data.html"><a href="visualisasi-data.html#grafik"><i class="fa fa-check"></i><b>4.3</b> Grafik</a></li>
+<li class="chapter" data-level="4.4" data-path="visualisasi-data.html"><a href="visualisasi-data.html#latihan"><i class="fa fa-check"></i><b>4.4</b> Latihan</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="mean-median-dan-modus.html"><a href="mean-median-dan-modus.html"><i class="fa fa-check"></i><b>5</b> Mean, Median, dan Modus</a></li>
 <li class="chapter" data-level="6" data-path="tes-hipotesis.html"><a href="tes-hipotesis.html"><i class="fa fa-check"></i><b>6</b> Tes Hipotesis</a></li>
@@ -185,31 +186,154 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pendahuluan" class="section level2">
 <h2><span class="header-section-number">4.1</span> Pendahuluan</h2>
 <p>Visualisasi data yang baik amat diperlukan guna mengkomunikasikan data yang kita miliki kepada orang lain. Visualisasi data dapat berbentuk tabel, grafik garis, grafik batang, dan lain sebagainya. Kali ini kita akan belajar cara melakukan visualisasi data dengan R.</p>
-<p>Pada modul ini, kita akan menggunakan paket bernama <code>ggplot2</code> dan paket bernama <code>dplyr</code>. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan</p>
+<p>Pada modul ini, kita akan menggunakan paket bernama <code>ggplot2</code> dan paket bernama <code>dplyr</code>. untuk itu, jika belum ada paket ini di komputer anda, maka harus diinstal dengan ‘install.packages(nama_paket)’.</p>
 <p>Jangan lupa bahwa kita harus terkoneksi dengan internet untuk menginstall paket tersebut. Kita juga harus memanggil paket tersebut dengan</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="visualisasi-data.html#cb4-1"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb4-2"><a href="visualisasi-data.html#cb4-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb4-3"><a href="visualisasi-data.html#cb4-3"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<p>Kita akan menggunakan data yang telah disiapkan di <a href="https://imedkrisna.github.io/r/docs/index.html">situs buku ini</a>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualisasi-data.html#cb5-1"></a>dagang&lt;-<span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://imedkrisna.github.io/r/databi.csv&quot;</span>))</span>
-<span id="cb5-2"><a href="visualisasi-data.html#cb5-2"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb5-3"><a href="visualisasi-data.html#cb5-3"></a>dagang<span class="op">$</span>bulan&lt;-<span class="kw">dmy</span>(dagang<span class="op">$</span>bulan) <span class="co"># untuk membuat bulan menjadi waktu</span></span>
-<span id="cb5-4"><a href="visualisasi-data.html#cb5-4"></a><span class="kw">head</span>(dagang <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(bulan, udang, kopi, tembakau, sawit, tekstil,logam, kertas, crude))</span></code></pre></div>
-<pre><code>##        bulan udang  kopi tembakau  sawit tekstil   logam kertas  crude
-## 1 2010-01-01 54958 36312     6425 565344  836334  593539 288466 718273
-## 2 2010-02-01 60874 36858     4728 805257  814565  548909 298346 826872
-## 3 2010-03-01 68049 39535     8512 928524  916195 1002479 350199 913640
-## 4 2010-04-01 69619 45247    10471 600508  870609  678313 357734 866674
-## 5 2010-05-01 63006 60271     6909 788746  888548  654923 357008 903487
-## 6 2010-06-01 83919 77593     7282 864754  981359  681485 345368 885780</code></pre>
+<span id="cb4-3"><a href="visualisasi-data.html#cb4-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb4-4"><a href="visualisasi-data.html#cb4-4"></a><span class="kw">library</span>(pander)</span>
+<span id="cb4-5"><a href="visualisasi-data.html#cb4-5"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<p>Langkah pertama adalah mengambil dataset terlebih dahulu. Kita akan menggunakan data yang telah disiapkan di <a href="https://imedkrisna.github.io/r/docs/index.html">situs buku ini</a>.</p>
 <p>data tersebut merupakan nilai ekspor per bulan Indonesia yang didapat dari <a href="https://www.bi.go.id/id/statistik/seki/terkini/eksternal/Contents/Default.aspx">Statistik Ekonomi dan Keuangan Indonesia (SEKI)</a>, Bank Indonesia, setelah sebelumnya diolah terlebih dahulu untuk mendapatkan tabel seperti di atas. Data dalam ribu USD.</p>
+<p>Kita tarik dari situs buku tersebut dengan kode berikut</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualisasi-data.html#cb5-1"></a><span class="co"># menarik data dari situs buku ini</span></span>
+<span id="cb5-2"><a href="visualisasi-data.html#cb5-2"></a>dagang&lt;-<span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://imedkrisna.github.io/r/databi.csv&quot;</span>))</span>
+<span id="cb5-3"><a href="visualisasi-data.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="visualisasi-data.html#cb5-4"></a><span class="co"># gunakan paket libridate dan command dmy untuk membuat bulan menjadi waktu</span></span>
+<span id="cb5-5"><a href="visualisasi-data.html#cb5-5"></a>dagang<span class="op">$</span>bulan&lt;-<span class="kw">dmy</span>(dagang<span class="op">$</span>bulan)</span>
+<span id="cb5-6"><a href="visualisasi-data.html#cb5-6"></a></span>
+<span id="cb5-7"><a href="visualisasi-data.html#cb5-7"></a><span class="co"># panggil 6 baris teratas</span></span>
+<span id="cb5-8"><a href="visualisasi-data.html#cb5-8"></a><span class="kw">head</span>(dagang)</span></code></pre></div>
+<pre><code>##        bulan  kopi   teh rempah tembakau cokelat udang tanilain tekstil   kayu
+## 1 2010-01-01 36312 11889  18540     6425  127962 54958   105325  836334 214095
+## 2 2010-02-01 36858 11734  16752     4728   67117 60874   125776  814565 241661
+## 3 2010-03-01 39535 14239  24954     8512  114329 68049   111998  916195 254687
+## 4 2010-04-01 45247 13074  21440    10471   17260 69619   123098  870609 234767
+## 5 2010-05-01 60271 12302  25826     6909  127798 63006   119479  888548 229760
+## 6 2010-06-01 77593 12322  30163     7282   60956 83919   120270  981359 239067
+##    sawit  kimia   logam   alat semen kertas  karet minyak elpiji manufakturlain
+## 1 565344 254486  593539 526702  2989 288466 505683 296280     NA        1899732
+## 2 805257 256887  548909 581052  6039 298346 631605 325349     NA        1951675
+## 3 928524 283782 1002479 683638  8087 350199 773076 246641     NA        2284053
+## 4 600508 303844  678313 676969  8881 357734 772325 319986     NA        2314475
+## 5 788746 332051  654923 677666  8809 357008 791302 389152     NA        2240443
+## 6 864754 237749  681485 670858  5943 345368 780795 234197     NA        2385290
+##   tembaga nikel batubara bauksit  crude     gas gascair tambanglain   emas
+## 1  263670 39735  1344304   24857 718273 1049665  754473       23575  58107
+## 2  446785 34594  1348624   22999 826872  945454  689446       43447  55722
+## 3  724134 50842  1520672   42212 913640 1026612  724647       32253  76236
+## 4  322333 34815  1399697   33987 866674 1141495  830103       29723 120110
+## 5  545442 48632  1277285   33129 903487 1136135  823827       25486 163462
+## 6  341779 41563  1510298   43588 885780 1028868  752482       20895 146505</code></pre>
+<p>Seperti anda lihat, data tersebut kurang begitu cantik untuk dilihat. Ketika kita bekerja, kita tidak terlalu memusingkan bentuk dari tabel atau grafik, selama informasi yang diberikan oleh data tersebut dapat kita mengerti dengan mudah. Namun, klien atau bos kita di kantor mungkin akan memerlukan visualisasi data yang lebih representatif. Kita akan mencoba mengatur visualisasi data berikutnya.</p>
+<p>Untuk keperluan sendiri, anda juga dapat menggunakan <em>command</em> ‘View(nama_dataset)’ untuk melihat datanya dengan lebih baik.</p>
+</div>
+<div id="tabel" class="section level2">
+<h2><span class="header-section-number">4.2</span> Tabel</h2>
+<p>Tabel adalah salah satu bentuk visualisasi data yang tidak terlalu populer untuk ditampilkan dalam berbagai publikasi populer. Namun, tabel dapat memberikan detil yang jauh lebih baik dibandingkan bentuk visualisasi data lainnya. Anda akan lebih sering melihat tabel di publikasi akademis atau laporan-laporan yang sifatnya lebih ke menunjukkan hal-hal detil seperti laporan keuangan atau ekspor-impor.</p>
+<p>Untuk menulis tabel tersebut, kita akan menggunakan paket <code>pander</code> dan <code>tidyverse</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualisasi-data.html#cb7-1"></a><span class="co"># melihat tabel dengan hanya variabel tertentu saja</span></span>
+<span id="cb7-2"><a href="visualisasi-data.html#cb7-2"></a><span class="kw">pander</span>(<span class="kw">head</span>(dagang <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(bulan, udang, kopi, tembakau, sawit, tekstil,logam, kertas)))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="10%" />
+<col width="10%" />
+<col width="13%" />
+<col width="11%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">bulan</th>
+<th align="center">udang</th>
+<th align="center">kopi</th>
+<th align="center">tembakau</th>
+<th align="center">sawit</th>
+<th align="center">tekstil</th>
+<th align="center">logam</th>
+<th align="center">kertas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2010-01-01</td>
+<td align="center">54958</td>
+<td align="center">36312</td>
+<td align="center">6425</td>
+<td align="center">565344</td>
+<td align="center">836334</td>
+<td align="center">593539</td>
+<td align="center">288466</td>
+</tr>
+<tr class="even">
+<td align="center">2010-02-01</td>
+<td align="center">60874</td>
+<td align="center">36858</td>
+<td align="center">4728</td>
+<td align="center">805257</td>
+<td align="center">814565</td>
+<td align="center">548909</td>
+<td align="center">298346</td>
+</tr>
+<tr class="odd">
+<td align="center">2010-03-01</td>
+<td align="center">68049</td>
+<td align="center">39535</td>
+<td align="center">8512</td>
+<td align="center">928524</td>
+<td align="center">916195</td>
+<td align="center">1002479</td>
+<td align="center">350199</td>
+</tr>
+<tr class="even">
+<td align="center">2010-04-01</td>
+<td align="center">69619</td>
+<td align="center">45247</td>
+<td align="center">10471</td>
+<td align="center">600508</td>
+<td align="center">870609</td>
+<td align="center">678313</td>
+<td align="center">357734</td>
+</tr>
+<tr class="odd">
+<td align="center">2010-05-01</td>
+<td align="center">63006</td>
+<td align="center">60271</td>
+<td align="center">6909</td>
+<td align="center">788746</td>
+<td align="center">888548</td>
+<td align="center">654923</td>
+<td align="center">357008</td>
+</tr>
+<tr class="even">
+<td align="center">2010-06-01</td>
+<td align="center">83919</td>
+<td align="center">77593</td>
+<td align="center">7282</td>
+<td align="center">864754</td>
+<td align="center">981359</td>
+<td align="center">681485</td>
+<td align="center">345368</td>
+</tr>
+</tbody>
+</table>
+<p>hanya dengan menggunakan <code>pander</code> saja, kita sudah mendapatkan tabel yang terlihat bagus dan representatif. Anda dapat melihat opsi-opsi untuk paket pander dengan menggunakan kode <code>?pander</code> atau lihat di google.</p>
 </div>
 <div id="grafik" class="section level2">
-<h2><span class="header-section-number">4.2</span> Grafik</h2>
-<p>Data serial waktu (<em>time series</em>) seperti ini memang paling cocok divisualisasikan dengan menggunakan grafik garis. Kita akan mencoba menggambar grafik ekspor biji kopi. kode yang dapat digunakan adalah</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualisasi-data.html#cb7-1"></a>grafik&lt;-<span class="kw">ggplot</span>(dagang,<span class="kw">aes</span>(<span class="dt">x=</span>bulan,<span class="dt">y=</span>kopi))</span>
-<span id="cb7-2"><a href="visualisasi-data.html#cb7-2"></a>grafik&lt;-grafik<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks=</span><span class="st">&quot;1 year&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%Y&quot;</span>)</span>
-<span id="cb7-3"><a href="visualisasi-data.html#cb7-3"></a><span class="kw">print</span>(grafik)</span></code></pre></div>
+<h2><span class="header-section-number">4.3</span> Grafik</h2>
+<p>Data serial waktu (<em>time series</em>) seperti ini memang paling cocok divisualisasikan dengan menggunakan grafik garis. Kita akan mencoba menggambar grafik ekspor biji kopi. Ada beberapa hal yang terjadi ketika kita menggambar grafik dengan menggunakan <code>ggplot</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="visualisasi-data.html#cb8-1"></a><span class="co"># perintah ggplot ke sebuah variabel yang saya namakan grafik</span></span>
+<span id="cb8-2"><a href="visualisasi-data.html#cb8-2"></a>grafik&lt;-<span class="kw">ggplot</span>(dagang,<span class="kw">aes</span>(<span class="dt">x=</span>bulan,<span class="dt">y=</span>kopi))</span>
+<span id="cb8-3"><a href="visualisasi-data.html#cb8-3"></a><span class="co"># ggplot telah meletakkan bulan di sumbu x dan kopi di sumbu y</span></span>
+<span id="cb8-4"><a href="visualisasi-data.html#cb8-4"></a></span>
+<span id="cb8-5"><a href="visualisasi-data.html#cb8-5"></a><span class="co"># akan tetapi, untuk menggambarkan garisnya, kita perlu menambahkan perintah geoline()</span></span>
+<span id="cb8-6"><a href="visualisasi-data.html#cb8-6"></a>grafik&lt;-grafik<span class="op">+</span><span class="kw">geom_line</span>()<span class="op">+</span><span class="kw">scale_x_date</span>(<span class="dt">date_breaks=</span><span class="st">&quot;1 year&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%Y&quot;</span>)</span>
+<span id="cb8-7"><a href="visualisasi-data.html#cb8-7"></a></span>
+<span id="cb8-8"><a href="visualisasi-data.html#cb8-8"></a><span class="co"># panggil dengan print</span></span>
+<span id="cb8-9"><a href="visualisasi-data.html#cb8-9"></a><span class="kw">print</span>(grafik)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-8"></span>
 <img src="Modul-belajar-R_files/figure-html/unnamed-chunk-8-1.png" alt="ekspor bulanan biji kopi" width="672" />
 <p class="caption">
@@ -217,11 +341,16 @@ Figure 4.1: ekspor bulanan biji kopi
 </p>
 </div>
 <p>Grafik di atas menunjukan perkembangan ekspor bulanan biji kopi Indonesia sejak Januari 2010 sampai Mei 2020.</p>
+<p>perintah <code>geom_line()</code> juga dapat diatur opsinya untuk membuatnya jadi garis putus-putus, misalnya, atau mengubah warnanya. perintah <code>scale_x_date()</code> digunakan untuk membuat tanda x-nya menampilkan interval tahunan.</p>
 </div>
 <div id="latihan" class="section level2">
-<h2><span class="header-section-number">4.3</span> Latihan</h2>
-<p>Apakah anda dapat menggambar grafik yang sama untuk ekspor kertas? Tuliskan kode-nya di bawah ini</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="visualisasi-data.html#cb8-1"></a><span class="co"># kode untuk menggambar grafik ekspor kertas</span></span></code></pre></div>
+<h2><span class="header-section-number">4.4</span> Latihan</h2>
+<p>Apakah anda dapat menggambar grafik yang sama untuk ekspor kertas? Buatlah menjadi garis putus-putus dan warna merah. Tuliskan kode-nya di bawah ini</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualisasi-data.html#cb9-1"></a><span class="co"># awal kode</span></span>
+<span id="cb9-2"><a href="visualisasi-data.html#cb9-2"></a></span>
+<span id="cb9-3"><a href="visualisasi-data.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="visualisasi-data.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="visualisasi-data.html#cb9-5"></a><span class="co"># akhir kode</span></span></code></pre></div>
 
 </div>
 </div>
