@@ -1,0 +1,10 @@
+# Inferences
+
+🚧 Under Construction 🚧
+
+`mean(price)`
+`summary(price)`
+`var(price)`
+`sd(price)`
+`cov(price, bedrooms)`
+`cor(price, bedrooms)`

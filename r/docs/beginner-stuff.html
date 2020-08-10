@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Statistics with R</title>
+  <title>Chapter 3 Beginner stuff | Statistics with R</title>
   <meta name="description" content="Learning Statistics with R language" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Statistics with R" />
+  <meta property="og:title" content="Chapter 3 Beginner stuff | Statistics with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Statistics with R" />
+  <meta name="twitter:title" content="Chapter 3 Beginner stuff | Statistics with R" />
   
   <meta name="twitter:description" content="Learning Statistics with R language" />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simple-regression.html"/>
-
+<link rel="prev" href="what-the-hell-is-r.html"/>
+<link rel="next" href="data-management.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -196,23 +196,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="beginner-stuff" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Beginner stuff</h1>
+<p>🚧 Under Construction 🚧</p>
+<p>This chapter contains instruction the most basic and useful commands in R. We also covers data types and why it matters.</p>
+<div id="setting-your-preamble" class="section level2">
+<h2><span class="header-section-number">3.1</span> Setting your preamble</h2>
+<p>Firstly, it is a good idea to start your script with a clearing environment sets of code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="beginner-stuff.html#cb1-1"></a><span class="co"># Close all graphics, clear memory and screen</span></span>
+<span id="cb1-2"><a href="beginner-stuff.html#cb1-2"></a><span class="kw">graphics.off</span>(); <span class="kw">remove</span>(<span class="dt">list=</span><span class="kw">ls</span>());<span class="kw">cat</span>(<span class="st">&quot;\14&quot;</span>);</span></code></pre></div>
+<p>There are three different command in this script. <code>graphics.off()</code> clears out the environment from any graphs from previous R session. the command <code>remove(list=ls())</code> is used to remove your environment from any data and variables/series that you may have. Lastly, <code>cat("\14")</code> clears your console window.</p>
+<p>You need to set your working directory</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="beginner-stuff.html#cb2-1"></a><span class="kw">setwd</span>(<span class="st">&#39;your directory&#39;</span>)</span></code></pre></div>
 
 </div>
-
-
-
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="simple-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="what-the-hell-is-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-management.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -243,7 +248,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-references.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-begin.Rmd",
 "text": "Edit"
 },
 "history": {

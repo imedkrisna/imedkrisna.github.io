@@ -1,0 +1,8 @@
+# Visualisation
+
+🚧 Under Construction 🚧
+
+## Plot command
+`plot()` have many options in it
+
+## using ggplot2

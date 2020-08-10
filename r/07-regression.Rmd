@@ -1,0 +1,10 @@
+# Simple Regression
+
+🚧 Under Construction 🚧
+
+## Univariate regression
+
+## plotting your regression
+In the previous chapter, we have learned how to plot our data using `plot()`. You can add to your script a line showing your regression result
+
+## Multivariate regression

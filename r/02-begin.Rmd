@@ -1,0 +1,20 @@
+# Beginner stuff
+
+🚧 Under Construction 🚧
+
+This chapter contains instruction the most basic and useful commands in R. We also covers data types and why it matters.
+
+## Setting your preamble
+
+Firstly, it is a good idea to start your script with a clearing environment sets of code.
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+# Close all graphics, clear memory and screen
+graphics.off(); remove(list=ls());cat("\14");
+```
+There are three different command in this script. `graphics.off()` clears out the environment from any graphs from previous R session. the command `remove(list=ls())` is used to remove your environment from any data and variables/series that you may have. Lastly, `cat("\14")` clears your console window.
+
+You need to set your working directory
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+setwd('your directory')
+```
+

@@ -1,0 +1,43 @@
+# What the hell is R?
+
+🚧 Under Construction 🚧
+
+This chapter contains instruction 
+
+## Installing R and RStudio
+
+
+
+## RStudio's interface
+RStudio looks like this:
+```{r echo=FALSE, fig.cap="RStudio's interface"}
+knitr::include_graphics('tampilanR2.JPG')
+```
+As you can see from the above figure, RStudio have four main windows.
+
+### console window
+Arguably the most important window in RStudio. We write R command in this window.
+
+### script window
+Forget what we said about the previous window. This is the most important window in RStudio. We write our sets of command in this window
+
+### environment window
+You can observe your environment here, such as the data and variables / series you created. This window also have other useful tab such as "history" which can show you the history of what happens in your environment, but we will skip them for now.
+
+### files window
+Although we call it 'files window', this window consists of 5 tabs. The tab file shows your working directory. When you run a code that generates file such as graphics, it will be stored in this window. Plots tab shows you your latest plot.
+
+Packages tab show you all the package that you have. You can also add new package from this tab instead of using the `install.packages()` command. In this tab, you can also activate package that you have instead of using `library()` command.
+
+"help" tab will show you some information about things that you ask help for when you use `?'command'` command. Will show you how it works in a minute.
+
+Lastly, "viewer" tab. I actually forgot why it exists so whatever.
+
+## using your console window
+
+## using Rscript
+
+## package
+
+## Update
+You need to keep your R, RStudio and your installed packages updated as much as you can. 
