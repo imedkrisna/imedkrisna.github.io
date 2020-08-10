@@ -26,9 +26,7 @@ Modul ini dimaksudkan untuk membantu mahasiswa Indonesia belajar statistik denga
 Modul ini adalah _open source_, dengan kata lain, modul ini dapat digunakan dan diunduh secara bebas oleh siapapun. Kami melarang penggunaan modul ini untuk siapapun yang bertujuan memperjual-belikan konten pada modul ini tanpa izin penulis.
 
 ### Tentang penulis
-- [Krisna Gupta](https://imedkrisna.github.io/) adalah adalah dosen Politeknik APP Jakarta, sebuah kampus di bawah naungan Kementerian Perindustrian. Saat ini tengah menempuh pendidikan doktoral di bidang ekonomi di Australian National University (ANU). Kontak dapat dilihat di blog pribadinya di [https://imedkrisna.github.io/about](https://imedkrisna.github.io/about).
-
-- Donny Pasaribu
+[Krisna Gupta](https://imedkrisna.github.io/) adalah adalah dosen Politeknik APP Jakarta, sebuah kampus di bawah naungan Kementerian Perindustrian. Saat ini tengah menempuh pendidikan doktoral di bidang ekonomi di Australian National University (ANU). Kontak dapat dilihat di blog pribadinya di [https://imedkrisna.github.io/about](https://imedkrisna.github.io/about).
 
 ## Pengetahuan yang diperlukan
 Modul ini mengasumsikan bahwa mahasiswa telah mampu menggunakan komputer dan mengakses internet. Mengetik dan _point-and-click_ windows _interface_ dianggap tidak perlu diajarkan. Modul ini juga mengasumsikan pengetahuan dasar mengenai statistik. Mahasiswa dianggap telah mengerti teori inferensi statistik (mean,median, dan modus), sampling, probabilitas, maupun regresi linear sederhana. Kemampuan menggunakan _spreadsheet_ seperti Microsoft Excel atau Google Sheet merupakan pengetahuan yang sangat membantu, meskipun tidak diperlukan.
