@@ -1,15 +1,15 @@
-# What the hell is R?
+# Starting with R
 
 🚧 Under Construction 🚧
 
-This chapter contains instruction 
+Now that you have R and RStudio installed, let's start playing around with it. It is easy to be scared with command-type type of language, but do not worry. The first step is always the hardest. You will get there in no time at all.
 
-## Installing R and RStudio
+One thing to note is that you will never have to use R GUI. Just keep RStudio's shortcut in your desktop and everything will be allright.
 
-
+Now let's get to RStudio
 
 ## RStudio's interface
-RStudio looks like this:
+First, familiarise yourself with RStudio interface. RStudio looks like this:
 ```{r echo=FALSE, fig.cap="RStudio's interface"}
 knitr::include_graphics('tampilanR2.JPG')
 ```
@@ -34,10 +34,32 @@ Packages tab show you all the package that you have. You can also add new packag
 Lastly, "viewer" tab. I actually forgot why it exists so whatever.
 
 ## using your console window
+Generally, you type commands and operators such as `print()` and `1+1` and the likes on the console window. Let's try it a bit.
 
-## using Rscript
+If you type 1+1 in the console and hit enter, you will get:
+
+```{r}
+1+1
+```
+you can print your name in r
+```{r}
+print('Hello world! My name is Jane Doe')
+```
+In short, chunks of code we use in this book is meant to be typed on your console window.
+
+## using R script
+However, to be a good coder, you will, most likely, store your chunks of code on the R script.
 
 ## package
 
 ## Update
-You need to keep your R, RStudio and your installed packages updated as much as you can. 
+You need to keep your R, RStudio and your installed packages updated as much as you can. Here's how to do it using the console window.
+
+Firstly, install a package called `installr` by typing `install.packages('installr')` in your console window. Don't forget to hit enter. You only need to do this once. Next, call it using `library(installr)`. Calling the package will be needed to be done everytime you start a new R session (i.e., everytime you open R).
+
+After you called it with `library()`, type `updateR()` on your console, and let it do its magic.
+
+To keep your packages updated, you only need to click "tools" on the toolbar up there, then "Check for Packages Updates...". Depending on how much packages you have installed on your machine, can take a while.
+
+Keep in mind that you need to stay connected to the internet when you update your R, RStudio and packages.
+

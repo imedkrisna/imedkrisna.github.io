@@ -1,0 +1,42 @@
+# Simple Regression
+
+🚧 Under Construction 🚧
+
+We assume you are familiar with regression or Ordinary Least Square (OLS), but let's make a quick recap on what regression is all about.
+
+## Univariate regression
+is a regression between one dependent variable and one independent variable. Most textbooks use a notation $Y$ for dependent variable, and use $X$ as the independent variable. A univariate regression assume this form:
+$$
+Y_i=\alpha+\beta X_i+ e_i
+$$
+where $Y_i$ is your observed dependent variable and $X_i$ is your observed independent variable.
+
+There are many versions of the Gauss-Markov assumption, but really there are two main thing we assume for OLS to be unbiased:
+
+- error term $e_i$ have a conditional zero mean, i.e., $E(e_i|X_i)=0$
+- error term $e_i$ is independent and identically distributed 
+
+We call $\alpha$ as intercept. We generally don't interpret $\alpha$ although it is very important to include $\alpha$ to avoid bias. We are interested in $\beta$, as it shows the general strength of relationship between our $X$ and our $Y$ is. That is, we often say:
+
+> an increase of $X$ by 1 unit, is associated with an increase of $Y$ by $\beta$ unit, assuming everything else constant.
+
+Mathly, $\beta=\frac{dy}{dx}$
+
+### running your univariate regression
+suppose you have
+
+### plotting your regression
+In the previous chapter, we have learned how to plot our data using `plot()`. You can add to your script a line showing your regression result
+
+## Multivariate regression
+Multivariate regression is just like your univariate regression, but we have more independent variable than just one. Dependent variable still only one. That is:
+
+$$
+Y_i=\alpha+\beta X_i+\gamma Z_i+ e_i
+$$
+The interpretation is similar.
+
+### running multivariate regression
+Now, instead of
+
+unfortunately, you can't plot multivariate regression as this regression has more than two dimension.

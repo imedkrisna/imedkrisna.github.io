@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Statistics with R</title>
+  <title>Chapter 2 Starting with R | Statistics with R</title>
   <meta name="description" content="Learning Statistics with R language" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Statistics with R" />
+  <meta property="og:title" content="Chapter 2 Starting with R | Statistics with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Statistics with R" />
+  <meta name="twitter:title" content="Chapter 2 Starting with R | Statistics with R" />
   
   <meta name="twitter:description" content="Learning Statistics with R language" />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simple-regression.html"/>
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="beginner-stuff.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,31 +213,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
-<div id="refs" class="references">
-<div>
-<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2020. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+<div id="starting-with-r" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Starting with R</h1>
+<p>🚧 Under Construction 🚧</p>
+<p>Now that you have R and RStudio installed, let’s start playing around with it. It is easy to be scared with command-type type of language, but do not worry. The first step is always the hardest. You will get there in no time at all.</p>
+<p>One thing to note is that you will never have to use R GUI. Just keep RStudio’s shortcut in your desktop and everything will be allright.</p>
+<p>Now let’s get to RStudio</p>
+<div id="rstudios-interface" class="section level2">
+<h2><span class="header-section-number">2.1</span> RStudio’s interface</h2>
+First, familiarise yourself with RStudio interface. RStudio looks like this:
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="tampilanR2.JPG" alt="RStudio's interface"  />
+<p class="caption">
+Figure 2.1: RStudio’s interface
+</p>
 </div>
-<div>
-<p>Xie, Yihui. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+<p>As you can see from the above figure, RStudio have four main windows.</p>
+<div id="console-window" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> console window</h3>
+<p>Arguably the most important window in RStudio. We write R command in this window.</p>
+</div>
+<div id="script-window" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> script window</h3>
+<p>Forget what we said about the previous window. This is the most important window in RStudio. We write our sets of command in this window</p>
+</div>
+<div id="environment-window" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> environment window</h3>
+<p>You can observe your environment here, such as the data and variables / series you created. This window also have other useful tab such as “history” which can show you the history of what happens in your environment, but we will skip them for now.</p>
+</div>
+<div id="files-window" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> files window</h3>
+<p>Although we call it ‘files window’, this window consists of 5 tabs. The tab file shows your working directory. When you run a code that generates file such as graphics, it will be stored in this window. Plots tab shows you your latest plot.</p>
+<p>Packages tab show you all the package that you have. You can also add new package from this tab instead of using the <code>install.packages()</code> command. In this tab, you can also activate package that you have instead of using <code>library()</code> command.</p>
+<p>“help” tab will show you some information about things that you ask help for when you use <code>?'command'</code> command. Will show you how it works in a minute.</p>
+<p>Lastly, “viewer” tab. I actually forgot why it exists so whatever.</p>
 </div>
 </div>
+<div id="using-your-console-window" class="section level2">
+<h2><span class="header-section-number">2.2</span> using your console window</h2>
+<p>Generally, you type commands and operators such as <code>print()</code> and <code>1+1</code> and the likes on the console window. Let’s try it a bit.</p>
+<p>If you type 1+1 in the console and hit enter, you will get:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="starting-with-r.html#cb1-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>you can print your name in r</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="starting-with-r.html#cb3-1"></a><span class="kw">print</span>(<span class="st">&#39;Hello world! My name is Jane Doe&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Hello world! My name is Jane Doe&quot;</code></pre>
+<p>In short, chunks of code we use in this book is meant to be typed on your console window.</p>
 </div>
+<div id="using-r-script" class="section level2">
+<h2><span class="header-section-number">2.3</span> using R script</h2>
+<p>However, to be a good coder, you will, most likely, store your chunks of code on the R script.</p>
+</div>
+<div id="package" class="section level2">
+<h2><span class="header-section-number">2.4</span> package</h2>
+</div>
+<div id="update" class="section level2">
+<h2><span class="header-section-number">2.5</span> Update</h2>
+<p>You need to keep your R, RStudio and your installed packages updated as much as you can. Here’s how to do it using the console window.</p>
+<p>Firstly, install a package called <code>installr</code> by typing <code>install.packages('installr')</code> in your console window. Don’t forget to hit enter. You only need to do this once. Next, call it using <code>library(installr)</code>. Calling the package will be needed to be done everytime you start a new R session (i.e., everytime you open R).</p>
+<p>After you called it with <code>library()</code>, type <code>updateR()</code> on your console, and let it do its magic.</p>
+<p>To keep your packages updated, you only need to click “tools” on the toolbar up there, then “Check for Packages Updates…”. Depending on how much packages you have installed on your machine, can take a while.</p>
+<p>Keep in mind that you need to stay connected to the internet when you update your R, RStudio and packages.</p>
 
-
-
-
-
-
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="simple-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="beginner-stuff.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -268,7 +314,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/09-references.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-about.Rmd",
 "text": "Edit"
 },
 "history": {

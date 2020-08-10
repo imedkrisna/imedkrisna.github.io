@@ -3,6 +3,15 @@
 🚧 Under Construction 🚧
 
 ## Plot command
-`plot()` have many options in it
+### quick plot
+
+## histogram
+### quick histogram
+
+## pie chart
+### quick pie chart
+
+## box plot
+### quick box plot
 
 ## using ggplot2
