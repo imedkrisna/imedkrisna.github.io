@@ -10,7 +10,7 @@ My research revolves really around Indonesia. Having a background in planning di
 
 I was a bureaucrat at Ministry of Industry in Indonesia, working in planning and evaluation division, before pursuing a master degree. Not too long after I finished my master degree, I switch to academic career path, became a lecturer  (fungsional dosen) at [Politeknik APP Jakarta](https://poltekapp.ac.id/), a diploma school under Ministry of Industry. My plan after finishing my PhD is to go back to Politeknik APP.
 
-I blog for fun, mostly in Indonesian, with some english exception. Check out my previous [medium blog](https://medium.com/@imedkrisna). My main hobby is singing. I take my guitar and bug my wife with my voice when I am bored or sad or happy. I love J-Rocks (L`arc\~en\~ciel and One OK Rock in particular) and alternatives (anything play in F,G,or A &#128518;), but also listens to mainstreams.
+I blog for fun, mostly in Indonesian, with some english exception. Check out my previous [medium blog](https://medium.com/@imedkrisna). My main hobby is singing. I take my guitar and bug my wife with my voice when I am bored or sad or happy. I love J-Rocks (L`arc\~en\~ciel and One OK Rock in particular) and alternatives (anything play in F,G,or A &#128518;), but also listens to mainstreams. Check out the [Hobby tab](https://imedkrisna.github.io/hobby/) if you wanna know how bad i am 🤣
 
 I am an ocassional gamer, still watch DotA 2 tournaments although I play it no more, and sometimes play mobile legends with friends (I suck at these games btw). Sport is also something I enjoy, with cycling as my main sport activity and main mode of transport.
 
@@ -53,8 +53,9 @@ I am an ocassional gamer, still watch DotA 2 tournaments although I play it no m
 
 ### Tutor at Australian National University
 - [POLS3025](https://programsandcourses.anu.edu.au/2015/course/pols3025) Contemporary Political Analysis, using STATA in political analyses (2017)
-- [ECON3101](https://programsandcourses.anu.edu.au/course/econ3101) Microeconomics 3 (2018-now)
+- [ECON3101](https://programsandcourses.anu.edu.au/course/econ3101) Microeconomics 3 (2018-2020)
 - [ECON2102](https://programsandcourses.anu.edu.au/course/econ2102) Macroeconomics 2 (2019)
+- [EMET3008](https://programsandcourses.anu.edu.au/course/emet3008) Applied Macro and Financial Econometrics (2020)
 
 ### Teaching Assistant at Universitas Indonesia
 - Macroeconomics 2 (2016)
@@ -64,12 +65,3 @@ I am an ocassional gamer, still watch DotA 2 tournaments although I play it no m
 - [VU Fellowship Programe (VUFP)](https://masters.vu.nl/en/international/scholarships)
 - [Australia Awards Indonesia Scholarship](https://www.australiaawardsindonesia.org/content/11/about-australia-awards)
 - [Hadi Soesastro Prize](https://www.australiaawardsindonesia.org/content/208/12/hadi-soesastro-prize)
-
-## Hobbies
-
-Check out links below. I ocassionally sing and upload them in youtube :D I also play Smule. Hit the mic icon down there to visit my smule page. I mostly sing L'Arc-En-Ciel (or Laruku in short). Check out one example here :D
-<iframe frameborder="0" width="100%" height="125" src="https://www.smule.com/recording/larc-en-ciel-living-in-your-eyes-hitomi-no-junin-hitomi-no-juunin/988877746_3354266952/frame"></iframe>
-
-In Australia, I often times team-up with other Indonesian students to perform a mini accoustic band. I often play a Cajon. I also team-up with my old bandmates called BandIDs to produce a youtube video. I sing in these collaborations and my friends do the rest. This is one of the video hahahaha! 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/K5UkBlE5zZg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
