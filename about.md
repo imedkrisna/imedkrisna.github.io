@@ -24,6 +24,9 @@ I am an ocassional gamer, still watch DotA 2 tournaments although I play it no m
 ### Journal Article
 - Gupta, Krisna. (In press). "The Importance of Financial Liberalisation to Economic Growth: The Case of Indonesia". *Bulletin of Indonesian Economic Study*. [DOI: 10.1080/00074918.2020.1747596](https://doi-org.virtual.anu.edu.au/10.1080/00074918.2020.1747596)
 
+### Book Chapter
+- Gupta, Krisna (2020). "Industri 4.0 Sebagai Solusi Daya Saing Industri Indonesia?". In Denny Irawan, Wasisto Raharjo Jati, Oscar Karnalim, Asrul Sidiq (ed.). Jakarta: Yayasan Pustaka Obor Indonesia. [ISBN: 978-602-433-918-0](bit.ly/MewujudkanIndonesia40)
+
 ### Book Review
 - Gupta, Krisna. (2020). "World Trade Evolution: Growth, Productivity and Employment ‐ edited by Lili Yan Ing and Miaojie Yu". *Asian-Pacific Economic Literature*. [https://doi.org/DOI:10.1111/apel.12291](https://doi.org/DOI:10.1111/apel.12291)
 
