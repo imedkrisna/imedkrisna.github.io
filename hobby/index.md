@@ -3,29 +3,28 @@ layout: default
 title: Hobby
 ---
 
-<h1>HOBBY!</h1>
-<p>Hi Everyone! This part of the website is more of a hobby. I love playing some music either alone or with friends! I also enjoyed singing in Smule. I dedicate this page for those contents! The plan is for this page to store my other hobby but we'll see if I had the time and dedication hahaha. </p>
+Hi Everyone! This part of the website is more of a hobby. I love playing some music either alone or with friends! I also enjoyed singing in Smule. I dedicate this page for those contents! The plan is for this page to store my other hobby but we'll see if I had the time and dedication hahaha.
 
-<h2>Cover Music Video</h2>
-<p>I did some cover videos with my friends. This is very convinient since COVID-19 requires measures of physical distancing and we have no plan violating those measures haha. I mainly sing in these vids while also play some instruments. It is also fun to learn a bit of mixing although my mixing skill is really crappy haha</p>
-<h5>Earth, Wind, and Fire - September Cover</h5>
-<p>September Cover with the bandids! I record this at home, and filmed the clip at Hackett's bus station. I had to wait until the first bus came, and then record it quickly lol</p>
+## Cover Music Video
+I did some cover videos with my friends. This is very convinient since COVID-19 requires measures of physical distancing and we have no plan violating those measures haha. I mainly sing in these vids while also play some instruments. It is also fun to learn a bit of mixing although my mixing skill is really crappy haha
+#### Earth, Wind, and Fire - September Cover
+September Cover with the bandids! I record this at home, and filmed the clip at Hackett's bus station. I had to wait until the first bus came, and then record it quickly lol
 <iframe width="560" height="315" src="https://www.youtube.com/embed/f_p5L5QMDu4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h5>Jackson 5 - I Want You Back Cover</h5>
-<p>Jackson 5 cover with the bandids! The scenery is a small pond in Dickson. It is a walking distance from where I live.</p>
+#### Jackson 5 - I Want You Back Cover
+Jackson 5 cover with the bandids! The scenery is a small pond in Dickson. It is a walking distance from where I live.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/K5UkBlE5zZg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h5>Radiohead - Creep Cover</h5>
-<p>Radiohead Creep cover with my colleage in Politeknik APP, Aji. It was fun cover back when I had time hahaha. This is filmed in Poltek APP.</p>
+#### Radiohead - Creep Cover
+Radiohead Creep cover with my colleage in Politeknik APP, Aji. It was fun cover back when I had time hahaha. This is filmed in Poltek APP.
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TaFQ0GVcmbM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h5>Bobby Helms - Jingle Bell Rock Cover</h5>
-<p>Jingle Bell Rock cover with my friends. We did this to welcome Christmas back in 2017</P>
+#### Bobby Helms - Jingle Bell Rock Cover
+Jingle Bell Rock cover with my friends. We did this to welcome Christmas back in 2017
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pPnMveEOy1Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h2>Smule (Karaoke app)</h2>
-<p>Ok so I also play with this app called Smule which basically a karaoke app. In this app, I often sing japanese song such as L`arc~en~Ciel and One Ok Rock, and I really love dueting with people! If you also play smule, let's follow each other!</p>
+## Smule (Karaoke app)
+Ok so I also play with this app called Smule which basically a karaoke app. In this app, I often sing japanese song such as L`arc~en~Ciel and One Ok Rock, and I really love dueting with people! If you also play smule, let's follow each other!
 <iframe frameborder="0" width="100%" height="125" src="https://www.smule.com/recording/larc-en-ciel-living-in-your-eyes-hitomi-no-junin-hitomi-no-juunin/988877746_3603412099/frame"></iframe>
 <iframe frameborder="0" width="100%" height="125" src="https://www.smule.com/recording/larc-en-ciel-snow-drop/988877746_3605195283/frame"></iframe>
 <iframe frameborder="0" width="100%" height="125" src="https://www.smule.com/recording/larc-en-ciel-my-heart-draws-a-dream/988877746_3526002707/frame"></iframe>
