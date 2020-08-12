@@ -2,13 +2,13 @@
 layout: default
 title: Hobby
 ---
-
+# Hobby!!
 Hi Everyone! This part of the website is more of a hobby. I love playing some music either alone or with friends! I also enjoyed singing in Smule. I dedicate this page for those contents! The plan is for this page to store my other hobby but we'll see if I had the time and dedication hahaha.
 
 ## Cover Music Video
 I did some cover videos with my friends. This is very convinient since COVID-19 requires measures of physical distancing and we have no plan violating those measures haha. I mainly sing in these vids while also play some instruments. It is also fun to learn a bit of mixing although my mixing skill is really crappy haha
 #### Earth, Wind, and Fire - September Cover
-September Cover with the bandids! I record this at home, and filmed the clip at Hackett's bus station. I had to wait until the first bus came, and then record it quickly lol
+September Cover with the bandids! I record this at home, and filmed the clip at Hackett's bus station. I had to wait until the first bus came, and then record it quickly lol. 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/f_p5L5QMDu4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### Jackson 5 - I Want You Back Cover
