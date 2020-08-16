@@ -300,18 +300,6 @@ footer {
 @import "svg-icons";
 
 // baru
-h1, h2, h3, h4, h5, h6, p, blockquote {
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  color: #fff;
-  background-color: #110F14;
-  margin: 10px 13px 10px 13px;
-}
 table {
   margin: 10px 0 15px 0;
   border-collapse: collapse;
@@ -333,37 +321,7 @@ a:hover {
 a img {
   border: none;
 }
-p {
-  margin-bottom: 9px;
-}
-h1, h2, h3, h4, h5, h6 {
-  color: #fff;
-  line-height: 36px;
-}
-h1 {
-  margin-bottom: 18px;
-  font-size: 30px;
-}
-h2 {
-  font-size: 24px;
-}
-h3 {
-  font-size: 18px;
-}
-h4 {
-  font-size: 16px;
-}
-h5 {
-  font-size: 14px;
-}
-h6 {
-  font-size: 13px;
-}
-hr {
-  margin: 0 0 19px;
-  border: 0;
-  border-bottom: 1px solid #ccc;
-}
+
 blockquote {
   padding: 13px 13px 21px 15px;
   margin-bottom: 18px;
