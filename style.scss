@@ -300,33 +300,20 @@ footer {
 @import "svg-icons";
 
 // code block
-pre,code{font:12px Menlo, Monaco, "DejaVu Sans Mono", "Bitstream Vera Sans Mono",monospace;}
+pre, code {
+	font-size: 11px; font-family: monaco, courier, consolas, monospace;
+}
+
 pre {
-	 margin:1em 0;
-	 font-size:12px;
-	 background-color:#eee;
-	 border:1px solid #ddd;
-	 padding:5px;
-	 line-height:1.5em;
-	 color:#444;
-	 overflow:auto;
-	 -webkit-box-shadow:rgba(0,0,0,0.07) 0 1px 2px inset;
-	 -webkit-border-radius:3px;
-	 -moz-border-radius:3px;border-radius:3px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #c7cfd5;
+	background: #f1f5f9;
+	margin: 20px 0;
+	padding: 8px;
+	text-align: left;
 }
-pre code {
-	 padding:0;
-	 font-size:12px;
-	 background-color:#eee;
-	 border:none;
-}
-code {
-	 font-size:12px;
-	 background-color:#f8f8ff;
-	 color:#444;
-	 padding:0 .2em;
-	 border:1px solid #dedede;
-}
+
 hr {
 	color: #919699;
 	size: 1;
