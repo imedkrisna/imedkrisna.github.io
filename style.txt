@@ -1,142 +1,138 @@
-@import url(http://fonts.googleapis.com/css?family=Vollkorn:400,400italic,700,700italic&subset=latin);
-
-html, body {
-        padding:1em;
-        margin:auto;
-        max-width:42em;
-        background:#fefefe;
-	}
+h1, h2, h3, h4, h5, h6, p, blockquote {
+   margin: 0;
+   padding: 0;
+}
 body {
-	font: 1.3em "Vollkorn", Palatino, Times;
-	color: #333;
-	line-height: 1.4;
-	text-align: justify;
-	}
-header, nav, article, footer {
-	width: 700px;
-	margin:0 auto;
-	}
-article {
-	margin-top: 4em;
-	margin-bottom: 4em;
-	min-height: 400px;
-	}
-footer {
-	margin-bottom:50px;
-	}
-video {
-	margin: 2em 0;
-	border:1px solid #ddd;
-	}
-
-nav {
-	font-size: .9em;
-	font-style: italic;
-	border-bottom: 1px solid #ddd;
-	padding: 1em 0;
-	}
-nav p {
-	margin: 0;
-	}
-
-/* Typography
--------------------------------------------------------- */
-
-h1 {
-	margin-top: 0;
-	font-weight: normal;
-	}
-h2 {
-	font-weight: normal;
-	}
-h3 {
-	font-weight: normal;
-	font-style: italic;
-	margin-top:3em;
-	}
-p {
-	margin-top:0;
-	-webkit-hypens:auto;
-	-moz-hypens:auto;
-	hyphens:auto;
-	}
-ul {
-	list-style: square;
-	padding-left:1.2em;
-	}
-ol {
-	padding-left:1.2em;
-	}
-blockquote {
-	margin-left: 1em;
-	padding-left: 1em;
-	border-left: 1px solid #ddd;
-	}
-code {
-	font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
-	font-size: .9em;
-	background: white;
-	}
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 13px;
+   line-height: 18px;
+   color: #fff;
+   background-color: #110F14;
+   margin: 10px 13px 10px 13px;
+}
+table {
+	 margin: 10px 0 15px 0;
+	 border-collapse: collapse;
+}
+td,th {	
+	 border: 1px solid #ddd;
+	 padding: 3px 10px;
+}
+th {
+	 padding: 5px 10px;	
+}
 a {
-	color: #2484c1;
-	text-decoration: none;
-	}
+   color: #59acf3;
+}
 a:hover {
-	text-decoration: underline;
-	}
+   color: #a7d8ff;
+   text-decoration: none;
+}
 a img {
-	border:none;
-	}
-h1 a, h1 a:hover {
-	color: #333;
-	text-decoration: none;
-	}
+   border: none;
+}
+p {
+   margin-bottom: 9px;
+}
+h1, h2, h3, h4, h5, h6 {
+   color: #fff;
+   line-height: 36px;
+}
+h1 {
+   margin-bottom: 18px;
+   font-size: 30px;
+}
+h2 {
+   font-size: 24px;
+}
+h3 {
+   font-size: 18px;
+}
+h4 {
+   font-size: 16px;
+}
+h5 {
+   font-size: 14px;
+}
+h6 {
+   font-size: 13px;
+}
 hr {
-	color : #ddd;
-	height : 1px;
-	margin: 2em 0;
-	border-top : solid 1px #ddd;
-	border-bottom : none;
-	border-left: 0;
-	border-right: 0;
-	}
-p#heart{
-	font-size: 2em;
-	line-height: 1;
-	text-align: center;
-	color: #ccc;
-	}
-.red {
-	color:#B50000;
-	}
+   margin: 0 0 19px;
+   border: 0;
+   border-bottom: 1px solid #ccc;
+}
+blockquote {
+   padding: 13px 13px 21px 15px;
+   margin-bottom: 18px;
+   font-family:georgia,serif;
+   font-style: italic;
+}
+blockquote:before {
+   content:"\201C";
+   font-size:40px;
+   margin-left:-10px;
+   font-family:georgia,serif;
+   color:#eee;
+}
+blockquote p {
+   font-size: 14px;
+   font-weight: 300;
+   line-height: 18px;
+   margin-bottom: 0;
+   font-style: italic;
+}
 
-/* Home Page
---------------------------- */
+code, pre {
+   font-family: Menlo, Monaco, Andale Mono, Courier New, monospace;
+}
 
-body#index li {
-	margin-bottom: 1em;
-	}
+code {
+   padding: 1px 3px;
+   font-size: 12px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   background: #334;
+}
 
-
-/* iPad
--------------------------------------------------------- */
-@media only screen and (max-device-width: 1024px) {
-body {
-	font-size: 120%;
-	line-height: 1.4;
-	}
-} /* @iPad */
-
-/* iPhone
--------------------------------------------------------- */
-@media only screen and (max-device-width: 480px) {
-body {
-	text-align: left;
-	}
-article, footer {
-	width: auto;
-	}
-article {
-	padding: 0 10px;
-	}
-} /* @iPhone */
+pre {
+   display: block;
+   padding: 14px;
+   margin: 0 0 18px;
+   line-height: 16px;
+   font-size: 11px;
+   border: 1px solid #334;
+   white-space: pre;
+   white-space: pre-wrap;
+   word-wrap: break-word;
+   background-color: #282a36;
+   border-radius: 6px;
+}
+pre code {
+   font-size: 11px;
+   padding: 0;
+   background: transparent;
+}
+sup {
+   font-size: 0.83em;
+   vertical-align: super;
+   line-height: 0;
+}
+* {
+	 -webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+   body {
+      width: 854px;
+      margin:10px auto;
+   }
+}
+@media print {
+	 body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		  color: black;
+	 }
+	 table, pre {
+		  page-break-inside: avoid;
+	 }
+}
