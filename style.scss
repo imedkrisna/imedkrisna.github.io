@@ -288,92 +288,13 @@ footer {
   text-align: center;
 }
 
+table, th, td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+tr:nth-child(even) {background-color: #f2f2f2;}
+}
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
 @import "svg-icons";
-
-// code block
-
-pre, code {
-	font-size: 11px; font-family: monaco, courier, consolas, monospace;
-}
-
-pre {
-	margin-top: 5px;
-	margin-bottom: 10px;
-	border: 1px solid #c7cfd5;
-	background: #f1f5f9;
-	margin: 20px 0;
-	padding: 8px;
-	text-align: left;
-}
-
-hr {
-	color: #919699;
-	size: 1;
-	width: 100%;
-	noshade: "noshade"
-}
-
-table {
-  width: 100%;
-border-top: 1px solid #919699;
-border-left: 1px solid #919699;
-border-spacing: 0;
-}
-
-table th {
-padding: 4px 8px 4px 8px;
-background: #E2E2E2;
-font-size: 12px;
-border-bottom: 1px solid #919699;
-border-right: 1px solid #919699;
-}
-table th p {
-font-weight: bold;
-margin-bottom: 0px; 
-}
-
-table td {
-padding: 8px;
-font-size: 12px;
-vertical-align: top;
-border-bottom: 1px solid #919699;
-border-right: 1px solid #919699;
-}
-table td p {
-margin-bottom: 0px; 
-}
-table td p + p  {
-margin-top: 5px; 
-}
-table td p + p + p {
-margin-top: 5px; 
-}
-
-/* forms */
-
-form {
-margin: 0;
-}
-
-button {
-margin: 3px 0 10px 0;
-}
-input {
-vertical-align: middle;
-padding: 0;
-margin: 0 0 5px 0;
-}
-
-select {
-vertical-align: middle;
-padding: 0;
-margin: 0 0 3px 0;
-}
-
-textarea {
-margin: 0 0 10px 0;
-width: 100%;
-}
