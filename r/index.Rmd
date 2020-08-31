@@ -2,7 +2,6 @@
 title: "Statistics with R"
 author:
   - Krisna Gupta^[krisna.gupta@anu.edu.au]
-  - Donny Pasaribu
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -61,7 +60,7 @@ You can easily google to get your R and RStudio installer. But we will give you 
 We are using recommended setting when we install R to our machine, and we suggest you do too.
 
 ## About the authors
-We are nobody.
+I am nobody.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

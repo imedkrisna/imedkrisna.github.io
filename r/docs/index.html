@@ -22,10 +22,9 @@
   
 
 <meta name="author" content="Krisna Gupta" />
-<meta name="author" content="Donny Pasaribu" />
 
 
-<meta name="date" content="2020-08-10" />
+<meta name="date" content="2020-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -34,6 +33,7 @@
   
 
 <link rel="next" href="starting-with-r.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,22 +51,20 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +84,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -135,13 +133,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Some Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-this-book"><i class="fa fa-check"></i><b>1.1</b> About this book</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Some Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#about-this-book"><i class="fa fa-check"></i><b>1.1</b> About this book</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#what-is-this-book-and-why"><i class="fa fa-check"></i><b>1.1.1</b> What is this book and why</a></li>
 <li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#pre-requisite"><i class="fa fa-check"></i><b>1.1.2</b> Pre-requisite</a></li>
 <li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#learning-outcome"><i class="fa fa-check"></i><b>1.1.3</b> Learning outcome</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#about-r"><i class="fa fa-check"></i><b>1.2</b> About R</a><ul>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#about-r"><i class="fa fa-check"></i><b>1.2</b> About R</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#what-is-r"><i class="fa fa-check"></i><b>1.2.1</b> What is R</a></li>
 <li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#good-reasons-to-start-with-r"><i class="fa fa-check"></i><b>1.2.2</b> Good reasons to start with R</a></li>
 <li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#computer-requirements"><i class="fa fa-check"></i><b>1.2.3</b> Computer requirements</a></li>
@@ -149,8 +150,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#about-the-authors"><i class="fa fa-check"></i><b>1.3</b> About the authors</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="starting-with-r.html"><a href="starting-with-r.html"><i class="fa fa-check"></i><b>2</b> Starting with R</a><ul>
-<li class="chapter" data-level="2.1" data-path="starting-with-r.html"><a href="starting-with-r.html#rstudios-interface"><i class="fa fa-check"></i><b>2.1</b> RStudio’s interface</a><ul>
+<li class="chapter" data-level="2" data-path="starting-with-r.html"><a href="starting-with-r.html"><i class="fa fa-check"></i><b>2</b> Starting with R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="starting-with-r.html"><a href="starting-with-r.html#rstudios-interface"><i class="fa fa-check"></i><b>2.1</b> RStudio’s interface</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="starting-with-r.html"><a href="starting-with-r.html#console-window"><i class="fa fa-check"></i><b>2.1.1</b> console window</a></li>
 <li class="chapter" data-level="2.1.2" data-path="starting-with-r.html"><a href="starting-with-r.html#script-window"><i class="fa fa-check"></i><b>2.1.2</b> script window</a></li>
 <li class="chapter" data-level="2.1.3" data-path="starting-with-r.html"><a href="starting-with-r.html#environment-window"><i class="fa fa-check"></i><b>2.1.3</b> environment window</a></li>
@@ -161,34 +164,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="starting-with-r.html"><a href="starting-with-r.html#package"><i class="fa fa-check"></i><b>2.4</b> package</a></li>
 <li class="chapter" data-level="2.5" data-path="starting-with-r.html"><a href="starting-with-r.html#update"><i class="fa fa-check"></i><b>2.5</b> Update</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="beginner-stuff.html"><a href="beginner-stuff.html"><i class="fa fa-check"></i><b>3</b> Beginner stuff</a><ul>
+<li class="chapter" data-level="3" data-path="beginner-stuff.html"><a href="beginner-stuff.html"><i class="fa fa-check"></i><b>3</b> Beginner stuff</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="beginner-stuff.html"><a href="beginner-stuff.html#setting-your-preamble"><i class="fa fa-check"></i><b>3.1</b> Setting your preamble</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>4</b> Data Management</a></li>
 <li class="chapter" data-level="5" data-path="inferences.html"><a href="inferences.html"><i class="fa fa-check"></i><b>5</b> Inferences</a></li>
-<li class="chapter" data-level="6" data-path="visualisation.html"><a href="visualisation.html"><i class="fa fa-check"></i><b>6</b> Visualisation</a><ul>
-<li class="chapter" data-level="6.1" data-path="visualisation.html"><a href="visualisation.html#plot-command"><i class="fa fa-check"></i><b>6.1</b> Plot command</a><ul>
+<li class="chapter" data-level="6" data-path="visualisation.html"><a href="visualisation.html"><i class="fa fa-check"></i><b>6</b> Visualisation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="visualisation.html"><a href="visualisation.html#plot-command"><i class="fa fa-check"></i><b>6.1</b> Plot command</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="visualisation.html"><a href="visualisation.html#quick-plot"><i class="fa fa-check"></i><b>6.1.1</b> quick plot</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="visualisation.html"><a href="visualisation.html#histogram"><i class="fa fa-check"></i><b>6.2</b> histogram</a><ul>
+<li class="chapter" data-level="6.2" data-path="visualisation.html"><a href="visualisation.html#histogram"><i class="fa fa-check"></i><b>6.2</b> histogram</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="visualisation.html"><a href="visualisation.html#quick-histogram"><i class="fa fa-check"></i><b>6.2.1</b> quick histogram</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="visualisation.html"><a href="visualisation.html#pie-chart"><i class="fa fa-check"></i><b>6.3</b> pie chart</a><ul>
+<li class="chapter" data-level="6.3" data-path="visualisation.html"><a href="visualisation.html#pie-chart"><i class="fa fa-check"></i><b>6.3</b> pie chart</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="visualisation.html"><a href="visualisation.html#quick-pie-chart"><i class="fa fa-check"></i><b>6.3.1</b> quick pie chart</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="visualisation.html"><a href="visualisation.html#box-plot"><i class="fa fa-check"></i><b>6.4</b> box plot</a><ul>
+<li class="chapter" data-level="6.4" data-path="visualisation.html"><a href="visualisation.html#box-plot"><i class="fa fa-check"></i><b>6.4</b> box plot</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="visualisation.html"><a href="visualisation.html#quick-box-plot"><i class="fa fa-check"></i><b>6.4.1</b> quick box plot</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="visualisation.html"><a href="visualisation.html#using-ggplot2"><i class="fa fa-check"></i><b>6.5</b> using ggplot2</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis Testing</a></li>
 <li class="chapter" data-level="8" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>8</b> ANOVA</a></li>
-<li class="chapter" data-level="9" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Regression</a><ul>
-<li class="chapter" data-level="9.1" data-path="simple-regression.html"><a href="simple-regression.html#univariate-regression"><i class="fa fa-check"></i><b>9.1</b> Univariate regression</a><ul>
+<li class="chapter" data-level="9" data-path="simple-regression.html"><a href="simple-regression.html"><i class="fa fa-check"></i><b>9</b> Simple Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="simple-regression.html"><a href="simple-regression.html#univariate-regression"><i class="fa fa-check"></i><b>9.1</b> Univariate regression</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="simple-regression.html"><a href="simple-regression.html#running-your-univariate-regression"><i class="fa fa-check"></i><b>9.1.1</b> running your univariate regression</a></li>
 <li class="chapter" data-level="9.1.2" data-path="simple-regression.html"><a href="simple-regression.html#plotting-your-regression"><i class="fa fa-check"></i><b>9.1.2</b> plotting your regression</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="simple-regression.html"><a href="simple-regression.html#multivariate-regression"><i class="fa fa-check"></i><b>9.2</b> Multivariate regression</a><ul>
+<li class="chapter" data-level="9.2" data-path="simple-regression.html"><a href="simple-regression.html#multivariate-regression"><i class="fa fa-check"></i><b>9.2</b> Multivariate regression</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="simple-regression.html"><a href="simple-regression.html#running-multivariate-regression"><i class="fa fa-check"></i><b>9.2.1</b> running multivariate regression</a></li>
 </ul></li>
 </ul></li>
@@ -216,25 +228,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Statistics with R</h1>
 <p class="author"><em>Krisna Gupta<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></em></p>
-<p class="author"><em>Donny Pasaribu</em></p>
-<p class="date"><em>2020-08-10</em></p>
+<p class="date"><em>2020-09-01</em></p>
 </div>
-<div id="some-introduction" class="section level1">
+<div id="some-introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Some Introduction</h1>
-<div id="about-this-book" class="section level2">
+<div id="about-this-book" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> About this book</h2>
-<div id="what-is-this-book-and-why" class="section level3">
+<div id="what-is-this-book-and-why" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> What is this book and why</h3>
 <p>Learning a statistical software can be a daunting experience for everyone. However, as the importance of data analysis is increasing, we think more talent in this sector will only benefit everyone.</p>
 <p>This book is created using the Bookdown <span class="citation">(Xie <a href="#ref-R-bookdown" role="doc-biblioref">2020</a>)</span> package and is written in Rmarkdown <span class="citation">(Allaire et al. <a href="#ref-R-rmarkdown" role="doc-biblioref">2020</a>)</span> language. All content in this book is free to be used and distributed by anyone for learning purpose. Please credit us if you find this book to be useful.</p>
 <p>This book handles a mainstream curriculum of undergrad statistics, therefore it is best to use this book while also doing an undergrad statistics course. We use social sciences data set to illustrate some commands in R, but it can be easily changed to data set relevant to yourself.</p>
 </div>
-<div id="pre-requisite" class="section level3">
+<div id="pre-requisite" class="section level3" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> Pre-requisite</h3>
 <p>This book is intended to anyone who are interested in learning statistics using R language. It is assumed that people has zero experience with using any programing language at all. Experience with spreadsheet program such as Microsoft Excel or Google Sheet is certainly helpful but not needed.</p>
 <p>This book will not cover a lot of the theoretical part of statistics. Readers are assumed to understand that already. A little bit of intro will be given but that is pretty much it. Readers are expected to understand already the theory behind these techniques, or are expected to learn it from elsewhere.</p>
 </div>
-<div id="learning-outcome" class="section level3">
+<div id="learning-outcome" class="section level3" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> Learning outcome</h3>
 <p>Information in this book would help you to:</p>
 <ul>
@@ -247,31 +258,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 </div>
-<div id="about-r" class="section level2">
+<div id="about-r" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> About R</h2>
-<div id="what-is-r" class="section level3">
+<div id="what-is-r" class="section level3" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> What is R</h3>
 <p>R is an open source statistical package useful for doing some statistical stuff, while RStudio is a software which improve greatly our user interface when using R compared to using R GUI. RStudio also can be used to do other stuff but let’s discuss that for later.</p>
 <p>R can be used to manipulate a huge amount of data, as well as running a handful of statistical analysis such as regression which is essentially just a matrix algebra in the background. Use of command instead of point-and-click is great because it means it can be replicable with just a script (and a bit of other stuff). Great for collaboration and peer-reviewing.</p>
 </div>
-<div id="good-reasons-to-start-with-r" class="section level3">
+<div id="good-reasons-to-start-with-r" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Good reasons to start with R</h3>
 <p>R is a bit behind in popularity compared to a more general language such as python or javascript. However, R is generally used among researchers, so there are many people in <a href="https://campus.sagepub.com/blog/where-should-i-start-r-or-python">academics setting use R</a>. R is a bit more specialised on statistical purpose. If you are learning statistics, it is easier to learn using r compared to more general programming language. If you want to learn other language later, it is easier to start with R.</p>
 <p>Here’s a more comprehensive reasons on why you should learn R from <a href="https://cfss.uchicago.edu/setup/what-is-r/">University of Chicago</a>.</p>
 </div>
-<div id="computer-requirements" class="section level3">
+<div id="computer-requirements" class="section level3" number="1.2.3">
 <h3><span class="header-section-number">1.2.3</span> Computer requirements</h3>
 <p>R and RStudio is really light you can install them in your microwave. R and RStudio supports Windows, Mac and Linux. Also, good internet connection never hurts.</p>
 </div>
-<div id="installing-r-and-rstudio" class="section level3">
+<div id="installing-r-and-rstudio" class="section level3" number="1.2.4">
 <h3><span class="header-section-number">1.2.4</span> Installing R and RStudio</h3>
 <p>You can easily google to get your R and RStudio installer. But we will give you links anyway. Get your R installation <a href="https://cran.r-project.org/bin/windows/base/">here if you are windows user</a>, <a href="https://cran.r-project.org/bin/macosx/">here for Mac users</a>, and <a href="https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-18-04-quickstart">here for ubuntu users</a>. Get your RStudio from <a href="https://rstudio.com/products/rstudio/download/#download">this links</a>.</p>
 <p>We are using recommended setting when we install R to our machine, and we suggest you do too.</p>
 </div>
 </div>
-<div id="about-the-authors" class="section level2">
+<div id="about-the-authors" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> About the authors</h2>
-<p>We are nobody.</p>
+<p>I am nobody.</p>
 
 </div>
 </div>
@@ -346,20 +357,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
