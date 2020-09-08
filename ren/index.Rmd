@@ -25,7 +25,7 @@ This book is created using the Bookdown [@R-bookdown] package and is written in 
 This book handles a mainstream curriculum of undergrad statistics, therefore it is best to use this book while also doing an undergrad statistics course. We use social sciences data set to illustrate some commands in R, but it can be easily changed to data set relevant to yourself.
 
 ### Pre-requisite
-This book is intended to anyone who are interested in learning statistics using R language. It is assumed that people has zero experience with using any programming language at all. Experience with spreadsheet program such as Microsoft Excel or Google Sheet is certainly helpful but not needed.
+This book is intended to anyone who are interested in learning statistics using R language. It is assumed that people has zero experience with using any programing language at all. Experience with spreadsheet program such as Microsoft Excel or Google Sheet is certainly helpful but not needed.
 
 This book will not cover a lot of the theoretical part of statistics. Readers are assumed to understand that already. A little bit of intro will be given but that is pretty much it. Readers are expected to understand already the theory behind these techniques, or are expected to learn it from elsewhere.
 
