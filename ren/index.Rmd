@@ -1,0 +1,74 @@
+--- 
+title: "Statistics with R"
+author:
+  - Krisna Gupta^[krisna.gupta@anu.edu.au]
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Learning Statistics with R language"
+---
+
+# Some Introduction
+
+## About this book
+
+### What is this book and why
+Learning a statistical software can be a daunting experience for everyone. However, as the importance of data analysis is increasing, we think more talent in this sector will only benefit everyone.
+
+This book is created using the Bookdown [@R-bookdown] package and is written in Rmarkdown [@R-rmarkdown] language. All content in this book is free to be used and distributed by anyone for learning purpose. Please  credit us if you find this book to be useful.
+
+This book handles a mainstream curriculum of undergrad statistics, therefore it is best to use this book while also doing an undergrad statistics course. We use social sciences data set to illustrate some commands in R, but it can be easily changed to data set relevant to yourself.
+
+### Pre-requisite
+<<<<<<< HEAD
+This book is intended to anyone who are interested in learning statistics using R language. It is assumed that people has zero experience with using any programming language at all. Experience with spreadsheet program such as Microsoft Excel or Google Sheet is certainly helpful but not needed.
+=======
+This book is intended to anyone who are interested in learning statistics using R language. It is assumed that people has zero experience with using any programing language at all. Experience with spreadsheet program such as Microsoft Excel or Google Sheet is certainly helpful but not needed.
+>>>>>>> parent of d626979... a
+
+This book will not cover a lot of the theoretical part of statistics. Readers are assumed to understand that already. A little bit of intro will be given but that is pretty much it. Readers are expected to understand already the theory behind these techniques, or are expected to learn it from elsewhere.
+
+### Learning outcome
+Information in this book would help you to:
+
+- install and update R and Rstudio with ease
+- input, edit, and manage dataset
+- visualise dataset as needed
+- conducting hypothesis testing
+- running a regression
+- write a report using the results from above
+
+## About R
+
+### What is R
+R is an open source statistical package useful for doing some statistical stuff, while RStudio is a software which improve greatly our user interface when using R compared to using R GUI. RStudio also can be used to do other stuff but let's discuss that for later.
+
+R can be used to manipulate a huge amount of data, as well as running a handful of statistical analysis such as regression which is essentially just a matrix algebra in the background. Use of command instead of point-and-click is great because it means it can be replicable with just a script (and a bit of other stuff). Great for collaboration and peer-reviewing.
+
+### Good reasons to start with R
+R is a bit behind in popularity compared to a more general language such as python or javascript. However, R is generally used among researchers, so there are many people in [academics setting use R](https://campus.sagepub.com/blog/where-should-i-start-r-or-python). R is a bit more specialised on statistical purpose. If you are learning statistics, it is easier to learn using r compared to more general programming language. If you want to learn other language later, it is easier to start with R.
+
+Here's a more comprehensive reasons on why you should learn R from [University of Chicago](https://cfss.uchicago.edu/setup/what-is-r/).
+
+### Computer requirements
+R and RStudio is really light you can install them in your microwave. R and RStudio supports Windows, Mac and Linux. Also, good internet connection never hurts.
+
+### Installing R and RStudio
+You can easily google to get your R and RStudio installer. But we will give you links anyway. Get your R installation [here if you are windows user](https://cran.r-project.org/bin/windows/base/), [here for Mac users](https://cran.r-project.org/bin/macosx/), and [here for ubuntu users](https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-18-04-quickstart). Get your RStudio from [this links](https://rstudio.com/products/rstudio/download/#download).
+
+We are using recommended setting when we install R to our machine, and we suggest you do too.
+
+## About the authors
+I am nobody.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
