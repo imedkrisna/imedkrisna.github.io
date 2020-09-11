@@ -1,6 +1,6 @@
 --- 
 title: "Belajar Statistika dengan R"
-author: "Krisna Gupta dan Donny Pasaribu"
+author: "Krisna Gupta"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -21,7 +21,7 @@ _This is a guide to learn beginner statistics using R, written in Indonesian lan
 ### Modul apa ini?
 Modul ini merupakan panduan mahasiswa dalam mengaplikasikan teori tentang statistika dan analisis data ke dalam standar praktik di dunia usaha. Khususnya, modul ini bertujuan untuk membantu mahasiswa menggunakan R, sebuah bahasa pemrograman _open source_ yang banyak digunakan oleh analis data untuk menganalisis data menggunakan statistik, dan melakukan visualisasi data. Lebih lengkap tentang R dapat ditemukan di [https://www.r-project.org/](https://www.r-project.org/)
 
-Modul ini dimaksudkan untuk membantu mahasiswa Indonesia belajar statistik dengan menggunakan R. Saat ini, penggunaan bahasa pemograman untuk analisis data semakin menjamur, sementara itu _talent_ di Indonesia yang sanggup menggunakannya masih sangat terbatas. Untuk itu modul ini dibuat untuk membantu siapapun yang memiliki kendala biaya maupun keterbatasan bahasa untuk belajar menggunakan R.
+Modul ini dimaksudkan untuk membantu mahasiswa Indonesia belajar statistik dengan menggunakan R. Saat ini, penggunaan bahasa pemograman untuk analisis data semakin menjamur, sementara itu _talent_ di Indonesia yang sanggup menggunakannya masih sangat terbatas, terutama di bidang ilmu sosial. Untuk itu modul ini dibuat untuk membantu siapapun yang memiliki kendala biaya maupun keterbatasan bahasa untuk belajar menggunakan R.
 
 Modul ini adalah _open source_, dengan kata lain, modul ini dapat digunakan dan diunduh secara bebas oleh siapapun. Kami melarang penggunaan modul ini untuk siapapun yang bertujuan memperjual-belikan konten pada modul ini tanpa izin penulis.
 
