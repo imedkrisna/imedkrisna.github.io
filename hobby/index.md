@@ -2,6 +2,9 @@
 layout: default
 title: Hobby
 ---
+# New Website!
+I moved to a new domain! [Click here to visit my new website](https://krisna.netlify.app/)
+
 # Hobby!!
 Hi Everyone! This part of the website is more of a hobby. I love playing some music either alone or with friends! I also enjoyed singing in Smule. I dedicate this page for those contents! The plan is for this page to store my other hobby but we'll see if I had the time and dedication hahaha.
 
