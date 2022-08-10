@@ -5,7 +5,10 @@ author: "I Made Krisna"
 date: 2022-08-10
 number-sections: true
 bibliography: reference.bib
-format: html
+format:
+  html: 
+    code-fold: true
+  docx: default
 editor: visual
 ---
 
@@ -13,28 +16,73 @@ This just a showcase of what quarto docs can produce. I use this part for my stu
 
 ## Pendahuluan
 
-### Latar belakang
+### Latas belakang tugas
+
+Tugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.
+
+### Latar belakang masalah
+
+alasan memilih masalah ini (kenapa masalah ini menarik dan penting)
 
 ### Pertanyaan
 
-Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut: 1. wkwkw 1. wkwkkw 1. wkwkwkwkkw
+Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:
+
+1.  wkwkw
+2.  wkwkkw
+3.  wkwkwkwkkw
+
+### Package
+
+packages yang digunakan antara lain sebagai berikut:
+
+```{r}
+#| echo = FALSE
+library(tidyverse)
+```
 
 ## Data dan visualisasi
 
 ```{r}
-1 + 1
+#| label: fig-mpg
+#| fig-cap: "City and highway mileage for 38 popular models of cars."
+#| fig-subcap:
+#|   - "Color by number of cylinders"
+#|   - "Color by engine displacement, in liters"
+#| layout-ncol: 2
+#| column: page
+
+ggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +
+  geom_point(alpha = 0.5, size = 2) +
+  scale_color_viridis_c() +
+  theme_minimal()
+
+ggplot(mpg, aes(x = hwy, y = cty, color = displ)) +
+  geom_point(alpha = 0.5, size = 2) +
+  scale_color_viridis_c(option = "E") +
+  theme_minimal()
 ```
 
 ## Analisis
 
-Regresi
+Metode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:
+
+$$
+y_{t}=\beta_0 + \beta_1 y_{t-1}+\mu_t
+$$
+
+Hasil regresinya adalah
 
 ```{r}
-1 + 1
+summary(lm(hwy~cty,data=mpg))
 ```
 
-diskusi
+Dapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk.
 
 ## Kesimpulan
 
+Kesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. BTW jgn lupa baca riset @RN468 yha
+
 ## Referensi
+
+
