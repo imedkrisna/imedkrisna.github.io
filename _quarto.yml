@@ -3,7 +3,7 @@ project:
   output-dir: .
 
 website:
-  title: "Website keren"
+  title: "Krisna 'imed' Gupta"
   navbar:
     left:
       - href: index.qmd

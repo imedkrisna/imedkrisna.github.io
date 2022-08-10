@@ -11,14 +11,14 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "Go to krisna.or.id for more information. I also write blogs there."
   },
   {
     "objectID": "metopel.html",
     "href": "metopel.html",
     "title": "Melihat hubungan ekspor dan nilai tukar",
     "section": "",
-    "text": "Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut: 1. wkwkw 1. wkwkkw 1. wkwkwkwkkw"
+    "text": "This just a showcase of what quarto docs can produce. I use this part for my students."
   },
   {
     "objectID": "metopel.html#data-dan-visualisasi",
@@ -96,5 +96,26 @@
     "title": "List of researches",
     "section": "Unpublished",
     "text": "Unpublished\n\nGupta, K. (2020, 15 July 2020). Trade and industry policy in the times of COVID-19: an observation in Indonesia. https://www.covid19indonesia.net/events/trade-industry-and-investment-dealing-with-covid-19\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
+  },
+  {
+    "objectID": "metopel.html#pendahuluan",
+    "href": "metopel.html#pendahuluan",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "1 Pendahuluan",
+    "text": "1 Pendahuluan\n\n1.0.1 Latar belakang\n\n\n1.0.2 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut: 1. wkwkw 1. wkwkkw 1. wkwkwkwkkw"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Working with Prospera on measuring the impact of import tax facility for firms."
+  },
+  {
+    "objectID": "project.html#past-project",
+    "href": "project.html#past-project",
+    "title": "Projects",
+    "section": "Past project",
+    "text": "Past project\n\nWorking with CIPS for Katalis on measuring IA CEPA impacts.\nWorking with PT. LAPI ITB for Indonesia Investment Authority on projecting the impact of INA to the Indonesian economy."
   }
 ]

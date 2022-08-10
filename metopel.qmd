@@ -8,6 +8,8 @@ format: html
 editor: visual
 ---
 
+This just a showcase of what quarto docs can produce. I use this part for my students.
+
 ## Pendahuluan
 
 #### Latar belakang
