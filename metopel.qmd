@@ -13,11 +13,11 @@ This just a showcase of what quarto docs can produce. I use this part for my stu
 
 ## Pendahuluan
 
-#### Latar belakang
+### Latar belakang
 
 
 
-#### Pertanyaan
+### Pertanyaan
 
 Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:
 1. wkwkw
