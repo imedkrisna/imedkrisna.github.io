@@ -15,14 +15,9 @@ This just a showcase of what quarto docs can produce. I use this part for my stu
 
 ### Latar belakang
 
-
-
 ### Pertanyaan
 
-Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:
-1. wkwkw
-1. wkwkkw
-1. wkwkwkwkkw
+Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut: 1. wkwkw 1. wkwkkw 1. wkwkwkwkkw
 
 ## Data dan visualisasi
 
