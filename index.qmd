@@ -74,6 +74,4 @@ title: "List of researches"
 
 
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Powered by Quarto. visit <https://quarto.org/docs/websites> to learn more.

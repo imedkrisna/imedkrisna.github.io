@@ -13,9 +13,9 @@ website:
       - project.qmd
       - about.qmd
 
-bibliography: reference.bib
-nocite: |
-  @*
+#bibliography: reference.bib
+#nocite: |
+#  @*
   
 format:
   html:

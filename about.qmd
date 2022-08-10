@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+Go to [krisna.or.id](https://www.krisna.or.id/) for more information. I also write blogs there.
