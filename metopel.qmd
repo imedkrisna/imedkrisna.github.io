@@ -4,6 +4,7 @@ subtitle: "Metode Penelitian Politeknik APP Jakarta"
 author: "I Made Krisna"
 date: 2022-08-10
 number-sections: true
+bibliography: reference.bib
 format: html
 editor: visual
 ---
