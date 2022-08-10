@@ -37,7 +37,7 @@ packages yang digunakan antara lain sebagai berikut:
 
 ```{r}
 #| warning: false
-#| echo: false
+
 library(tidyverse)
 ```
 

@@ -102,7 +102,7 @@
     "href": "metopel.html#pendahuluan",
     "title": "Melihat hubungan ekspor dan nilai tukar",
     "section": "1 Pendahuluan",
-    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:"
+    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\nlibrary(tidyverse)"
   },
   {
     "objectID": "project.html",
