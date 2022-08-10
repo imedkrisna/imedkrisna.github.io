@@ -2,10 +2,77 @@
 title: "List of researches"
 ---
 
+## Journal articles
+
+- Gupta, K. (2021). The heterogenous impact of tariff and NTM on total factor productivity of Indonesian firms. ACDE Working Papers in Trade and Development, 2021(21). https://acde.crawford.anu.edu.au/publication/working-papers-trade-and-development/19325/heterogeneous-impact-tariff-and-non-tariff 
+
+- Gupta, K. (2021). The Importance of Financial Liberalisation to Economic Growth: The Case of Indonesia. Bulletin of Indonesian Economic Studies, 57(02), 175-201. https://doi.org/10.1080/00074918.2020.1747596 
+
+## Policy papers & briefs
+
+- Gupta, K., Pane, D., & Pasaribu, D. (2022). The Advent of A New Trade Governance After The Omnibus Law: Neraca Komoditas (CIPS Policy Paper, Issue. https://www.cips-indonesia.org/neraca-komoditas-policy-paper
+
+- Patunru, A., & Gupta, K. (2020). COVID-19 dan Anjloknya Indeks PMI Indonesia. https://www.covid19indonesia.net/indonesian-minister-of-industry
 
 
-::: {#refs}
-:::
+## Books
+
+- Gupta, K., & Mardjono, E. (2021). Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi. LIPI Press. https://doi.org/10.14203/press.357 
+
+
+## Book chapters
+
+- Gupta, K. (2021). Menjaga pertumbuhan ekonomi dan produktivitas: tantangan dan peluang menuju negara maju di 2045. In K. Gupta & E. Mardjono (Eds.), Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi (pp. 9-29). LIPI Press. https://doi.org/10.14203/press.357 
+
+- Gupta, K., & Cahyadin, M. (2021). Pembangunan Sumber Daya Manusia Indonesia Berkelanjutan: Meningkatkan Kualitas Pendidikan dan Mengurangi Pengangguran Usia Muda. In K. Gupta & E. Mardjono (Eds.), Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi (pp. 193-228). LIPI Press. https://doi.org/10.14203/press.357 
+
+- Choirinnida, I. T., Ramadhan, D. F., & Gupta, K. (2021). Sentralitas Peran BPJS Ketenagakerjaan dalam Meningkatkan Kesejahteraan Pekerja. In K. Gupta & E. Mardjono (Eds.), Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi (pp. 121-132). LIPI Press. https://doi.org/10.14203/press.357 
+
+- Gupta, K. (2020). Industri 4.0 sebagai solusi daya saing industri indonesia? In D. Irawan, W. R. Jati, O. Karnalim, & A. Sidiq (Eds.), Mewujudkan Indonesia 4.0: Kumpulan Pemikiran Pelajar Indonesia di Australia. Yayasan Pustaka Obor Indonesia. 
+
+
+## Opeds
+
+- Gupta, K., & Pane, D. (2021). Restrictive regulations on foreign trade may hurt economy. https://www.thejakartapost.com/paper/2021/03/11/restrictive-regulations-on-foreign-trade-may-hurt-economy.html?fbclid=IwAR3bYw1xMauZtDXfM9cjtaZM65jhJgACvOUEIo0ITTeOg9mj1SP8DisRIjQ 
+
+- Gupta, K., & Mahraddika, W. (2021). Mengapa tren kendaraan listrik adalah momentum transformasi industri otomotif Indonesia. The Conversation Indonesia. https://theconversation.com/mengapa-tren-kendaraan-listrik-adalah-momentum-transformasi-industri-otomotif-indonesia-152958 
+
+- Mahraddika, W., & Gupta, K. (2020). Kebijakan untuk meningkatkan partisipasi perusahaan-perusahaan Indonesia dalam rantai pasok global. The Conversation Indonesia. https://theconversation.com/kebijakan-untuk-meningkatkan-partisipasi-perusahaan-perusahaan-indonesia-dalam-rantai-pasok-global-150062 
+
+- Pasaribu, D., & Gupta, K. (2020). Will IA-CEPA be the boost to Australia-Indonesia relations leaders are banking on? Indonesia at Melbourne. https://indonesiaatmelbourne.unimelb.edu.au/will-ia-cepa-be-the-boost-to-the-australia-indonesia-relationship-leaders-are-banking-on/ 
+
+- Gupta, K. (2022, 21 February 2022). Menakar Efektivitas Neraca Komoditas. Bisnis Indonesia. https://bisnisindonesia.id/article/menakar-efektivitas-neraca-komoditas 
+
+- Gupta, K., & Surianta, A. (2020). IA-CEPA will not solve Indonesia's FDI problem. East Asia Forum. https://www.eastasiaforum.org/2020/08/05/ia-cepa-will-not-solve-indonesias-fdi-problem/ 
+
+- Pasaribu, D., & Gupta, K. (2020). COVID-19 punishes Indonesian commodity exporters. East Asia Forum. https://www.eastasiaforum.org/2020/07/16/covid-19-punishes-indonesian-commodity-exporters/ 
+
+- Patunru, A., & Gupta, K. (2020). Indonesia's PPE export backfires. East Asia Forum. Retrieved 25 December 2020, from https://www.eastasiaforum.org/2020/06/16/indonesias-ppe-export-ban-backfires/ 
+
+- Gupta, K. (2020). Managing investment, trade deficit: are omnibus laws panacea for growth? The Jakarta Post. https://www.thejakartapost.com/academia/2020/01/31/managing-investment-trade-deficit-are-omnibus-laws-panacea-for-growth.html 
+
+## Proceedings
+
+- Gupta, K., Sutjiatmo, B. P., & Kurniawan, M. S. (2018, 21-22 September 2018). How Trump's steel and aluminium tariff shapes future world trade. Economics and Business Competitiveness International Conference, Bali, Indonesia.
+
+- Gupta, K., Vierke, I., Ibrahim, A., Suwandi, J., & Selowidodo, A. (2018, 21-22 September 2018). Boosting global competitiveness in Indonesia: is Industry 4.0 the answer? Economics and Business Competitiveness International Conference, Bali, Indonesia.
+
+- Ratana, D. S., & Gupta, K. (2018, 21-22 September 2018). Can cryptocurrency help business to be more competitive? Economics and Business Competitiveness International Conference, Bali, Indonesia.
+
+## Book review
+
+- Gupta, K. (2020). World Trade Evolution: Growth, Productivity and Employment - edited by Lili Yan Ing and Miaojie Yu. Asian-Pacific Economic Literature, 34(1), 87-88. https://doi.org/https://doi.org/10.1111/apel.12291 
+
+## Unpublished
+
+- Gupta, K. (2020, 15 July 2020). Trade and industry policy in the times of COVID-19: an observation in Indonesia. https://www.covid19indonesia.net/events/trade-industry-and-investment-dealing-with-covid-19
+
+
+
+
+
+
+
 
 This is a Quarto website.
 

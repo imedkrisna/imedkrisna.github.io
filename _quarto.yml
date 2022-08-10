@@ -10,6 +10,7 @@ website:
         text: Home
       - href: metopel.qmd
         text: metopel
+      - project.qmd
       - about.qmd
 
 bibliography: reference.bib
