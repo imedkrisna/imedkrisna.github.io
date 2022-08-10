@@ -1,6 +1,11 @@
 ---
-title: "Krisna Gupta"
+title: "List of researches"
 ---
+
+
+
+::: {#refs}
+:::
 
 This is a Quarto website.
 

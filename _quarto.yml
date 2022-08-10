@@ -12,6 +12,10 @@ website:
         text: metopel
       - about.qmd
 
+bibliography: reference.bib
+nocite: |
+  @*
+  
 format:
   html:
     theme: cosmo
