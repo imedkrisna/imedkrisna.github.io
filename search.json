@@ -25,21 +25,21 @@
     "href": "metopel.html#data-dan-visualisasi",
     "title": "Melihat hubungan ekspor dan nilai tukar",
     "section": "2 Data dan visualisasi",
-    "text": "2 Data dan visualisasi\n\n\nCode\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\nggplot(mpg, aes(x = hwy, y = cty, color = displ)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c(option = \"E\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n(a) Color by number of cylinders\n\n\n\n\n\n\n\n(b) Color by engine displacement, in liters\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars."
+    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
   },
   {
     "objectID": "metopel.html#analisis",
     "href": "metopel.html#analisis",
     "title": "Melihat hubungan ekspor dan nilai tukar",
     "section": "3 Analisis",
-    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\n\nCode\nsummary(lm(hwy~cty,data=mpg))\n\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: < 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
+    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\nsummary(lm(hwy~cty,data=mpg))\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: < 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
   },
   {
     "objectID": "metopel.html#kesimpulan",
     "href": "metopel.html#kesimpulan",
     "title": "Melihat hubungan ekspor dan nilai tukar",
     "section": "4 Kesimpulan",
-    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. BTW jgn lupa baca riset Gupta (2022) yha"
+    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset Gupta (2022) yha."
   },
   {
     "objectID": "metopel.html#referensi",
@@ -102,7 +102,7 @@
     "href": "metopel.html#pendahuluan",
     "title": "Melihat hubungan ekspor dan nilai tukar",
     "section": "1 Pendahuluan",
-    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\n\nWarning: package 'tidyverse' was built under R version 4.1.3\n\n\n-- Attaching packages --------------------------------------- tidyverse 1.3.2 --\nv ggplot2 3.3.6     v purrr   0.3.4\nv tibble  3.1.8     v dplyr   1.0.9\nv tidyr   1.2.0     v stringr 1.4.0\nv readr   2.1.2     v forcats 0.5.1\n\n\nWarning: package 'ggplot2' was built under R version 4.1.3\n\n\nWarning: package 'tibble' was built under R version 4.1.3\n\n\nWarning: package 'tidyr' was built under R version 4.1.2\n\n\nWarning: package 'readr' was built under R version 4.1.2\n\n\nWarning: package 'purrr' was built under R version 4.1.2\n\n\nWarning: package 'dplyr' was built under R version 4.1.3\n\n\nWarning: package 'stringr' was built under R version 4.1.2\n\n\nWarning: package 'forcats' was built under R version 4.1.2\n\n\n-- Conflicts ------------------------------------------ tidyverse_conflicts() --\nx dplyr::filter() masks stats::filter()\nx dplyr::lag()    masks stats::lag()"
+    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:"
   },
   {
     "objectID": "project.html",

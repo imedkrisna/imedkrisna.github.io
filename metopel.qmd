@@ -6,8 +6,7 @@ date: 2022-08-10
 number-sections: true
 bibliography: reference.bib
 format:
-  html: 
-    code-fold: true
+  html: default
   docx: default
 editor: visual
 ---
@@ -37,7 +36,8 @@ Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:
 packages yang digunakan antara lain sebagai berikut:
 
 ```{r}
-#| echo = FALSE
+#| warning: false
+#| echo: false
 library(tidyverse)
 ```
 
@@ -45,22 +45,14 @@ library(tidyverse)
 
 ```{r}
 #| label: fig-mpg
-#| fig-cap: "City and highway mileage for 38 popular models of cars."
-#| fig-subcap:
-#|   - "Color by number of cylinders"
-#|   - "Color by engine displacement, in liters"
-#| layout-ncol: 2
-#| column: page
+#| fig-cap: "City and highway mileage for 38 popular models of cars.Color by number of cylinders"
+
 
 ggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +
   geom_point(alpha = 0.5, size = 2) +
   scale_color_viridis_c() +
   theme_minimal()
 
-ggplot(mpg, aes(x = hwy, y = cty, color = displ)) +
-  geom_point(alpha = 0.5, size = 2) +
-  scale_color_viridis_c(option = "E") +
-  theme_minimal()
 ```
 
 ## Analisis
@@ -81,8 +73,5 @@ Dapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk.
 
 ## Kesimpulan
 
-Kesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. BTW jgn lupa baca riset @RN468 yha
-
-## Referensi
-
+Kesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset @RN468 yha.
 
