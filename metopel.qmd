@@ -1,0 +1,42 @@
+---
+title: "Melihat hubungan ekspor dan nilai tukar"
+subtitle: "Metode Penelitian Politeknik APP Jakarta"
+author: "I Made Krisna"
+date: 2022-08-10
+number-sections: true
+format: html
+editor: visual
+---
+
+## Pendahuluan
+
+#### Latar belakang
+
+
+
+#### Pertanyaan
+
+Laporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:
+1. wkwkw
+1. wkwkkw
+1. wkwkwkwkkw
+
+## Data dan visualisasi
+
+```{r}
+1 + 1
+```
+
+## Analisis
+
+Regresi
+
+```{r}
+1 + 1
+```
+
+diskusi
+
+## Kesimpulan
+
+## Referensi

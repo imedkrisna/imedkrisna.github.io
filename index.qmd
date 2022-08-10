@@ -1,5 +1,5 @@
 ---
-title: "imedkrisna.github.io"
+title: "Krisna Gupta"
 ---
 
 This is a Quarto website.
