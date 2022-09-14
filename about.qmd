@@ -4,10 +4,16 @@ title: "About"
 
 ### Affiliations:
 
-- Student at Crawford School of Public Policy, Australian National University [(ANU)](https://crawford.anu.edu.au/people/phd/krisna-gupta)
+
 - Lecturer at Politeknik APP Jakarta
 - Guest lecturer at Universitas Indonesia
 - Associate researcher at Center for Indonesian Policy Studies [(CIPS)](https://www.cips-indonesia.org/about)
+
+### Education
+
+- Ph.D. in economics from Crawford School of Public Policy, Australian National University [(ANU)](https://crawford.anu.edu.au/people/phd/krisna-gupta)
+- M.S.E. in economics from Universitas Indonesia (Joint-degree with VU)
+- M.Sc. in economics from VU University Amsterdam (join-degree with UI)
 
 ### Teaching
 
