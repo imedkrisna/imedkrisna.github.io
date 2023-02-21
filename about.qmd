@@ -13,7 +13,7 @@ title: "About"
 
 - Ph.D. in economics from Crawford School of Public Policy, Australian National University [(ANU)](https://crawford.anu.edu.au/people/phd/krisna-gupta)
 - M.S.E. in economics from Universitas Indonesia (Joint-degree with VU)
-- M.Sc. in economics from VU University Amsterdam (join-degree with UI)
+- M.Sc. in economics from VU University Amsterdam (joint-degree with UI)
 
 ### Teaching
 
