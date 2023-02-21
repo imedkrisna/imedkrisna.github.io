@@ -8,8 +8,6 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: metopel.qmd
-        text: metopel
       - teaching.qmd
       - project.qmd
       - about.qmd

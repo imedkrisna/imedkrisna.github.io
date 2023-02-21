@@ -25,7 +25,7 @@
     "href": "metopel.html#data-dan-visualisasi",
     "title": "Melihat hubungan ekspor dan nilai tukar",
     "section": "2 Data dan visualisasi",
-    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
+    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
   },
   {
     "objectID": "metopel.html#analisis",
@@ -149,21 +149,21 @@
   {
     "objectID": "teaching.html",
     "href": "teaching.html",
-    "title": "Old & current courses",
+    "title": "Teaching",
     "section": "",
     "text": "Matematika & Statistika (Mathematics & Statistics) at Politeknik APP Jakarta.\nInternational Economics at Universitas Indonesia."
   },
   {
     "objectID": "teaching.html#section-1",
     "href": "teaching.html#section-1",
-    "title": "Old & current courses",
+    "title": "Teaching",
     "section": "2022",
     "text": "2022\n\nMetodologi Penelitian (research methods) at Politeknik APP Jakarta.\nAnalisis kebijakan perdagangan dan industri (Trade & Industry policy analysis) at Universitas Indonesia."
   },
   {
     "objectID": "teaching.html#section-2",
     "href": "teaching.html#section-2",
-    "title": "Old & current courses",
+    "title": "Teaching",
     "section": "2021",
     "text": "2021\n\nEconomics at Universitas Petra.\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
   }
