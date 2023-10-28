@@ -11,7 +11,7 @@ website:
       - research.qmd
       - teaching.qmd
       - project.qmd
-      - about.qmd
+      
 
 #bibliography: reference.bib
 #nocite: |

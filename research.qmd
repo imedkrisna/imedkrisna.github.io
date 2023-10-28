@@ -4,7 +4,7 @@ title: "Research"
 
 ## Journal articles
 
-- Gupta, K. (2022). The Heterogenous Impact of Tariff and NTM on Total Factor Productivity of Indonesian Firms. Bulletin of Indonesian Economic Studies, 1-29. https://doi.org/10.1080/00074918.2021.2016613 
+- Gupta, K. (2023). The Heterogenous Impact of Tariff and NTM on Total Factor Productivity of Indonesian Firms. Bulletin of Indonesian Economic Studies, 59,2. https://doi.org/10.1080/00074918.2021.2016613 
 
 - Gupta, K. (2021). The Importance of Financial Liberalisation to Economic Growth: The Case of Indonesia. Bulletin of Indonesian Economic Studies, 57(02), 175-201. https://doi.org/10.1080/00074918.2020.1747596 
 
@@ -42,6 +42,8 @@ title: "Research"
 - Gupta, K. (2020). Industri 4.0 sebagai solusi daya saing industri indonesia? In D. Irawan, W. R. Jati, O. Karnalim, & A. Sidiq (Eds.), Mewujudkan Indonesia 4.0: Kumpulan Pemikiran Pelajar Indonesia di Australia. Yayasan Pustaka Obor Indonesia. 
 
 ## Opeds
+
+- Gupta, K and Ratana, D. (2023). [Indonesia's stubborn logistics dilemma](https://www.eastasiaforum.org/2023/08/18/indonesias-stubborn-logistics-dilemma/). East Asia Forum.
 
 - Gupta, K. (2023). [Isu lingkungan dan perkembangan teknologi ancam ambisi kendaraan listrik berbasis nikel Indonesia. Apa yang harus dilakukan pemerintah?](https://theconversation.com/isu-lingkungan-dan-perkembangan-teknologi-ancam-ambisi-kendaraan-listrik-berbasis-nikel-indonesia-apa-yang-harus-dilakukan-pemerintah-201186). The Conversation Indonesia.
 
