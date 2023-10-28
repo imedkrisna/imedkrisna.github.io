@@ -1,154 +1,14 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "About",
-    "section": "",
-    "text": "Affiliations\n\nLecturer at Politeknik APP Jakarta\nGuest lecturer at Universitas Indonesia\nSenior fellow at Center for Indonesian Policy Studies (CIPS)\n\n\n\nEducation\n\nPh.D. in economics from Crawford School of Public Policy, Australian National University (ANU)\nM.S.E. in economics from Universitas Indonesia (Joint-degree with VU)\nM.Sc. in economics from VU University Amsterdam (joint-degree with UI)\n\n\n\nTeaching\n\nResearch method at Politeknik APP Jakarta\nInternational payment & documentary credit at Politeknik APP Jakarta\nInternational economics & industry at Universitas Indonesia\n\n\n\nMore information\nI post in mostly Indonesian & sometimes English.\n\nblogs at krisna.or.id\nemail me at krisna.gupta@outlook.com\ntwitter at @imedkrisna\nlinkedin at linkedin.com/in/imedkrisna\nCV & photo"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Affiliations:\n\nLecturer at Politeknik APP Jakarta\nGuest lecturer at Universitas Indonesia\nAssociate researcher at Center for Indonesian Policy Studies (CIPS)\n\n\n\nEducation\n\nPh.D. in economics from Crawford School of Public Policy, Australian National University (ANU)\nM.S.E. in economics from Universitas Indonesia (Joint-degree with VU)\nM.Sc. in economics from VU University Amsterdam (joint-degree with UI)\n\n\n\nTeaching\n\nResearch method at Politeknik APP Jakarta\nInternational payment & documentary credit at Politeknik APP Jakarta\nInternational economics & industry at Universitas Indonesia\n\n\n\nMore information\nI post with Indonesian & English.\n\nblogs at krisna.or.id\nemail me at krisna.gupta@outlook.com\ntwitter at @imedkrisna\nlinkedin at linkedin.com/in/imedkrisna\nCV & photo"
-  },
-  {
-    "objectID": "metopel.html",
-    "href": "metopel.html",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "",
-    "text": "This just a showcase of what quarto docs can produce. I use this part for my students."
-  },
-  {
-    "objectID": "metopel.html#data-dan-visualisasi",
-    "href": "metopel.html#data-dan-visualisasi",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "2 Data dan visualisasi",
-    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
-  },
-  {
-    "objectID": "metopel.html#analisis",
-    "href": "metopel.html#analisis",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "3 Analisis",
-    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\nsummary(lm(hwy~cty,data=mpg))\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   <2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: < 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
-  },
-  {
-    "objectID": "metopel.html#kesimpulan",
-    "href": "metopel.html#kesimpulan",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "4 Kesimpulan",
-    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset Gupta (2022) yha."
-  },
-  {
-    "objectID": "metopel.html#referensi",
-    "href": "metopel.html#referensi",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "5 Referensi",
-    "text": "5 Referensi"
-  },
-  {
-    "objectID": "index.html#policy-papers-briefs",
-    "href": "index.html#policy-papers-briefs",
-    "title": "List of researches",
-    "section": "Policy papers & briefs",
-    "text": "Policy papers & briefs\n\nHasran & Gupta, K. (2023). The Importance of Trade For MSEs in The Indonesian F&B Sector. CIPS Policy Paper, 55. https://www.cips-indonesia.org/publications/the-importance-of-trade-for-mses-in-the-indonesian-f%26b-sector\nAmanta, F. & Gupta, K. (2022). Trade for Economic Recovery: Import Policies to Support Indonesia’s F&B Sector. CIPS Policy Paper no. 51. https://cutt.ly/cips-pp51\nGupta, K., Pane, D., & Pasaribu, D. (2022). The Advent of A New Trade Governance After The Omnibus Law: Neraca Komoditas. CIPS Policy Paper . https://www.cips-indonesia.org/publications/the-advent-of-a-new-trade-governance-after-the-omnibus-law%3A-neraca-komoditas?lang=id\nPatunru, A., & Gupta, K. (2020). COVID-19 dan Anjloknya Indeks PMI Indonesia. https://www.covid19indonesia.net/indonesian-minister-of-industry"
-  },
-  {
-    "objectID": "index.html#books",
-    "href": "index.html#books",
-    "title": "List of researches",
-    "section": "Books",
-    "text": "Books\n\nGupta, K., & Mardjono, E. (2021). Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi. LIPI Press. https://doi.org/10.14203/press.357"
-  },
-  {
-    "objectID": "index.html#book-chapters",
-    "href": "index.html#book-chapters",
-    "title": "List of researches",
-    "section": "Book chapters",
-    "text": "Book chapters\n\nGupta, K., Choirinnida, I. T., & Taufik, M. (2022). Global Value Chain Impact on Indonesia’s Economy and the Way to Make It More Resilient. In A. P. Sunjaya, Y. B. Wang, R. Sagita, & D. Sugiharti (Eds.), Indonesia Post-Pandemic Outlook: Rethinking Health and Economics Post-COVID-19 Penerbit BRIN. https://doi.org/https://doi.org/10.55981/brin.537.c526\nGupta, K. (2021). Menjaga pertumbuhan ekonomi dan produktivitas: tantangan dan peluang menuju negara maju di 2045. In K. Gupta & E. Mardjono (Eds.), Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi (pp. 9-29). LIPI Press. https://doi.org/10.14203/press.357\nGupta, K., & Cahyadin, M. (2021). Pembangunan Sumber Daya Manusia Indonesia Berkelanjutan: Meningkatkan Kualitas Pendidikan dan Mengurangi Pengangguran Usia Muda. In K. Gupta & E. Mardjono (Eds.), Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi (pp. 193-228). LIPI Press. https://doi.org/10.14203/press.357\nChoirinnida, I. T., Ramadhan, D. F., & Gupta, K. (2021). Sentralitas Peran BPJS Ketenagakerjaan dalam Meningkatkan Kesejahteraan Pekerja. In K. Gupta & E. Mardjono (Eds.), Indonesia Emas Berkelanjutan 2045: Kumpulan Pemikiran Pelajar Indonesia Sedunia Seri 01 Ekonomi (pp. 121-132). LIPI Press. https://doi.org/10.14203/press.357\nGupta, K. (2020). Industri 4.0 sebagai solusi daya saing industri indonesia? In D. Irawan, W. R. Jati, O. Karnalim, & A. Sidiq (Eds.), Mewujudkan Indonesia 4.0: Kumpulan Pemikiran Pelajar Indonesia di Australia. Yayasan Pustaka Obor Indonesia."
-  },
-  {
-    "objectID": "index.html#opeds",
-    "href": "index.html#opeds",
-    "title": "List of researches",
-    "section": "Opeds",
-    "text": "Opeds\n\nGupta, K. (2022). 3 Tahun Jokowi-Ma’ruf: Jalan Terjal Pulihkan Ekonomi. Koran SINDO. https://nasional.sindonews.com/read/917721/18/3-tahun-jokowi-maruf-jalan-terjal-pulihkan-ekonomi-1666242630\nGupta, K., & Pane, D. (2021). Restrictive regulations on foreign trade may hurt economy. https://www.thejakartapost.com/paper/2021/03/11/restrictive-regulations-on-foreign-trade-may-hurt-economy.html?fbclid=IwAR3bYw1xMauZtDXfM9cjtaZM65jhJgACvOUEIo0ITTeOg9mj1SP8DisRIjQ\nGupta, K., & Mahraddika, W. (2021). Mengapa tren kendaraan listrik adalah momentum transformasi industri otomotif Indonesia. The Conversation Indonesia. https://theconversation.com/mengapa-tren-kendaraan-listrik-adalah-momentum-transformasi-industri-otomotif-indonesia-152958\nMahraddika, W., & Gupta, K. (2020). Kebijakan untuk meningkatkan partisipasi perusahaan-perusahaan Indonesia dalam rantai pasok global. The Conversation Indonesia. https://theconversation.com/kebijakan-untuk-meningkatkan-partisipasi-perusahaan-perusahaan-indonesia-dalam-rantai-pasok-global-150062\nPasaribu, D., & Gupta, K. (2020). Will IA-CEPA be the boost to Australia-Indonesia relations leaders are banking on? Indonesia at Melbourne. https://indonesiaatmelbourne.unimelb.edu.au/will-ia-cepa-be-the-boost-to-the-australia-indonesia-relationship-leaders-are-banking-on/\nGupta, K. (2022, 21 February 2022). Menakar Efektivitas Neraca Komoditas. Bisnis Indonesia. https://bisnisindonesia.id/article/menakar-efektivitas-neraca-komoditas\nGupta, K., & Surianta, A. (2020). IA-CEPA will not solve Indonesia’s FDI problem. East Asia Forum. https://www.eastasiaforum.org/2020/08/05/ia-cepa-will-not-solve-indonesias-fdi-problem/\nPasaribu, D., & Gupta, K. (2020). COVID-19 punishes Indonesian commodity exporters. East Asia Forum. https://www.eastasiaforum.org/2020/07/16/covid-19-punishes-indonesian-commodity-exporters/\nPatunru, A., & Gupta, K. (2020). Indonesia’s PPE export backfires. East Asia Forum. Retrieved 25 December 2020, from https://www.eastasiaforum.org/2020/06/16/indonesias-ppe-export-ban-backfires/\nGupta, K. (2020). Managing investment, trade deficit: are omnibus laws panacea for growth? The Jakarta Post. https://www.thejakartapost.com/academia/2020/01/31/managing-investment-trade-deficit-are-omnibus-laws-panacea-for-growth.html"
-  },
-  {
-    "objectID": "index.html#proceedings",
-    "href": "index.html#proceedings",
-    "title": "List of researches",
-    "section": "Proceedings",
-    "text": "Proceedings\n\nGupta, K., Sutjiatmo, B. P., & Kurniawan, M. S. (2018, 21-22 September 2018). How Trump’s steel and aluminium tariff shapes future world trade. Economics and Business Competitiveness International Conference, Bali, Indonesia.\nGupta, K., Vierke, I., Ibrahim, A., Suwandi, J., & Selowidodo, A. (2018, 21-22 September 2018). Boosting global competitiveness in Indonesia: is Industry 4.0 the answer? Economics and Business Competitiveness International Conference, Bali, Indonesia.\nRatana, D. S., & Gupta, K. (2018, 21-22 September 2018). Can cryptocurrency help business to be more competitive? Economics and Business Competitiveness International Conference, Bali, Indonesia."
-  },
-  {
-    "objectID": "index.html#book-review",
-    "href": "index.html#book-review",
-    "title": "List of researches",
-    "section": "Book review",
-    "text": "Book review\n\nGupta, K. (2020). World Trade Evolution: Growth, Productivity and Employment - edited by Lili Yan Ing and Miaojie Yu. Asian-Pacific Economic Literature, 34(1), 87-88. https://doi.org/https://doi.org/10.1111/apel.12291"
-  },
-  {
-    "objectID": "index.html#unpublished",
-    "href": "index.html#unpublished",
-    "title": "List of researches",
-    "section": "Unpublished",
-    "text": "Unpublished\n\nGupta, K. (2020, 15 July 2020). Trade and industry policy in the times of COVID-19: an observation in Indonesia. https://www.covid19indonesia.net/events/trade-industry-and-investment-dealing-with-covid-19\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
-  },
-  {
-    "objectID": "metopel.html#pendahuluan",
-    "href": "metopel.html#pendahuluan",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "1 Pendahuluan",
-    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Working with Prospera on measuring the impact of import tax facility for firms.\nWorking with BI Institute on the relationship between competition and food prices.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nWorking on paper on the importance of trade in tackling climate change."
-  },
-  {
-    "objectID": "project.html#past-project",
-    "href": "project.html#past-project",
-    "title": "Projects",
-    "section": "Past project",
-    "text": "Past project\n\nWorking with Prospera and CIPS on designing RCEP action plan.\nWorking with CIPS for Katalis on measuring IA CEPA impacts.\nWorking with PT. LAPI ITB for Indonesia Investment Authority on projecting the impact of INA to the Indonesian economy."
-  },
-  {
-    "objectID": "index.html#phd-thesis",
-    "href": "index.html#phd-thesis",
-    "title": "List of researches",
-    "section": "PhD Thesis",
-    "text": "PhD Thesis\n\nGupta, K. (2022). How Investment and Trade Shape the Economic Transformation of Indonesia Australian National University]. Australia. https://openresearch-repository.anu.edu.au/handle/1885/270149"
-  },
-  {
-    "objectID": "courses.html",
-    "href": "courses.html",
-    "title": "Old & current courses",
-    "section": "",
-    "text": "Matematika & Statistika (Mathematics & Statistics) at Politeknik APP Jakarta.\nInternational Economics at Universitas Indonesia."
-  },
-  {
-    "objectID": "courses.html#section-1",
-    "href": "courses.html#section-1",
-    "title": "Old & current courses",
-    "section": "2022",
-    "text": "2022\n\nMetodologi Penelitian (research methods) at Politeknik APP Jakarta.\nAnalisis kebijakan perdagangan dan industri (Trade & Industry policy analysis) at Universitas Indonesia."
-  },
-  {
-    "objectID": "courses.html#section-2",
-    "href": "courses.html#section-2",
-    "title": "Old & current courses",
-    "section": "2021",
-    "text": "2021\n\nEconomics at Universitas Petra.\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
-  },
-  {
     "objectID": "teaching.html",
     "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "Matematika & Statistika (Mathematics & Statistics) at Politeknik APP Jakarta.\nMetodologi Penelitian (Research Methodology) at Politeknik APP Jakarta.\nInternational Economics at Universitas Indonesia.\nTrade and Industrial Economic Development Analysis at Universitas Indonesia."
+  },
+  {
+    "objectID": "teaching.html#section",
+    "href": "teaching.html#section",
     "title": "Teaching",
     "section": "",
     "text": "Matematika & Statistika (Mathematics & Statistics) at Politeknik APP Jakarta.\nMetodologi Penelitian (Research Methodology) at Politeknik APP Jakarta.\nInternational Economics at Universitas Indonesia.\nTrade and Industrial Economic Development Analysis at Universitas Indonesia."
@@ -168,8 +28,92 @@
     "text": "2021\n\nEconomics at Universitas Petra.\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
   },
   {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Working with Prospera on measuring the impact of import tax facility for firms.\nWorking with BI Institute on the relationship between competition and food prices.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nWorking on paper on the importance of trade in tackling climate change."
+  },
+  {
+    "objectID": "project.html#current-project",
+    "href": "project.html#current-project",
+    "title": "Projects",
+    "section": "",
+    "text": "Working with Prospera on measuring the impact of import tax facility for firms.\nWorking with BI Institute on the relationship between competition and food prices.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nWorking on paper on the importance of trade in tackling climate change."
+  },
+  {
+    "objectID": "project.html#past-project",
+    "href": "project.html#past-project",
+    "title": "Projects",
+    "section": "Past project",
+    "text": "Past project\n\nWorking with Prospera and CIPS on designing RCEP action plan.\nWorking with CIPS for Katalis on measuring IA CEPA impacts.\nWorking with PT. LAPI ITB for Indonesia Investment Authority on projecting the impact of INA to the Indonesian economy."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Krisna ‘imed’ Gupta",
+    "section": "",
+    "text": "I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I sometimes help various organisation with consultancy. I spent my free time playing some games and guitars. Do check my twitter and blog (mostly in Indonesian)."
+  },
+  {
+    "objectID": "index.html#affiliations",
+    "href": "index.html#affiliations",
+    "title": "Krisna ‘imed’ Gupta",
+    "section": "Affiliations",
+    "text": "Affiliations\n\nLecturer at Politeknik APP Jakarta\nGuest lecturer at Universitas Indonesia\nSenior fellow at Center for Indonesian Policy Studies (CIPS)"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Krisna ‘imed’ Gupta",
+    "section": "Education",
+    "text": "Education\n\nPh.D. in economics from Crawford School of Public Policy, Australian National University (ANU)\nM.S.E. in economics from Universitas Indonesia (Joint-degree with VU)\nM.Sc. in economics from VU University Amsterdam (joint-degree with UI)"
+  },
+  {
+    "objectID": "metopel.html",
+    "href": "metopel.html",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "",
+    "text": "This just a showcase of what quarto docs can produce. I use this part for my students."
+  },
+  {
+    "objectID": "metopel.html#pendahuluan",
+    "href": "metopel.html#pendahuluan",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "1 Pendahuluan",
+    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "metopel.html#data-dan-visualisasi",
+    "href": "metopel.html#data-dan-visualisasi",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "2 Data dan visualisasi",
+    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
+  },
+  {
+    "objectID": "metopel.html#analisis",
+    "href": "metopel.html#analisis",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "3 Analisis",
+    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\nsummary(lm(hwy~cty,data=mpg))\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: &lt; 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
+  },
+  {
+    "objectID": "metopel.html#kesimpulan",
+    "href": "metopel.html#kesimpulan",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "4 Kesimpulan",
+    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset Gupta (2022) yha."
+  },
+  {
     "objectID": "research.html",
     "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "Gupta, K. (2023). The Heterogenous Impact of Tariff and NTM on Total Factor Productivity of Indonesian Firms. Bulletin of Indonesian Economic Studies, 59,2. https://doi.org/10.1080/00074918.2021.2016613\nGupta, K. (2021). The Importance of Financial Liberalisation to Economic Growth: The Case of Indonesia. Bulletin of Indonesian Economic Studies, 57(02), 175-201. https://doi.org/10.1080/00074918.2020.1747596"
+  },
+  {
+    "objectID": "research.html#journal-articles",
+    "href": "research.html#journal-articles",
     "title": "Research",
     "section": "",
     "text": "Gupta, K. (2023). The Heterogenous Impact of Tariff and NTM on Total Factor Productivity of Indonesian Firms. Bulletin of Indonesian Economic Studies, 59,2. https://doi.org/10.1080/00074918.2021.2016613\nGupta, K. (2021). The Importance of Financial Liberalisation to Economic Growth: The Case of Indonesia. Bulletin of Indonesian Economic Studies, 57(02), 175-201. https://doi.org/10.1080/00074918.2020.1747596"
@@ -229,26 +173,5 @@
     "title": "Research",
     "section": "Unpublished",
     "text": "Unpublished\n\nGupta, K. (2020, 15 July 2020). Trade and industry policy in the times of COVID-19: an observation in Indonesia. https://www.covid19indonesia.net/events/trade-industry-and-investment-dealing-with-covid-19\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
-  },
-  {
-    "objectID": "research.html#journal-articles",
-    "href": "research.html#journal-articles",
-    "title": "Research",
-    "section": "",
-    "text": "Gupta, K. (2023). The Heterogenous Impact of Tariff and NTM on Total Factor Productivity of Indonesian Firms. Bulletin of Indonesian Economic Studies, 59,2. https://doi.org/10.1080/00074918.2021.2016613\nGupta, K. (2021). The Importance of Financial Liberalisation to Economic Growth: The Case of Indonesia. Bulletin of Indonesian Economic Studies, 57(02), 175-201. https://doi.org/10.1080/00074918.2020.1747596"
-  },
-  {
-    "objectID": "project.html#current-project",
-    "href": "project.html#current-project",
-    "title": "Projects",
-    "section": "",
-    "text": "Working with Prospera on measuring the impact of import tax facility for firms.\nWorking with BI Institute on the relationship between competition and food prices.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nWorking on paper on the importance of trade in tackling climate change."
-  },
-  {
-    "objectID": "teaching.html#section",
-    "href": "teaching.html#section",
-    "title": "Teaching",
-    "section": "",
-    "text": "Matematika & Statistika (Mathematics & Statistics) at Politeknik APP Jakarta.\nMetodologi Penelitian (Research Methodology) at Politeknik APP Jakarta.\nInternational Economics at Universitas Indonesia.\nTrade and Industrial Economic Development Analysis at Universitas Indonesia."
   }
 ]
