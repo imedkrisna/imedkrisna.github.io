@@ -28,83 +28,6 @@
     "text": "2021\n\nEconomics at Universitas Petra.\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
   },
   {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "Projects",
-    "section": "",
-    "text": "Working with Prospera on measuring the impact of import tax facility for firms.\nWorking with BI Institute on the relationship between competition and food prices.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nWorking on paper on the importance of trade in tackling climate change."
-  },
-  {
-    "objectID": "project.html#current-project",
-    "href": "project.html#current-project",
-    "title": "Projects",
-    "section": "",
-    "text": "Working with Prospera on measuring the impact of import tax facility for firms.\nWorking with BI Institute on the relationship between competition and food prices.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nWorking on paper on the importance of trade in tackling climate change."
-  },
-  {
-    "objectID": "project.html#past-project",
-    "href": "project.html#past-project",
-    "title": "Projects",
-    "section": "Past project",
-    "text": "Past project\n\nWorking with Prospera and CIPS on designing RCEP action plan.\nWorking with CIPS for Katalis on measuring IA CEPA impacts.\nWorking with PT. LAPI ITB for Indonesia Investment Authority on projecting the impact of INA to the Indonesian economy."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Krisna ‘imed’ Gupta",
-    "section": "",
-    "text": "I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I sometimes help various organisation with consultancy. I spent my free time playing some games and guitars. Do check my twitter and blog (mostly in Indonesian)."
-  },
-  {
-    "objectID": "index.html#affiliations",
-    "href": "index.html#affiliations",
-    "title": "Krisna ‘imed’ Gupta",
-    "section": "Affiliations",
-    "text": "Affiliations\n\nLecturer at Politeknik APP Jakarta\nGuest lecturer at Universitas Indonesia\nSenior fellow at Center for Indonesian Policy Studies (CIPS)"
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Krisna ‘imed’ Gupta",
-    "section": "Education",
-    "text": "Education\n\nPh.D. in economics from Crawford School of Public Policy, Australian National University (ANU)\nM.S.E. in economics from Universitas Indonesia (Joint-degree with VU)\nM.Sc. in economics from VU University Amsterdam (joint-degree with UI)"
-  },
-  {
-    "objectID": "metopel.html",
-    "href": "metopel.html",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "",
-    "text": "This just a showcase of what quarto docs can produce. I use this part for my students."
-  },
-  {
-    "objectID": "metopel.html#pendahuluan",
-    "href": "metopel.html#pendahuluan",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "1 Pendahuluan",
-    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "metopel.html#data-dan-visualisasi",
-    "href": "metopel.html#data-dan-visualisasi",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "2 Data dan visualisasi",
-    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
-  },
-  {
-    "objectID": "metopel.html#analisis",
-    "href": "metopel.html#analisis",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "3 Analisis",
-    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\nsummary(lm(hwy~cty,data=mpg))\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: &lt; 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
-  },
-  {
-    "objectID": "metopel.html#kesimpulan",
-    "href": "metopel.html#kesimpulan",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "4 Kesimpulan",
-    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset Gupta (2022) yha."
-  },
-  {
     "objectID": "research.html",
     "href": "research.html",
     "title": "Research",
@@ -123,7 +46,7 @@
     "href": "research.html#policy-papers-briefs",
     "title": "Research",
     "section": "Policy papers & briefs",
-    "text": "Policy papers & briefs\n\nHasran & Gupta, K. (2023). The Importance of Trade For MSEs in The Indonesian F&B Sector. CIPS Policy Paper, 55. https://www.cips-indonesia.org/publications/the-importance-of-trade-for-mses-in-the-indonesian-f%26b-sector\nAmanta, F. & Gupta, K. (2022). Trade for Economic Recovery: Import Policies to Support Indonesia’s F&B Sector. CIPS Policy Paper no. 51. https://cutt.ly/cips-pp51\nGupta, K., Pane, D., & Pasaribu, D. (2022). The Advent of A New Trade Governance After The Omnibus Law: Neraca Komoditas. CIPS Policy Paper . https://www.cips-indonesia.org/publications/the-advent-of-a-new-trade-governance-after-the-omnibus-law%3A-neraca-komoditas?lang=id\nPatunru, A., & Gupta, K. (2020). COVID-19 dan Anjloknya Indeks PMI Indonesia. https://www.covid19indonesia.net/indonesian-minister-of-industry"
+    "text": "Policy papers & briefs\n\nHasran & Gupta, K. (2023). The Importance of Trade For MSEs in The Indonesian F&B Sector. CIPS Policy Paper, 55. https://www.cips-indonesia.org/publications/the-importance-of-trade-for-mses-in-the-indonesian-f%26b-sector\nAmanta, F. & Gupta, K. (2022). Trade for Economic Recovery: Import Policies to Support Indonesia’s F&B Sector. CIPS Policy Paper no. 51. https://cutt.ly/cips-pp51\nGupta, K., Pane, D., & Pasaribu, D. (2022). The Advent of A New Trade Governance After The Omnibus Law: Neraca Komoditas. CIPS Policy Paper. https://www.cips-indonesia.org/publications/the-advent-of-a-new-trade-governance-after-the-omnibus-law%3A-neraca-komoditas?lang=id\nPatunru, A., & Gupta, K. (2020). COVID-19 dan Anjloknya Indeks PMI Indonesia. https://www.covid19indonesia.net/indonesian-minister-of-industry"
   },
   {
     "objectID": "research.html#books",
@@ -175,6 +98,55 @@
     "text": "Unpublished\n\nGupta, K. (2020, 15 July 2020). Trade and industry policy in the times of COVID-19: an observation in Indonesia. https://www.covid19indonesia.net/events/trade-industry-and-investment-dealing-with-covid-19\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
   },
   {
+    "objectID": "metopel.html",
+    "href": "metopel.html",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "",
+    "text": "This just a showcase of what quarto docs can produce. I use this part for my students."
+  },
+  {
+    "objectID": "metopel.html#pendahuluan",
+    "href": "metopel.html#pendahuluan",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "1 Pendahuluan",
+    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "metopel.html#data-dan-visualisasi",
+    "href": "metopel.html#data-dan-visualisasi",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "2 Data dan visualisasi",
+    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
+  },
+  {
+    "objectID": "metopel.html#analisis",
+    "href": "metopel.html#analisis",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "3 Analisis",
+    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\nsummary(lm(hwy~cty,data=mpg))\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: &lt; 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
+  },
+  {
+    "objectID": "metopel.html#kesimpulan",
+    "href": "metopel.html#kesimpulan",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "4 Kesimpulan",
+    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset Gupta (2022) yha."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Krisna ‘imed’ Gupta",
+    "section": "",
+    "text": "I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I sometimes help various organisation with consultancy. I spent my free time playing some games and guitars. Do check my twitter and blog (mostly in Indonesian)."
+  },
+  {
+    "objectID": "index.html#affiliations",
+    "href": "index.html#affiliations",
+    "title": "Krisna ‘imed’ Gupta",
+    "section": "Affiliations",
+    "text": "Affiliations\n\nLecturer at Politeknik APP Jakarta\nGuest lecturer at Universitas Indonesia\nSenior fellow at Center for Indonesian Policy Studies (CIPS)"
+  },
+  {
     "objectID": "index.html#educations",
     "href": "index.html#educations",
     "title": "Krisna ‘imed’ Gupta",
@@ -182,10 +154,52 @@
     "text": "Educations\n\nPh.D. in economics from Crawford School of Public Policy, Australian National University (ANU)\nM.S.E. in economics from Universitas Indonesia (Joint-degree with VU)\nM.Sc. in economics from VU University Amsterdam (joint-degree with UI)"
   },
   {
+    "objectID": "index.html#research-interest",
+    "href": "index.html#research-interest",
+    "title": "Krisna ‘imed’ Gupta",
+    "section": "Research interest",
+    "text": "Research interest\n\nIndustry / manufacturing growth (TFP, competition, export & output growth).\nTrade & industrial policies (tariff, trade agreements, LCR/TKDN, export ban).\nThe environmental impact of trade.\nMacroeconomic policy and trade."
+  },
+  {
     "objectID": "index.html#consultancies",
     "href": "index.html#consultancies",
     "title": "Krisna ‘imed’ Gupta",
     "section": "Consultancies",
     "text": "Consultancies\n\nOngoing\n\nAdvising Prospera on various public policy issues and evaluations with Prospera’s revenue team managed by Rubino Sugana\n\n\n\n2022\n\nCIPS Indonesia and Prospera on the Indonesia’s strategic implementation of RCEP with Achmad Shauki and Julia Tijaja. 2022.\n\n\n\n2021\n\nCIPS Indonesia and Katalis on the impact of IACEPA to Indonesian economy with Rainer Heufers and David Mitchell.\nPT. LAPI ITB on the economic impact of The Indonesian Sovereign Wealth Funds with Barli Suryanta, PhD."
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Projects",
+    "section": "",
+    "text": "The Assessment of the Indonesian Food and Beverage Industry with Dionisius Narjoko and M. Ridhwan\nThe implication of the aggressive emission target on the Indonesian electricity sector.\nHow important is Indonesian plastic waste import: an assessment on industry and the environment with Biyan Paramayuda.\n\n\n\n\n\nWorking with Prospera on measuring the impact of import tax facility for firms.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nPreparing a policy brief for Ministry of Energy and Mineral Resource."
+  },
+  {
+    "objectID": "project.html#work-in-progress",
+    "href": "project.html#work-in-progress",
+    "title": "Projects",
+    "section": "",
+    "text": "The Assessment of the Indonesian Food and Beverage Industry with Dionisius Narjoko and M. Ridhwan\nThe implication of the aggressive emission target on the Indonesian electricity sector.\nHow important is Indonesian plastic waste import: an assessment on industry and the environment with Biyan Paramayuda.\n\n\n\n\n\nWorking with Prospera on measuring the impact of import tax facility for firms.\nWorking with the Ministry of Industry to assess its impact on the agro industry.\nPreparing a policy brief for Ministry of Energy and Mineral Resource."
+  },
+  {
+    "objectID": "project.html#past-project",
+    "href": "project.html#past-project",
+    "title": "Projects",
+    "section": "Past project",
+    "text": "Past project\n\nWorking with Prospera and CIPS on designing RCEP action plan.\nWorking with CIPS for Katalis on measuring IA CEPA impacts.\nWorking with PT. LAPI ITB for Indonesia Investment Authority on projecting the impact of INA to the Indonesian economy."
+  },
+  {
+    "objectID": "student.html",
+    "href": "student.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Gani, Muhammad R. Analisis Pengaruh Pajak Ekspor Terhadap Kinerja Ekspor Turunan Minyak Kelapa Sawit Di Indonesia.\nAndiani, Desy. Analisis Pengaruh Rules of Origin (ROO) terhadap kinerja ekspor Indonesia: studi kasus perdagangan Indonesia-Jepang.\nSyahputri, Evanti A. Analisis pengaruh perjanjian bilateral Indonesia-Japan Partnership Agreement (IJEPA) pada perdagangan sektor jasa di Indonesia.\nPertiwi, Gita P. Pengaruh Technical Barriers to Trade (TBT) dan Sanitary and Phytosanitary (SPS) oleh negara RCEP terhadap ekspor Indonesia.\nPane, Rio B.M. Foreign Dircet Investment (FDI) dan ekspor spillover pada industri manufaktur di Indonesia."
+  },
+  {
+    "objectID": "student.html#student-supervision",
+    "href": "student.html#student-supervision",
+    "title": "Projects",
+    "section": "",
+    "text": "Gani, Muhammad R. Analisis Pengaruh Pajak Ekspor Terhadap Kinerja Ekspor Turunan Minyak Kelapa Sawit Di Indonesia.\nAndiani, Desy. Analisis Pengaruh Rules of Origin (ROO) terhadap kinerja ekspor Indonesia: studi kasus perdagangan Indonesia-Jepang.\nSyahputri, Evanti A. Analisis pengaruh perjanjian bilateral Indonesia-Japan Partnership Agreement (IJEPA) pada perdagangan sektor jasa di Indonesia.\nPertiwi, Gita P. Pengaruh Technical Barriers to Trade (TBT) dan Sanitary and Phytosanitary (SPS) oleh negara RCEP terhadap ekspor Indonesia.\nPane, Rio B.M. Foreign Dircet Investment (FDI) dan ekspor spillover pada industri manufaktur di Indonesia."
   }
 ]
