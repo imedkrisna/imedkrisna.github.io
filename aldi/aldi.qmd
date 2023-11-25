@@ -1,0 +1,30 @@
+---
+title: "A brief "
+author: "Krisna Gupta"
+institute: "Prospera"
+date: last-modified
+date-format: long
+bibliography: ref.bib
+abstract: "Policy brief"
+format:
+  html:
+    code-fold: true
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+  docx:
+    toc: false
+---
+
+okaowkaokwoak
+
+```{r}
+library(tidyverse)
+library(NasdaqDataLink)
+NasdaqDataLink.api_key("WKM7Rxc_WBWe1LYnHxR4")
+```
+
+```{r}
+
+```
+
