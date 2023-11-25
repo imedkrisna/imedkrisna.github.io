@@ -4,7 +4,9 @@ author: "Krisna Gupta"
 institute: "Prospera"
 date: last-modified
 date-format: long
-bibliography: ref.bib
+execute: 
+  echo: false
+  warning: false
 abstract: "Policy brief"
 format:
   html:
@@ -20,6 +22,8 @@ okaowkaokwoak
 
 ```{r}
 library(tidyverse)
+library(ARDL)
+library(vars)
 library(readxl)
 library(patchwork)
 library(lubridate)
@@ -42,20 +46,38 @@ data<-as_tibble(data)
 dataa <- read_excel("aldi.xlsx",sheet="data")
 dataa$Date<-as.Date(dataa$Date,format="%Y%m%d")
 day(dataa$Date)<-days_in_month(dataa$Date)
+dat<-left_join(data,dataa)
+dat$bifr<-dat$bi-dat$fr
+dat$q<-dat$q88+dat$q90+dat$q92+dat$q95
+dat$p<-(dat$q88*dat$p88+dat$q90*dat$p90+dat$q92*dat$p92+dat$q95*dat$p98)/dat$q
 
 ```
 
 ```{r}
 
-dataal<-dataa |>
-  pivot_longer(!date,names_to = "kind",values_to = "value")
+datl<-dat |>
+  pivot_longer(!Date,names_to = "kind",values_to = "value")
 
-a<-ggplot(subset(dataal,kind %in% c("p88","p90","p92","p98","p95")),aes(x=date,y=value,color=kind))+geom_line()
-b<-ggplot(subset(data2l,kind %in% c("q88","q90","q92","q98","q95")),aes(x=date,y=value,color=kind))+geom_line()
+a<-ggplot(subset(datl,kind %in% c("p88","p90","p92","p98","p95")),aes(x=Date,y=value,color=kind))+
+  geom_line()+theme_classic()
+b<-ggplot(subset(datl,kind %in% c("q88","q90","q92","q98","q95")),aes(x=Date,y=value,color=kind))+
+  geom_line()+theme_classic()
 a+b
 ```
 
-dt <- c("2017-01","2017-02")  # data
-dt <- ym(dt)                  # change to date of year-month format
-day(dt) <- days_in_month(dt) 
+```{r}
+a<-ggplot(subset(datl,kind %in% c("fr")),aes(x=Date,y=value,color=kind))+
+  geom_line()+theme_classic()
+b<-ggplot(subset(datl,kind %in% c("poil")),aes(x=Date,y=value,color=kind))+
+  geom_line()+theme_classic()
+c<-ggplot(subset(datl,kind %in% c("q92")),aes(x=Date,y=value,color=kind))+
+  geom_line()+theme_classic()
+a/b/c
+```
+
+```{r}
+VARselect(drop_na(dat[,c("p","poil","fr","xr")]))
+```
+
+
 
