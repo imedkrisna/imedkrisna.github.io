@@ -46,6 +46,7 @@ library(vars)
 library(readxl)
 library(patchwork)
 library(lubridate)
+library(modelsummary)
 library(NasdaqDataLink)
 #NasdaqDataLink.api_key("WKM7Rxc_WBWe1LYnHxR4")
 NasdaqDataLink.api_key("vDm7zkSvztuywGuZuuvY")
@@ -163,30 +164,48 @@ Salah satu hal yang juga penting untuk dipertimbangkan adalah Program Percepatan
 
 Pada bagian ini dicoba ajukan sebuah usaha untuk mengestimasi dampak dari gejolak global terhadap harga BMM RON tinggi. Metode yang digunakan untuk studi awal ini adalah _Vector Auto Regression_ (VAR) untuk melihat arah dari _impulse response function_ (IRF) dari perubahan satu standar deviasi dari gejolak global [@vars].
 
-Pada percobaan kali ini digunakan 3 variabel, yaitu harga RON95/98 (p89), harga WTI (wti) dan nilai tukar rupiah terhadap dolar (xr). Semua variabel dalam bulanan. RON95/98 dipilih karena harga RON lain akan tergantung dari besarnya subsidi yang dialokasikan. Dianggap bahwa RON paling tinggi adalah yang paling sensitif perubahan harganya. WTI dan nilai tukar adalah proxy dari _global production glut_ dan _global inflation_. Series dapat dilihat di @fig-var
+Pada percobaan kali ini digunakan 3 variabel, yaitu harga RON95/98 ($p89$), harga WTI ($wti$) dan nilai tukar rupiah terhadap dolar ($xr$). Semua variabel dalam bulanan. RON95/98 dipilih karena harga RON lain akan tergantung dari besarnya subsidi yang dialokasikan. Dianggap bahwa RON paling tinggi adalah yang paling sensitif perubahan harganya. WTI dan nilai tukar adalah proxy dari _global production glut_ dan _global inflation_. Series dapat dilihat di @fig-var.
 
 ```{r}
 #| label: fig-var
 #| fig-cap: "Series 3 variabel"
 wew<-drop_na(dataa[,c("p98","poil","xr")]) |>
   rename(wti=poil)
+plot.ts(wew,main="")
+```
+
+Model yang digunakan untuk studi awal ini adalah VAR(1). Dengan kata lain, estimasi yang dilakukan adalah:
+
+$$
+\begin{align*}
+p98_t&=\beta_{10}+\beta_{11} p98_{t-1}+\beta_{12} wti_{t-1}+\beta_{13} xr_{t-1} \\
+wti_t&=\beta_{20}+\beta_{21} p98_{t-1}+\beta_{22} wti_{t-1}+\beta_{23} xr_{t-1} \\
+xr_t&=\beta_{30}+\beta_{31} p98_{t-1}+\beta_{32} wti_{t-1}+\beta_{33} xr_{t-1}
+\end{align*}
+$$
+
+Ekspektasi kita adalah bahwa harga dari RON95/98 dipengaruhi oleh harga WTI dan nilai tukar, tapi tidak sebaliknya[^1]. Artinya, kita harapkan signifikansi dari $\beta_{12}$ dan $\beta_{13}$ namun kita harapkan $\beta_{20}$ dan $\beta_{30}$ tidak signifikan. Di bawah ini adalah hasil dari VAR(1) tersebut:
+
+```{r}
 mod<-VAR(wew,p=1)
 summary(mod)
-#plot.ts(wew,main="")
 ```
 
-Model yang digunakan untuk studi awal ini adalah VAR(1). Hasilnya ditunjukkan 
+Seperti kita lihat bahwa harga WTI sangat berpengaruh terhadap harga RON95/98. Nilai tukar cukup berpengaruh meski signifikansinya ada di level 10\%. Sementara itu, terbukti bahwa sebaliknya tidak terjadi: $p98_{t-1}$ tidak signifikan terhadap dua variabel lainnya.
+
+berikutnya dilakukan impulse response function, yaitu apa yang terjadi pada harga RON95/98 di jangka panjang jika ada _shock_ sebesar 1 standar deviasi terhadap harga WTI dan nilai tukar.
 
 ```{r}
-
-summary(VAR(wew,p=1))
-plot(irf(VAR(wew,p=1),impulse=c("wti","xr"),response="p98"))
+#| label: fig-irf
+#| fig-cap: "impulse response function dari VAR(1)"
+plot(irf(mod,impulse=c("wti","xr"),response="p98"))
 ```
 
-```{r}
-auto_ardl(p98~poil+xr,data=dataa,max_order = 5)
-summary(ardl(p98~poil+xr+bi,data=dataa,order=c(1,1,1,1)))
-```
+Dapat dilihat pada gambar bahwa kenaikan harga WTI sebanyak 1 standar deviasi mengakibatkan naiknya harga RON95/98 sampai 200 rupiah di bulan berikutnya. Kenaikan ini stabil di sekitar bulan ke-7. Namun dapat dilihat bahwa standar deviasi dari estimasi ini cukup lebar.
+
+Dampak _shock_ dari nilai tukar sedikit berbeda. Melemahnya nilai rupiah sebanyak 1 standar deviasi mengakibatkan naiknya harga RON95/98, wajar mengingat BBM sebagian besar harus diimpor. Namun dampak ini akan melemah dalam 3 bulan ke depan dan malah berkurang di jangka panjang. Mengingat bahwa harga BBM dan nilai tukar di Indonesia seringkali diintervensi, maka intervensi-intervensi tersebut juga masuk ke dalam estimasi.
+
+Studi singkat ini cukup masuk akal, akan tetapi keandalan model ini masih harus diperiksa. Berbagai metode lain juga dapat digunakan tergantung dari asumsi, keandalan data, dan pertanyaan yang ingin dijawab.
 
 
-
+[^1]: $X$ dikatakan _granger cause_ $Y$ dan tidak sebaliknya jika $X_{t-1}$ signifikan terhadap $Y_t$ dan $Y_{t-1}$ tidak signifikan terhadap $X_t$
