@@ -1,7 +1,7 @@
 ---
-title: "A brief "
+title: "Macro Policy Brief: Global Inflation and the Oil Production Glut"
 author: "Krisna Gupta"
-institute: "Prospera"
+institute: "Politeknik APP Jakarta"
 date: last-modified
 date-format: long
 bibliography: ref.bib
@@ -123,7 +123,7 @@ ggplot(subset(datl,kind %in% c("us","eu","uk","bi")),
 ggplot(dataa,aes(x=Date,y=xr))+geom_line()+theme_classic()+theme(text=element_text(size=16))+labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
 ```
 
-@fig-rate-1 menunjukkan tingginya _policy rate_ dari negara-negara barat. Hal ini diakibatkan oleh tingginya inflasi di jangka waktu tersebut sehingga bank sentral di negara-negara tersebut harus menaikkan suku bunga. Bank Indonesia pun akhirnya harus mengikuti demi mencegah larinya pemegang aset Rupiah ke negara-negara tersebut, yang dapat mendorong pelemahan nilai tukar rupiah. 
+Sumber data pada @fig-rate adalah dari @seki. @fig-rate-1 menunjukkan tingginya _policy rate_ dari negara-negara barat. Hal ini diakibatkan oleh tingginya inflasi di jangka waktu tersebut sehingga bank sentral di negara-negara tersebut harus menaikkan suku bunga. Bank Indonesia pun akhirnya harus mengikuti demi mencegah larinya pemegang aset Rupiah ke negara-negara tersebut, yang dapat mendorong pelemahan nilai tukar rupiah. 
 
 Dapat dilihat pada @fig-rate-2 bahwa nilai tukar rupiah cenderung melemah di sekitar jangka waktu yang sama seiring dengan peningkatan suku bunga dari bank sentral negara barat. Meskipun rupiah sempat kembali menguat di awal tahun 2023, namun berita "higher for longer" kembali membuat investor menahan aset dolar lebih lama. BI pun harus mengikuti kenaikan ini, seperti terlihat dari naiknya lagi suku bunga BI baru-baru ini.
 
@@ -155,18 +155,32 @@ ggplot(subset(datl,kind %in% c("p88","p90","p92","p98","p95")),aes(x=Date,y=valu
 
 Melihat dampaknya langsung ke BBM mungkin cukup sulit. Hal ini karena pasar BBM di Indonesia dikontrol dengan sangat ketat oleh pemerintah. Dapat dilihat pada @fig-bbm-1 bahwa konsumsi RON88 terjun bebas karena produksi BBM jenis RON88 dihentikan. Sebelumnya, diperkenalkan RON90 yang produksinya terus meningkat sampai sekarang. Secara keseluruhan, produksi BBM masih tinggi.
 
-Namun di sisi harga, tampak terlihat adanya kenaikan harga terutama premium berkadar tinggi yang naik lebih dulu seperti ditunjukkan oleh @fig-bbm-2. Hal ini tentu imbas dari WTI juga naik di saat yang hampir sama. Jika asumsi makro APBN meleset, maka hal ini berpotensi menaikkan harga ke depannya.
+Namun di sisi harga, tampak terlihat adanya kenaikan harga terutama bensin RON tinggi yang naik lebih dulu seperti ditunjukkan oleh @fig-bbm-2. Hal ini tentu imbas dari WTI juga naik di saat yang hampir sama. Jika asumsi makro APBN meleset, maka hal ini berpotensi menaikkan harga ke depannya.
 
 Salah satu hal yang juga penting untuk dipertimbangkan adalah Program Percepatan Kendaraan Bermotor Listrik Berbasis Baterai (KBLBB) telah diamanatkan dalam Perpres Nomor 55 Tahun 2019 [@esdm]. Jika program ini berhasil, maka permintaan BBM bisa ditekan. Pasar karbon juga bisa dimanfaatkan untuk menekan permintaan. Keseriusan pemerintah dalam mencapai net zero di 2050 adalah satu aspek yang juga perlu kita pertimbangkan [@app].
 
 ## Impulse Response function
 
-Is this necessary? Mungkin kagak ya? Gw delet klo ga perlu. Ini pake VAR gitu tapi cupu banget. blm gw cek stasionarity.
+Pada bagian ini dicoba ajukan sebuah usaha untuk mengestimasi dampak dari gejolak global terhadap harga BMM RON tinggi. Metode yang digunakan untuk studi awal ini adalah _Vector Auto Regression_ (VAR) untuk melihat arah dari _impulse response function_ (IRF) dari perubahan satu standar deviasi dari gejolak global [@vars].
+
+Pada percobaan kali ini digunakan 3 variabel, yaitu harga RON95/98 (p89), harga WTI (wti) dan nilai tukar rupiah terhadap dolar (xr). Semua variabel dalam bulanan. RON95/98 dipilih karena harga RON lain akan tergantung dari besarnya subsidi yang dialokasikan. Dianggap bahwa RON paling tinggi adalah yang paling sensitif perubahan harganya. WTI dan nilai tukar adalah proxy dari _global production glut_ dan _global inflation_. Series dapat dilihat di @fig-var
 
 ```{r}
-wew<-drop_na(dataa[,c("p98","poil","xr")])
+#| label: fig-var
+#| fig-cap: "Series 3 variabel"
+wew<-drop_na(dataa[,c("p98","poil","xr")]) |>
+  rename(wti=poil)
+mod<-VAR(wew,p=1)
+summary(mod)
+#plot.ts(wew,main="")
+```
+
+Model yang digunakan untuk studi awal ini adalah VAR(1). Hasilnya ditunjukkan 
+
+```{r}
+
 summary(VAR(wew,p=1))
-plot(irf(VAR(wew,p=1),impulse=c("poil","xr"),response="p98"))
+plot(irf(VAR(wew,p=1),impulse=c("wti","xr"),response="p98"))
 ```
 
 ```{r}
