@@ -28,6 +28,9 @@ format:
     toc: false
 ---
 
+
+
+
 ## Asumsi APBN 2024
 
 Indonesia telah menentukan asumsi dasar APBN 2024 [@apbn2024] seperti dapat dilihat pada @tbl-1. Beberapa nilai di asumsi ini nampak turun dibandingkan tahun sebelumnya di tahun 2023 dan 2022 [@liputan6]. Pemerintah sepertinya mengasumsikan bahwa inflasi dan suku bunga tahun ini akan lebih rendah dibanding tahun-tahun sebelumnya, dengan harga minyak dunia yang juga turun. Apakah ini asumsi yang cukup tepat? Bagaimana implikasi dari deviasi asumsi-asumsi ini?
@@ -46,65 +49,31 @@ Indonesia telah menentukan asumsi dasar APBN 2024 [@apbn2024] seperti dapat dili
 
 Harga minyak merupakan indikator yang paling relevan bagi Direktorat Jenderal Minyak dan Gas (Ditjen Migas). Karena Indonesia merupakan net importir minyak bumi, harga internasional menjadi semakin relevan, tidak seperti batubara yang dapat direkayasa dengan kebijakan perdagangan seperti _Domestic Market Obligation_ (DMO). Harga minyak dunia [@fred] dan produksi OPEC [@yfin], organisasi penghasil minyak terbesar, dapat dilihat di @fig-oil.
 
-```{r}
-library(tidyverse)
-library(ARDL)
-library(vars)
-library(readxl)
-library(patchwork)
-library(lubridate)
-library(modelsummary)
-library(NasdaqDataLink)
-#NasdaqDataLink.api_key("WKM7Rxc_WBWe1LYnHxR4")
-NasdaqDataLink.api_key("vDm7zkSvztuywGuZuuvY")
 
-```
 
-```{r}
 
-data1 <- NasdaqDataLink("FRED/DCOILWTICO",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(wti=Value)
-data2 <- NasdaqDataLink("FRED/DFF",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(fedrate=Value)
-data3 <- NasdaqDataLink("FRED/DGS10",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(b10=Value)
-data4 <- NasdaqDataLink("FRED/DGS30",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(b30=Value)
+::: {.cell}
 
-data<-data1 |> left_join(data2) |> left_join(data3) |> left_join(data4)
-data<-as_tibble(data)
+:::
 
-## Data aldi
-dataa <- read_excel("aldi.xlsx",sheet="data")
-dataa$Date<-as.Date(dataa$Date,format="%Y%m%d")
-day(dataa$Date)<-days_in_month(dataa$Date)
+::: {.cell}
 
-## WTI dari FRED langsung
-poil<-read_excel("DCOILWTICO.xls",sheet="data")
-poil$mo<-floor_date(poil$Date,"month")
-poil<-poil |> group_by(mo) |> summarise(poil=mean(poil,na.rm=T)) |> rename(Date=mo)
-day(poil$Date)<-days_in_month(poil$Date)
+:::
 
-dataa<-left_join(dataa,poil)
+::: {#fig-oil .cell layout-ncol="2"}
+::: {.cell-output-display}
+![Produksi crude oil OPEC (M/bbl/d)](index_files/figure-docx/fig-oil-1.png){#fig-oil-1}
+:::
 
-dat<-left_join(dataa,data)
-dat$bifr<-dat$bi-dat$fr
-dat$q<-dat$q88+dat$q90+dat$q92+dat$q95
-dat$p<-(dat$q88*dat$p88+dat$q90*dat$p90+dat$q92*dat$p92+dat$q95*dat$p98)/dat$q
-datl<-dat |> pivot_longer(!Date,names_to = "kind",values_to = "value")
+::: {.cell-output-display}
+![Harga minyak WTI (USD/bbl)](index_files/figure-docx/fig-oil-2.png){#fig-oil-2}
+:::
 
-```
+Kondisi minyak bumi di pasar global
+:::
 
-```{r}
-#| label: fig-oil
-#| layout-ncol: 2
-#| fig-cap: "Kondisi minyak bumi di pasar global"
-#| fig-subcap:
-#|   - "Produksi crude oil OPEC (M/bbl/d)"
-#|   - "Harga minyak WTI (USD/bbl)"
-weks<-c("20190131","20200131","20210131","20220131","20230131")
-wiks<-(as.Date(weks,format="%Y%m%d"))
 
-ggplot(dataa,aes(x=Date,y=qopec))+geom_line()+theme_classic()+theme(text=element_text(size=16))+labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
-ggplot(dataa,aes(x=Date,y=poil))+geom_line()+theme_classic()+theme(text=element_text(size=16))+labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
 
-```
 
 @fig-oil-1 menunjukkan adanya tren kenaikan produksi dari negara-negara OPEC. Tren produksi minyak OPEC berkurang ketika COVID-19 masih merajalela, kemungkinan akibat lemahnya permintaan akibat _lockdown_. Peningkatan produksi perlahan terjadi dan menukik cukup tajam tidak lama setelah perang Rusia-Ukraina terjadi. Peningkatan produksi tersebut sudah mencapai tren 2019, namun tampak berhenti bahkan cenderung menurun di pertengahan 2023.
 
@@ -116,20 +85,23 @@ Inflasi global masih menjadi ancaman yang cukup pelik mengingat terjadinya krisi
 
 <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/3523_RC02/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"/m/09jx2","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=%2Fm%2F09jx2&hl=en","guestPath":"https://trends.google.co.id:443/trends/embed/"}); </script>
 
-```{r}
-#| label: fig-rate
-#| layout-ncol: 2
-#| fig-cap: "Tingkat suku bunga dan mata uang rupiah"
-#| fig-subcap:
-#|   - "Tingkat suku bunga beberapa negara (%)"
-#|   - "Nilai tukar rupiah terhadap US$ (Rp/US$)"
 
-ggplot(subset(datl,kind %in% c("us","eu","uk","bi")),
-       aes(x=Date,y=value,color=kind))+geom_line(linewidth=1.2)+
-  theme_classic()+theme(text=element_text(size=16),legend.position = "bottom")+
-  labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
-ggplot(dataa,aes(x=Date,y=xr))+geom_line()+theme_classic()+theme(text=element_text(size=16))+labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
-```
+
+
+::: {#fig-rate .cell layout-ncol="2"}
+::: {.cell-output-display}
+![Tingkat suku bunga beberapa negara (%)](index_files/figure-docx/fig-rate-1.png){#fig-rate-1}
+:::
+
+::: {.cell-output-display}
+![Nilai tukar rupiah terhadap US$ (Rp/US$)](index_files/figure-docx/fig-rate-2.png){#fig-rate-2}
+:::
+
+Tingkat suku bunga dan mata uang rupiah
+:::
+
+
+
 
 Sumber data pada @fig-rate adalah dari @seki. @fig-rate-1 menunjukkan tingginya _policy rate_ dari negara-negara barat. Hal ini diakibatkan oleh tingginya inflasi di jangka waktu tersebut sehingga bank sentral di negara-negara tersebut harus menaikkan suku bunga. Bank Indonesia pun akhirnya harus mengikuti demi mencegah larinya pemegang aset Rupiah ke negara-negara tersebut, yang dapat mendorong pelemahan nilai tukar rupiah. 
 
@@ -141,25 +113,23 @@ Di samping itu, ada potensi level rupiah akan _floating_ di posisi yang lebih ti
 
 Tren harga minyak dan inflasi global akan berpengaruh terhadap harga minyak di Indonesia. Asumsi makro APBN 2024 bisa meleset akibat OPEC yang berniat menjaga harga minyak agar tetap tinggi beserta dengan kemungkinan tekanan terhadap nilai tukar rupiah. Tentunya hal ini juga berpotensi  menambah kenaikan biaya operasional Pertamina. Jika harga dibiarkan floating, maka naiknya harga produk migas seperti BBM harus diekspektasi. Tentunya hal ini tergantung apakah Bank Indonesia akan bereaksi terhadap hal ini. Yang jelas, harus ada yang dikorbankan antara tingkat suku bunga SBN dan nilai tukar rupiah jika tren ini terus berlanjut.
 
-```{r}
-#| label: fig-bbm
-#| layout-ncol: 2
-#| fig-cap: "Kondisi harga dan konsumsi BBM di Indonesia"
-#| fig-subcap:
-#|   - "Produksi BBM premium"
-#|   - "Harga BBM premium (Rp/liter)"
 
-ggplot(subset(datl,kind %in% c("q88","q90","q92","q98","q95")),aes(x=Date,y=value,color=kind))+
-  geom_line(linewidth=1)+theme_classic()+
-  theme(legend.position = "bottom",text=element_text(size=16))+
-  scale_color_discrete(labels=c("RON88","RON90","RON92","RON95/98"))+
-  scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
-ggplot(subset(datl,kind %in% c("p88","p90","p92","p98","p95")),aes(x=Date,y=value,color=kind))+
-  geom_line(linewidth=1)+theme_classic()+
-  theme(legend.position = "bottom",text=element_text(size=16))+
-  scale_color_discrete(labels=c("RON88","RON90","RON92","RON95/98"))+
-  scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
-```
+
+
+::: {#fig-bbm .cell layout-ncol="2"}
+::: {.cell-output-display}
+![Produksi BBM premium](index_files/figure-docx/fig-bbm-1.png){#fig-bbm-1}
+:::
+
+::: {.cell-output-display}
+![Harga BBM premium (Rp/liter)](index_files/figure-docx/fig-bbm-2.png){#fig-bbm-2}
+:::
+
+Kondisi harga dan konsumsi BBM di Indonesia
+:::
+
+
+
 
 Melihat dampaknya langsung ke BBM mungkin cukup sulit. Hal ini karena pasar BBM di Indonesia dikontrol dengan sangat ketat oleh pemerintah. Dapat dilihat pada @fig-bbm-1 bahwa konsumsi RON88 terjun bebas karena produksi BBM jenis RON88 dihentikan. Sebelumnya, diperkenalkan RON90 yang produksinya terus meningkat sampai sekarang. Secara keseluruhan, produksi BBM masih tinggi.
 
@@ -173,13 +143,17 @@ Pada bagian ini dicoba ajukan sebuah usaha untuk mengestimasi dampak dari gejola
 
 Pada percobaan kali ini digunakan 3 variabel, yaitu harga RON95/98 ($p89$), harga WTI ($wti$) dan nilai tukar rupiah terhadap dolar ($xr$). Semua variabel dalam bulanan. RON95/98 dipilih karena harga RON lain akan tergantung dari besarnya subsidi yang dialokasikan. Dianggap bahwa RON paling tinggi adalah yang paling sensitif perubahan harganya. WTI dan nilai tukar adalah proxy dari _global production glut_ dan _global inflation_. Series dapat dilihat di @fig-var.
 
-```{r}
-#| label: fig-var
-#| fig-cap: "Series 3 variabel"
-wew<-drop_na(dataa[,c("p98","poil","xr")]) |>
-  rename(wti=poil)
-plot.ts(wew,main="")
-```
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Series 3 variabel](index_files/figure-docx/fig-var-1.png){#fig-var}
+:::
+:::
+
+
+
 
 Model yang digunakan untuk studi awal ini adalah VAR(1). Dengan kata lain, estimasi yang dilakukan adalah:
 
@@ -193,24 +167,119 @@ $$
 
 Ekspektasi kita adalah bahwa harga dari RON95/98 dipengaruhi oleh harga WTI dan nilai tukar, tapi tidak sebaliknya[^1]. Artinya, kita harapkan signifikansi dari $\beta_{12}$ dan $\beta_{13}$ namun kita harapkan $\beta_{20}$ dan $\beta_{30}$ tidak signifikan. Di bawah ini adalah hasil dari VAR(1) tersebut:
 
-```{r}
-mod<-VAR(wew,p=1)
-summary(mod)
+
+
+
+::: {.cell}
+::: {.cell-output .cell-output-stdout}
 ```
+
+VAR Estimation Results:
+========================= 
+Endogenous variables: p98, wti, xr 
+Deterministic variables: const 
+Sample size: 53 
+Log Likelihood: -982.95 
+Roots of the characteristic polynomial:
+0.8842 0.8125 0.4743
+Call:
+VAR(y = wew, p = 1)
+
+
+Estimation results for equation p98: 
+==================================== 
+p98 = p98.l1 + wti.l1 + xr.l1 + const 
+
+         Estimate Std. Error t value Pr(>|t|)    
+p98.l1  6.492e-01  8.322e-02   7.802 3.84e-10 ***
+wti.l1  3.289e+01  7.991e+00   4.116 0.000147 ***
+xr.l1   4.276e-01  2.413e-01   1.772 0.082658 .  
+const  -4.159e+03  3.226e+03  -1.289 0.203342    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Residual standard error: 761.8 on 49 degrees of freedom
+Multiple R-Squared: 0.8941,	Adjusted R-squared: 0.8877 
+F-statistic:   138 on 3 and 49 DF,  p-value: < 2.2e-16 
+
+
+Estimation results for equation wti: 
+==================================== 
+wti = p98.l1 + wti.l1 + xr.l1 + const 
+
+         Estimate Std. Error t value Pr(>|t|)    
+p98.l1  0.0003425  0.0007563   0.453   0.6527    
+wti.l1  0.9296972  0.0726263  12.801   <2e-16 ***
+xr.l1  -0.0038451  0.0021934  -1.753   0.0859 .  
+const  56.7470688 29.3177376   1.936   0.0587 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Residual standard error: 6.924 on 49 degrees of freedom
+Multiple R-Squared: 0.901,	Adjusted R-squared: 0.895 
+F-statistic: 148.7 on 3 and 49 DF,  p-value: < 2.2e-16 
+
+
+Estimation results for equation xr: 
+=================================== 
+xr = p98.l1 + wti.l1 + xr.l1 + const 
+
+        Estimate Std. Error t value Pr(>|t|)    
+p98.l1 3.130e-02  4.063e-02   0.771  0.44469    
+wti.l1 2.442e+00  3.901e+00   0.626  0.53429    
+xr.l1  5.920e-01  1.178e-01   5.024 7.12e-06 ***
+const  5.413e+03  1.575e+03   3.437  0.00121 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Residual standard error: 371.9 on 49 degrees of freedom
+Multiple R-Squared: 0.4966,	Adjusted R-squared: 0.4657 
+F-statistic: 16.11 on 3 and 49 DF,  p-value: 2.03e-07 
+
+
+
+Covariance matrix of residuals:
+         p98     wti     xr
+p98 580388.0  376.10 -19584
+wti    376.1   47.94   -983
+xr  -19583.8 -983.01 138337
+
+Correlation matrix of residuals:
+         p98     wti       xr
+p98  1.00000  0.0713 -0.06911
+wti  0.07130  1.0000 -0.38171
+xr  -0.06911 -0.3817  1.00000
+```
+:::
+:::
+
+
+
 
 Seperti kita lihat bahwa harga WTI sangat berpengaruh terhadap harga RON95/98. Nilai tukar cukup berpengaruh meski signifikansinya ada di level 8\%. Sementara itu, terbukti bahwa sebaliknya tidak terjadi: $p98_{t-1}$ tidak signifikan terhadap dua variabel lainnya.
 
 berikutnya dilakukan impulse response function, yaitu apa yang terjadi pada harga RON95/98 di jangka panjang jika ada _shock_ sebesar 1 standar deviasi terhadap harga WTI dan nilai tukar.
 
-```{r}
-#| label: fig-irf
-#| layout-ncol: 2
-#| fig-cap: "impulse response function dari VAR(1)"
-#| fig-subcap:
-#|   - "IRF dari harga WTI"
-#|   - "IRF dari nilai tukar rupiah terhadap dolar AS"
-plot(irf(mod,impulse=c("wti","xr"),response="p98"))
-```
+
+
+
+::: {#fig-irf .cell layout-ncol="2"}
+::: {.cell-output-display}
+![IRF dari harga WTI](index_files/figure-docx/fig-irf-1.png){#fig-irf-1}
+:::
+
+::: {.cell-output-display}
+![IRF dari nilai tukar rupiah terhadap dolar AS](index_files/figure-docx/fig-irf-2.png){#fig-irf-2}
+:::
+
+impulse response function dari VAR(1)
+:::
+
+
+
 
 Dapat dilihat pada @fig-irf-1 bahwa kenaikan harga WTI sebanyak 1 standar deviasi mengakibatkan naiknya harga RON95/98 sampai 200 rupiah di bulan berikutnya. Kenaikan ini stabil di sekitar bulan ke-7. Namun dapat dilihat bahwa standar deviasi dari estimasi ini cukup lebar.
 
@@ -220,3 +289,4 @@ Studi singkat ini cukup masuk akal, akan tetapi keandalan model ini masih harus 
 
 
 [^1]: $X$ dikatakan _granger cause_ $Y$ dan tidak sebaliknya jika $X_{t-1}$ signifikan terhadap $Y_t$ dan $Y_{t-1}$ tidak signifikan terhadap $X_t$
+
