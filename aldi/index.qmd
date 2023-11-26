@@ -9,7 +9,7 @@ author:
       - name: Politeknik APP Jakarta
         city: Jakarta
         url: www.poltekapp.ac.id
-date: last-modified
+date: "26 November 2023"
 date-format: long
 bibliography: ref.bib
 execute: 
