@@ -1,0 +1,178 @@
+---
+title: "A brief "
+author: "Krisna Gupta"
+institute: "Prospera"
+date: last-modified
+date-format: long
+bibliography: ref.bib
+execute: 
+  echo: false
+  warning: false
+abstract: |
+  Asumsi APBN menunjukkan optimisme pemerintah di mana dolar akan stabil di 15000 Rp/US\$, inflasi di 2,8% dan suku bunga di kisaran 6,7\%. Akan tetapi, situasi global menunjukkan adanya kemungkinan suku bunga internasional yang tetap tinggi untuk waktu yang lama (_higher for longer_). Di samping itu, kemungkinan adanya tekanan harga minyak internasional akibat OPEC yang masih menahan produksi juga dapat berdampak pada pasar minyak bumi di dalam negeri. Mengingat Indonesia saat ini _net importer_, maka akan sangat penting menjaga nilai tukar dari ketidakpastian global.
+abstract-title: "Executive Summary"
+format:
+  html:
+    code-fold: true
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+  docx:
+    toc: false
+---
+
+## Asumsi APBN 2024
+
+Indonesia telah menentukan asumsi dasar APBN 2024 [@apbn2024] seperti dapat dilihat pada @tbl-1. Beberapa nilai di asumsi ini nampak turun dibandingkan tahun sebelumnya di tahun 2023 dan 2022 [@liputan6]. Pemerintah sepertinya mengasumsikan bahwa inflasi dan suku bunga tahun ini akan lebih rendah dibanding tahun-tahun sebelumnya, dengan harga minyak dunia yang juga turun. Apakah ini asumsi yang cukup tepat? Bagaimana implikasi dari deviasi asumsi-asumsi ini?
+
+| Indikator | Nilai | Satuan |
+| ------- | ----- | --- |
+| Pertumbuhan ekonomi | 5,2 | % |
+| Inflasi | 2,8 | % |
+| Nilai tukar rupiah | 15.000 | US\$ |
+| Suku bunga SBN 10 tahun | 6,7 | % |
+| ICP | 82 | US\$/barel |
+
+: Asumsi makroekonomi APBN 2024 {#tbl-1}
+
+## Harga minyak
+
+Harga minyak merupakan indikator yang paling relevan bagi Direktorat Jenderal Minyak dan Gas (Ditjen Migas). Karena Indonesia merupakan net importir minyak bumi, harga internasional menjadi semakin relevan, tidak seperti batubara yang dapat direkayasa dengan kebijakan perdagangan seperti _Domestic Market Obligation_ (DMO). Harga minyak dunia [@fred] dan produksi OPEC [@yfin], organisasi penghasil minyak terbesar, dapat dilihat di @fig-oil.
+
+```{r}
+library(tidyverse)
+library(ARDL)
+library(vars)
+library(readxl)
+library(patchwork)
+library(lubridate)
+library(NasdaqDataLink)
+#NasdaqDataLink.api_key("WKM7Rxc_WBWe1LYnHxR4")
+NasdaqDataLink.api_key("vDm7zkSvztuywGuZuuvY")
+
+```
+
+```{r}
+
+data1 <- NasdaqDataLink("FRED/DCOILWTICO",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(wti=Value)
+data2 <- NasdaqDataLink("FRED/DFF",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(fedrate=Value)
+data3 <- NasdaqDataLink("FRED/DGS10",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(b10=Value)
+data4 <- NasdaqDataLink("FRED/DGS30",collapse="monthly", start_date="2019-01-01",order = "asc") |> rename(b30=Value)
+
+data<-data1 |> left_join(data2) |> left_join(data3) |> left_join(data4)
+data<-as_tibble(data)
+
+## Data aldi
+dataa <- read_excel("aldi.xlsx",sheet="data")
+dataa$Date<-as.Date(dataa$Date,format="%Y%m%d")
+day(dataa$Date)<-days_in_month(dataa$Date)
+
+## WTI dari FRED langsung
+poil<-read_excel("DCOILWTICO.xls",sheet="data")
+poil$mo<-floor_date(poil$Date,"month")
+poil<-poil |> group_by(mo) |> summarise(poil=mean(poil,na.rm=T)) |> rename(Date=mo)
+day(poil$Date)<-days_in_month(poil$Date)
+
+dataa<-left_join(dataa,poil)
+
+dat<-left_join(dataa,data)
+dat$bifr<-dat$bi-dat$fr
+dat$q<-dat$q88+dat$q90+dat$q92+dat$q95
+dat$p<-(dat$q88*dat$p88+dat$q90*dat$p90+dat$q92*dat$p92+dat$q95*dat$p98)/dat$q
+datl<-dat |> pivot_longer(!Date,names_to = "kind",values_to = "value")
+
+```
+
+```{r}
+#| label: fig-oil
+#| layout-ncol: 2
+#| fig-cap: "Kondisi minyak bumi di pasar global"
+#| fig-subcap:
+#|   - "Produksi crude oil OPEC (M/bbl/d)"
+#|   - "Harga minyak WTI (USD/bbl)"
+weks<-c("20190131","20200131","20210131","20220131","20230131")
+wiks<-(as.Date(weks,format="%Y%m%d"))
+
+ggplot(dataa,aes(x=Date,y=qopec))+geom_line()+theme_classic()+theme(text=element_text(size=16))+labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
+ggplot(dataa,aes(x=Date,y=poil))+geom_line()+theme_classic()+theme(text=element_text(size=16))+labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
+
+```
+
+@fig-oil-1 menunjukkan adanya tren kenaikan produksi dari negara-negara OPEC. Tren produksi minyak OPEC berkurang ketika COVID-19 masih merajalela, kemungkinan akibat lemahnya permintaan akibat _lockdown_. Peningkatan produksi perlahan terjadi dan menukik cukup tajam tidak lama setelah perang Rusia-Ukraina terjadi. Peningkatan produksi tersebut sudah mencapai tren 2019, namun tampak berhenti bahkan cenderung menurun di pertengahan 2023.
+
+@fig-oil-2 menunjukkan tren harga yang serupa. Akan tetapi, harga minyak WTI terus menanjak dan sudah tembus 110 USD/barrel pada bulan Mei 2022. Namun, tren ini kembali menurun dan stagnan tak lama kemudian. Akhir-akhir ini, harga minyak kembali naik ke level yang sesuai dengan asumsi APBN. Meski demikian, OPEC masih berenacan untuk menahan produksi untuk mengerek naik harga minyak [@reuters]. Karena itu pemerintah harus waspada.
+
+## Inflasi global
+
+Inflasi global masih menjadi ancaman yang cukup pelik mengingat terjadinya krisis baru di Timur Tengah. Bank Sentral Amerika Serikat telah mengumumkan meski mereka mungkin akan menahan tingkat suku bunga di level tinggi seperti saat ini namun untuk waktu yang panjang [@bisnis]. Hal ini membuat Indonesia harus waspada, karena jika tingkat suku bunga masih akan tinggi, maka hal ini akan membuat Bank Indonesia (BI) harus memilih antara mempertahankan rupiah dengan cara melepas devisa atau dengan cara menaikkan suku bunga, atau bahkan membiarkan rupiah melemah.
+
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/3523_RC02/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"/m/09jx2","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=%2Fm%2F09jx2&hl=en","guestPath":"https://trends.google.co.id:443/trends/embed/"}); </script>
+
+```{r}
+#| label: fig-rate
+#| layout-ncol: 2
+#| fig-cap: "Tingkat suku bunga dan mata uang rupiah"
+#| fig-subcap:
+#|   - "Tingkat suku bunga beberapa negara (%)"
+#|   - "Nilai tukar rupiah terhadap US$ (Rp/US$)"
+
+ggplot(subset(datl,kind %in% c("us","eu","uk","bi")),
+       aes(x=Date,y=value,color=kind))+geom_line(linewidth=1.2)+
+  theme_classic()+theme(text=element_text(size=16),legend.position = "bottom")+
+  labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
+ggplot(dataa,aes(x=Date,y=xr))+geom_line()+theme_classic()+theme(text=element_text(size=16))+labs(x="",y="")+scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
+```
+
+@fig-rate-1 menunjukkan tingginya _policy rate_ dari negara-negara barat. Hal ini diakibatkan oleh tingginya inflasi di jangka waktu tersebut sehingga bank sentral di negara-negara tersebut harus menaikkan suku bunga. Bank Indonesia pun akhirnya harus mengikuti demi mencegah larinya pemegang aset Rupiah ke negara-negara tersebut, yang dapat mendorong pelemahan nilai tukar rupiah. 
+
+Dapat dilihat pada @fig-rate-2 bahwa nilai tukar rupiah cenderung melemah di sekitar jangka waktu yang sama seiring dengan peningkatan suku bunga dari bank sentral negara barat. Meskipun rupiah sempat kembali menguat di awal tahun 2023, namun berita "higher for longer" kembali membuat investor menahan aset dolar lebih lama. BI pun harus mengikuti kenaikan ini, seperti terlihat dari naiknya lagi suku bunga BI baru-baru ini.
+
+Di samping itu, ada potensi level rupiah akan _floating_ di posisi yang lebih tinggi dibandingkan tren sebelumnya. @fig-rate-1 menunjukkan bahwa naiknya BI rate tidak setinggi negara-negara barat, sehingga _interest rate gap_ Indonesia dengan negara-negara tersebut mengecil. Jika BI tetap menjaga suku bunga di level ini, maka ada kemungkinan rupiah akan tetap _float_ di posisi yang rendah dan membuat asumsi makro bergeser.
+
+## Implikasi ke depan
+
+Tren harga minyak dan inflasi global akan berpengaruh terhadap harga minyak di Indonesia. Asumsi makro APBN 2024 bisa meleset akibat OPEC yang berniat menjaga harga minyak agar tetap tinggi beserta dengan kemungkinan tekanan terhadap nilai tukar rupiah. Tentunya hal ini juga berpotensi  menambah kenaikan biaya operasional Pertamina. Jika harga dibiarkan floating, maka naiknya harga produk migas seperti BBM harus diekspektasi. Tentunya hal ini tergantung apakah Bank Indonesia akan bereaksi terhadap hal ini. Yang jelas, harus ada yang dikorbankan antara tingkat suku bunga SBN dan nilai tukar rupiah jika tren ini terus berlanjut.
+
+```{r}
+#| label: fig-bbm
+#| layout-ncol: 2
+#| fig-cap: "Kondisi harga dan konsumsi BBM di Indonesia"
+#| fig-subcap:
+#|   - "Produksi BBM premium"
+#|   - "Harga BBM premium (Rp/liter)"
+
+ggplot(subset(datl,kind %in% c("q88","q90","q92","q98","q95")),aes(x=Date,y=value,color=kind))+
+  geom_line(linewidth=1)+theme_classic()+
+  theme(legend.position = "bottom",text=element_text(size=16))+
+  scale_color_discrete(labels=c("RON88","RON90","RON92","RON95/98"))+
+  scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
+ggplot(subset(datl,kind %in% c("p88","p90","p92","p98","p95")),aes(x=Date,y=value,color=kind))+
+  geom_line(linewidth=1)+theme_classic()+
+  theme(legend.position = "bottom",text=element_text(size=16))+
+  scale_color_discrete(labels=c("RON88","RON90","RON92","RON95/98"))+
+  scale_x_datetime(date_breaks = "1 year",date_labels="%Y")
+```
+
+Melihat dampaknya langsung ke BBM mungkin cukup sulit. Hal ini karena pasar BBM di Indonesia dikontrol dengan sangat ketat oleh pemerintah. Dapat dilihat pada @fig-bbm-1 bahwa konsumsi RON88 terjun bebas karena produksi BBM jenis RON88 dihentikan. Sebelumnya, diperkenalkan RON90 yang produksinya terus meningkat sampai sekarang. Secara keseluruhan, produksi BBM masih tinggi.
+
+Namun di sisi harga, tampak terlihat adanya kenaikan harga terutama premium berkadar tinggi yang naik lebih dulu seperti ditunjukkan oleh @fig-bbm-2. Hal ini tentu imbas dari WTI juga naik di saat yang hampir sama. Jika asumsi makro APBN meleset, maka hal ini berpotensi menaikkan harga ke depannya.
+
+Salah satu hal yang juga penting untuk dipertimbangkan adalah Program Percepatan Kendaraan Bermotor Listrik Berbasis Baterai (KBLBB) telah diamanatkan dalam Perpres Nomor 55 Tahun 2019 [@esdm]. Jika program ini berhasil, maka permintaan BBM bisa ditekan. Pasar karbon juga bisa dimanfaatkan untuk menekan permintaan. Keseriusan pemerintah dalam mencapai net zero di 2050 adalah satu aspek yang juga perlu kita pertimbangkan [@app].
+
+## Impulse Response function
+
+Is this necessary? Mungkin kagak ya? Gw delet klo ga perlu. Ini pake VAR gitu tapi cupu banget. blm gw cek stasionarity.
+
+```{r}
+wew<-drop_na(dataa[,c("p98","poil","xr")])
+summary(VAR(wew,p=1))
+plot(irf(VAR(wew,p=1),impulse=c("poil","xr"),response="p98"))
+```
+
+```{r}
+auto_ardl(p98~poil+xr,data=dataa,max_order = 5)
+summary(ardl(p98~poil+xr+bi,data=dataa,order=c(1,1,1,1)))
+```
+
+
+
