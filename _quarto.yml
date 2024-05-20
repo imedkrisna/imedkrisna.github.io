@@ -11,7 +11,8 @@ website:
       - research.qmd
       - teaching.qmd
       - project.qmd
-      - latihanR
+      - href: latihanR/index.qmd
+        text: latihanR
       
 
 #bibliography: reference.bib
