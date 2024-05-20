@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,6 +26,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -66,7 +67,13 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -75,6 +82,7 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -84,6 +92,33 @@ div.csl-indent {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -91,9 +126,9 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Krisna ‘imed’ Gupta</span>
     </a>
@@ -105,25 +140,25 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../research.html" rel="" target="">
- <span class="menu-text">Research</span></a>
+    <a class="nav-link" href="../research.html"> 
+<span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../teaching.html" rel="" target="">
- <span class="menu-text">Teaching</span></a>
+    <a class="nav-link" href="../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../project.html" rel="" target="">
- <span class="menu-text">Projects</span></a>
+    <a class="nav-link" href="../project.html"> 
+<span class="menu-text">Projects</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -158,16 +193,16 @@ div.csl-indent {
   <div class="quarto-title-meta-heading">Affiliation</div>
   
     <div class="quarto-title-meta-contents">
-    <p class="author">Krisna Gupta <a href="https://orcid.org/0000-0001-8695-0514" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    <p class="author">Krisna Gupta <a href="mailto:imade.krisna@poltekapp.ac.id" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-8695-0514" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
   </div>
-    <div class="quarto-title-meta-contents">
+  <div class="quarto-title-meta-contents">
         <p class="affiliation">
             <a href="www.poltekapp.ac.id">
             Politeknik APP Jakarta
             </a>
           </p>
       </div>
-    </div>
+  </div>
 
 <div class="quarto-title-meta">
 
@@ -184,19 +219,25 @@ div.csl-indent {
   
 <div>
   <div class="abstract">
-    <div class="abstract-title">Executive Summary</div>
+    <div class="block-title">Executive Summary</div>
     <p>Asumsi APBN menunjukkan optimisme pemerintah di mana dolar akan stabil di 15000 Rp/US$, inflasi di 2,8% dan suku bunga di kisaran 6,7%. Akan tetapi, situasi global menunjukkan adanya kemungkinan suku bunga internasional yang tetap tinggi untuk waktu yang lama (<em>higher for longer</em>). Di samping itu, kemungkinan adanya tekanan harga minyak internasional akibat OPEC yang masih menahan produksi juga dapat berdampak pada pasar minyak bumi di dalam negeri. Mengingat Indonesia saat ini <em>net importer</em>, maka akan sangat penting menjaga nilai tukar dari ketidakpastian global.</p>
   </div>
 </div>
 
+
 </header>
+
 
 <section id="asumsi-apbn-2024" class="level2">
 <h2 class="anchored" data-anchor-id="asumsi-apbn-2024">Asumsi APBN 2024</h2>
-<p>Indonesia telah menentukan asumsi dasar APBN 2024 <span class="citation" data-cites="apbn2024">(<a href="#ref-apbn2024" role="doc-biblioref">Kementerian Keuangan 2023</a>)</span> seperti dapat dilihat pada <a href="#tbl-1">Table&nbsp;1</a>. Beberapa nilai di asumsi ini nampak turun dibandingkan tahun sebelumnya di tahun 2023 dan 2022 <span class="citation" data-cites="liputan6">(<a href="#ref-liputan6" role="doc-biblioref">Santia 2022</a>)</span>. Pemerintah sepertinya mengasumsikan bahwa inflasi dan suku bunga tahun ini akan lebih rendah dibanding tahun-tahun sebelumnya, dengan harga minyak dunia yang juga turun. Apakah ini asumsi yang cukup tepat? Bagaimana implikasi dari deviasi asumsi-asumsi ini?</p>
-<div id="tbl-1" class="anchored">
+<p>Indonesia telah menentukan asumsi dasar APBN 2024 <span class="citation" data-cites="apbn2024">(<a href="#ref-apbn2024" role="doc-biblioref">Kementerian Keuangan 2023</a>)</span> seperti dapat dilihat pada <a href="#tbl-1" class="quarto-xref">Table&nbsp;1</a>. Beberapa nilai di asumsi ini nampak turun dibandingkan tahun sebelumnya di tahun 2023 dan 2022 <span class="citation" data-cites="liputan6">(<a href="#ref-liputan6" role="doc-biblioref">Santia 2022</a>)</span>. Pemerintah sepertinya mengasumsikan bahwa inflasi dan suku bunga tahun ini akan lebih rendah dibanding tahun-tahun sebelumnya, dengan harga minyak dunia yang juga turun. Apakah ini asumsi yang cukup tepat? Bagaimana implikasi dari deviasi asumsi-asumsi ini?</p>
+<div id="tbl-1" class="quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Asumsi makroekonomi APBN 2024
+</figcaption>
+<div aria-describedby="tbl-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table">
-<caption>Table&nbsp;1: Asumsi makroekonomi APBN 2024</caption>
 <thead>
 <tr class="header">
 <th>Indikator</th>
@@ -233,108 +274,150 @@ div.csl-indent {
 </tbody>
 </table>
 </div>
+</figure>
+</div>
 </section>
 <section id="harga-minyak" class="level2">
 <h2 class="anchored" data-anchor-id="harga-minyak">Harga minyak</h2>
-<p>Harga minyak merupakan indikator yang paling relevan bagi Direktorat Jenderal Minyak dan Gas (Ditjen Migas). Karena Indonesia merupakan net importir minyak bumi, harga internasional menjadi semakin relevan, tidak seperti batubara yang dapat direkayasa dengan kebijakan perdagangan seperti <em>Domestic Market Obligation</em> (DMO). Harga minyak dunia <span class="citation" data-cites="fred">(<a href="#ref-fred" role="doc-biblioref">FRED 2023</a>)</span> dan produksi OPEC <span class="citation" data-cites="yfin">(<a href="#ref-yfin" role="doc-biblioref">ycharts.com 2023</a>)</span>, organisasi penghasil minyak terbesar, dapat dilihat di <a href="#fig-oil">Figure&nbsp;1</a>.</p>
-<div id="fig-oil" class="cell quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-oil-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-oil-1.png" class="img-fluid figure-img" data-ref-parent="fig-oil" width="672"></p>
-<figcaption class="figure-caption">(a) Produksi crude oil OPEC (M/bbl/d)</figcaption>
+<p>Harga minyak merupakan indikator yang paling relevan bagi Direktorat Jenderal Minyak dan Gas (Ditjen Migas). Karena Indonesia merupakan net importir minyak bumi, harga internasional menjadi semakin relevan, tidak seperti batubara yang dapat direkayasa dengan kebijakan perdagangan seperti <em>Domestic Market Obligation</em> (DMO). Harga minyak dunia <span class="citation" data-cites="fred">(<a href="#ref-fred" role="doc-biblioref">FRED 2023</a>)</span> dan produksi OPEC <span class="citation" data-cites="yfin">(<a href="#ref-yfin" role="doc-biblioref">ycharts.com 2023</a>)</span>, organisasi penghasil minyak terbesar, dapat dilihat di <a href="#fig-oil" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-oil" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-oil-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-oil" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-oil-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-oil-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-oil-1.png" class="img-fluid figure-img" data-ref-parent="fig-oil" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-oil-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Produksi crude oil OPEC (M/bbl/d)
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-oil-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-oil-2.png" class="img-fluid figure-img" data-ref-parent="fig-oil" width="672"></p>
-<figcaption class="figure-caption">(b) Harga minyak WTI (USD/bbl)</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-oil" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-oil-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-oil-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-oil-2.png" class="img-fluid figure-img" data-ref-parent="fig-oil" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-oil-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Harga minyak WTI (USD/bbl)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Kondisi minyak bumi di pasar global</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oil-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Kondisi minyak bumi di pasar global
+</figcaption>
 </figure>
 </div>
-<p><a href="#fig-oil-1">Figure&nbsp;1 (a)</a> menunjukkan adanya tren kenaikan produksi dari negara-negara OPEC. Tren produksi minyak OPEC berkurang ketika COVID-19 masih merajalela, kemungkinan akibat lemahnya permintaan akibat <em>lockdown</em>. Peningkatan produksi perlahan terjadi dan menukik cukup tajam tidak lama setelah perang Rusia-Ukraina terjadi. Peningkatan produksi tersebut sudah mencapai tren 2019, namun tampak berhenti bahkan cenderung menurun di pertengahan 2023.</p>
-<p><a href="#fig-oil-2">Figure&nbsp;1 (b)</a> menunjukkan tren harga yang serupa. Akan tetapi, harga minyak WTI terus menanjak dan sudah tembus 110 USD/barrel pada bulan Mei 2022. Namun, tren ini kembali menurun dan stagnan tak lama kemudian. Akhir-akhir ini, harga minyak kembali naik ke level yang sesuai dengan asumsi APBN. Meski demikian, OPEC masih berenacan untuk menahan produksi untuk mengerek naik harga minyak <span class="citation" data-cites="reuters">(<a href="#ref-reuters" role="doc-biblioref">Seba 2023</a>)</span>. Karena itu pemerintah harus waspada.</p>
+<p><a href="#fig-oil-1" class="quarto-xref">Figure&nbsp;1 (a)</a> menunjukkan adanya tren kenaikan produksi dari negara-negara OPEC. Tren produksi minyak OPEC berkurang ketika COVID-19 masih merajalela, kemungkinan akibat lemahnya permintaan akibat <em>lockdown</em>. Peningkatan produksi perlahan terjadi dan menukik cukup tajam tidak lama setelah perang Rusia-Ukraina terjadi. Peningkatan produksi tersebut sudah mencapai tren 2019, namun tampak berhenti bahkan cenderung menurun di pertengahan 2023.</p>
+<p><a href="#fig-oil-2" class="quarto-xref">Figure&nbsp;1 (b)</a> menunjukkan tren harga yang serupa. Akan tetapi, harga minyak WTI terus menanjak dan sudah tembus 110 USD/barrel pada bulan Mei 2022. Namun, tren ini kembali menurun dan stagnan tak lama kemudian. Akhir-akhir ini, harga minyak kembali naik ke level yang sesuai dengan asumsi APBN. Meski demikian, OPEC masih berenacan untuk menahan produksi untuk mengerek naik harga minyak <span class="citation" data-cites="reuters">(<a href="#ref-reuters" role="doc-biblioref">Seba 2023</a>)</span>. Karena itu pemerintah harus waspada.</p>
 </section>
 <section id="inflasi-global" class="level2">
 <h2 class="anchored" data-anchor-id="inflasi-global">Inflasi global</h2>
 <p>Inflasi global masih menjadi ancaman yang cukup pelik mengingat terjadinya krisis baru di Timur Tengah. Bank Sentral Amerika Serikat telah mengumumkan meski mereka mungkin akan menahan tingkat suku bunga di level tinggi seperti saat ini namun untuk waktu yang panjang <span class="citation" data-cites="bisnis">(<a href="#ref-bisnis" role="doc-biblioref">Elena 2023</a>)</span>. Hal ini membuat Indonesia harus waspada, karena jika tingkat suku bunga masih akan tinggi, maka hal ini akan membuat Bank Indonesia (BI) harus memilih antara mempertahankan rupiah dengan cara melepas devisa atau dengan cara menaikkan suku bunga, atau bahkan membiarkan rupiah melemah.</p>
 <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/3523_RC02/embed_loader.js"></script>
 <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"/m/09jx2","geo":"","time":"today 5-y"}],"category":0,"property":""}, {"exploreQuery":"date=today%205-y&q=%2Fm%2F09jx2&hl=en","guestPath":"https://trends.google.co.id:443/trends/embed/"}); </script>
-<div id="fig-rate" class="cell quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-rate-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-rate-1.png" class="img-fluid figure-img" data-ref-parent="fig-rate" width="672"></p>
-<figcaption class="figure-caption">(a) Tingkat suku bunga beberapa negara (%)</figcaption>
+<div id="fig-rate" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-rate" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-rate-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-rate-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-rate-1.png" class="img-fluid figure-img" data-ref-parent="fig-rate" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-rate-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Tingkat suku bunga beberapa negara (%)
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-rate-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-rate-2.png" class="img-fluid figure-img" data-ref-parent="fig-rate" width="672"></p>
-<figcaption class="figure-caption">(b) Nilai tukar rupiah terhadap US$ (Rp/US$)</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-rate" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-rate-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-rate-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-rate-2.png" class="img-fluid figure-img" data-ref-parent="fig-rate" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-rate-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Nilai tukar rupiah terhadap US$ (Rp/US$)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Tingkat suku bunga dan mata uang rupiah</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Tingkat suku bunga dan mata uang rupiah
+</figcaption>
 </figure>
 </div>
-<p>Sumber data pada <a href="#fig-rate">Figure&nbsp;2</a> adalah dari <span class="citation" data-cites="seki">Bank Indonesia (<a href="#ref-seki" role="doc-biblioref">2023</a>)</span>. <a href="#fig-rate-1">Figure&nbsp;2 (a)</a> menunjukkan tingginya <em>policy rate</em> dari negara-negara barat. Hal ini diakibatkan oleh tingginya inflasi di jangka waktu tersebut sehingga bank sentral di negara-negara tersebut harus menaikkan suku bunga. Bank Indonesia pun akhirnya harus mengikuti demi mencegah larinya pemegang aset Rupiah ke negara-negara tersebut, yang dapat mendorong pelemahan nilai tukar rupiah.</p>
-<p>Dapat dilihat pada <a href="#fig-rate-2">Figure&nbsp;2 (b)</a> bahwa nilai tukar rupiah cenderung melemah di sekitar jangka waktu yang sama seiring dengan peningkatan suku bunga dari bank sentral negara barat. Meskipun rupiah sempat kembali menguat di awal tahun 2023, namun berita “higher for longer” kembali membuat investor menahan aset dolar lebih lama. BI pun harus mengikuti kenaikan ini, seperti terlihat dari naiknya lagi suku bunga BI baru-baru ini.</p>
-<p>Di samping itu, ada potensi level rupiah akan <em>floating</em> di posisi yang lebih tinggi dibandingkan tren sebelumnya. <a href="#fig-rate-1">Figure&nbsp;2 (a)</a> menunjukkan bahwa naiknya BI rate tidak setinggi negara-negara barat, sehingga <em>interest rate gap</em> Indonesia dengan negara-negara tersebut mengecil. Jika BI tetap menjaga suku bunga di level ini, maka ada kemungkinan rupiah akan tetap <em>float</em> di posisi yang rendah dan membuat asumsi makro bergeser.</p>
+<p>Sumber data pada <a href="#fig-rate" class="quarto-xref">Figure&nbsp;2</a> adalah dari <span class="citation" data-cites="seki">Bank Indonesia (<a href="#ref-seki" role="doc-biblioref">2023</a>)</span>. <a href="#fig-rate-1" class="quarto-xref">Figure&nbsp;2 (a)</a> menunjukkan tingginya <em>policy rate</em> dari negara-negara barat. Hal ini diakibatkan oleh tingginya inflasi di jangka waktu tersebut sehingga bank sentral di negara-negara tersebut harus menaikkan suku bunga. Bank Indonesia pun akhirnya harus mengikuti demi mencegah larinya pemegang aset Rupiah ke negara-negara tersebut, yang dapat mendorong pelemahan nilai tukar rupiah.</p>
+<p>Dapat dilihat pada <a href="#fig-rate-2" class="quarto-xref">Figure&nbsp;2 (b)</a> bahwa nilai tukar rupiah cenderung melemah di sekitar jangka waktu yang sama seiring dengan peningkatan suku bunga dari bank sentral negara barat. Meskipun rupiah sempat kembali menguat di awal tahun 2023, namun berita “higher for longer” kembali membuat investor menahan aset dolar lebih lama. BI pun harus mengikuti kenaikan ini, seperti terlihat dari naiknya lagi suku bunga BI baru-baru ini.</p>
+<p>Di samping itu, ada potensi level rupiah akan <em>floating</em> di posisi yang lebih tinggi dibandingkan tren sebelumnya. <a href="#fig-rate-1" class="quarto-xref">Figure&nbsp;2 (a)</a> menunjukkan bahwa naiknya BI rate tidak setinggi negara-negara barat, sehingga <em>interest rate gap</em> Indonesia dengan negara-negara tersebut mengecil. Jika BI tetap menjaga suku bunga di level ini, maka ada kemungkinan rupiah akan tetap <em>float</em> di posisi yang rendah dan membuat asumsi makro bergeser.</p>
 </section>
 <section id="implikasi-ke-depan" class="level2">
 <h2 class="anchored" data-anchor-id="implikasi-ke-depan">Implikasi ke depan</h2>
 <p>Tren harga minyak dan inflasi global akan berpengaruh terhadap harga minyak di Indonesia. Asumsi makro APBN 2024 bisa meleset akibat OPEC yang berniat menjaga harga minyak agar tetap tinggi beserta dengan kemungkinan tekanan terhadap nilai tukar rupiah. Tentunya hal ini juga berpotensi menambah kenaikan biaya operasional Pertamina. Jika harga dibiarkan floating, maka naiknya harga produk migas seperti BBM harus diekspektasi. Tentunya hal ini tergantung apakah Bank Indonesia akan bereaksi terhadap hal ini. Yang jelas, harus ada yang dikorbankan antara tingkat suku bunga SBN dan nilai tukar rupiah jika tren ini terus berlanjut.</p>
-<div id="fig-bbm" class="cell quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-bbm-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-bbm-1.png" class="img-fluid figure-img" data-ref-parent="fig-bbm" width="672"></p>
-<figcaption class="figure-caption">(a) Produksi BBM premium</figcaption>
+<div id="fig-bbm" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bbm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bbm" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-bbm-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-bbm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-bbm-1.png" class="img-fluid figure-img" data-ref-parent="fig-bbm" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-bbm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Produksi BBM premium
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-bbm-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-bbm-2.png" class="img-fluid figure-img" data-ref-parent="fig-bbm" width="672"></p>
-<figcaption class="figure-caption">(b) Harga BBM premium (Rp/liter)</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bbm" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-bbm-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-bbm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-bbm-2.png" class="img-fluid figure-img" data-ref-parent="fig-bbm" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-bbm-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Harga BBM premium (Rp/liter)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Kondisi harga dan konsumsi BBM di Indonesia</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bbm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Kondisi harga dan konsumsi BBM di Indonesia
+</figcaption>
 </figure>
 </div>
-<p>Melihat dampaknya langsung ke BBM mungkin cukup sulit. Hal ini karena pasar BBM di Indonesia dikontrol dengan sangat ketat oleh pemerintah. Dapat dilihat pada <a href="#fig-bbm-1">Figure&nbsp;3 (a)</a> bahwa konsumsi RON88 terjun bebas karena produksi BBM jenis RON88 dihentikan. Sebelumnya, diperkenalkan RON90 yang produksinya terus meningkat sampai sekarang. Secara keseluruhan, produksi BBM masih tinggi.</p>
-<p>Namun di sisi harga, tampak terlihat adanya kenaikan harga terutama bensin RON tinggi yang naik lebih dulu seperti ditunjukkan oleh <a href="#fig-bbm-2">Figure&nbsp;3 (b)</a>. Hal ini tentu imbas dari WTI juga naik di saat yang hampir sama. Jika asumsi makro APBN meleset, maka hal ini berpotensi menaikkan harga ke depannya.</p>
+<p>Melihat dampaknya langsung ke BBM mungkin cukup sulit. Hal ini karena pasar BBM di Indonesia dikontrol dengan sangat ketat oleh pemerintah. Dapat dilihat pada <a href="#fig-bbm-1" class="quarto-xref">Figure&nbsp;3 (a)</a> bahwa konsumsi RON88 terjun bebas karena produksi BBM jenis RON88 dihentikan. Sebelumnya, diperkenalkan RON90 yang produksinya terus meningkat sampai sekarang. Secara keseluruhan, produksi BBM masih tinggi.</p>
+<p>Namun di sisi harga, tampak terlihat adanya kenaikan harga terutama bensin RON tinggi yang naik lebih dulu seperti ditunjukkan oleh <a href="#fig-bbm-2" class="quarto-xref">Figure&nbsp;3 (b)</a>. Hal ini tentu imbas dari WTI juga naik di saat yang hampir sama. Jika asumsi makro APBN meleset, maka hal ini berpotensi menaikkan harga ke depannya.</p>
 <p>Salah satu hal yang juga penting untuk dipertimbangkan adalah Program Percepatan Kendaraan Bermotor Listrik Berbasis Baterai (KBLBB) telah diamanatkan dalam Perpres Nomor 55 Tahun 2019 <span class="citation" data-cites="esdm">(<a href="#ref-esdm" role="doc-biblioref">Kementerian ESDM 2023</a>)</span>. Jika program ini berhasil, maka permintaan BBM bisa ditekan. Pasar karbon juga bisa dimanfaatkan untuk menekan permintaan. Keseriusan pemerintah dalam mencapai net zero di 2050 adalah satu aspek yang juga perlu kita pertimbangkan <span class="citation" data-cites="app">(<a href="#ref-app" role="doc-biblioref">Gupta 2023</a>)</span>.</p>
 </section>
 <section id="impulse-response-function" class="level2">
 <h2 class="anchored" data-anchor-id="impulse-response-function">Impulse Response function</h2>
 <p>Pada bagian ini dicoba ajukan sebuah usaha untuk mengestimasi dampak dari gejolak global terhadap harga BMM RON tinggi. Metode yang digunakan untuk studi awal ini adalah <em>Vector Auto Regression</em> (VAR) untuk melihat arah dari <em>impulse response function</em> (IRF) dari perubahan satu standar deviasi dari gejolak global <span class="citation" data-cites="vars">(<a href="#ref-vars" role="doc-biblioref">Pfaff 2007</a>)</span>.</p>
-<p>Pada percobaan kali ini digunakan 3 variabel, yaitu harga RON95/98 (<span class="math inline">\(p89\)</span>), harga WTI (<span class="math inline">\(wti\)</span>) dan nilai tukar rupiah terhadap dolar (<span class="math inline">\(xr\)</span>). Semua variabel dalam bulanan. RON95/98 dipilih karena harga RON lain akan tergantung dari besarnya subsidi yang dialokasikan. Dianggap bahwa RON paling tinggi adalah yang paling sensitif perubahan harganya. WTI dan nilai tukar adalah proxy dari <em>global production glut</em> dan <em>global inflation</em>. Series dapat dilihat di <a href="#fig-var">Figure&nbsp;4</a>.</p>
+<p>Pada percobaan kali ini digunakan 3 variabel, yaitu harga RON95/98 (<span class="math inline">\(p89\)</span>), harga WTI (<span class="math inline">\(wti\)</span>) dan nilai tukar rupiah terhadap dolar (<span class="math inline">\(xr\)</span>). Semua variabel dalam bulanan. RON95/98 dipilih karena harga RON lain akan tergantung dari besarnya subsidi yang dialokasikan. Dianggap bahwa RON paling tinggi adalah yang paling sensitif perubahan harganya. WTI dan nilai tukar adalah proxy dari <em>global production glut</em> dan <em>global inflation</em>. Series dapat dilihat di <a href="#fig-var" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-var" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-var-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Series 3 variabel</figcaption>
+<div id="fig-var" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-var-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-var-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Series 3 variabel
+</figcaption>
 </figure>
 </div>
 </div>
@@ -433,31 +516,43 @@ xr  -0.06911 -0.3817  1.00000</code></pre>
 </div>
 <p>Seperti kita lihat bahwa harga WTI sangat berpengaruh terhadap harga RON95/98. Nilai tukar cukup berpengaruh meski signifikansinya ada di level 8%. Sementara itu, terbukti bahwa sebaliknya tidak terjadi: <span class="math inline">\(p98_{t-1}\)</span> tidak signifikan terhadap dua variabel lainnya.</p>
 <p>berikutnya dilakukan impulse response function, yaitu apa yang terjadi pada harga RON95/98 di jangka panjang jika ada <em>shock</em> sebesar 1 standar deviasi terhadap harga WTI dan nilai tukar.</p>
-<div id="fig-irf" class="cell quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-irf-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-irf-1.png" class="img-fluid figure-img" data-ref-parent="fig-irf" width="672"></p>
-<figcaption class="figure-caption">(a) IRF dari harga WTI</figcaption>
+<div id="fig-irf" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-irf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-irf" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-irf-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-irf-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-irf-1.png" class="img-fluid figure-img" data-ref-parent="fig-irf" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-irf-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) IRF dari harga WTI
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-irf-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="index_files/figure-html/fig-irf-2.png" class="img-fluid figure-img" data-ref-parent="fig-irf" width="672"></p>
-<figcaption class="figure-caption">(b) IRF dari nilai tukar rupiah terhadap dolar AS</figcaption>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-irf" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-irf-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-irf-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-irf-2.png" class="img-fluid figure-img" data-ref-parent="fig-irf" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-irf-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) IRF dari nilai tukar rupiah terhadap dolar AS
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;5: impulse response function dari VAR(1)</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-irf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: impulse response function dari VAR(1)
+</figcaption>
 </figure>
 </div>
-<p>Dapat dilihat pada <a href="#fig-irf-1">Figure&nbsp;5 (a)</a> bahwa kenaikan harga WTI sebanyak 1 standar deviasi mengakibatkan naiknya harga RON95/98 sampai 200 rupiah di bulan berikutnya. Kenaikan ini stabil di sekitar bulan ke-7. Namun dapat dilihat bahwa standar deviasi dari estimasi ini cukup lebar.</p>
-<p>Dampak <em>shock</em> dari nilai tukar sedikit berbeda (lihat <a href="#fig-irf-2">Figure&nbsp;5 (b)</a>). Melemahnya nilai rupiah sebanyak 1 standar deviasi mengakibatkan naiknya harga RON95/98, wajar mengingat BBM sebagian besar harus diimpor. Namun dampak ini akan melemah dalam 3 bulan ke depan dan malah berkurang di jangka panjang. Mengingat bahwa harga BBM dan nilai tukar di Indonesia seringkali diintervensi, maka intervensi-intervensi tersebut juga masuk ke dalam estimasi.</p>
+<p>Dapat dilihat pada <a href="#fig-irf-1" class="quarto-xref">Figure&nbsp;5 (a)</a> bahwa kenaikan harga WTI sebanyak 1 standar deviasi mengakibatkan naiknya harga RON95/98 sampai 200 rupiah di bulan berikutnya. Kenaikan ini stabil di sekitar bulan ke-7. Namun dapat dilihat bahwa standar deviasi dari estimasi ini cukup lebar.</p>
+<p>Dampak <em>shock</em> dari nilai tukar sedikit berbeda (lihat <a href="#fig-irf-2" class="quarto-xref">Figure&nbsp;5 (b)</a>). Melemahnya nilai rupiah sebanyak 1 standar deviasi mengakibatkan naiknya harga RON95/98, wajar mengingat BBM sebagian besar harus diimpor. Namun dampak ini akan melemah dalam 3 bulan ke depan dan malah berkurang di jangka panjang. Mengingat bahwa harga BBM dan nilai tukar di Indonesia seringkali diintervensi, maka intervensi-intervensi tersebut juga masuk ke dalam estimasi.</p>
 <p>Studi singkat ini cukup masuk akal, akan tetapi keandalan model ini masih harus diperiksa. Berbagai metode lain juga dapat digunakan tergantung dari asumsi, keandalan data, dan pertanyaan yang ingin dijawab.</p>
 
 
@@ -465,7 +560,7 @@ xr  -0.06911 -0.3817  1.00000</code></pre>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-seki" class="csl-entry" role="listitem">
 Bank Indonesia. 2023. <span>“Statistik Ekonomi Dan Keuangan Indonesia.”</span> Bank Indonesia. <a href="https://www.bi.go.id/id/statistik/ekonomi-keuangan/seki/Default.aspx#headingThree">https://www.bi.go.id/id/statistik/ekonomi-keuangan/seki/Default.aspx#headingThree</a>.
 </div>
@@ -581,10 +676,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -594,8 +706,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -607,7 +728,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -651,6 +895,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -676,6 +921,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -736,6 +1007,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
