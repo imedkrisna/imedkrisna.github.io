@@ -11,9 +11,9 @@ website:
       - research.qmd
       - teaching.qmd
       - project.qmd
-      - href: latihanR/index.qmd
-        text: latihanR
-        icon: r-circle-fill
+      - href: misc.qmd
+        text: misc
+        
       
 
 #bibliography: reference.bib
