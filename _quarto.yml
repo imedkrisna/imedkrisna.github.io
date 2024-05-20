@@ -13,6 +13,7 @@ website:
       - project.qmd
       - href: latihanR/index.qmd
         text: latihanR
+        icon: r-circle-fill
       
 
 #bibliography: reference.bib
