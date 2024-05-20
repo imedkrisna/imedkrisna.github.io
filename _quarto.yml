@@ -11,7 +11,7 @@ website:
       - research.qmd
       - teaching.qmd
       - project.qmd
-      - href: latihanR/index.qmd
+      - href: latihanR/index.html
         text: latihanR
       
 
