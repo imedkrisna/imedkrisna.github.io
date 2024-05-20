@@ -2,4 +2,10 @@
 title: "misc"
 ---
 
+## Quick workshop
+
+Some of my workshop in universities and other occasions.
+
 - [Latihan R (Bahasa Indonesia)](/latihanR)
+
+- [Gravity in R](/gravity)

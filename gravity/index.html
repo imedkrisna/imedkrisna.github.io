@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Krisna Gupta">
+<meta name="dcterms.date" content="2024-05-18">
+
+<title>Gravity in R: a short workshop</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gravity in R: a short workshop</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Krisna Gupta </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Universitas Indonesia
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 18, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">abstract</div>
+    This page is dedicated to teach students on running the gravity model in R. We uses dataset from CEPII, specifically BACI and the gravity dataset. We run in R and RStudio IDE, and we rely on ppml from the gravity package when demonstrating PPML. We try to replicate Silva and Tenreyro (2006), an excellent paper for an introduction to the log gravity model and PPML.
+  </div>
+</div>
+
+
+</header>
+
+
+<section id="sec-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="sec-introduction">Introduction</h2>
+<p>The gravity model is probably the most popular model in international trade. Many uses them. It is very intuitive, great predictive power, and most importantly, tweakable <span class="citation" data-cites="yotov">(<a href="#ref-yotov" role="doc-biblioref">Yotov 2022</a>)</span>. But the even most important is that UI students love them. If you’re doing trade for your thesis, then you probably going to use the gravity model as your backbone.</p>
+<p>This guide is my attempt to help you learn gravity model much easier. The most important part is probably the data and the model itself. What is the minimum things you need in the gravity model, how to arrange the database, run them, and interpret them. You must familiarize yourself with the data and its wrangling (80% of your coding) as well as the main gravity specification to date. I encourage students to pay careful attention to <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span> as it hosts the recent development in the gravity model, a must read if you’re planning to utilize gravity model.</p>
+<p>I use R here because I use R much more than Stata these days. However, the two language aren’t very different. You can do the same thing on both, but you may need to google a bit. It’s okay to use google a lot. I did as well even right now. Oh yeah I also informed you guys know R already so I won’t go into too much basic stuff.</p>
+<p>Next is the preparation you’ll need. Make sure you read it carefully and install &amp; download everything in advance!</p>
+</section>
+<section id="req" class="level2">
+<h2 class="anchored" data-anchor-id="req">Preparation</h2>
+<p>This workshop is conducted with the R statistical software, RStudio IDE, and gravity <span class="citation" data-cites="grav">(<a href="#ref-grav" role="doc-biblioref">Woelwer et al. 2023</a>)</span> package. Of course you’re going to need tidyverse as well, or specifically dplyr package. You want to procure data beforehand too, and I will use CEPII data. let’s discuss one by one.</p>
+<section id="software" class="level3">
+<h3 class="anchored" data-anchor-id="software">Software</h3>
+<p>You’d want to use R and RStudio for this. The main reason I use R is because it’s free. Stata is not. I think Stata is faster and a bit easier (R people will kill me if they see this) but not cheap. If you have Stata it’s fine too. The command you’d want in stata is <code>ppmlhdfe</code>.</p>
+<p>Now onto R. You can procure R and RStudio from Posit’s website. Get it <a href="https://posit.co/download/rstudio-desktop/">here</a>. I wrote the guide to install R and RStudio <a href="https://www.krisna.or.id/courses/metopel/installr/">here</a>, so you better check it out. It’s written in Indonesian.</p>
+<p>After that, you are going to need to install some packages. Follow my step until I told you to do type this on the console <code>install.packages(c("tidyverse","WDI","readxl","kableExtra"))</code>. You are going to do the same but you’re going to few different stuff. Specifically, you need to add “gravity” and “writexl” on the list. That is, you need to type</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>,<span class="st">"WDI"</span>,<span class="st">"readxl"</span>,<span class="st">"writexl"</span>,<span class="st">"gravity"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This step requires internet connection, but you’ll need to do this only once.</p>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>I procure data for this workshop from [CEPII]. From their website, CEPII is:</p>
+<blockquote class="blockquote">
+<p>he CEPII is the leading French center for research and expertise on the world economy. It contributes to the policy making process trough its independent in-depth analyses on international trade, migrations, macroeconomics and finance. The CEPII also produces databases and provides a platform for debate among academics, experts, practitioners, decision makers and other private and public stakeholders. Founded in 1978, the CEPII is part of the network coordinated by France Strategy, within the Prime Minister’s services.</p>
+</blockquote>
+<p>I use their BACI dataset <span class="citation" data-cites="baci">(<a href="#ref-baci" role="doc-biblioref">Gaulier and Zignago 2010</a>)</span> and gravity dataset <span class="citation" data-cites="gravity">(<a href="#ref-gravity" role="doc-biblioref">Conte, Cotterlaz, and Mayer 2022</a>)</span>. You can get those from this <a href="http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele.asp">link</a>. BACI is under “international trade” banner while gravity is under “Gravity” banner. Specifically, I downloaded the 2017-2022 version of BACI and for the gravity dataset I downloaded the R version. You can of course download whichever version you like but for the purpose of this workshop maybe its best to stick with the same dataset as I.</p>
+<p>You can also download from <a href="https://1drv.ms/f/s!AjelszXKKcmskMsKLZRRwRJq1a2MnA?e=xsdpxL">my drive</a>.</p>
+<p>Note that the data here is <strong>extremely large</strong> in size so be mindful. You need hefty internet quota and reasonable speed. Also, you can try opening it with spreadsheet software but unless you have a strong computer, i’d advice against it. Use R instead.</p>
+<p>In the CEPII website you can use various other dataset that may be useful for you. At the same time, there are various other source you can utilise for your actual project that’s not necessarily from CEPII.</p>
+</section>
+<section id="working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="working-directory">working directory</h3>
+<p>If you finished downloading data and installing softwares, you then need to set up a working directory. A working directory is basically a folder where you have all the data and your R script (R version of do file). For now what you want is to have a <strong>folder filled with your downloaded data</strong>. Make sure you know the path to this folder. I tend to use easy path for my projects and move it somewhere else when i finished. If you use github or the likes, it’ll be even nicer because you can actually wipe out your local repo if you finish.</p>
+<p>All in all, you should have a folder with these stuff in it:</p>
+<p><img src="pic1.png" class="img-fluid"></p>
+<p>Notes about the data country_codes, product_codes and Readme are all for reading BACI.</p>
+</section>
+<section id="packages" class="level3">
+<h3 class="anchored" data-anchor-id="packages">Packages</h3>
+<p>for this page I use these packages but you may not need all of them</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(penppml) <span class="do">## no need</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">library</span>(modelsummary) <span class="do">## no need</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">library</span>(gravity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="simple-gravity-specification" class="level2">
+<h2 class="anchored" data-anchor-id="simple-gravity-specification">Simple gravity specification</h2>
+<section id="theory" class="level3">
+<h3 class="anchored" data-anchor-id="theory">Theory</h3>
+<p>The earliest (e.g., naive) gravity model taking directly from Newtonian gravity theory looks something like this:</p>
+<p><span id="eq-1"><span class="math display">\[
+X_{ij}=\tilde{G}\frac{Y_iE_j}{T_{ij}^\theta}
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(X_{it}\)</span> is the value of trade flow from country <span class="math inline">\(i\)</span> to country <span class="math inline">\(j\)</span>, <span class="math inline">\(\tilde{G}\)</span> is the gravitational constant (aka our usual constant), <span class="math inline">\(Y_i\)</span> is the output in country <span class="math inline">\(i\)</span> <span class="math inline">\(E_j\)</span> is the value of expenditure in country <span class="math inline">\(j\)</span> and <span class="math inline">\(T_{ij}\)</span> is the total bilateral trade frictions / trade cost between country <span class="math inline">\(i\)</span> and country <span class="math inline">\(j\)</span>.</p>
+<p>There are various other types of gravity equations, but let’s start with a relatively simple one. One of my favorite simple gravity specification is a budget version of <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span> which is taken from <span class="citation" data-cites="avw">Anderson and Wincoop (<a href="#ref-avw" role="doc-biblioref">2003</a>)</span> which looks like this:</p>
+<p><span id="eq-2"><span class="math display">\[
+X_{ij}=\alpha_0 Y_i^{\alpha_1}Y_j^{\alpha_2}D_{ij}^{\alpha_3}e^{\theta_id_i+\theta_jd_j}
+\tag{2}\]</span></span></p>
+<p>where <span class="math inline">\(\alpha_0\)</span> is your <span class="math inline">\(\tilde{G}\)</span>, while <span class="math inline">\(Y\)</span> is the output and expenditure which is proxied with GDP. <span class="math inline">\(D_{ij}\)</span> is the distance between the two countries, which can be generalized as a vector of trade cost measures. Typically we use physical distance but also other types of bilateral trade cost. Lastly, the <span class="math inline">\(d_i\)</span> and <span class="math inline">\(d_j\)</span> is country-specific characteristics.</p>
+<p>There are various variables used in <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span>. log of exporter’s and importer’s GDP and GDP per capita. Various “distance” variables is used as well e.g., physical distance and variables like contiguity, common-language dummy, colonial-tie dummy and free trade agreement dummy.</p>
+<p>Note that our regression consists only of two indices: exporter <span class="math inline">\(i\)</span> and importer <span class="math inline">\(j\)</span>. We are going to use the gravity data I mentioned earlier, slice the dataset to cover only one year chosen arbitrarily (which is 2019), and run <a href="#eq-2" class="quarto-xref">Equation&nbsp;2</a>.</p>
+</section>
+<section id="setting-data" class="level3">
+<h3 class="anchored" data-anchor-id="setting-data">Setting data</h3>
+<p>first we load all the necessary data:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="do">## Readubg data</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>gravity <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Gravity_V202211.rds"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>key<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"country_codes_V202401b.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The gravity is the data from CEPII while key is storing some country codes. You can see the first 10 rows of the data and its variable names you call their name. Just type <code>gravity</code> or <code>key</code> in the console then hit enter. However, if you just want to look at the variable names, you can use <code>colnames()</code></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(gravity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "year"                   "country_id_o"           "country_id_d"          
+ [4] "iso3_o"                 "iso3_d"                 "iso3num_o"             
+ [7] "iso3num_d"              "country_exists_o"       "country_exists_d"      
+[10] "gmt_offset_2020_o"      "gmt_offset_2020_d"      "distw_harmonic"        
+[13] "distw_arithmetic"       "distw_harmonic_jh"      "distw_arithmetic_jh"   
+[16] "dist"                   "main_city_source_o"     "main_city_source_d"    
+[19] "distcap"                "contig"                 "diplo_disagreement"    
+[22] "scaled_sci_2021"        "comlang_off"            "comlang_ethno"         
+[25] "comcol"                 "col45"                  "legal_old_o"           
+[28] "legal_old_d"            "legal_new_o"            "legal_new_d"           
+[31] "comleg_pretrans"        "comleg_posttrans"       "transition_legalchange"
+[34] "comrelig"               "heg_o"                  "heg_d"                 
+[37] "col_dep_ever"           "col_dep"                "col_dep_end_year"      
+[40] "col_dep_end_conflict"   "empire"                 "sibling_ever"          
+[43] "sibling"                "sever_year"             "sib_conflict"          
+[46] "pop_o"                  "pop_d"                  "gdp_o"                 
+[49] "gdp_d"                  "gdpcap_o"               "gdpcap_d"              
+[52] "pop_source_o"           "pop_source_d"           "gdp_source_o"          
+[55] "gdp_source_d"           "gdp_ppp_o"              "gdp_ppp_d"             
+[58] "gdpcap_ppp_o"           "gdpcap_ppp_d"           "pop_pwt_o"             
+[61] "pop_pwt_d"              "gdp_ppp_pwt_o"          "gdp_ppp_pwt_d"         
+[64] "gatt_o"                 "gatt_d"                 "wto_o"                 
+[67] "wto_d"                  "eu_o"                   "eu_d"                  
+[70] "fta_wto"                "fta_wto_raw"            "rta_coverage"          
+[73] "rta_type"               "entry_cost_o"           "entry_cost_d"          
+[76] "entry_proc_o"           "entry_proc_d"           "entry_time_o"          
+[79] "entry_time_d"           "entry_tp_o"             "entry_tp_d"            
+[82] "tradeflow_comtrade_o"   "tradeflow_comtrade_d"   "tradeflow_baci"        
+[85] "manuf_tradeflow_baci"   "tradeflow_imf_o"        "tradeflow_imf_d"       </code></pre>
+</div>
+</div>
+<p>As you can see, the column names are so plenty. Consult to the CEPII website or <span class="citation" data-cites="gravity">Conte, Cotterlaz, and Mayer (<a href="#ref-gravity" role="doc-biblioref">2022</a>)</span> to learn more. We will only use some of them, so we will filter these data to make it more concise. Specifically, we will (1) remove some countries, (2) remove non-2019, and (3) remove variables we are not using.</p>
+<p>For variables, we will keep iso3_o, iso3_d, distw_harmonic, contig, comcol, comlang_off,gdp_o,gdp_d, gdpcap_o, gdpcap_d,fta_wto. Note that o means origin / exporter and d means destination / importer.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="do">## create a country list</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>ctr<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"Albania"</span>, <span class="st">"Denmark"</span>, <span class="st">"Kenya"</span>, <span class="st">"Romania"</span>, <span class="st">"Algeria"</span>, <span class="st">"Djibouti"</span>, <span class="st">"Kiribati"</span>, <span class="st">"Russian Federation"</span>, <span class="st">"Angola"</span>, <span class="st">"Dominican Rep."</span>, <span class="st">"Korea, Rep."</span>, <span class="st">"Rwanda"</span>, <span class="st">"Argentina"</span>, <span class="st">"Ecuador"</span>, <span class="st">"Laos"</span>, <span class="st">"P. Dem. Rep."</span>, <span class="st">"Saudi Arabia"</span>, <span class="st">"Australia"</span>, <span class="st">"Egypt"</span>, <span class="st">"Lebanon"</span>, <span class="st">"Senegal"</span>, <span class="st">"Austria"</span>, <span class="st">"El Salvador"</span>, <span class="st">"Madagascar"</span>, <span class="st">"Seychelles"</span>, <span class="st">"Bahamas"</span>, <span class="st">"Eq. Guinea"</span>, <span class="st">"Malawi"</span>, <span class="st">"Sierra Leone"</span>, <span class="st">"Bahrain"</span>, <span class="st">"Ethiopia"</span>, <span class="st">"Malaysia"</span>, <span class="st">"Singapore"</span>, <span class="st">"Bangladesh"</span>, <span class="st">"Fiji"</span>, <span class="st">"Maldives"</span>, <span class="st">"Solomon Islands"</span>, <span class="st">"Barbados"</span>, <span class="st">"Finland"</span>, <span class="st">"Mali"</span>, <span class="st">"South Africa"</span>, <span class="st">"Belgium-Lux."</span>, <span class="st">"France"</span>, <span class="st">"Malta"</span>, <span class="st">"Spain"</span>, <span class="st">"Belize"</span>, <span class="st">"Gabon"</span>, <span class="st">"Mauritania"</span>, <span class="st">"Sri Lanka"</span>, <span class="st">"Benin"</span>, <span class="st">"Gambia"</span>, <span class="st">"Mauritius"</span>, <span class="st">"St. Kitts and Nevis"</span>, <span class="st">"Bhutan"</span>, <span class="st">"Germany"</span>, <span class="st">"Mexico"</span>, <span class="st">"Sudan"</span>, <span class="st">"Bolivia"</span>, <span class="st">"Ghana"</span>, <span class="st">"Mongolia"</span>, <span class="st">"Suriname"</span>, <span class="st">"Brazil"</span>, <span class="st">"Greece"</span>, <span class="st">"Morocco"</span>, <span class="st">"Sweden"</span>, <span class="st">"Brunei"</span>, <span class="st">"Guatemala"</span>, <span class="st">"Mozambique"</span>, <span class="st">"Switzerland"</span>, <span class="st">"Bulgaria"</span>, <span class="st">"Guinea"</span>, <span class="st">"Nepal"</span>, <span class="st">"Syrian Arab Rep."</span>, <span class="st">"Burkina Faso"</span>, <span class="st">"Guinea-Bissau"</span>, <span class="st">"Netherlands"</span>, <span class="st">"Tanzania"</span>, <span class="st">"Burundi"</span>, <span class="st">"Guyana"</span>, <span class="st">"New Caledonia"</span>, <span class="st">"Thailand"</span>, <span class="st">"Cambodia"</span>, <span class="st">"Haiti"</span>, <span class="st">"New Zealand"</span>, <span class="st">"Togo"</span>, <span class="st">"Cameroon"</span>, <span class="st">"Honduras"</span>, <span class="st">"Nicaragua"</span>, <span class="st">"Trinidad and Tobago"</span>, <span class="st">"Canada"</span>, <span class="st">"Hong Kong"</span>, <span class="st">"Niger"</span>, <span class="st">"Tunisia"</span>, <span class="st">"Central African Rep."</span>, <span class="st">"Hungary"</span>, <span class="st">"Nigeria"</span>, <span class="st">"Turkey"</span>, <span class="st">"Chad"</span>, <span class="st">"Iceland"</span>, <span class="st">"Norway"</span>, <span class="st">"Uganda"</span>, <span class="st">"Chile"</span>, <span class="st">"India"</span>, <span class="st">"Oman"</span>, <span class="st">"United Arab Em."</span>, <span class="st">"China"</span>, <span class="st">"Indonesia"</span>, <span class="st">"Pakistan"</span>, <span class="st">"United Kingdom"</span>, <span class="st">"Colombia"</span>, <span class="st">"Iran"</span>, <span class="st">"Panama"</span>, <span class="st">"United States"</span>, <span class="st">"Comoros"</span>, <span class="st">"Ireland"</span>, <span class="st">"Papua New Guinea"</span>, <span class="st">"Uruguay"</span>, <span class="st">"Congo Dem. Rep."</span>, <span class="st">"Israel"</span>, <span class="st">"Paraguay"</span>, <span class="st">"Venezuela"</span>, <span class="st">"Congo Rep."</span>, <span class="st">"Italy"</span>, <span class="st">"Peru"</span>, <span class="st">"Vietnam"</span>, <span class="st">"Costa Rica"</span>, <span class="st">"Jamaica"</span>, <span class="st">"Philippines"</span>, <span class="st">"Yemen"</span>, <span class="st">"Cote D’lvoire"</span>, <span class="st">"Japan"</span>, <span class="st">"Poland"</span>, <span class="st">"Zambia"</span>, <span class="st">"Cyprus"</span>, <span class="st">"Jordan"</span>, <span class="st">"Portugal"</span>, <span class="st">"Zimbabwe"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>vrb<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"iso3num_o"</span>,<span class="st">"iso3num_d"</span>,<span class="st">"year"</span>,<span class="st">"iso3_o"</span>, <span class="st">"iso3_d"</span>, <span class="st">"distw_harmonic"</span>, <span class="st">"contig"</span>, <span class="st">"comcol"</span>, <span class="st">"comlang_off"</span>,<span class="st">"gdp_o"</span>,<span class="st">"gdp_d"</span>, <span class="st">"gdpcap_o"</span>, <span class="st">"gdpcap_d"</span>,<span class="st">"fta_wto"</span>,<span class="st">"tradeflow_baci"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="do">## keep 2019</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>gravity2<span class="ot">&lt;-</span>gravity<span class="sc">|&gt;</span><span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2019</span>)</span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="do">## Keep countries in the list</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>key2<span class="ot">&lt;-</span>key <span class="sc">|&gt;</span> <span class="fu">filter</span>(country_name<span class="sc">%in%</span>ctr)</span>
+<span id="cb6-11"><a href="#cb6-11"></a>gravity2<span class="ot">&lt;-</span>gravity2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(country_id_o <span class="sc">%in%</span> key2<span class="sc">$</span>country_iso3 <span class="sc">&amp;</span> country_id_d <span class="sc">%in%</span> key2<span class="sc">$</span>country_iso3)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>gravity2<span class="ot">&lt;-</span>gravity2 <span class="sc">|&gt;</span> <span class="fu">select</span>(vrb)</span>
+<span id="cb6-13"><a href="#cb6-13"></a></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="do">## Make a log versin</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>gravity2<span class="ot">&lt;-</span>gravity2 <span class="sc">|&gt;</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">mutate</span>(<span class="at">ldist=</span><span class="fu">log</span>(distw_harmonic),</span>
+<span id="cb6-17"><a href="#cb6-17"></a>         <span class="at">lgdpo=</span><span class="fu">log</span>(gdp_o),</span>
+<span id="cb6-18"><a href="#cb6-18"></a>         <span class="at">lgdpd=</span><span class="fu">log</span>(gdp_d),</span>
+<span id="cb6-19"><a href="#cb6-19"></a>         <span class="at">lgdpco=</span><span class="fu">log</span>(gdpcap_o),</span>
+<span id="cb6-20"><a href="#cb6-20"></a>         <span class="at">lgdpcd=</span><span class="fu">log</span>(gdpcap_d),</span>
+<span id="cb6-21"><a href="#cb6-21"></a>         <span class="at">logtrade=</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>tradeflow_baci))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>You can see in your environment tab the difference between gravity and gravity2 as well as between key and key2 on the number of observations and variables. Note that we also log non-dummy variables for gravity2 to redo <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span>.</p>
+<p>We will focus on the gravity2 as it will be the dataset we will run. You can quickly show summary statistics by typing <code>summary(gravity2)</code> on the console tab.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gravity2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   iso3num_o       iso3num_d          year         iso3_o         
+ Min.   :  8.0   Min.   :  8.0   Min.   :2019   Length:12321      
+ 1st Qu.:204.0   1st Qu.:204.0   1st Qu.:2019   Class :character  
+ Median :400.0   Median :400.0   Median :2019   Mode  :character  
+ Mean   :415.5   Mean   :415.5   Mean   :2019                     
+ 3rd Qu.:616.0   3rd Qu.:616.0   3rd Qu.:2019                     
+ Max.   :894.0   Max.   :894.0   Max.   :2019                     
+                                                                  
+    iso3_d          distw_harmonic      contig            comcol       
+ Length:12321       Min.   :    4   Min.   :0.00000   Min.   :0.00000  
+ Class :character   1st Qu.: 4459   1st Qu.:0.00000   1st Qu.:0.00000  
+ Mode  :character   Median : 7587   Median :0.00000   Median :0.00000  
+                    Mean   : 7932   Mean   :0.01753   Mean   :0.09739  
+                    3rd Qu.:11024   3rd Qu.:0.00000   3rd Qu.:0.00000  
+                    Max.   :19676   Max.   :1.00000   Max.   :1.00000  
+                                                                       
+  comlang_off         gdp_o               gdp_d              gdpcap_o     
+ Min.   :0.0000   Min.   :1.779e+05   Min.   :1.779e+05   Min.   : 0.224  
+ 1st Qu.:0.0000   1st Qu.:1.419e+07   1st Qu.:1.419e+07   1st Qu.: 1.909  
+ Median :0.0000   Median :4.805e+07   Median :4.805e+07   Median : 6.321  
+ Mean   :0.1789   Mean   :4.785e+08   Mean   :4.785e+08   Mean   :15.262  
+ 3rd Qu.:0.0000   3rd Qu.:3.512e+08   3rd Qu.:3.512e+08   3rd Qu.:18.480  
+ Max.   :1.0000   Max.   :1.428e+10   Max.   :1.428e+10   Max.   :85.335  
+                  NA's   :111         NA's   :111         NA's   :111     
+    gdpcap_d         fta_wto       tradeflow_baci          ldist      
+ Min.   : 0.224   Min.   :0.0000   Min.   :        0   Min.   :1.386  
+ 1st Qu.: 1.909   1st Qu.:0.0000   1st Qu.:      273   1st Qu.:8.403  
+ Median : 6.321   Median :0.0000   Median :     6343   Median :8.934  
+ Mean   :15.262   Mean   :0.2023   Mean   :   611172   Mean   :8.721  
+ 3rd Qu.:18.480   3rd Qu.:0.0000   3rd Qu.:    87003   3rd Qu.:9.308  
+ Max.   :85.335   Max.   :1.0000   Max.   :149568313   Max.   :9.887  
+ NA's   :111                       NA's   :2185                       
+     lgdpo           lgdpd           lgdpco            lgdpcd       
+ Min.   :12.09   Min.   :12.09   Min.   :-1.4961   Min.   :-1.4961  
+ 1st Qu.:16.47   1st Qu.:16.47   1st Qu.: 0.6466   1st Qu.: 0.6466  
+ Median :17.69   Median :17.69   Median : 1.8438   Median : 1.8438  
+ Mean   :17.93   Mean   :17.93   Mean   : 1.8087   Mean   : 1.8087  
+ 3rd Qu.:19.68   3rd Qu.:19.68   3rd Qu.: 2.9167   3rd Qu.: 2.9167  
+ Max.   :23.38   Max.   :23.38   Max.   : 4.4466   Max.   : 4.4466  
+ NA's   :111     NA's   :111     NA's   :111       NA's   :111      
+    logtrade     
+ Min.   : 0.001  
+ 1st Qu.: 5.613  
+ Median : 8.755  
+ Mean   : 8.438  
+ 3rd Qu.:11.374  
+ Max.   :18.823  
+ NA's   :2185    </code></pre>
+</div>
+</div>
+</section>
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<p>Let’s do 2 types of regression. First we do a regression using a normal ols, and secondly we do ppml.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>reg1<span class="ot">&lt;-</span><span class="fu">lm</span>(logtrade<span class="sc">~</span>lgdpo<span class="sc">+</span>lgdpd<span class="sc">+</span>lgdpco<span class="sc">+</span>lgdpcd<span class="sc">+</span>ldist<span class="sc">+</span>contig<span class="sc">+</span>comcol<span class="sc">+</span>comlang_off<span class="sc">+</span>fta_wto)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>reg2<span class="ot">&lt;-</span><span class="fu">lm</span>(logtrade<span class="sc">~</span>lgdpo<span class="sc">+</span>lgdpd<span class="sc">+</span>lgdpco<span class="sc">+</span>lgdpcd<span class="sc">+</span>ldist<span class="sc">+</span>contig<span class="sc">+</span>comcol<span class="sc">+</span>comlang_off<span class="sc">+</span>fta_wto<span class="sc">+</span>iso3_o<span class="sc">+</span>iso3_d)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>reg3<span class="ot">&lt;-</span><span class="fu">ppml</span>(<span class="at">data=</span>gravity2,<span class="at">dependent_variable=</span><span class="st">"tradeflow_baci"</span>,<span class="at">distance=</span><span class="st">"distw_harmonic"</span>,<span class="at">additional_regressors=</span><span class="fu">c</span>(<span class="st">"lgdpo"</span>,<span class="st">"lgdpd"</span>,<span class="st">"lgdpco"</span>,<span class="st">"lgdpcd"</span>,<span class="st">"contig"</span>,<span class="st">"comcol"</span>,<span class="st">"comlang_off"</span>,<span class="st">"fta_wto"</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>reg4<span class="ot">&lt;-</span><span class="fu">ppml</span>(<span class="at">data=</span>gravity2,<span class="at">dependent_variable=</span><span class="st">"tradeflow_baci"</span>,<span class="at">distance=</span><span class="st">"distw_harmonic"</span>,<span class="at">additional_regressors=</span><span class="fu">c</span>(<span class="st">"lgdpo"</span>,<span class="st">"lgdpd"</span>,<span class="st">"lgdpco"</span>,<span class="st">"lgdpcd"</span>,<span class="st">"contig"</span>,<span class="st">"comcol"</span>,<span class="st">"comlang_off"</span>,<span class="st">"fta_wto"</span>,<span class="st">"iso3_o"</span>,<span class="st">"iso3_d"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can call each reg’s table with <code>summary(reg1)</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+ 
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinytable_fsrlzu3hnhzh4v14do58</title>
+    <style>
+.table td.tinytable_css_o20v0xoj2rmef7wqbygd, .table th.tinytable_css_o20v0xoj2rmef7wqbygd {    border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_ykskncdz9iihh3unwcwi, .table th.tinytable_css_ykskncdz9iihh3unwcwi {    text-align: left; }
+.table td.tinytable_css_v8xy7yonzlqvq1dxht5i, .table th.tinytable_css_v8xy7yonzlqvq1dxht5i {    text-align: center; }
+.table td.tinytable_css_msznwuwlzq3q2fc7bg28, .table th.tinytable_css_msznwuwlzq3q2fc7bg28 {    text-align: center; }
+.table td.tinytable_css_i52jftc121l70e0sjp72, .table th.tinytable_css_i52jftc121l70e0sjp72 {    text-align: center; }
+.table td.tinytable_css_j0hn5f4v5v41x4nmrns8, .table th.tinytable_css_j0hn5f4v5v41x4nmrns8 {    text-align: center; }
+.table td.tinytable_css_lim4g04p3rzfqc0qgh73, .table th.tinytable_css_lim4g04p3rzfqc0qgh73 {    border-bottom: solid 0.05em black; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+  
+
+  
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_fsrlzu3hnhzh4v14do58" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true"><caption><p>Simple regression results</p></caption>
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">OLS no ctr</th>
+                <th scope="col">OLS with ctr</th>
+                <th scope="col">PPML no ctr</th>
+                <th scope="col">PPML with ctr</th>
+              </tr>
+        </thead>
+        <tfoot><tr><td colspan="5">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>-21.866***</td>
+                  <td>-81.921** </td>
+                  <td>-15.380***</td>
+                  <td>-118.218* </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.414)   </td>
+                  <td>(30.733)  </td>
+                  <td>(0.255)   </td>
+                  <td>(49.820)  </td>
+                </tr>
+                <tr>
+                  <td>lgdpo      </td>
+                  <td>1.239***  </td>
+                  <td>1.739     </td>
+                  <td>0.895***  </td>
+                  <td>6.704**   </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.013)   </td>
+                  <td>(1.367)   </td>
+                  <td>(0.008)   </td>
+                  <td>(2.374)   </td>
+                </tr>
+                <tr>
+                  <td>lgdpd      </td>
+                  <td>0.947***  </td>
+                  <td>4.220**   </td>
+                  <td>0.814***  </td>
+                  <td>1.349     </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.013)   </td>
+                  <td>(1.285)   </td>
+                  <td>(0.008)   </td>
+                  <td>(1.884)   </td>
+                </tr>
+                <tr>
+                  <td>lgdpco     </td>
+                  <td>0.251***  </td>
+                  <td>-2.090    </td>
+                  <td>-0.041*** </td>
+                  <td>-10.947*  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.018)   </td>
+                  <td>(3.196)   </td>
+                  <td>(0.012)   </td>
+                  <td>(5.283)   </td>
+                </tr>
+                <tr>
+                  <td>lgdpcd     </td>
+                  <td>0.066***  </td>
+                  <td>-6.527*   </td>
+                  <td>-0.037**  </td>
+                  <td>-1.280    </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.018)   </td>
+                  <td>(2.996)   </td>
+                  <td>(0.011)   </td>
+                  <td>(4.393)   </td>
+                </tr>
+                <tr>
+                  <td>contig     </td>
+                  <td>0.899***  </td>
+                  <td>0.594***  </td>
+                  <td>0.185***  </td>
+                  <td>0.334***  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.165)   </td>
+                  <td>(0.147)   </td>
+                  <td>(0.037)   </td>
+                  <td>(0.031)   </td>
+                </tr>
+                <tr>
+                  <td>comcol     </td>
+                  <td>0.489***  </td>
+                  <td>0.317***  </td>
+                  <td>0.110     </td>
+                  <td>0.519***  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.082)   </td>
+                  <td>(0.082)   </td>
+                  <td>(0.090)   </td>
+                  <td>(0.074)   </td>
+                </tr>
+                <tr>
+                  <td>comlang_off</td>
+                  <td>0.781***  </td>
+                  <td>0.778***  </td>
+                  <td>0.238***  </td>
+                  <td>0.162***  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.061)   </td>
+                  <td>(0.061)   </td>
+                  <td>(0.035)   </td>
+                  <td>(0.031)   </td>
+                </tr>
+                <tr>
+                  <td>fta_wto    </td>
+                  <td>0.702***  </td>
+                  <td>0.559***  </td>
+                  <td>0.383***  </td>
+                  <td>0.380***  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.057)   </td>
+                  <td>(0.057)   </td>
+                  <td>(0.028)   </td>
+                  <td>(0.025)   </td>
+                </tr>
+                <tr>
+                  <td>ldist      </td>
+                  <td>-1.215*** </td>
+                  <td>-1.466*** </td>
+                  <td>          </td>
+                  <td>          </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.032)   </td>
+                  <td>(0.032)   </td>
+                  <td>          </td>
+                  <td>          </td>
+                </tr>
+                <tr>
+                  <td>dist_log   </td>
+                  <td>          </td>
+                  <td>          </td>
+                  <td>-0.606*** </td>
+                  <td>-0.711*** </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>          </td>
+                  <td>          </td>
+                  <td>(0.013)   </td>
+                  <td>(0.012)   </td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.   </td>
+                  <td>9990      </td>
+                  <td>9990      </td>
+                  <td>9990      </td>
+                  <td>9990      </td>
+                </tr>
+                <tr>
+                  <td>R2         </td>
+                  <td>0.720     </td>
+                  <td>0.798     </td>
+                  <td>          </td>
+                  <td>          </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.    </td>
+                  <td>0.720     </td>
+                  <td>0.793     </td>
+                  <td>          </td>
+                  <td>          </td>
+                </tr>
+                <tr>
+                  <td>AIC        </td>
+                  <td>43230.2   </td>
+                  <td>40397.2   </td>
+                  <td>          </td>
+                  <td>          </td>
+                </tr>
+                <tr>
+                  <td>BIC        </td>
+                  <td>43309.5   </td>
+                  <td>42019.3   </td>
+                  <td>          </td>
+                  <td>          </td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.   </td>
+                  <td>-21604.098</td>
+                  <td>-19973.582</td>
+                  <td>          </td>
+                  <td>          </td>
+                </tr>
+                <tr>
+                  <td>RMSE       </td>
+                  <td>2.10      </td>
+                  <td>1.79      </td>
+                  <td>2097486.21</td>
+                  <td>1585545.74</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function styleCell_tinytable_2l47o2tsky9hn3dce3mo(i, j, css_id) {
+        var table = document.getElementById("tinytable_fsrlzu3hnhzh4v14do58");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_fsrlzu3hnhzh4v14do58');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_tinytable_2l47o2tsky9hn3dce3mo(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_fsrlzu3hnhzh4v14do58");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 0, 'tinytable_css_o20v0xoj2rmef7wqbygd') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 1, 'tinytable_css_o20v0xoj2rmef7wqbygd') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 2, 'tinytable_css_o20v0xoj2rmef7wqbygd') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 3, 'tinytable_css_o20v0xoj2rmef7wqbygd') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 4, 'tinytable_css_o20v0xoj2rmef7wqbygd') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(1, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(2, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(3, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(4, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(5, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(6, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(7, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(8, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(9, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(10, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(11, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(12, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(13, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(14, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(15, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(16, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(17, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(18, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(19, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(20, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(21, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(23, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(24, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(25, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(26, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(27, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(28, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(29, 0, 'tinytable_css_ykskncdz9iihh3unwcwi') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(1, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(2, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(3, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(4, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(5, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(6, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(7, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(8, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(9, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(10, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(11, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(12, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(13, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(14, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(15, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(16, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(17, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(18, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(19, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(20, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(21, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(23, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(24, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(25, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(26, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(27, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(28, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(29, 1, 'tinytable_css_v8xy7yonzlqvq1dxht5i') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(1, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(2, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(3, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(4, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(5, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(6, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(7, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(8, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(9, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(10, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(11, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(12, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(13, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(14, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(15, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(16, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(17, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(18, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(19, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(20, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(21, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(23, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(24, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(25, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(26, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(27, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(28, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(29, 2, 'tinytable_css_msznwuwlzq3q2fc7bg28') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(1, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(2, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(3, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(4, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(5, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(6, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(7, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(8, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(9, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(10, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(11, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(12, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(13, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(14, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(15, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(16, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(17, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(18, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(19, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(20, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(21, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(23, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(24, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(25, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(26, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(27, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(28, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(29, 3, 'tinytable_css_i52jftc121l70e0sjp72') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(0, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(1, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(2, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(3, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(4, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(5, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(6, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(7, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(8, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(9, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(10, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(11, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(12, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(13, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(14, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(15, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(16, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(17, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(18, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(19, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(20, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(21, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(23, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(24, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(25, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(26, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(27, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(28, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(29, 4, 'tinytable_css_j0hn5f4v5v41x4nmrns8') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 0, 'tinytable_css_lim4g04p3rzfqc0qgh73') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 1, 'tinytable_css_lim4g04p3rzfqc0qgh73') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 2, 'tinytable_css_lim4g04p3rzfqc0qgh73') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 3, 'tinytable_css_lim4g04p3rzfqc0qgh73') })
+window.addEventListener('load', function () { styleCell_tinytable_2l47o2tsky9hn3dce3mo(22, 4, 'tinytable_css_lim4g04p3rzfqc0qgh73') })
+    </script>
+
+  
+
+
+</div>
+</div>
+<p>You can compare results with <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span>. Note that they don’t use fixed effects.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic2.png" class="img-fluid figure-img"></p>
+<figcaption>source: <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span></figcaption>
+</figure>
+</div>
+<p>By the way, you can save the regression table using <code>modelsummary()</code>. don’t forget to run <code>library(modelsummary)</code> first. You can use xls extension, but also doc. I personally like .html more.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>regtab<span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OLS no ctr"</span> <span class="ot">=</span> reg1,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OLS with ctr"</span>  <span class="ot">=</span> reg2,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PPML no ctr"</span><span class="ot">=</span>reg3,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PPML with ctr"</span><span class="ot">=</span>reg4</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(regtab,<span class="at">output=</span><span class="st">"regtab.xls"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="product-level-gravity" class="level2">
+<h2 class="anchored" data-anchor-id="product-level-gravity">Product level gravity</h2>
+<section id="theory-1" class="level3">
+<h3 class="anchored" data-anchor-id="theory-1">Theory</h3>
+<p>We then proceed to a higher-dimension trade data which you may be interested in. In the field, UI students often interested largely in Indonesian affairs. That is, we are not interested so much in the bilateral flow of all countries, but only on Indonesia. However, we often use more granular dimension than just exporter/importer. Often times we use indices like time, commodities or industries, or even firms (shamelessly inserting my paper here <span class="citation" data-cites="gupta">Gupta (<a href="#ref-gupta" role="doc-biblioref">2023</a>)</span>).</p>
+<p>Now, if you are planning to do these kinds of studies, then you are going to need to tackle higher degree dataset and merging the gravity variables. Most often you can get these variables from <a href="https://databank.worldbank.org/source/world-development-indicators">World Development Indicators</a> but CEPII is ok for now (note the main problem of CEPII is its timeliness).</p>
+<p>The theory isn’t so different compared to our previous gravity model. What we want is an additional indices. We are going to estimate something similar as <a href="#eq-2" class="quarto-xref">Equation&nbsp;2</a> but with more indices. We need to care about multilateral resistance (MR) and we can use dummies since we now have more variations from indices like time and HS code.</p>
+<p>According to <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>, we need at least 3 dummies to run a multi-country, multi-time and multi-goods/sectors<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We need to have exporter-time dummy, importer-time dummy and country-pair dummy. We need to construct this first. Note that these dummies will likely absorb some of your variables like distance (consistant between pair across time, typically).</p>
+<p>So we will do the HS,time varying version of <a href="#eq-2" class="quarto-xref">Equation&nbsp;2</a>:</p>
+<p><span id="eq-3"><span class="math display">\[
+X_{ijpt}=\alpha_0 Y_{it}^{\alpha_1}Y_{jt}^{\alpha_2}D_{ijpt}^{\alpha_3}e^{\theta_1o_{it}+\theta_2d_{jt}+\theta_3p_{ij}}
+\tag{3}\]</span></span></p>
+</section>
+<section id="setting-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="setting-data-1">Setting data</h3>
+<p>This time we need BACI data. Brace yourself because this dataset is HUGE. We read 5 different years.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>t2017<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"BACI_HS17_Y2017_V202401b.csv"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>t2018<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"BACI_HS17_Y2018_V202401b.csv"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>t2019<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"BACI_HS17_Y2019_V202401b.csv"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>t2020<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"BACI_HS17_Y2020_V202401b.csv"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>t2021<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="st">"BACI_HS17_Y2021_V202401b.csv"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="do">## Combining all </span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>trade<span class="ot">&lt;-</span><span class="fu">rbind</span>(t2017,t2018,t2019,t2020,t2021)</span>
+<span id="cb11-10"><a href="#cb11-10"></a></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="fu">remove</span>(t2017,t2018,t2019,t2020,t2021)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>I used <code>read_csv</code> from the tydiverse package for reading .csv. rbind is to stack all BACI data (it was separated per year), then I remove the individual BACI to save environment space.</p>
+<p>At this point, you can try checking out the two datasets. You can try looking at both data by calling their names. Alternatively, just look at the column names with <code>colnames()</code>. Let’s try the BACI frist.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(trade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "t" "i" "j" "k" "v" "q"</code></pre>
+</div>
+</div>
+<p>There are only 6 columns / variables. Here’s some information on what thos means</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>var</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>t</td>
+<td>year</td>
+</tr>
+<tr class="even">
+<td>i</td>
+<td>exporter</td>
+</tr>
+<tr class="odd">
+<td>j</td>
+<td>importer</td>
+</tr>
+<tr class="even">
+<td>k</td>
+<td>product</td>
+</tr>
+<tr class="odd">
+<td>v</td>
+<td>value</td>
+</tr>
+<tr class="even">
+<td>q</td>
+<td>quantity</td>
+</tr>
+</tbody>
+</table>
+<p>Products in Harmonized System 6-digit nomenclature. Values in thousand USD and quantities in metric tons. Exporter and importer is codified using CEPII codes. the codes and it means can be found in the “key” dataset. To have country identities into the BACI dataset, we need to join the two.</p>
+<p>To join the two datasets, we need a key variable. A key variable is the variable connecting the two variables. Both needs the same name. So first we need to assign the same name for exporter and importer codes between BACI and gravity.</p>
+<p>We know that <span class="math inline">\(i\)</span> in BACI is iso3num_o in gravity, while <span class="math inline">\(j\)</span> in BACI is iso3num_d in gravity. So we rename the one in BACI so both have the same name:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="do">## Rename variable</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>trade2<span class="ot">&lt;-</span>trade<span class="sc">|&gt;</span><span class="fu">rename</span>(<span class="at">iso3num_o=</span>i,<span class="at">iso3num_d=</span>j,<span class="at">year=</span>t)</span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="do">## Change ctr to reduce computation problem</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>ctr<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"IDN"</span>,<span class="st">"SGP"</span>,<span class="st">"VNM"</span>,<span class="st">"MYS"</span>,<span class="st">"THA"</span>,<span class="st">"PHL"</span>,<span class="st">"USA"</span>,<span class="st">"CHN"</span>,<span class="st">"JPN"</span>,<span class="st">"KOR"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="do">## Kita ulangi gravity2 karena sekarang perlu tahun 2017-2021</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>gravity2<span class="ot">&lt;-</span>gravity<span class="sc">|&gt;</span><span class="fu">filter</span>(year<span class="sc">&gt;</span><span class="dv">2016</span> <span class="sc">&amp;</span> year<span class="sc">&lt;</span><span class="dv">2022</span>)</span>
+<span id="cb14-9"><a href="#cb14-9"></a>gravity2<span class="ot">&lt;-</span>gravity2 <span class="sc">|&gt;</span> <span class="fu">filter</span>(iso3_o <span class="sc">%in%</span>ctr <span class="sc">&amp;</span> iso3_d <span class="sc">%in%</span> ctr) <span class="do">## notice the change</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>gravity2<span class="ot">&lt;-</span>gravity2 <span class="sc">|&gt;</span> <span class="fu">select</span>(vrb)</span>
+<span id="cb14-11"><a href="#cb14-11"></a></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="do">## gabung dengan trade2</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a></span>
+<span id="cb14-14"><a href="#cb14-14"></a>gabung<span class="ot">&lt;-</span><span class="fu">left_join</span>(gravity2,trade2,<span class="at">by=</span><span class="fu">c</span>(<span class="st">"year"</span>,<span class="st">"iso3num_o"</span>,<span class="st">"iso3num_d"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Check the results with gabung or <code>View(gabung)</code>. The most important thing here is that you have to make sure you understand the changes in variations! Now that we have time and HS (<span class="math inline">\(k\)</span>), a pair of countries can have multiple observations in different year and different goods. tradeflow_baci will be repeated because this is the total trade, while now we focus on <span class="math inline">\(v\)</span> and <span class="math inline">\(q\)</span> as the <span class="math inline">\(X_{ijpt}\)</span>.</p>
+<p>Before we go, however, we need to generate our dummies! Remember, we need to make three dummies, <span class="math inline">\(o_{it}\)</span>,<span class="math inline">\(d_{jt}\)</span> and <span class="math inline">\(p_{ij}\)</span> (see <a href="#eq-3" class="quarto-xref">Equation&nbsp;3</a>). To do that, we do this:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>gabung <span class="ot">&lt;-</span> gabung <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">mutate</span>(<span class="at">ooo=</span><span class="fu">interaction</span>(iso3num_o,year),</span>
+<span id="cb15-3"><a href="#cb15-3"></a>         <span class="at">ddd=</span><span class="fu">interaction</span>(iso3num_d,year),</span>
+<span id="cb15-4"><a href="#cb15-4"></a>         <span class="at">ppp=</span><span class="fu">interaction</span>(iso3num_o,iso3num_d))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>You can check again whether it’s made. if you do <code>tibble(gabung)</code> you will see that we have created our factor variables. Oh yes, do not forget to log non-factors.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>gabung<span class="ot">&lt;-</span>gabung <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">mutate</span>(<span class="at">ldist=</span><span class="fu">log</span>(distw_harmonic),</span>
+<span id="cb16-3"><a href="#cb16-3"></a>         <span class="at">lgdpo=</span><span class="fu">log</span>(gdp_o),</span>
+<span id="cb16-4"><a href="#cb16-4"></a>         <span class="at">lgdpd=</span><span class="fu">log</span>(gdp_d),</span>
+<span id="cb16-5"><a href="#cb16-5"></a>         <span class="at">lgdpco=</span><span class="fu">log</span>(gdpcap_o),</span>
+<span id="cb16-6"><a href="#cb16-6"></a>         <span class="at">lgdpcd=</span><span class="fu">log</span>(gdpcap_d),</span>
+<span id="cb16-7"><a href="#cb16-7"></a>         <span class="at">logtrade=</span><span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>v)) <span class="do">## note the difference with before</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Why don’t we show the quick summary statistics?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gabung)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   iso3num_o       iso3num_d          year         iso3_o         
+ Min.   :156.0   Min.   :156.0   Min.   :2017   Length:1882603    
+ 1st Qu.:360.0   1st Qu.:360.0   1st Qu.:2018   Class :character  
+ Median :458.0   Median :458.0   Median :2019   Mode  :character  
+ Mean   :482.5   Mean   :504.9   Mean   :2019                     
+ 3rd Qu.:702.0   3rd Qu.:702.0   3rd Qu.:2020                     
+ Max.   :840.0   Max.   :840.0   Max.   :2021                     
+                                                                  
+    iso3_d          distw_harmonic       contig           comcol      
+ Length:1882603     Min.   :   10    Min.   :0.0      Min.   :0       
+ Class :character   1st Qu.: 1193    1st Qu.:0.0      1st Qu.:0       
+ Mode  :character   Median : 2289    Median :0.0      Median :0       
+                    Mean   : 2598    Mean   :0.1      Mean   :0       
+                    3rd Qu.: 3836    3rd Qu.:0.0      3rd Qu.:0       
+                    Max.   :15486    Max.   :1.0      Max.   :1       
+                    NA's   :775034   NA's   :775034   NA's   :775034  
+  comlang_off         gdp_o               gdp_d              gdpcap_o     
+ Min.   :0.0      Min.   :2.814e+08   Min.   :2.814e+08   Min.   : 3.0    
+ 1st Qu.:0.0      1st Qu.:3.755e+08   1st Qu.:3.626e+08   1st Qu.: 7.2    
+ Median :0.0      Median :1.042e+09   Median :5.060e+08   Median :10.4    
+ Mean   :0.1      Mean   :3.605e+09   Mean   :2.766e+09   Mean   :22.5    
+ 3rd Qu.:0.0      3rd Qu.:5.038e+09   3rd Qu.:1.725e+09   3rd Qu.:38.8    
+ Max.   :1.0      Max.   :2.300e+10   Max.   :2.300e+10   Max.   :72.8    
+ NA's   :775034   NA's   :397835      NA's   :456083      NA's   :397835  
+    gdpcap_d         fta_wto       tradeflow_baci           k            
+ Min.   : 3.0     Min.   :0.0      Min.   :   592555   Length:1882603    
+ 1st Qu.: 3.9     1st Qu.:1.0      1st Qu.:  8542294   Class :character  
+ Median :10.3     Median :1.0      Median : 14608561   Mode  :character  
+ Mean   :20.6     Mean   :0.9      Mean   : 29785446                     
+ 3rd Qu.:34.8     3rd Qu.:1.0      3rd Qu.: 39777972                     
+ Max.   :72.8     Max.   :1.0      Max.   :500928196                     
+ NA's   :456083   NA's   :775034   NA's   :1003024                       
+       v                  q                  ooo                ddd         
+ Min.   :       0   Min.   :       0   458.2019:  59882   360.2020:  65802  
+ 1st Qu.:      10   1st Qu.:       1   458.2018:  59084   360.2019:  64772  
+ Median :     106   Median :      11   458.2020:  58944   360.2021:  64672  
+ Mean   :    6971   Mean   :    5709   458.2021:  58052   360.2018:  64286  
+ 3rd Qu.:    1082   3rd Qu.:     150   458.2017:  55982   458.2019:  63506  
+ Max.   :42892726   Max.   :88344459   360.2019:  55798   458.2018:  63350  
+ NA's   :225        NA's   :27377      (Other) :1534861   (Other) :1496215  
+      ppp              ldist            lgdpo            lgdpd       
+ 458.360:  69600   Min.   :2.3      Min.   :19.5     Min.   :19.5    
+ 360.458:  60084   1st Qu.:7.1      1st Qu.:19.7     1st Qu.:19.7    
+ 458.704:  51616   Median :7.7      Median :20.8     Median :20.0    
+ 704.458:  45440   Mean   :7.6      Mean   :21.0     Mean   :20.7    
+ 156.458:  45204   3rd Qu.:8.3      3rd Qu.:22.3     3rd Qu.:21.3    
+ 704.360:  44976   Max.   :9.6      Max.   :23.9     Max.   :23.9    
+ (Other):1565683   NA's   :775034   NA's   :397835   NA's   :456083  
+     lgdpco           lgdpcd          logtrade     
+ Min.   :1.1      Min.   :1.1      Min.   : 0.001  
+ 1st Qu.:2.0      1st Qu.:1.4      1st Qu.: 2.366  
+ Median :2.3      Median :2.3      Median : 4.677  
+ Mean   :2.6      Mean   :2.5      Mean   : 4.781  
+ 3rd Qu.:3.7      3rd Qu.:3.5      3rd Qu.: 6.987  
+ Max.   :4.3      Max.   :4.3      Max.   :17.574  
+ NA's   :397835   NA's   :456083   NA's   :225     </code></pre>
+</div>
+</div>
+</section>
+<section id="regression-1" class="level3">
+<h3 class="anchored" data-anchor-id="regression-1">Regression</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ger1<span class="ot">&lt;-</span><span class="fu">lm</span>(logtrade<span class="sc">~</span>lgdpo<span class="sc">+</span>lgdpd<span class="sc">+</span>lgdpco<span class="sc">+</span>lgdpcd<span class="sc">+</span>ldist<span class="sc">+</span>contig<span class="sc">+</span>comcol<span class="sc">+</span>comlang_off<span class="sc">+</span>fta_wto)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ger2<span class="ot">&lt;-</span><span class="fu">lm</span>(logtrade<span class="sc">~</span>lgdpo<span class="sc">+</span>lgdpd<span class="sc">+</span>lgdpco<span class="sc">+</span>lgdpcd<span class="sc">+</span>ldist<span class="sc">+</span>contig<span class="sc">+</span>comcol<span class="sc">+</span>comlang_off<span class="sc">+</span>fta_wto<span class="sc">+</span>iso3_o<span class="sc">+</span>iso3_d)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ger3<span class="ot">&lt;-</span><span class="fu">ppml</span>(<span class="at">data=</span>gravity2,<span class="at">dependent_variable=</span><span class="st">"tradeflow_baci"</span>,<span class="at">distance=</span><span class="st">"distw_harmonic"</span>,<span class="at">additional_regressors=</span><span class="fu">c</span>(<span class="st">"lgdpo"</span>,<span class="st">"lgdpd"</span>,<span class="st">"lgdpco"</span>,<span class="st">"lgdpcd"</span>,<span class="st">"contig"</span>,<span class="st">"comcol"</span>,<span class="st">"comlang_off"</span>,<span class="st">"fta_wto"</span>))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>ger4<span class="ot">&lt;-</span><span class="fu">ppml</span>(<span class="at">data=</span>gravity2,<span class="at">dependent_variable=</span><span class="st">"tradeflow_baci"</span>,<span class="at">distance=</span><span class="st">"distw_harmonic"</span>,<span class="at">additional_regressors=</span><span class="fu">c</span>(<span class="st">"lgdpo"</span>,<span class="st">"lgdpd"</span>,<span class="st">"lgdpco"</span>,<span class="st">"lgdpcd"</span>,<span class="st">"contig"</span>,<span class="st">"comcol"</span>,<span class="st">"comlang_off"</span>,<span class="st">"fta_wto"</span>,<span class="st">"iso3_o"</span>,<span class="st">"iso3_d"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output-display">
+ 
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinytable_xxff94igkohf5kxdyzoc</title>
+    <style>
+.table td.tinytable_css_qzisavec21c1f4dfhw7n, .table th.tinytable_css_qzisavec21c1f4dfhw7n {    border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_iqekzxtu56jxikb0x8ia, .table th.tinytable_css_iqekzxtu56jxikb0x8ia {    text-align: left; }
+.table td.tinytable_css_9hpmfixwrasobareo7pk, .table th.tinytable_css_9hpmfixwrasobareo7pk {    text-align: center; }
+.table td.tinytable_css_af9kb1xqmmdy029zhmqc, .table th.tinytable_css_af9kb1xqmmdy029zhmqc {    text-align: center; }
+.table td.tinytable_css_xpr4d3gy3qhbzrxynsp1, .table th.tinytable_css_xpr4d3gy3qhbzrxynsp1 {    text-align: center; }
+.table td.tinytable_css_eya8vzq9hra1q80cp6hh, .table th.tinytable_css_eya8vzq9hra1q80cp6hh {    text-align: center; }
+.table td.tinytable_css_0sy3tar9n1iqre1e17nq, .table th.tinytable_css_0sy3tar9n1iqre1e17nq {    border-bottom: solid 0.05em black; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+  
+
+  
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_xxff94igkohf5kxdyzoc" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true"><caption><p>Simple regression results</p></caption>
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">OLS no dum</th>
+                <th scope="col">OLS with dum</th>
+                <th scope="col">PPML no dum</th>
+                <th scope="col">PPML with dum</th>
+              </tr>
+        </thead>
+        <tfoot><tr><td colspan="5">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>-14.338***  </td>
+                  <td>-10.690***  </td>
+                  <td>-10.696***</td>
+                  <td>2.821069e+09  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.084)     </td>
+                  <td>(2.981)     </td>
+                  <td>(0.414)   </td>
+                  <td>(2.961508e+10)</td>
+                </tr>
+                <tr>
+                  <td>lgdpo      </td>
+                  <td>0.747***    </td>
+                  <td>1.853***    </td>
+                  <td>0.484***  </td>
+                  <td>1.134981e+08  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.002)     </td>
+                  <td>(0.339)     </td>
+                  <td>(0.010)   </td>
+                  <td>(8.482254e+08)</td>
+                </tr>
+                <tr>
+                  <td>lgdpd      </td>
+                  <td>0.298***    </td>
+                  <td>-0.978***   </td>
+                  <td>0.521***  </td>
+                  <td>-2.754353e+08 </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.003)     </td>
+                  <td>(0.146)     </td>
+                  <td>(0.010)   </td>
+                  <td>(2.234614e+09)</td>
+                </tr>
+                <tr>
+                  <td>lgdpco     </td>
+                  <td>-0.110***   </td>
+                  <td>-0.622***   </td>
+                  <td>0.017     </td>
+                  <td>-8.783809e+08 </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.003)     </td>
+                  <td>(0.170)     </td>
+                  <td>(0.015)   </td>
+                  <td>(3.933582e+09)</td>
+                </tr>
+                <tr>
+                  <td>lgdpcd     </td>
+                  <td>-0.116***   </td>
+                  <td>-0.289**    </td>
+                  <td>0.028+    </td>
+                  <td>3.569438e+08  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.003)     </td>
+                  <td>(0.089)     </td>
+                  <td>(0.015)   </td>
+                  <td>(3.489149e+09)</td>
+                </tr>
+                <tr>
+                  <td>contig     </td>
+                  <td>0.439***    </td>
+                  <td>0.225***    </td>
+                  <td>0.523***  </td>
+                  <td>-6.201678e+08 </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.010)     </td>
+                  <td>(0.063)     </td>
+                  <td>(0.045)   </td>
+                  <td>(1.038710e+10)</td>
+                </tr>
+                <tr>
+                  <td>comcol     </td>
+                  <td>0.667***    </td>
+                  <td>0.707       </td>
+                  <td>0.523***  </td>
+                  <td>8.697582e+09  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.023)     </td>
+                  <td>(0.941)     </td>
+                  <td>(0.100)   </td>
+                  <td>(1.730090e+10)</td>
+                </tr>
+                <tr>
+                  <td>comlang_off</td>
+                  <td>0.272***    </td>
+                  <td>0.595**     </td>
+                  <td>0.288***  </td>
+                  <td>-7.354066e+08 </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.010)     </td>
+                  <td>(0.214)     </td>
+                  <td>(0.041)   </td>
+                  <td>(8.369619e+09)</td>
+                </tr>
+                <tr>
+                  <td>fta_wto    </td>
+                  <td>-0.298***   </td>
+                  <td>-0.900      </td>
+                  <td>0.275***  </td>
+                  <td>-5.661232e+08 </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.014)     </td>
+                  <td>(1.386)     </td>
+                  <td>(0.040)   </td>
+                  <td>(7.205660e+09)</td>
+                </tr>
+                <tr>
+                  <td>ldist      </td>
+                  <td>-0.248***   </td>
+                  <td>0.008       </td>
+                  <td>          </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>(0.005)     </td>
+                  <td>(0.450)     </td>
+                  <td>          </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>dist_log   </td>
+                  <td>            </td>
+                  <td>            </td>
+                  <td>-0.273*** </td>
+                  <td>2.045000e+00  </td>
+                </tr>
+                <tr>
+                  <td>           </td>
+                  <td>            </td>
+                  <td>            </td>
+                  <td>(0.022)   </td>
+                  <td>(2.401000e+00)</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.   </td>
+                  <td>1107423     </td>
+                  <td>1107423     </td>
+                  <td>1107423   </td>
+                  <td>1107423       </td>
+                </tr>
+                <tr>
+                  <td>R2         </td>
+                  <td>0.113       </td>
+                  <td>0.142       </td>
+                  <td>          </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.    </td>
+                  <td>0.113       </td>
+                  <td>0.142       </td>
+                  <td>          </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>AIC        </td>
+                  <td>5470865.7   </td>
+                  <td>5433627.2   </td>
+                  <td>          </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>BIC        </td>
+                  <td>5470996.8   </td>
+                  <td>5435319.5   </td>
+                  <td>          </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.   </td>
+                  <td>-2735421.851</td>
+                  <td>-2716671.624</td>
+                  <td>          </td>
+                  <td>              </td>
+                </tr>
+                <tr>
+                  <td>RMSE       </td>
+                  <td>2.86        </td>
+                  <td>2.81        </td>
+                  <td>124103.11 </td>
+                  <td>124070.84     </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function styleCell_tinytable_pigygzwos2z9ds8dm93s(i, j, css_id) {
+        var table = document.getElementById("tinytable_xxff94igkohf5kxdyzoc");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_xxff94igkohf5kxdyzoc');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_tinytable_pigygzwos2z9ds8dm93s(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_xxff94igkohf5kxdyzoc");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 0, 'tinytable_css_qzisavec21c1f4dfhw7n') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 1, 'tinytable_css_qzisavec21c1f4dfhw7n') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 2, 'tinytable_css_qzisavec21c1f4dfhw7n') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 3, 'tinytable_css_qzisavec21c1f4dfhw7n') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 4, 'tinytable_css_qzisavec21c1f4dfhw7n') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(1, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(2, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(3, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(4, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(5, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(6, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(7, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(8, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(9, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(10, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(11, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(12, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(13, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(14, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(15, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(16, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(17, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(18, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(19, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(20, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(21, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(23, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(24, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(25, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(26, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(27, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(28, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(29, 0, 'tinytable_css_iqekzxtu56jxikb0x8ia') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(1, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(2, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(3, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(4, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(5, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(6, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(7, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(8, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(9, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(10, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(11, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(12, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(13, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(14, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(15, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(16, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(17, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(18, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(19, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(20, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(21, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(23, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(24, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(25, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(26, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(27, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(28, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(29, 1, 'tinytable_css_9hpmfixwrasobareo7pk') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(1, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(2, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(3, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(4, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(5, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(6, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(7, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(8, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(9, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(10, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(11, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(12, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(13, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(14, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(15, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(16, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(17, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(18, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(19, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(20, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(21, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(23, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(24, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(25, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(26, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(27, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(28, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(29, 2, 'tinytable_css_af9kb1xqmmdy029zhmqc') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(1, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(2, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(3, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(4, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(5, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(6, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(7, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(8, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(9, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(10, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(11, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(12, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(13, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(14, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(15, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(16, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(17, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(18, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(19, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(20, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(21, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(23, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(24, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(25, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(26, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(27, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(28, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(29, 3, 'tinytable_css_xpr4d3gy3qhbzrxynsp1') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(0, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(1, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(2, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(3, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(4, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(5, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(6, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(7, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(8, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(9, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(10, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(11, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(12, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(13, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(14, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(15, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(16, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(17, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(18, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(19, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(20, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(21, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(23, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(24, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(25, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(26, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(27, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(28, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(29, 4, 'tinytable_css_eya8vzq9hra1q80cp6hh') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 0, 'tinytable_css_0sy3tar9n1iqre1e17nq') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 1, 'tinytable_css_0sy3tar9n1iqre1e17nq') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 2, 'tinytable_css_0sy3tar9n1iqre1e17nq') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 3, 'tinytable_css_0sy3tar9n1iqre1e17nq') })
+window.addEventListener('load', function () { styleCell_tinytable_pigygzwos2z9ds8dm93s(22, 4, 'tinytable_css_0sy3tar9n1iqre1e17nq') })
+    </script>
+
+  
+
+
+</div>
+</div>
+<p>As you can see, the difference is apparent when we use HS-6-digit instead of total trade. This is of course the case since now we have wild, uncontrolled variability in the goods characteristics. Indeed, the gravity equation is much better suited predicting total trade where country and year characteristics dominates and industry/goods heterogeneity is absorbed by the total trade. Remember, I use only small number of countries with tons of HS 6 digit<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Moreover, PPML sometimes act funny where zeroes are abundant combined with many dummies. Convergence sometimes unachieved / converge to a very strange parameters.</p>
+<p>UI students typically only interested in Indonesia, so country pair dummy and indonesia-time dummy often not needed.</p>
+</section>
+</section>
+<section id="closing" class="level2">
+<h2 class="anchored" data-anchor-id="closing">Closing</h2>
+<p>OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more concentrated.</p>
+<p>Running this on Stata is also excellent. I must confess that R is also speedy (these guys making the package is extremely good), but Stata is a bit more intuitive and compute you with important stats as well such as pseudo-R. Nevertheless, now you should be able to do both!</p>
+<p>I cannot emphasize enough references in <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>. Whatever you want to do, a paper prolly covered it already. Learn from them and look for an insight to add. Work with your spv and you’ll be fine.</p>
+</section>
+<section id="references" class="level2 unnumbered">
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-avw" class="csl-entry" role="listitem">
+Anderson, James E., and Eric van Wincoop. 2003. <span>“Gravity with Gravitas: A Solution to the Border Puzzle.”</span> Journal Article. <em>The American Economic Review</em> 93 (1): 24.
+</div>
+<div id="ref-gravity" class="csl-entry" role="listitem">
+Conte, Madallena, Pierre Cotterlaz, and Thierry Mayer. 2022. <span>“The CEPII Gravity Database.”</span> Working Papers 2022-05. CEPII. <a href="http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726">http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726</a>.
+</div>
+<div id="ref-baci" class="csl-entry" role="listitem">
+Gaulier, Guillaume, and Soledad Zignago. 2010. <span>“BACI: International Trade Database at the Product-Level. The 1994-2007 Version.”</span> Working Papers 2010-23. CEPII. <a href="http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726">http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726</a>.
+</div>
+<div id="ref-gupta" class="csl-entry" role="listitem">
+Gupta, Krisna. 2023. <span>“The Heterogeneous Impact of Tariffs and Ntms on Total Factor Productivity for Indonesian Firms.”</span> Journal Article. <em>Bulletin of Indonesian Economic Studies</em> 59 (2): 269–300. <a href="https://doi.org/10.1080/00074918.2021.2016613">https://doi.org/10.1080/00074918.2021.2016613</a>.
+</div>
+<div id="ref-st" class="csl-entry" role="listitem">
+Silva, Santos, and Silvana Tenreyro. 2006. <span>“The Log of Gravity.”</span> Journal Article. <em>The Review of Economics and Statistics</em> 88 (4): 19.
+</div>
+<div id="ref-grav" class="csl-entry" role="listitem">
+Woelwer, Anna-Lena, Jan Pablo Burgard, Joshua Kunst, and Mauricio Vargas. 2023. <em>Gravity: Estimation Methods for Gravity Models</em>. <a href="http://pacha.dev/gravity/">http://pacha.dev/gravity/</a>.
+</div>
+<div id="ref-yotov" class="csl-entry" role="listitem">
+Yotov, Yoto. 2022. <span>“Gravity at Sixty: The Workhorse Model of Trade.”</span> Journal Article. <em>CESifo Working Papers</em> 9584. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4037001">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4037001</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>unless you have domestic trade data which we typically don’t. If you do, then there’s borders dummy. More on <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I added JPN, KOR, CHN and USA in this version. Previously it was only ASEAN6 and results were pretty funny since within-ASEAN trade isn’t so large.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
