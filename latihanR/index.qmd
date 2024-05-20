@@ -225,7 +225,7 @@ Anyway, Hal pertama yang ditulis di R script adalah `setwd()` lalu load library 
 #| echo: true
 #| warning: false
 #| message: false
-setwd('C:/github/latihanR') # AWAS SETWD-NYA PERBAIKI DULU
+setwd('C:/github/imedkrisna.github.io/latihanR') # AWAS SETWD-NYA PERBAIKI DULU
 library('readxl')
 library('tidyverse')
 library('modelsummary') # buat tabel regresi
