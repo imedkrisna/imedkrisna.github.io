@@ -396,6 +396,70 @@ plot(dat$u,dat$X,xlab="Nilai uts",ylab="jam belajar")
 
 anda bisa save hasilnya dan lihat apakah error term-nya random.
 
+### Membuat regresi baru
+
+Sekarang anda sudah punya regresi $Y$ terhadap $X$ dan $S$. Anda bisa buat lebih dari 1 obyek regeresi dalam 1 project tanpa menimpa regresi yang lama. Misalnya anda mau buat regresi $Y$ terhadap $X$ saja dan regresi $Y$ terhadap $S$ saja, sehingga anda punya 3 persamaan regresi seperti ini:
+
+$$
+\begin{aligned}
+Y&=\beta_0+\beta_1X+\beta_2S+\varepsilon \\
+Y&=\alpha_0+\alpha1X+\nu \\
+Y&=\gamma_0+\gamma_1S+\xi
+\end{aligned}
+$$ {#eq-4}
+
+maka tinggal ciptakan obyek baru dengan command yg sama `lm()` tapi dengan spesifikasi berbeda. Misalnya gini:
+
+```{r}
+#| echo: true
+
+reg2<-lm(data=dat,Y~X)
+reg3<-lm(data=dat,Y~S)
+```
+
+maka anda akan punya 2 regresi lagi yang bisa anda cek hasilnya. Untuk cek hasil regresi $Y$ terhadap $X$ maka pencet `summary(reg2)` dan untuk lihat regresi $Y$ terhadap $S$ maka tinggal pencet `summary(reg3)`.
+
+Ini enaknya pakai object oriented program seperti R dan Python. Anda bisa bangun banyak obyek (bisa regresi, bisa dataset) dalam 1 project / environment. Bisa dipanggil kapan saja.
+
+Kalau anda punya lebih dari 1 regresi, semuanya menggunakan variabel endogen yang sama, maka anda bisa gabungkan outputnya dalam satu tabel pakai `modelsummary()`.
+
+### Membuat tabel regresi
+
+Untuk membuat tabel regresi, anda dapat menggunakan `modelsummary()`. Package "modelsummary" sangat praktis buat bikin tabel regresi, terutama jika anda bikin regresi lebih dari 1. Saya ga akan cover semuanya tapi lebih jauh bisa dibaca di [sini](https://modelsummary.com/index.html).
+
+Cara pakai model summary adalah seperti ini:
+
+```r
+
+## Bikin list dulu
+
+final<-list(
+  "full"=reg,
+  "X aja"=reg2,
+  "S aja"=reg3
+)
+
+modelsummary(final,stars = TRUE,output="regtable.xlsx")
+
+```
+
+```{r}
+#| echo: false
+
+## Bikin list dulu
+
+final<-list(
+  "full"=reg,
+  "X aja"=reg2,
+  "S aja"=reg3
+)
+
+modelsummary(final,stars = TRUE,output="regtable.xlsx")
+
+```
+
+Lihat folder anda, akan ada file baru bernama "regtable.xlsx". Ini tinggal anda pindahin ke word.
+
 ### Final
 
 all in all, R script anda akan berbentuk seperti ini
@@ -426,6 +490,20 @@ ggplot(data=dat,aes(x=Y,y=u))+
   labs(x="nilai uts",y="error term")+
   theme_classic()
 ggsave("plot_eror.svg")
+
+## membuat 2 regresi baru
+
+reg2<-lm(data=dat,Y~X)
+reg3<-lm(data=dat,Y~S)
+
+## Membuat tabel regresi
+final<-list(
+  "full"=reg,
+  "X aja"=reg2,
+  "S aja"=reg3
+)
+
+modelsummary(final,stars = TRUE,output="regtable.xlsx")
 
 ```
 Jika kode anda benar, maka kita bisa run semuanya dalam 1 tarikan nafas. Kita blok semua dengan ctrl+A lalu run, maka semua akan berjalan dari awal sampai akhir.

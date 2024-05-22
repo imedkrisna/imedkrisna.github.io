@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Krisna Gupta">
-<meta name="dcterms.date" content="2024-05-20">
+<meta name="dcterms.date" content="2024-05-22">
 
 <title>Krisna ‘imed’ Gupta - Regresi dengan R dan RStudio</title>
 <style>
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,7 +60,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -101,13 +100,7 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -116,7 +109,6 @@ div.csl-indent {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -126,33 +118,6 @@ div.csl-indent {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -160,9 +125,9 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Krisna ‘imed’ Gupta</span>
     </a>
@@ -174,29 +139,29 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../research.html"> 
-<span class="menu-text">Research</span></a>
+    <a class="nav-link" href="../research.html" rel="" target="">
+ <span class="menu-text">Research</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../teaching.html"> 
-<span class="menu-text">Teaching</span></a>
+    <a class="nav-link" href="../teaching.html" rel="" target="">
+ <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../project.html"> 
-<span class="menu-text">Projects</span></a>
+    <a class="nav-link" href="../project.html" rel="" target="">
+ <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../misc.html"> 
-<span class="menu-text">misc</span></a>
+    <a class="nav-link" href="../misc.html" rel="" target="">
+ <span class="menu-text">misc</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools ms-auto">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -230,6 +195,8 @@ window.Quarto = {
   <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a></li>
   <li><a href="#run-the-regression" id="toc-run-the-regression" class="nav-link" data-scroll-target="#run-the-regression">Run the regression</a></li>
   <li><a href="#membuat-variabel-baru-residual" id="toc-membuat-variabel-baru-residual" class="nav-link" data-scroll-target="#membuat-variabel-baru-residual">Membuat variabel baru / residual</a></li>
+  <li><a href="#membuat-regresi-baru" id="toc-membuat-regresi-baru" class="nav-link" data-scroll-target="#membuat-regresi-baru">Membuat regresi baru</a></li>
+  <li><a href="#membuat-tabel-regresi" id="toc-membuat-tabel-regresi" class="nav-link" data-scroll-target="#membuat-tabel-regresi">Membuat tabel regresi</a></li>
   <li><a href="#final" id="toc-final" class="nav-link" data-scroll-target="#final">Final</a></li>
   </ul></li>
   <li><a href="#what-next" id="toc-what-next" class="nav-link" data-scroll-target="#what-next">What next</a></li>
@@ -253,12 +220,12 @@ window.Quarto = {
     <div class="quarto-title-meta-contents">
     <p class="author">Krisna Gupta </p>
   </div>
-  <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
         <p class="affiliation">
             Politeknik APP Jakarta
           </p>
       </div>
-  </div>
+    </div>
 
 <div class="quarto-title-meta">
 
@@ -266,7 +233,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 20, 2024</p>
+      <p class="date">May 22, 2024</p>
     </div>
   </div>
   
@@ -275,14 +242,12 @@ window.Quarto = {
   
 <div>
   <div class="abstract">
-    <div class="block-title">abstrak</div>
+    <div class="abstract-title">abstrak</div>
     Dokumen ini digunakan untuk belajar R dan RStudio
   </div>
 </div>
 
-
 </header>
-
 
 <section id="sec-introduction" class="level2">
 <h2 class="anchored" data-anchor-id="sec-introduction">Pendahuluan</h2>
@@ -400,7 +365,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="packages">Packages</h3>
 <p>Hari ini kita akan menggunakan beberapa packages</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(readxl)</span>
@@ -449,7 +414,7 @@ y = \beta_0 + \sum_{i=1}^n \beta_i x_{i} + \varepsilon
 <p>Lebih penting lagi, r script bisa dikerjakan oleh lebih dari 1 orang. Rscript anda bisa dibaca orang lain dan orang lain itu harus langsung tau anda ngapain aja sehingga dia bisa mengerjakan bagian dia. Rscript juga sangat penting supaya kerjaan anda bisa direplikasi mahasiswa anda. Beberapa project saya ditaruh di github saya kodingannya sehingga transparan dan bisa direplikasi.</p>
 <p>Anyway, Hal pertama yang ditulis di R script adalah <code>setwd()</code> lalu load library yang kita perlukan. Untuk latihan kali ini, silakan load package “readxl”, “tidyverse” dan “modelsummary”. Rscript anda akan jadi seperti ini:</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'C:/github/imedkrisna.github.io/latihanR'</span>) <span class="co"># AWAS SETWD-NYA PERBAIKI DULU</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'readxl'</span>)</span>
@@ -472,7 +437,7 @@ y = \beta_0 + \sum_{i=1}^n \beta_i x_{i} + \varepsilon
 <p>Yang terpenting untuk membaca data excel adalah nama variabel harus ada di paling atas dan cuma terdiri dari 1 baris aja. Jadi ga boleh ada kolom yang merge atau semacamnya.</p>
 <p>ngomong-ngomong, data latihan2.xlsx saya itu isinya begini:</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"latihan2.xlsx"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -496,7 +461,7 @@ y = \beta_0 + \sum_{i=1}^n \beta_i x_{i} + \varepsilon
 </div>
 <p>Di obyek “dat” ada 100 data poin dengan 3 variabel, X, S dan Y. anda bisa memanggil masing-masing variabel dengan menggunakan obyek, lalu tanda dolar, lalu nama variabel.</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -509,7 +474,7 @@ y = \beta_0 + \sum_{i=1}^n \beta_i x_{i} + \varepsilon
 </div>
 <p>anda bisa menampilkan summary statistics dari data ini dengan command <code>summary()</code>.</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -528,22 +493,18 @@ y = \beta_0 + \sum_{i=1}^n \beta_i x_{i} + \varepsilon
 <h3 class="anchored" data-anchor-id="plotting">Plotting</h3>
 <p>Plotting di R bisa ada 2 cara. Anda bisa ngeplot datanya dengan cepat pakai scatterplot dengan menggunakan command <code>plot()</code> seperti ini</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>X,dat<span class="sc">$</span>Y,<span class="at">xlab=</span><span class="st">"jam belajar"</span>,<span class="at">ylab=</span><span class="st">"nilai UAS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>hasil plot anda akan muncul di kanan bawah di tab “plots” lalu bisa disave dengan cara pencet export lalu save as image. Anda juga bisa pencet “copy to clipboard” lalu di-paste ke word atau ppt jika mau ditaruh di word or ppt.</p>
 <p>Cara ke-2 adalah dengan menggunakan ggplot. GGplot agak ribet commandnya tapi bisa langsung anda save di disc. Begini acaranya</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat,<span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y))<span class="sc">+</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
@@ -551,11 +512,7 @@ y = \beta_0 + \sum_{i=1}^n \beta_i x_{i} + \varepsilon
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>anda bisa langsung save ggplot di atas dengan ggsave:</p>
@@ -575,7 +532,7 @@ y = \beta_0 + \sum_{i=1}^n \beta_i x_{i} + \varepsilon
 Y=\beta_0+\beta_1X+\beta_2S+\varepsilon
 \tag{2}\]</span></span></p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>reg<span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">data=</span>dat,Y<span class="sc">~</span>X<span class="sc">+</span>S)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg) <span class="co"># gunakan summary untuk kasi liat hasilnya</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -609,17 +566,18 @@ F-statistic:  1586 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(reg,<span class="at">stars=</span><span class="cn">TRUE</span>, <span class="at">output=</span><span class="st">"regresi.html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
 <div class="cell-output-display">
+
  
 
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_pwtkstmrngidgx00bd06</title>
+    <title>tinytable_46vz3c4o4cswgw7cpr5r</title>
     <style>
-.table td.tinytable_css_u82jxbcvn5lobzau5ekb, .table th.tinytable_css_u82jxbcvn5lobzau5ekb {    border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_fbj212f37dfmlsq3navs, .table th.tinytable_css_fbj212f37dfmlsq3navs {    text-align: left; }
-.table td.tinytable_css_5wi7pkc3aa7vgtmm2bh0, .table th.tinytable_css_5wi7pkc3aa7vgtmm2bh0 {    text-align: center; }
-.table td.tinytable_css_ztb0addkgvs115e5q50z, .table th.tinytable_css_ztb0addkgvs115e5q50z {    border-bottom: solid 0.05em black; }
+.table td.tinytable_css_ujv21ocmfuyif4pe2znv, .table th.tinytable_css_ujv21ocmfuyif4pe2znv {    border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_py52rboibb0cphvw3ry1, .table th.tinytable_css_py52rboibb0cphvw3ry1 {    text-align: left; }
+.table td.tinytable_css_u2ku7cxglrcshdo1z62c, .table th.tinytable_css_u2ku7cxglrcshdo1z62c {    text-align: center; }
+.table td.tinytable_css_upcc8qqqe4sjpqaych6o, .table th.tinytable_css_upcc8qqqe4sjpqaych6o {    border-bottom: solid 0.05em black; }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -637,7 +595,7 @@ F-statistic:  1586 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
 
   
     <div class="container">
-      <table class="table table-borderless" id="tinytable_pwtkstmrngidgx00bd06" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_46vz3c4o4cswgw7cpr5r" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -708,12 +666,12 @@ F-statistic:  1586 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
     </div>
 
     <script>
-      function styleCell_tinytable_cciybpe349bfsssj5062(i, j, css_id) {
-        var table = document.getElementById("tinytable_pwtkstmrngidgx00bd06");
+      function styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(i, j, css_id) {
+        var table = document.getElementById("tinytable_46vz3c4o4cswgw7cpr5r");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_pwtkstmrngidgx00bd06');
+        var table = document.getElementById('tinytable_46vz3c4o4cswgw7cpr5r');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -721,8 +679,8 @@ F-statistic:  1586 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_tinytable_cciybpe349bfsssj5062(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_pwtkstmrngidgx00bd06");
+      function spanCell_tinytable_0nt4ma2n5j3qq6h2yjdp(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_46vz3c4o4cswgw7cpr5r");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -749,40 +707,40 @@ F-statistic:  1586 on 2 and 97 DF,  p-value: &lt; 2.2e-16</code></pre>
         targetCell.colSpan = colspan;
       }
 
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(0, 0, 'tinytable_css_u82jxbcvn5lobzau5ekb') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(0, 1, 'tinytable_css_u82jxbcvn5lobzau5ekb') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(0, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(1, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(2, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(3, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(4, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(5, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(6, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(7, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(8, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(9, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(10, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(11, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(12, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(13, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(14, 0, 'tinytable_css_fbj212f37dfmlsq3navs') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(0, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(1, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(2, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(3, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(4, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(5, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(6, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(7, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(8, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(9, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(10, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(11, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(12, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(13, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(14, 1, 'tinytable_css_5wi7pkc3aa7vgtmm2bh0') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(6, 0, 'tinytable_css_ztb0addkgvs115e5q50z') })
-window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfsssj5062(6, 1, 'tinytable_css_ztb0addkgvs115e5q50z') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(0, 0, 'tinytable_css_ujv21ocmfuyif4pe2znv') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(0, 1, 'tinytable_css_ujv21ocmfuyif4pe2znv') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(0, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(1, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(2, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(3, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(4, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(5, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(6, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(7, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(8, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(9, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(10, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(11, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(12, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(13, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(14, 0, 'tinytable_css_py52rboibb0cphvw3ry1') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(0, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(1, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(2, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(3, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(4, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(5, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(6, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(7, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(8, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(9, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(10, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(11, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(12, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(13, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(14, 1, 'tinytable_css_u2ku7cxglrcshdo1z62c') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(6, 0, 'tinytable_css_upcc8qqqe4sjpqaych6o') })
+window.addEventListener('load', function () { styleCell_tinytable_0nt4ma2n5j3qq6h2yjdp(6, 1, 'tinytable_css_upcc8qqqe4sjpqaych6o') })
     </script>
 
   
@@ -803,7 +761,7 @@ window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfss
 \tag{3}\]</span></span></p>
 <p>Biasanya kita generate error term untuk ngecek apakah dia beneran zero mean dan iid (biasanya nggak wkwkwk). Cara generate error term adalah</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>u<span class="ot">&lt;-</span><span class="fu">resid</span>(reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -812,61 +770,105 @@ window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfss
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dat<span class="sc">$</span>u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>dan ya benar bahwa dia mean zero. tentu saja bisa juga kita plot terhadap X dan Y:</p>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>u,dat<span class="sc">$</span>Y,<span class="at">xlab=</span><span class="st">"Nilai uts"</span>,<span class="at">ylab=</span><span class="st">"erorr term"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<details class="code-fold">
+<details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dat<span class="sc">$</span>u,dat<span class="sc">$</span>X,<span class="at">xlab=</span><span class="st">"Nilai uts"</span>,<span class="at">ylab=</span><span class="st">"jam belajar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>anda bisa save hasilnya dan lihat apakah error term-nya random.</p>
 </section>
+<section id="membuat-regresi-baru" class="level3">
+<h3 class="anchored" data-anchor-id="membuat-regresi-baru">Membuat regresi baru</h3>
+<p>Sekarang anda sudah punya regresi <span class="math inline">\(Y\)</span> terhadap <span class="math inline">\(X\)</span> dan <span class="math inline">\(S\)</span>. Anda bisa buat lebih dari 1 obyek regeresi dalam 1 project tanpa menimpa regresi yang lama. Misalnya anda mau buat regresi <span class="math inline">\(Y\)</span> terhadap <span class="math inline">\(X\)</span> saja dan regresi <span class="math inline">\(Y\)</span> terhadap <span class="math inline">\(S\)</span> saja, sehingga anda punya 3 persamaan regresi seperti ini:</p>
+<p><span id="eq-4"><span class="math display">\[
+\begin{aligned}
+Y&amp;=\beta_0+\beta_1X+\beta_2S+\varepsilon \\
+Y&amp;=\alpha_0+\alpha1X+\nu \\
+Y&amp;=\gamma_0+\gamma_1S+\xi
+\end{aligned}
+\tag{4}\]</span></span></p>
+<p>maka tinggal ciptakan obyek baru dengan command yg sama <code>lm()</code> tapi dengan spesifikasi berbeda. Misalnya gini:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>reg2<span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">data=</span>dat,Y<span class="sc">~</span>X)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>reg3<span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">data=</span>dat,Y<span class="sc">~</span>S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>maka anda akan punya 2 regresi lagi yang bisa anda cek hasilnya. Untuk cek hasil regresi <span class="math inline">\(Y\)</span> terhadap <span class="math inline">\(X\)</span> maka pencet <code>summary(reg2)</code> dan untuk lihat regresi <span class="math inline">\(Y\)</span> terhadap <span class="math inline">\(S\)</span> maka tinggal pencet <code>summary(reg3)</code>.</p>
+<p>Ini enaknya pakai object oriented program seperti R dan Python. Anda bisa bangun banyak obyek (bisa regresi, bisa dataset) dalam 1 project / environment. Bisa dipanggil kapan saja.</p>
+<p>Kalau anda punya lebih dari 1 regresi, semuanya menggunakan variabel endogen yang sama, maka anda bisa gabungkan outputnya dalam satu tabel pakai <code>modelsummary()</code>.</p>
+</section>
+<section id="membuat-tabel-regresi" class="level3">
+<h3 class="anchored" data-anchor-id="membuat-tabel-regresi">Membuat tabel regresi</h3>
+<p>Untuk membuat tabel regresi, anda dapat menggunakan <code>modelsummary()</code>. Package “modelsummary” sangat praktis buat bikin tabel regresi, terutama jika anda bikin regresi lebih dari 1. Saya ga akan cover semuanya tapi lebih jauh bisa dibaca di <a href="https://modelsummary.com/index.html">sini</a>.</p>
+<p>Cara pakai model summary adalah seperti ini:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Bikin list dulu</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>final<span class="ot">&lt;-</span><span class="fu">list</span>(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"full"</span><span class="ot">=</span>reg,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"X aja"</span><span class="ot">=</span>reg2,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S aja"</span><span class="ot">=</span>reg3</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(final,<span class="at">stars =</span> <span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">"regtable.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lihat folder anda, akan ada file baru bernama “regtable.xlsx”. Ini tinggal anda pindahin ke word.</p>
+</section>
 <section id="final" class="level3">
 <h3 class="anchored" data-anchor-id="final">Final</h3>
 <p>all in all, R script anda akan berbentuk seperti ini</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'C:/github/latihanR'</span>) <span class="co"># AWAS SETWD-NYA PERBAIKI DULU</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'readxl'</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidyverse'</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'modelsummary'</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Baca data</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">'latihan2.xlsx'</span>)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot X dan Y</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat,<span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y))<span class="sc">+</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"jam belajar"</span>,<span class="at">y=</span><span class="st">"nilai UTS"</span>)<span class="sc">+</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"plot_keren.svg"</span>)</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># regresi</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>reg<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>X<span class="sc">+</span>S,<span class="at">data=</span>dat)</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg,<span class="at">output=</span><span class="st">"regresi.html"</span>)</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Membuat error</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat,<span class="fu">aes</span>(<span class="at">x=</span>Y,<span class="at">y=</span>u))<span class="sc">+</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"nilai uts"</span>,<span class="at">y=</span><span class="st">"error term"</span>)<span class="sc">+</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"plot_eror.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'C:/github/latihanR'</span>) <span class="co"># AWAS SETWD-NYA PERBAIKI DULU</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'readxl'</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidyverse'</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'modelsummary'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Baca data</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">'latihan2.xlsx'</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot X dan Y</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat,<span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y))<span class="sc">+</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"jam belajar"</span>,<span class="at">y=</span><span class="st">"nilai UTS"</span>)<span class="sc">+</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"plot_keren.svg"</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># regresi</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>reg<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>X<span class="sc">+</span>S,<span class="at">data=</span>dat)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg,<span class="at">output=</span><span class="st">"regresi.html"</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Membuat error</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>dat,<span class="fu">aes</span>(<span class="at">x=</span>Y,<span class="at">y=</span>u))<span class="sc">+</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"nilai uts"</span>,<span class="at">y=</span><span class="st">"error term"</span>)<span class="sc">+</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"plot_eror.svg"</span>)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="do">## membuat 2 regresi baru</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>reg2<span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">data=</span>dat,Y<span class="sc">~</span>X)</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>reg3<span class="ot">&lt;-</span><span class="fu">lm</span>(<span class="at">data=</span>dat,Y<span class="sc">~</span>S)</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Membuat tabel regresi</span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>final<span class="ot">&lt;-</span><span class="fu">list</span>(</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"full"</span><span class="ot">=</span>reg,</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"X aja"</span><span class="ot">=</span>reg2,</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"S aja"</span><span class="ot">=</span>reg3</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(final,<span class="at">stars =</span> <span class="cn">TRUE</span>,<span class="at">output=</span><span class="st">"regtable.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Jika kode anda benar, maka kita bisa run semuanya dalam 1 tarikan nafas. Kita blok semua dengan ctrl+A lalu run, maka semua akan berjalan dari awal sampai akhir.</p>
 </section>
 </section>
@@ -885,7 +887,7 @@ window.addEventListener('load', function () { styleCell_tinytable_cciybpe349bfss
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-amanta" class="csl-entry" role="listitem">
 Amanta, Felippa, and Krisna Gupta. 2022. <span>“Trade for Economic Recovery: Import Policies to Support Indonesia’s f&amp;b Sector.”</span> Journal Article. <em>CIPS Policy Paper</em> 51. <a href="https://cutt.ly/cips-pp51">https://cutt.ly/cips-pp51</a>.
 </div>
@@ -972,27 +974,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1002,17 +987,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1024,130 +1000,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1191,7 +1044,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1217,32 +1069,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1303,7 +1129,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 
