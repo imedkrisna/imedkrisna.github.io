@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: .
+  render:
+    - "!gravity/"
 
 website:
   title: "Krisna 'imed' Gupta"
