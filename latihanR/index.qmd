@@ -482,7 +482,7 @@ ggsave("plot_keren.svg")
   
 # regresi
 reg<-lm(Y~X+S,data=dat)
-summary(reg,output="regresi.html")
+summary(reg)
 
 # Membuat error
 ggplot(data=dat,aes(x=Y,y=u))+
