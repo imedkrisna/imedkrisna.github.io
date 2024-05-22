@@ -2,5 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+*.RDS
+*.csv
+*.xls*
+*.dta
 
 /.quarto/
