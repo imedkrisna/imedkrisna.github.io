@@ -374,8 +374,8 @@ summary(gabung)
 ### Regression
 
 ```r
-ger1<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
-ger2<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+ooo+ddd+ppp)
+ger1<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
+ger2<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+ooo+ddd+ppp)
 ger3<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
 ger4<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","ooo","ddd","ppp"))
 ```

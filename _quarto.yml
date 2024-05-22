@@ -5,7 +5,7 @@ project:
     - "*.qmd"
     - "!aldi/"
     - "!latihanR/"
-    - "!gravity/"
+
 
 website:
   title: "Krisna 'imed' Gupta"
