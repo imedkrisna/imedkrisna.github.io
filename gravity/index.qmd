@@ -1,0 +1,429 @@
+---
+title: "Gravity in R: a short workshop "
+author: "Krisna Gupta"
+institute: "Universitas Indonesia"
+date: last-modified
+date-format: long
+bibliography: ref.bib
+abstract: "This page is dedicated to teach students on running the gravity model in R. We uses dataset from CEPII, specifically BACI and the gravity dataset. We run in R and RStudio IDE, and we rely on ppml from the gravity package when demonstrating PPML. We try to replicate Silva and Tenreyro (2006), an excellent paper for an introduction to the log gravity model and PPML."
+abstract-title: "abstract"
+format:
+  html:
+    code-fold: true
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+---
+
+## Introduction {#sec-introduction}
+
+The gravity model is probably the most popular model in international trade. Many uses them. It is very intuitive, great predictive power, and most importantly, tweakable [@yotov]. But the even most important is that UI students love them. If you're doing trade for your thesis, then you probably going to use the gravity model as your backbone.
+
+This guide is my attempt to help you learn gravity model much easier. The most important part is probably the data and the model itself. What is the minimum things you need in the gravity model, how to arrange the database, run them, and interpret them. You must familiarize yourself with the data and its wrangling (80% of your coding) as well as the main gravity specification to date. I encourage students to pay careful attention to @yotov as it hosts the recent development in the gravity model, a must read if you're planning to utilize gravity model.
+
+I use R here because I use R much more than Stata these days. However, the two language aren't very different. You can do the same thing on both, but you may need to google a bit. It's okay to use google a lot. I did as well even right now. Oh yeah I also informed you guys know R already so I won't go into too much basic stuff.
+
+Next is the preparation you'll need. Make sure you read it carefully and install & download everything in advance!
+
+## Preparation {#req}
+
+This workshop is conducted with the R statistical software, RStudio IDE, and gravity [@grav] package. Of course you're going to need tidyverse as well, or specifically dplyr package. You want to procure data beforehand too, and I will use CEPII data. let's discuss one by one.
+
+### Software
+
+You'd want to use R and RStudio for this. The main reason I use R is because it's free. Stata is not. I think Stata is faster and a bit easier (R people will kill me if they see this) but not cheap. If you have Stata it's fine too. The command you'd want in stata is `ppmlhdfe`.
+
+Now onto R. You can procure R and RStudio from Posit's website. Get it [here](https://posit.co/download/rstudio-desktop/). I wrote the guide to install R and RStudio [here](https://www.krisna.or.id/courses/metopel/installr/), so you better check it out. It's written in Indonesian.
+
+After that, you are going to need to install some packages. Follow my step until I told you to do type this on the console `install.packages(c("tidyverse","WDI","readxl","kableExtra"))`. You are going to do the same but you're going to few different stuff. Specifically, you need to add "gravity" and "writexl" on the list. That is, you need to type
+
+```r
+install.packages(c("tidyverse","WDI","readxl","writexl","gravity"))
+```
+
+This step requires internet connection, but you'll need to do this only once.
+
+### Data
+
+I procure data for this workshop from [CEPII]. From their website, CEPII is:
+
+> he CEPII is the leading French center for research and expertise on the world economy. It contributes to the policy making process trough its independent in-depth analyses on international trade, migrations, macroeconomics and finance. The CEPII also produces databases and provides a platform for debate among academics, experts, practitioners, decision makers and other private and public stakeholders.
+Founded in 1978, the CEPII is part of the network coordinated by France Strategy, within the Prime Minister's services.
+
+I use their BACI dataset [@baci] and gravity dataset [@gravity]. You can get those from this [link](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele.asp). BACI is under "international trade" banner while gravity is under "Gravity" banner. Specifically, I downloaded the 2017-2022 version of BACI and for the gravity dataset I downloaded the R version. You can of course download whichever version you like but for the purpose of this workshop maybe its best to stick with the same dataset as I.
+
+You can also download from [my drive](https://1drv.ms/f/s!AjelszXKKcmskMsKLZRRwRJq1a2MnA?e=xsdpxL).
+
+Note that the data here is **extremely large** in size so be mindful. You need hefty internet quota and reasonable speed. Also, you can try opening it with spreadsheet software but unless you have a strong computer, i'd advice against it. Use R instead.
+
+In the CEPII website you can use various other dataset that may be useful for you. At the same time, there are various other source you can utilise for your actual project that's not necessarily from CEPII.
+
+### working directory
+
+If you finished downloading data and installing softwares, you then need to set up a working directory. A working directory is basically a folder where you have all the data and your R script (R version of do file). For now what you want is to have a **folder filled with your downloaded data**. Make sure you know the path to this folder. I tend to use easy path for my projects and move it somewhere else when i finished. If you use github or the likes, it'll be even nicer because you can actually wipe out your local repo if you finish.
+
+All in all, you should have a folder with these stuff in it:
+
+![](pic1.png)
+
+Notes about the data country_codes, product_codes and Readme are all for reading BACI.
+
+### Packages
+
+for this page I use these packages but you may not need all of them
+
+```{r}
+#| warning: false
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: true
+
+library(tidyverse)
+library(penppml) ## no need
+library(writexl)
+library(modelsummary) ## no need
+library(gravity)
+
+```
+
+## Simple gravity specification
+
+### Theory
+
+The earliest (e.g., naive) gravity model taking directly from Newtonian gravity theory looks something like this:
+
+$$
+X_{ij}=\tilde{G}\frac{Y_iE_j}{T_{ij}^\theta}
+$$ {#eq-1}
+
+where $X_{it}$ is the value of trade flow from country $i$ to country $j$, $\tilde{G}$ is the gravitational constant (aka our usual constant), $Y_i$ is the output in country $i$ $E_j$ is the value of expenditure in country $j$ and $T_{ij}$ is the total bilateral trade frictions / trade cost between country $i$ and country $j$.
+
+There are various other types of gravity equations, but let's start with a relatively simple one. One of my favorite simple gravity specification is a budget version of @st which is taken from @avw which looks like this:
+
+$$
+X_{ij}=\alpha_0 Y_i^{\alpha_1}Y_j^{\alpha_2}D_{ij}^{\alpha_3}e^{\theta_id_i+\theta_jd_j}
+$$ {#eq-2}
+
+where $\alpha_0$ is your $\tilde{G}$, while $Y$ is the output and expenditure which is proxied with GDP. $D_{ij}$ is the distance between the two countries, which can be generalized as a vector of trade cost measures. Typically we use physical distance but also other types of bilateral trade cost. Lastly, the $d_i$ and $d_j$ is country-specific characteristics.
+
+There are various variables used in @st. log of exporter's and importer's GDP and GDP per capita. Various "distance" variables is used as well e.g., physical distance and variables like contiguity, common-language dummy, colonial-tie dummy and free trade agreement dummy.
+
+Note that our regression consists only of two indices: exporter $i$ and importer $j$. We are going to use the gravity data I mentioned earlier, slice the dataset to cover only one year chosen arbitrarily (which is 2019), and run @eq-2.
+
+### Setting data
+
+first we load all the necessary data:
+
+```{r}
+#| warning: false
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: true
+
+## Readubg data
+gravity <- readRDS("Gravity_V202211.rds")
+key<-read_csv("country_codes_V202401b.csv")
+
+```
+
+The gravity is the data from CEPII while key is storing some country codes. You can see the first 10 rows of the data and its variable names you call their name. Just type `gravity` or `key` in the console then hit enter. However, if you just want to look at the variable names, you can use `colnames()`
+
+```{r}
+colnames(gravity)
+```
+
+As you can see, the column names are so plenty. Consult to the CEPII website or @gravity to learn more. We will only use some of them, so we will filter these data to make it more concise. Specifically, we will (1) remove some countries, (2) remove non-2019, and (3) remove variables we are not using.
+
+For variables, we will keep iso3_o, iso3_d, distw_harmonic, contig, comcol, comlang_off,gdp_o,gdp_d, gdpcap_o, gdpcap_d,fta_wto. Note that o means origin / exporter and d means destination / importer.
+
+```{r}
+#| warning: false
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: true
+
+## create a country list
+ctr<-c("Albania", "Denmark", "Kenya", "Romania", "Algeria", "Djibouti", "Kiribati", "Russian Federation", "Angola", "Dominican Rep.", "Korea, Rep.", "Rwanda", "Argentina", "Ecuador", "Laos", "P. Dem. Rep.", "Saudi Arabia", "Australia", "Egypt", "Lebanon", "Senegal", "Austria", "El Salvador", "Madagascar", "Seychelles", "Bahamas", "Eq. Guinea", "Malawi", "Sierra Leone", "Bahrain", "Ethiopia", "Malaysia", "Singapore", "Bangladesh", "Fiji", "Maldives", "Solomon Islands", "Barbados", "Finland", "Mali", "South Africa", "Belgium-Lux.", "France", "Malta", "Spain", "Belize", "Gabon", "Mauritania", "Sri Lanka", "Benin", "Gambia", "Mauritius", "St. Kitts and Nevis", "Bhutan", "Germany", "Mexico", "Sudan", "Bolivia", "Ghana", "Mongolia", "Suriname", "Brazil", "Greece", "Morocco", "Sweden", "Brunei", "Guatemala", "Mozambique", "Switzerland", "Bulgaria", "Guinea", "Nepal", "Syrian Arab Rep.", "Burkina Faso", "Guinea-Bissau", "Netherlands", "Tanzania", "Burundi", "Guyana", "New Caledonia", "Thailand", "Cambodia", "Haiti", "New Zealand", "Togo", "Cameroon", "Honduras", "Nicaragua", "Trinidad and Tobago", "Canada", "Hong Kong", "Niger", "Tunisia", "Central African Rep.", "Hungary", "Nigeria", "Turkey", "Chad", "Iceland", "Norway", "Uganda", "Chile", "India", "Oman", "United Arab Em.", "China", "Indonesia", "Pakistan", "United Kingdom", "Colombia", "Iran", "Panama", "United States", "Comoros", "Ireland", "Papua New Guinea", "Uruguay", "Congo Dem. Rep.", "Israel", "Paraguay", "Venezuela", "Congo Rep.", "Italy", "Peru", "Vietnam", "Costa Rica", "Jamaica", "Philippines", "Yemen", "Cote D’lvoire", "Japan", "Poland", "Zambia", "Cyprus", "Jordan", "Portugal", "Zimbabwe")
+
+vrb<-c("iso3num_o","iso3num_d","year","iso3_o", "iso3_d", "distw_harmonic", "contig", "comcol", "comlang_off","gdp_o","gdp_d", "gdpcap_o", "gdpcap_d","fta_wto","tradeflow_baci")
+
+## keep 2019
+gravity2<-gravity|>filter(year==2019)
+
+## Keep countries in the list
+key2<-key |> filter(country_name%in%ctr)
+gravity2<-gravity2 |> filter(country_id_o %in% key2$country_iso3 & country_id_d %in% key2$country_iso3)
+gravity2<-gravity2 |> select(vrb)
+
+## Make a log versin
+gravity2<-gravity2 |>
+  mutate(ldist=log(distw_harmonic),
+         lgdpo=log(gdp_o),
+         lgdpd=log(gdp_d),
+         lgdpco=log(gdpcap_o),
+         lgdpcd=log(gdpcap_d),
+         logtrade=log(1+tradeflow_baci))
+         
+```
+
+You can see in your environment tab the difference between gravity and gravity2 as well as between key and key2 on the number of observations and variables. Note that we also log non-dummy variables for gravity2 to redo @st.
+
+We will focus on the gravity2 as it will be the dataset we will run. You can quickly show summary statistics by typing `summary(gravity2)` on the console tab.
+
+```{r}
+summary(gravity2)
+```
+
+### Regression
+
+Let's do 2 types of regression. First we do a regression using a normal ols, and secondly we do ppml.
+
+```r
+reg1<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
+reg2<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
+reg3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
+reg4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
+```
+
+You can call each reg's table with `summary(reg1)`.
+
+```{r}
+#| warning: false
+#| echo: false
+#| code-fold: false
+#| code-line-numbers: false
+#| tbl-cap: Simple regression results
+
+## OLS
+reg1<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist)
+reg2<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist+iso3_o+iso3_d)
+## regg<-hdfeppml(data=gravity2,dep="tradeflow_baci",indep=c("lgdpo","lgdpd","lgdpco","lgdpcd","ldist","contig","comcol","comlang_off","fta_wto"))
+reg3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
+reg4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
+
+
+## PPML
+
+
+ela<- list(
+  "OLS no ctr" = reg1,
+  "OLS with ctr"  = reg2,
+  "PPML no ctr"=reg3,
+  "PPML with ctr"=reg4
+)
+
+modelsummary(ela,stars = TRUE,coef_omit="iso3")
+#modelsummary(ela,stars = TRUE,coef_rename=c("htptrad"="own-price",
+#                                            "htpskm"="own-price",
+#                                            "htpskt"="own-price",
+#                                            "htpspm"="own-price"))
+         
+```
+
+You can compare results with @st. Note that they don't use fixed effects.
+
+![source: @st](pic2.png)
+
+By the way, you can save the regression table using `modelsummary()`. don't forget to run `library(modelsummary)` first. You can use xls extension, but also doc. I personally like .html more.
+
+```r
+regtab<- list(
+  "OLS no ctr" = reg1,
+  "OLS with ctr"  = reg2,
+  "PPML no ctr"=reg3,
+  "PPML with ctr"=reg4
+)
+modelsummary(regtab,output="regtab.xls")
+```
+
+## Product level gravity
+
+### Theory
+
+We then proceed to a higher-dimension trade data which you may be interested in. In the field, UI students often interested largely in Indonesian affairs. That is, we are not interested so much in the bilateral flow of all countries, but only on Indonesia. However, we often use more granular dimension than just exporter/importer. Often times we use indices like time, commodities or industries, or even firms (shamelessly inserting my paper here @gupta).
+
+Now, if you are planning to do these kinds of studies, then you are going to need to tackle higher degree dataset and merging the gravity variables. Most often you can get these variables from [World Development Indicators](https://databank.worldbank.org/source/world-development-indicators) but CEPII is ok for now (note the main problem of CEPII is its timeliness).
+
+The theory isn't so different compared to our previous gravity model. What we want is an additional indices. We are going to estimate something similar as @eq-2 but with more indices. We need to care about multilateral resistance (MR) and we can use dummies since we now have more variations from indices like time and HS code.
+
+According to @yotov, we need at least 3 dummies to run a multi-country, multi-time and multi-goods/sectors[^1]. We need to have exporter-time dummy, importer-time dummy and country-pair dummy. We need to construct this first. Note that these dummies will likely absorb some of your variables like distance (consistant between pair across time, typically).
+
+So we will do the HS,time varying version of @eq-2:
+
+$$
+X_{ijpt}=\alpha_0 Y_{it}^{\alpha_1}Y_{jt}^{\alpha_2}D_{ijpt}^{\alpha_3}e^{\theta_1o_{it}+\theta_2d_{jt}+\theta_3p_{ij}}
+$$ {#eq-3}
+
+[^1]: unless you have domestic trade data which we typically don't. If you do, then there's borders dummy. More on @yotov.
+
+### Setting data
+
+This time we need BACI data. Brace yourself because this dataset is HUGE. We read 5 different years.
+
+
+```{r}
+#| warning: false
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: true
+t2017<-read_csv("BACI_HS17_Y2017_V202401b.csv")
+t2018<-read_csv("BACI_HS17_Y2018_V202401b.csv")
+t2019<-read_csv("BACI_HS17_Y2019_V202401b.csv")
+t2020<-read_csv("BACI_HS17_Y2020_V202401b.csv")
+t2021<-read_csv("BACI_HS17_Y2021_V202401b.csv")
+
+
+## Combining all 
+trade<-rbind(t2017,t2018,t2019,t2020,t2021)
+
+remove(t2017,t2018,t2019,t2020,t2021)
+```
+
+I used `read_csv` from the tydiverse package for reading .csv. rbind is to stack all BACI data (it was separated per year), then I remove the individual BACI to save environment space.
+
+At this point, you can try checking out the two datasets. You can try looking at both data by calling their names. Alternatively, just look at the column names with `colnames()`. Let's try the BACI frist.
+
+```{r}
+colnames(trade)
+```
+
+There are only 6 columns / variables. Here's some information on what thos means
+
+| var | meaning |
+| --- | --------- |
+| t | year |
+| i | exporter |
+| j | importer |
+| k | product |
+| v | value |
+| q | quantity |
+
+Products in Harmonized System 6-digit nomenclature. Values in thousand USD and quantities in metric tons. Exporter and importer is codified using CEPII codes. the codes and it means can be found in the "key" dataset. To have country identities into the BACI dataset, we need to join the two.
+
+To join the two datasets, we need a key variable. A key variable is the variable connecting the two variables. Both needs the same name. So first we need to assign the same name for exporter and importer codes between BACI and gravity.
+
+We know that $i$ in BACI is iso3num_o in gravity, while $j$ in BACI is iso3num_d in gravity. So we rename the one in BACI so both have the same name:
+
+```{r}
+#| warning: false
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: true
+
+## Rename variable
+trade2<-trade|>rename(iso3num_o=i,iso3num_d=j,year=t)
+
+## Change ctr to reduce computation problem
+ctr<-c("IDN","SGP","VNM","MYS","THA","PHL","USA","CHN","JPN","KOR")
+
+## Kita ulangi gravity2 karena sekarang perlu tahun 2017-2021
+gravity2<-gravity|>filter(year>2016 & year<2022)
+gravity2<-gravity2 |> filter(iso3_o %in%ctr & iso3_d %in% ctr) ## notice the change
+gravity2<-gravity2 |> select(vrb)
+
+## gabung dengan trade2
+
+gabung<-left_join(gravity2,trade2,by=c("year","iso3num_o","iso3num_d"))
+
+```
+
+Check the results with gabung or `View(gabung)`. The most important thing here is that you have to make sure you understand the changes in variations! Now that we have time and HS ($k$), a pair of countries can have multiple observations in different year and different goods. tradeflow_baci will be repeated because this is the total trade, while now we focus on $v$ and $q$ as the $X_{ijpt}$.
+
+Before we go, however, we need to generate our dummies! Remember, we need to make three dummies, $o_{it}$,$d_{jt}$ and $p_{ij}$ (see @eq-3). To do that, we do this:
+
+```{r}
+#| warning: false
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: true
+
+gabung <- gabung |>
+  mutate(ooo=interaction(iso3num_o,year),
+         ddd=interaction(iso3num_d,year),
+         ppp=interaction(iso3num_o,iso3num_d))
+```
+
+You can check again whether it's made. if you do `tibble(gabung)` you will see that we have created our factor variables. Oh yes, do not forget to log non-factors.
+
+```{r}
+#| warning: false
+#| echo: true
+#| code-fold: true
+#| code-line-numbers: true
+
+gabung<-gabung |>
+  mutate(ldist=log(distw_harmonic),
+         lgdpo=log(gdp_o),
+         lgdpd=log(gdp_d),
+         lgdpco=log(gdpcap_o),
+         lgdpcd=log(gdpcap_d),
+         logtrade=log(1+v)) ## note the difference with before
+         
+```
+
+Why don't we show the quick summary statistics?
+
+```{r}
+summary(gabung)
+```
+
+### Regression
+
+```r
+ger1<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
+ger2<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
+ger3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
+ger4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
+```
+
+```{r}
+#| warning: false
+#| echo: false
+#| code-fold: false
+#| code-line-numbers: false
+#| tbl-cap: Simple regression results
+
+## OLS
+ger1<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist)
+ger2<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist+ooo+ddd+ppp)
+## regg<-hdfeppml(data=gravity2,dep="tradeflow_baci",indep=c("lgdpo","lgdpd","lgdpco","lgdpcd","ldist","contig","comcol","comlang_off","fta_wto"))
+ger3<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
+ger4<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","ooo","ddd","ppp"))
+
+
+## PPML
+
+
+ela<- list(
+  "OLS no dum" = ger1,
+  "OLS with dum"  = ger2,
+  "PPML no dum"=ger3,
+  "PPML with dum"=ger4
+)
+
+modelsummary(ela,stars = TRUE,coef_omit = "^(?=.*oo)|^(?=.*dd)|^(?=.*pp)")
+#modelsummary(ela,stars = TRUE,coef_rename=c("htptrad"="own-price",
+#                                            "htpskm"="own-price",
+#                                            "htpskt"="own-price",
+#                                            "htpspm"="own-price"))
+         
+```
+
+As you can see, the difference is apparent when we use HS-6-digit instead of total trade. This is of course the case since now we have wild, uncontrolled variability in the goods characteristics. Indeed, the gravity equation is much better suited predicting total trade where country and year characteristics dominates and industry/goods heterogeneity is absorbed by the total trade. Remember, I use only small number of countries with tons of HS 6 digit[^2]. Moreover, PPML sometimes act funny where zeroes are abundant combined with many dummies. Convergence sometimes unachieved / converge to a very strange parameters.
+
+UI students typically only interested in Indonesia, so country pair dummy and indonesia-time dummy often not needed.
+
+[^2]: I added JPN, KOR, CHN and USA in this version. Previously it was only ASEAN6 and results were pretty funny since within-ASEAN trade isn't so large.
+
+
+## Closing
+
+OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more concentrated.
+
+Running this on Stata is also excellent. I must confess that R is also speedy (these guys making the package is extremely good), but Stata is a bit more intuitive and compute you with important stats as well such as pseudo-R. Nevertheless, now you should be able to do both!
+
+I cannot emphasize enough references in @yotov. Whatever you want to do, a paper prolly covered it already. Learn from them and look for an insight to add. Work with your spv and you'll be fine.
+
+## References {.unnumbered}
+
+
