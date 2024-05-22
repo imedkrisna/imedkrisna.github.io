@@ -2,7 +2,10 @@ project:
   type: website
   output-dir: .
   render:
+    - "*.qmd"
     - "!gravity/"
+    - "!aldi/"
+    - "!latihanR/"
 
 website:
   title: "Krisna 'imed' Gupta"
