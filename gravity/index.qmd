@@ -157,10 +157,6 @@ key2<-key |> filter(country_name%in%ctr)
 gravity2<-gravity2 |> filter(country_id_o %in% key2$country_iso3 & country_id_d %in% key2$country_iso3)
 gravity2<-gravity2 |> select(vrb)
 
-## Change trade units from 1000 USD to billion usd
-gravity2<-gravity2|>
-  mutate(tradeflow=tradeflow_baci/10e6)
-
 ## Make a log versin
 gravity2<-gravity2 |>
   mutate(ldist=log(distw_harmonic),
@@ -168,7 +164,7 @@ gravity2<-gravity2 |>
          lgdpd=log(gdp_d),
          lgdpco=log(gdpcap_o),
          lgdpcd=log(gdpcap_d),
-         logtrade=log(1+tradeflow))
+         logtrade=log(1+tradeflow_baci))
          
 ```
 
@@ -185,8 +181,8 @@ summary(gravity2)
 Let's do 2 types of regression. First we do a regression using a normal ols, and secondly we do ppml.
 
 ```r
-reg1<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
-reg2<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
+reg1<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
+reg2<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
 reg3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
 reg4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
 ```
@@ -204,8 +200,8 @@ You can call each reg's table with `summary(reg1)`.
 reg1<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist)
 reg2<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist+iso3_o+iso3_d)
 ## regg<-hdfeppml(data=gravity2,dep="tradeflow_baci",indep=c("lgdpo","lgdpd","lgdpco","lgdpcd","ldist","contig","comcol","comlang_off","fta_wto"))
-reg3<-ppml(data=gravity2,dependent_variable="tradeflow",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
-reg4<-ppml(data=gravity2,dependent_variable="tradeflow",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
+reg3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
+reg4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
 
 
 ## PPML
@@ -333,10 +329,6 @@ gravity2<-gravity2 |> select(vrb)
 
 gabung<-left_join(gravity2,trade2,by=c("year","iso3num_o","iso3num_d"))
 
-## make v from thousand usd to million usd
-
-gabung<-gabung|>mutate(v=v/1000)
-
 ```
 
 Check the results with gabung or `View(gabung)`. The most important thing here is that you have to make sure you understand the changes in variations! Now that we have time and HS ($k$), a pair of countries can have multiple observations in different year and different goods. tradeflow_baci will be repeated because this is the total trade, while now we focus on $v$ and $q$ as the $X_{ijpt}$.
@@ -383,9 +375,9 @@ summary(gabung)
 
 ```r
 ger1<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
-ger2<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
-ger3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
-ger4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
+ger2<-lm(logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+ooo+ddd+ppp)
+ger3<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
+ger4<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","ooo","ddd","ppp"))
 ```
 
 ```{r}
