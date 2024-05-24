@@ -29,7 +29,7 @@ Next is the preparation you'll need. Make sure you read it carefully and install
 
 ## Preparation {#req}
 
-This workshop is conducted with the R statistical software, RStudio IDE, and "fixest" [@berge;@fixest] package, which documatation can be accessed on [CRAN](https://cran.r-project.org/web/packages/fixest/index.html). Well, of course you can also explore other packages e.g., @cgz and @grav, also Stata has amazing ppmlhdfe package you can use as well if you want, but i'm sticking with fixest for this docs.
+This workshop is conducted with the R statistical software, RStudio IDE, and "fixest" [@berge;@fixest] package, which documatation can be accessed on [CRAN](https://cran.r-project.org/web/packages/fixest/index.html). Well, of course you can also explore other packages e.g., gravity [@grav] and penppml [@grav2], or you have ppmlhdfe in Stata [@cgz]. Let's stick with fixest for now.
 
 Of course you're going to need tidyverse as well, or specifically dplyr package. You want to procure data beforehand too, and I will use CEPII data. let's discuss one by one.
 
@@ -51,7 +51,7 @@ This step requires internet connection, but you'll need to do this only once.
 
 I procure data for this workshop from [CEPII](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele.asp). From their website, CEPII is:
 
-> he CEPII is the leading French center for research and expertise on the world economy. It contributes to the policy making process trough its independent in-depth analyses on international trade, migrations, macroeconomics and finance. The CEPII also produces databases and provides a platform for debate among academics, experts, practitioners, decision makers and other private and public stakeholders.
+> The CEPII is the leading French center for research and expertise on the world economy. It contributes to the policy making process trough its independent in-depth analyses on international trade, migrations, macroeconomics and finance. The CEPII also produces databases and provides a platform for debate among academics, experts, practitioners, decision makers and other private and public stakeholders.
 Founded in 1978, the CEPII is part of the network coordinated by France Strategy, within the Prime Minister's services.
 
 I use their BACI dataset [@baci] and gravity dataset [@gravity]. You can get those from this [link](http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele.asp). BACI is under "international trade" banner while gravity is under "Gravity" banner. Specifically, I downloaded the 2017-2022 version of BACI and for the gravity dataset I downloaded the R version. You can of course download whichever version you like but for the purpose of this workshop maybe its best to stick with the same dataset as I.
