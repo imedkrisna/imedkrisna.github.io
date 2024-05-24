@@ -5,7 +5,7 @@ institute: "Universitas Indonesia"
 date: last-modified
 date-format: long
 bibliography: ref.bib
-abstract: "This page is dedicated to teach students on running the gravity model in R. We uses dataset from CEPII, specifically BACI and the gravity dataset. We run in R and RStudio IDE, and we rely on ppml from the gravity package when demonstrating PPML. We try to replicate Silva and Tenreyro (2006), an excellent paper for an introduction to the log gravity model and PPML."
+abstract: 'This page is dedicated to teach students on running the gravity model in R. We uses dataset from CEPII, specifically BACI and the gravity dataset. We run in R and RStudio IDE, and we rely on fepois() from the "fixest" package when demonstrating PPML. We try to replicate Silva and Tenreyro (2006), an excellent paper for an introduction to the log gravity model and PPML.'
 abstract-title: "abstract"
 format:
   html:
@@ -29,7 +29,9 @@ Next is the preparation you'll need. Make sure you read it carefully and install
 
 ## Preparation {#req}
 
-This workshop is conducted with the R statistical software, RStudio IDE, and gravity [@grav] package. Of course you're going to need tidyverse as well, or specifically dplyr package. You want to procure data beforehand too, and I will use CEPII data. let's discuss one by one.
+This workshop is conducted with the R statistical software, RStudio IDE, and "fixest" [@berge;@fixest] package, which documatation can be accessed on [CRAN](https://cran.r-project.org/web/packages/fixest/index.html). Well, of course you can also explore other packages e.g., @cgz and @grav, also Stata has amazing ppmlhdfe package you can use as well if you want, but i'm sticking with fixest for this docs.
+
+Of course you're going to need tidyverse as well, or specifically dplyr package. You want to procure data beforehand too, and I will use CEPII data. let's discuss one by one.
 
 ### Software
 
@@ -37,10 +39,10 @@ You'd want to use R and RStudio for this. The main reason I use R is because it'
 
 Now onto R. You can procure R and RStudio from Posit's website. Get it [here](https://posit.co/download/rstudio-desktop/). I wrote the guide to install R and RStudio [here](https://www.krisna.or.id/courses/metopel/installr/), so you better check it out. It's written in Indonesian.
 
-After that, you are going to need to install some packages. Follow my step until I told you to do type this on the console `install.packages(c("tidyverse","WDI","readxl","kableExtra"))`. You are going to do the same but you're going to few different stuff. Specifically, you need to add "gravity" and "writexl" on the list. That is, you need to type
+After that, you are going to need to install some packages. Follow my step until I told you to do type this on the console `install.packages(c("tidyverse","WDI","readxl","kableExtra"))`. You are going to do the same but you're going to few different stuff. Specifically, you need to add "fixest", "modelsummary" and "writexl" on the list. That is, you need to type
 
 ```r
-install.packages(c("tidyverse","WDI","readxl","writexl","gravity"))
+install.packages(c("tidyverse","WDI","readxl","writexl","fixest","modelsummary"))
 ```
 
 This step requires internet connection, but you'll need to do this only once.
@@ -81,10 +83,9 @@ for this page I use these packages but you may not need all of them
 #| code-line-numbers: true
 
 library(tidyverse)
-library(penppml) ## no need
 library(writexl)
-library(modelsummary) ## no need
-library(gravity)
+library(modelsummary) 
+library(fixest)
 
 ```
 
@@ -150,11 +151,15 @@ ctr<-c("Albania", "Denmark", "Kenya", "Romania", "Algeria", "Djibouti", "Kiribat
 vrb<-c("iso3num_o","iso3num_d","year","iso3_o", "iso3_d", "distw_harmonic", "contig", "comcol", "comlang_off","gdp_o","gdp_d", "gdpcap_o", "gdpcap_d","fta_wto","tradeflow_baci")
 
 ## keep 2019
-gravity2<-gravity|>filter(year==2019)
+gravity2<-gravity|>filter(year==2019)|> # Keep tahun 2019
+  filter(country_id_o!="IDN.1") |> # IDN.1 ini jaman kolonial, kita drop
+  filter(country_id_d!="IDN.1") |> # IDEM
+  filter(iso3_o!=iso3_d)          # drop obs yang o=d
 
 ## Keep countries in the list
 key2<-key |> filter(country_name%in%ctr)
-gravity2<-gravity2 |> filter(country_id_o %in% key2$country_iso3 & country_id_d %in% key2$country_iso3)
+gravity2<-gravity2 |> filter(country_id_o %in% key2$country_iso3 &
+                               country_id_d %in% key2$country_iso3)
 gravity2<-gravity2 |> select(vrb)
 
 ## Make a log versin
@@ -181,10 +186,14 @@ summary(gravity2)
 Let's do 2 types of regression. First we do a regression using a normal ols, and secondly we do ppml.
 
 ```r
-reg1<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
-reg2<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
-reg3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
-reg4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
+reg1<-feols(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+
+            comcol+comlang_off+fta_wto)
+reg2<-feols(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+
+            comcol+comlang_off+fta_wto+iso3_o+iso3_d)
+reg3<-fepois(data=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+
+             contig+comcol+comlang_off+fta_wto)
+reg4<-fepois(data=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+
+             contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
 ```
 
 You can call each reg's table with `summary(reg1)`.
@@ -197,21 +206,22 @@ You can call each reg's table with `summary(reg1)`.
 #| tbl-cap: Simple regression results
 
 ## OLS
-reg1<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist)
-reg2<-lm(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist+iso3_o+iso3_d)
+reg1<-feols(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist)
+reg2<-feols(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist+iso3_o+iso3_d)
 ## regg<-hdfeppml(data=gravity2,dep="tradeflow_baci",indep=c("lgdpo","lgdpd","lgdpco","lgdpcd","ldist","contig","comcol","comlang_off","fta_wto"))
-reg3<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
-reg4<-ppml(data=gravity2,dependent_variable="tradeflow_baci",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","iso3_o","iso3_d"))
-
+reg3<-fepois(data=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+
+             contig+comcol+comlang_off+fta_wto)
+reg4<-fepois(data=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+
+             contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
 
 ## PPML
 
 
 ela<- list(
-  "OLS no ctr" = reg1,
-  "OLS with ctr"  = reg2,
-  "PPML no ctr"=reg3,
-  "PPML with ctr"=reg4
+  "OLS no dum" = reg1,
+  "OLS w dum"  = reg2,
+  "PPML no dum"=reg3,
+  "PPML w dum"=reg4
 )
 
 modelsummary(ela,stars = TRUE,coef_omit="iso3")
@@ -226,7 +236,7 @@ You can compare results with @st. Note that they don't use fixed effects.
 
 ![source: @st](pic2.png)
 
-By the way, you can save the regression table using `modelsummary()`. don't forget to run `library(modelsummary)` first. You can use xls extension, but also doc. I personally like .html more.
+By the way, you can save the regression table using `modelsummary()`. don't forget to run `library(modelsummary)` first. You can use xlsx extension, but also docx.
 
 ```r
 regtab<- list(
@@ -314,16 +324,23 @@ We know that $i$ in BACI is iso3num_o in gravity, while $j$ in BACI is iso3num_d
 #| code-fold: true
 #| code-line-numbers: true
 
+## Change ctr to reduce computation problem
+ctr<-c("IDN.2","SGP","VNM","MYS","THA","PHL","USA","CHN","JPN","KOR")
+## IDN.2 adalah IDN yang baru yg datanya ada di gravity dataset. coba cek detil
+##di gravity dataset
+
 ## Rename variable
 trade2<-trade|>rename(iso3num_o=i,iso3num_d=j,year=t)
 
-## Change ctr to reduce computation problem
-ctr<-c("IDN","SGP","VNM","MYS","THA","PHL","USA","CHN","JPN","KOR")
-
 ## Kita ulangi gravity2 karena sekarang perlu tahun 2017-2021
 gravity2<-gravity|>filter(year>2016 & year<2022)
-gravity2<-gravity2 |> filter(iso3_o %in%ctr & iso3_d %in% ctr) ## notice the change
+gravity2<-gravity2 |> filter(country_id_o %in%ctr & country_id_d %in% ctr)
+## notice the change
 gravity2<-gravity2 |> select(vrb)
+
+## remove negara yang di luar ctr di BACI
+trade2<-trade2|>filter(iso3num_o%in%gravity2$iso3num_o &
+                         iso3num_d%in%gravity2$iso3num_d)
 
 ## gabung dengan trade2
 
@@ -374,10 +391,14 @@ summary(gabung)
 ### Regression
 
 ```r
-ger1<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto)
-ger2<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+comcol+comlang_off+fta_wto+ooo+ddd+ppp)
-ger3<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
-ger4<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","ooo","ddd","ppp"))
+ger1<-feols(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+            comlang_off+fta_wto+ldist)
+ger2<-feols(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+            comlang_off+fta_wto+ldist+ooo+ddd+ppp)
+ger3<-fepois(data=gabung,v~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+             comlang_off+fta_wto+ldist)
+ger4<-fepois(data=gabung,v~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+             comlang_off+fta_wto+ldist+ooo+ddd+ppp)
 ```
 
 ```{r}
@@ -388,11 +409,15 @@ ger4<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",addition
 #| tbl-cap: Simple regression results
 
 ## OLS
-ger1<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist)
-ger2<-lm(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+comlang_off+fta_wto+ldist+ooo+ddd+ppp)
+ger1<-feols(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+              comlang_off+fta_wto+ldist)
+ger2<-feols(data=gabung,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+              comlang_off+fta_wto+ldist+ooo+ddd+ppp)
 ## regg<-hdfeppml(data=gravity2,dep="tradeflow_baci",indep=c("lgdpo","lgdpd","lgdpco","lgdpcd","ldist","contig","comcol","comlang_off","fta_wto"))
-ger3<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto"))
-ger4<-ppml(data=gabung,dependent_variable="v",distance="distw_harmonic",additional_regressors=c("lgdpo","lgdpd","lgdpco","lgdpcd","contig","comcol","comlang_off","fta_wto","ooo","ddd","ppp"))
+ger3<-fepois(data=gabung,v~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+               comlang_off+fta_wto+ldist)
+ger4<-fepois(data=gabung,v~lgdpo+lgdpd+lgdpco+lgdpcd+contig+comcol+
+               comlang_off+fta_wto+ldist+ooo+ddd+ppp)
 
 
 ## PPML
@@ -415,16 +440,18 @@ modelsummary(ela,stars = TRUE,coef_omit = "^(?=.*oo)|^(?=.*dd)|^(?=.*pp)")
 
 As you can see, the difference is apparent when we use HS-6-digit instead of total trade. This is of course the case since now we have wild, uncontrolled variability in the goods characteristics. Indeed, the gravity equation is much better suited predicting total trade where country and year characteristics dominates and industry/goods heterogeneity is absorbed by the total trade. Remember, I use only small number of countries with tons of HS 6 digit[^2]. Moreover, PPML sometimes act funny where zeroes are abundant combined with many dummies. Convergence sometimes unachieved / converge to a very strange parameters.
 
-UI students typically only interested in Indonesia, so country pair dummy and indonesia-time dummy often not needed.
+UI students typically only interested in Indonesia, so country pair dummy and indonesia-time dummy often not needed. Of course then you can add dummies like sector dummy or HS Chapter dummy.
 
 [^2]: I added JPN, KOR, CHN and USA in this version. Previously it was only ASEAN6 and results were pretty funny since within-ASEAN trade isn't so large.
 
 
 ## Closing
 
-OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more concentrated.
+OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more concentrated. 
 
 Running this on Stata is also excellent. I must confess that R is also speedy (these guys making the package is extremely good), but Stata is a bit more intuitive and compute you with important stats as well such as pseudo-R. Nevertheless, now you should be able to do both!
+
+As you are a student now, I encourage you to explore as much as you can because this is the moment. Once you're a proper adult, you must think more mundane stuff so please value your freedom at this point and explore as much as you can! Go out there make mistakes while you can!
 
 I cannot emphasize enough references in @yotov. Whatever you want to do, a paper prolly covered it already. Learn from them and look for an insight to add. Work with your spv and you'll be fine.
 
