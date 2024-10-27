@@ -1,0 +1,53 @@
+{\rtf1\fs24
+\pard\qc
+Table XX: my amazing regression\par
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx7056\clbrdrt\brdrs\cellx8496\clbrdrt\brdrs\cellx9792\clbrdrt\brdrs\cellx11376\clbrdrt\brdrs\cellx12816
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx7056\cellx8496\cellx9792\cellx11376\cellx12816
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx7056\clbrdrb\brdrs\cellx8496\clbrdrb\brdrs\cellx9792\clbrdrb\brdrs\cellx11376\clbrdrb\brdrs\cellx12816
+\ql VARIABLES\cell\qc OLS\cell\qc FE\cell\qc PPML\cell\qc PPMLHDFE\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx7056\cellx8496\cellx9792\cellx11376\cellx12816
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpo\cell\qc 0.902***\cell\qc 0.0748\cell\qc 0.878***\cell\qc \cell\row
+\ql \cell\qc (0.0118)\cell\qc (0.0716)\cell\qc (0.00756)\cell\qc \cell\row
+\ql lgdpd\cell\qc 0.727***\cell\qc 0.868***\cell\qc 0.758***\cell\qc \cell\row
+\ql \cell\qc (0.0113)\cell\qc (0.0608)\cell\qc (0.00675)\cell\qc \cell\row
+\ql lgdpco\cell\qc -0.184***\cell\qc 0.486***\cell\qc -0.0910***\cell\qc \cell\row
+\ql \cell\qc (0.0149)\cell\qc (0.0779)\cell\qc (0.0118)\cell\qc \cell\row
+\ql lgdpcd\cell\qc -0.161***\cell\qc -0.150**\cell\qc -0.0170**\cell\qc \cell\row
+\ql \cell\qc (0.0148)\cell\qc (0.0682)\cell\qc (0.00741)\cell\qc \cell\row
+\ql ldist\cell\qc -1.266***\cell\qc -1.481\cell\qc -0.698***\cell\qc -0.663***\cell\row
+\ql \cell\qc (0.0297)\cell\qc (1.496)\cell\qc (0.0132)\cell\qc (0.00957)\cell\row
+\ql =1 if origin and destination are contiguous\cell\qc 1.025***\cell\qc \cell\qc 0.123***\cell\qc 0.174***\cell\row
+\ql \cell\qc (0.131)\cell\qc \cell\qc (0.0236)\cell\qc (0.0167)\cell\row
+\ql 1 = Common colonizer post 1945\cell\qc -0.345***\cell\qc \cell\qc 0.478***\cell\qc 0.438***\cell\row
+\ql \cell\qc (0.0736)\cell\qc \cell\qc (0.0650)\cell\qc (0.0433)\cell\row
+\ql 1 = Common official or primary language\cell\qc 0.732***\cell\qc \cell\qc 0.490***\cell\qc 0.286***\cell\row
+\ql \cell\qc (0.0588)\cell\qc \cell\qc (0.0277)\cell\qc (0.0188)\cell\row
+\ql 1=RTA (Source: WTO, 2011)\cell\qc 0.0678***\cell\qc 0.0315\cell\qc 0.160***\cell\qc 0.259***\cell\row
+\ql \cell\qc (0.0247)\cell\qc (0.0252)\cell\qc (0.0256)\cell\qc (0.0200)\cell\row
+\ql =1 if origin and destination are contiguous = o,\cell\qc \cell\qc -\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql 1 = Common colonizer post 1945 = o,\cell\qc \cell\qc -\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql 1 = Common official or primary language = o,\cell\qc \cell\qc -\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpo = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpd = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpco = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpcd = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Constant\cell\qc -9.717***\cell\qc 3.921\cell\qc -12.69***\cell\qc 20.77***\cell\row
+\ql \cell\qc (0.391)\cell\qc (13.09)\cell\qc (0.200)\cell\qc (0.0839)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 227,114\cell\qc 227,114\cell\qc 227,114\cell\qc 227,114\cell\row
+\ql R-squared\cell\qc \cell\qc 0.193\cell\qc \cell\qc \cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx7056\clbrdrb\brdrs\cellx8496\clbrdrb\brdrs\cellx9792\clbrdrb\brdrs\cellx11376\clbrdrb\brdrs\cellx12816
+\ql Number of id\cell\qc 11,819\cell\qc 11,819\cell\qc \cell\qc \cell\row
+\pard\qc
+Robust standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

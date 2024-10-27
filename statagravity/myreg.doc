@@ -1,0 +1,482 @@
+{\rtf1\fs24
+\pard\qc
+Table XX: my amazing regression\par
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx6336\clbrdrt\brdrs\cellx7776\clbrdrt\brdrs\cellx9216\clbrdrt\brdrs\cellx10656\clbrdrt\brdrs\cellx12096
+\ql \cell\qc (1)\cell\qc (2)\cell\qc (3)\cell\qc (4)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx6336\cellx7776\cellx9216\cellx10656\cellx12096
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx6336\clbrdrb\brdrs\cellx7776\clbrdrb\brdrs\cellx9216\clbrdrb\brdrs\cellx10656\clbrdrb\brdrs\cellx12096
+\ql VARIABLES\cell\qc OLS\cell\qc FE\cell\qc PPML\cell\qc PPMLHDFE\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx6336\cellx7776\cellx9216\cellx10656\cellx12096
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpo\cell\qc 1.279***\cell\qc 1.885***\cell\qc 0.937***\cell\qc \cell\row
+\ql \cell\qc (0.0128)\cell\qc (0.110)\cell\qc (0.0280)\cell\qc \cell\row
+\ql lgdpd\cell\qc 0.963***\cell\qc 1.523***\cell\qc 0.812***\cell\qc \cell\row
+\ql \cell\qc (0.0121)\cell\qc (0.109)\cell\qc (0.0290)\cell\qc \cell\row
+\ql lgdpco\cell\qc 0.207***\cell\qc 1.177***\cell\qc 0.00234\cell\qc \cell\row
+\ql \cell\qc (0.0183)\cell\qc (0.176)\cell\qc (0.0401)\cell\qc \cell\row
+\ql lgdpcd\cell\qc 0.0519***\cell\qc -0.0202\cell\qc 0.0224\cell\qc \cell\row
+\ql \cell\qc (0.0178)\cell\qc (0.124)\cell\qc (0.0306)\cell\qc \cell\row
+\ql ldist\cell\qc -1.131***\cell\qc -1.357***\cell\qc -0.599***\cell\qc -0.628***\cell\row
+\ql \cell\qc (0.0331)\cell\qc (0.0367)\cell\qc (0.0549)\cell\qc (0.0398)\cell\row
+\ql =1 if origin and destination are contiguous\cell\qc 0.892***\cell\qc 0.695***\cell\qc 0.112\cell\qc 0.137\cell\row
+\ql \cell\qc (0.149)\cell\qc (0.168)\cell\qc (0.112)\cell\qc (0.0836)\cell\row
+\ql 1 = Common colonizer post 1945\cell\qc 0.540***\cell\qc 0.199**\cell\qc 0.598**\cell\qc 0.630***\cell\row
+\ql \cell\qc (0.0868)\cell\qc (0.0856)\cell\qc (0.254)\cell\qc (0.180)\cell\row
+\ql 1 = Common official or primary language\cell\qc 0.725***\cell\qc 0.688***\cell\qc 0.388***\cell\qc 0.198**\cell\row
+\ql \cell\qc (0.0592)\cell\qc (0.0612)\cell\qc (0.115)\cell\qc (0.0829)\cell\row
+\ql 1=RTA (Source: WTO, 2011)\cell\qc 0.690***\cell\qc 0.541***\cell\qc 0.369***\cell\qc 0.367***\cell\row
+\ql \cell\qc (0.0565)\cell\qc (0.0555)\cell\qc (0.0974)\cell\qc (0.0741)\cell\row
+\ql Destination ISO3 alphabetic = 2, ALB\cell\qc \cell\qc 0.0309\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.329)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 3, ARG\cell\qc \cell\qc -1.816***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.263)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 4, AUS\cell\qc \cell\qc -0.786**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.401)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 5, AUT\cell\qc \cell\qc -1.449***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.331)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 6, BDI\cell\qc \cell\qc 2.043***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.647)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 7, BEN\cell\qc \cell\qc 0.986***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.373)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 8, BFA\cell\qc \cell\qc 0.750*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.391)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 9, BGD\cell\qc \cell\qc -0.921***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.319)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 10, BGR\cell\qc \cell\qc 0.165\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.228)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 11, BHR\cell\qc \cell\qc 0.717**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.286)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 12, BHS\cell\qc \cell\qc 0.375\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.461)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 13, BLZ\cell\qc \cell\qc 2.479***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.515)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 14, BOL\cell\qc \cell\qc -0.528*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.271)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 15, BRA\cell\qc \cell\qc -2.080***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.347)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 16, BRB\cell\qc \cell\qc 1.551***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.446)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 17, BRN\cell\qc \cell\qc 0.947**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.423)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 18, BTN\cell\qc \cell\qc 0.0614\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.585)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 19, CAN\cell\qc \cell\qc -1.299***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.388)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 20, CHE\cell\qc \cell\qc -0.374\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.440)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 21, CHL\cell\qc \cell\qc -0.854***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.264)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 22, CHN\cell\qc \cell\qc -1.734***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.553)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 23, CMR\cell\qc \cell\qc -0.587*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.322)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 24, COL\cell\qc \cell\qc -1.233***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.210)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 25, COM\cell\qc \cell\qc 2.390***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.615)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 26, DEU\cell\qc \cell\qc -1.771***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.460)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 27, DJI\cell\qc \cell\qc 2.617***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.492)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 28, DNK\cell\qc \cell\qc -1.261***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.359)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 29, DZA\cell\qc \cell\qc -1.120***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.250)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 30, ECU\cell\qc \cell\qc -0.689***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.226)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 31, EGY\cell\qc \cell\qc -0.812***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.225)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 32, ESP\cell\qc \cell\qc -0.816**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.355)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 33, ETH\cell\qc \cell\qc -1.106***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.333)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 34, FIN\cell\qc \cell\qc -1.085***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.324)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 35, FJI\cell\qc \cell\qc 1.651***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.429)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 36, FRA\cell\qc \cell\qc -1.391***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.422)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 37, GAB\cell\qc \cell\qc 0.503\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.331)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 38, GBR\cell\qc \cell\qc -1.682***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.427)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 39, GHA\cell\qc \cell\qc 0.437*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.241)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 40, GIN\cell\qc \cell\qc 1.134***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.389)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 41, GMB\cell\qc \cell\qc 3.054***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.576)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 42, GNB\cell\qc \cell\qc 1.633***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.632)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 43, GRC\cell\qc \cell\qc -0.489*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.250)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 44, GTM\cell\qc \cell\qc -0.322\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.240)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 45, GUY\cell\qc \cell\qc 2.171***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.435)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 46, HKG\cell\qc \cell\qc 0.798**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.323)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 47, HND\cell\qc \cell\qc 0.382\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.283)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 48, HTI\cell\qc \cell\qc 0.558\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.384)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 49, HUN\cell\qc \cell\qc -1.476***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.241)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 50, IDN\cell\qc \cell\qc -1.255***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.295)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 51, IND\cell\qc \cell\qc -0.884**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.428)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 52, IRL\cell\qc \cell\qc -1.844***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.385)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 53, IRN\cell\qc \cell\qc -2.706***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.349)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 54, ISL\cell\qc \cell\qc 0.418\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.417)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 55, ISR\cell\qc \cell\qc -1.610***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.328)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 56, ITA\cell\qc \cell\qc -1.221***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.393)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 57, KEN\cell\qc \cell\qc -0.639**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.252)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 58, KHM\cell\qc \cell\qc 0.525*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.314)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 59, KIR\cell\qc \cell\qc 3.983***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.858)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 60, LAO\cell\qc \cell\qc -0.939***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.364)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 61, LBN\cell\qc \cell\qc 0.468**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.227)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 62, LKA\cell\qc \cell\qc -0.205\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.218)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 63, MAR\cell\qc \cell\qc 0.199\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.195)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 64, MDG\cell\qc \cell\qc 0.987**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.440)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 65, MDV\cell\qc \cell\qc 2.082***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.414)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 66, MEX\cell\qc \cell\qc -1.456***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.308)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 67, MLI\cell\qc \cell\qc 1.046***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.382)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 68, MLT\cell\qc \cell\qc 0.631\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.403)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 69, MNG\cell\qc \cell\qc 0.404\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.327)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 70, MOZ\cell\qc \cell\qc 1.820***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.436)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 71, MRT\cell\qc \cell\qc 2.421***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.399)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 72, MUS\cell\qc \cell\qc 1.773***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.339)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 73, MWI\cell\qc \cell\qc 0.382\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.457)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 74, MYS\cell\qc \cell\qc 0.568**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.230)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 75, NCL\cell\qc \cell\qc 1.309***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.491)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 76, NER\cell\qc \cell\qc 0.598\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.449)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 77, NGA\cell\qc \cell\qc -2.078***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.284)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 78, NIC\cell\qc \cell\qc 1.181***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.370)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 79, NLD\cell\qc \cell\qc 0.296\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.370)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 80, NOR\cell\qc \cell\qc -1.134***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.379)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 81, NPL\cell\qc \cell\qc -0.333\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.326)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 82, NZL\cell\qc \cell\qc 0.149\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.306)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 83, OMN\cell\qc \cell\qc -0.223\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.262)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 84, PAK\cell\qc \cell\qc -1.046***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.285)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 85, PAN\cell\qc \cell\qc 0.743***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.254)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 86, PER\cell\qc \cell\qc -1.284***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.228)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 87, PNG\cell\qc \cell\qc -0.335\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.329)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 88, PRY\cell\qc \cell\qc 0.379\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.275)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 89, ROU\cell\qc \cell\qc -1.560***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.230)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 90, RWA\cell\qc \cell\qc 1.045**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.439)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 91, SAU\cell\qc \cell\qc -1.510***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.318)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 92, SDN\cell\qc \cell\qc 0.0951\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.395)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 93, SEN\cell\qc \cell\qc 1.855***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.321)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 94, SGP\cell\qc \cell\qc 1.017***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.364)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 95, SLB\cell\qc \cell\qc 1.720***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.623)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 96, SLE\cell\qc \cell\qc 1.945***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.538)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 97, SLV\cell\qc \cell\qc 0.598**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.266)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 98, SUR\cell\qc \cell\qc 2.552***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.463)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 99, SWE\cell\qc \cell\qc -1.419***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.349)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 100, SYC\cell\qc \cell\qc 2.855***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.542)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 101, TCD\cell\qc \cell\qc -0.412\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.486)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 102, TGO\cell\qc \cell\qc 2.261***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.451)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 103, THA\cell\qc \cell\qc 0.452*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.253)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 104, TTO\cell\qc \cell\qc 0.643*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.336)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 105, TUN\cell\qc \cell\qc 0.457*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.242)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 106, TUR\cell\qc \cell\qc -0.583**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.258)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 107, TZA\cell\qc \cell\qc -0.588**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.298)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 108, UGA\cell\qc \cell\qc -0.0345\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.385)\cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 109, omitted\cell\qc \cell\qc -\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Destination ISO3 alphabetic = 111, omitted\cell\qc \cell\qc -\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 2, ALB\cell\qc \cell\qc 0.475\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.389)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 3, ARG\cell\qc \cell\qc -0.804***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.215)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 4, AUS\cell\qc \cell\qc -4.467***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.501)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 5, AUT\cell\qc \cell\qc -3.351***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.393)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 6, BDI\cell\qc \cell\qc 5.869***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (1.018)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 7, BEN\cell\qc \cell\qc 1.474**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.630)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 8, BFA\cell\qc \cell\qc 2.674***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.667)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 9, BGD\cell\qc \cell\qc 0.0296\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.292)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 10, BGR\cell\qc \cell\qc 0.558***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.171)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 11, BHR\cell\qc \cell\qc -0.641**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.299)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 12, BHS\cell\qc \cell\qc -1.805***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.435)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 13, BLZ\cell\qc \cell\qc 3.447***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.629)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 14, BOL\cell\qc \cell\qc 0.689*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.362)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 15, BRA\cell\qc \cell\qc -1.980***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.278)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 16, BRB\cell\qc \cell\qc -0.0923\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.427)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 17, BRN\cell\qc \cell\qc -2.210***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.377)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 18, BTN\cell\qc \cell\qc 1.451**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.672)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 19, CAN\cell\qc \cell\qc -4.446***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.484)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 20, CHE\cell\qc \cell\qc -4.291***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.524)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 21, CHL\cell\qc \cell\qc -1.369***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.208)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 22, CHN\cell\qc \cell\qc -3.004***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.500)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 23, CMR\cell\qc \cell\qc 0.401\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.490)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 24, COL\cell\qc \cell\qc -1.579***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.166)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 25, COM\cell\qc \cell\qc 3.756***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.836)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 26, DEU\cell\qc \cell\qc -4.947***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.561)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 27, DJI\cell\qc \cell\qc 1.519**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.666)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 28, DNK\cell\qc \cell\qc -2.843***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.407)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 29, DZA\cell\qc \cell\qc -1.765***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.343)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 30, ECU\cell\qc \cell\qc -0.526**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.255)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 31, EGY\cell\qc \cell\qc 0.0591\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.225)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 32, ESP\cell\qc \cell\qc -3.464***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.395)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 33, ETH\cell\qc \cell\qc 0.422\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.482)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 34, FIN\cell\qc \cell\qc -2.814***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.365)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 35, FJI\cell\qc \cell\qc 1.860***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.513)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 36, FRA\cell\qc \cell\qc -4.521***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.512)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 37, GAB\cell\qc \cell\qc -0.0856\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.399)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 38, GBR\cell\qc \cell\qc -5.082***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.519)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 39, GHA\cell\qc \cell\qc 0.610\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.385)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 40, GIN\cell\qc \cell\qc 1.870***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.662)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 41, GMB\cell\qc \cell\qc 4.352***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.871)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 42, GNB\cell\qc \cell\qc 3.669***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.927)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 43, GRC\cell\qc \cell\qc -1.919***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.210)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 44, GTM\cell\qc \cell\qc 0.820***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.272)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 45, GUY\cell\qc \cell\qc 2.145***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.495)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 46, HKG\cell\qc \cell\qc -1.819***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.381)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 47, HND\cell\qc \cell\qc 2.061***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.429)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 48, HTI\cell\qc \cell\qc 1.124*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.573)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 49, HUN\cell\qc \cell\qc -1.153***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.187)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 50, IDN\cell\qc \cell\qc -0.142\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.196)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 51, IND\cell\qc \cell\qc -0.409\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.291)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 52, IRL\cell\qc \cell\qc -3.868***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.466)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 53, IRN\cell\qc \cell\qc -2.677***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.249)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 54, ISL\cell\qc \cell\qc -2.240***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.386)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 55, ISR\cell\qc \cell\qc -4.083***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.403)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 56, ITA\cell\qc \cell\qc -3.902***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.451)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 57, KEN\cell\qc \cell\qc 0.463\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.350)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 58, KHM\cell\qc \cell\qc 4.032***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.505)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 59, KIR\cell\qc \cell\qc 7.348***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (1.104)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 60, LAO\cell\qc \cell\qc 1.467***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.466)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 61, LBN\cell\qc \cell\qc -0.455*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.265)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 62, LKA\cell\qc \cell\qc 1.717***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.269)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 63, MAR\cell\qc \cell\qc 1.337***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.257)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 64, MDG\cell\qc \cell\qc 4.306***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.709)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 65, MDV\cell\qc \cell\qc -0.298\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.480)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 66, MEX\cell\qc \cell\qc -2.608***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.257)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 67, MLI\cell\qc \cell\qc 2.320***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.642)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 68, MLT\cell\qc \cell\qc 0.121\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.329)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 69, MNG\cell\qc \cell\qc 0.00953\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.497)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 70, MOZ\cell\qc \cell\qc 4.917***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.726)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 71, MRT\cell\qc \cell\qc 2.703***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.639)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 72, MUS\cell\qc \cell\qc 1.178***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.338)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 73, MWI\cell\qc \cell\qc 4.017***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.732)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 74, MYS\cell\qc \cell\qc 0.718***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.171)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 75, NCL\cell\qc \cell\qc -2.094***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.415)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 76, NER\cell\qc \cell\qc 2.308***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.729)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 77, NGA\cell\qc \cell\qc -1.621***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.330)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 78, NIC\cell\qc \cell\qc 3.191***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.535)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 79, NLD\cell\qc \cell\qc -2.881***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.452)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 80, NOR\cell\qc \cell\qc -4.192***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.461)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 81, NPL\cell\qc \cell\qc 0.302\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.509)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 82, NZL\cell\qc \cell\qc -1.519***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.333)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 83, OMN\cell\qc \cell\qc -1.045***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.249)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 84, PAK\cell\qc \cell\qc 1.118***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.330)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 85, PAN\cell\qc \cell\qc -1.560***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.300)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 86, PER\cell\qc \cell\qc -0.993***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.178)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 87, PNG\cell\qc \cell\qc 1.044*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.541)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 88, PRY\cell\qc \cell\qc 1.179***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.349)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 89, ROU\cell\qc \cell\qc -1.768***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.185)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 90, RWA\cell\qc \cell\qc 2.785***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.688)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 91, SAU\cell\qc \cell\qc -3.318***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.343)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 92, SDN\cell\qc \cell\qc 0.544\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.622)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 93, SEN\cell\qc \cell\qc 2.862***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.520)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 94, SGP\cell\qc \cell\qc -1.865***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.433)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 95, SLB\cell\qc \cell\qc 3.981***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.788)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 96, SLE\cell\qc \cell\qc 4.570***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.835)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 97, SLV\cell\qc \cell\qc 0.932**\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.380)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 98, SUR\cell\qc \cell\qc 2.021***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.535)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 99, SWE\cell\qc \cell\qc -3.271***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.410)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 100, SYC\cell\qc \cell\qc 3.016***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.561)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 101, TCD\cell\qc \cell\qc 0.328\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.746)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 102, TGO\cell\qc \cell\qc 4.491***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.712)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 103, THA\cell\qc \cell\qc 0.631***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.161)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 104, TTO\cell\qc \cell\qc -0.503\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.403)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 105, TUN\cell\qc \cell\qc 2.039***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.317)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 106, TUR\cell\qc \cell\qc -0.819***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.202)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 107, TZA\cell\qc \cell\qc 0.891*\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.508)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 108, UGA\cell\qc \cell\qc 1.915***\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc (0.577)\cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 109, omitted\cell\qc \cell\qc -\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Origin ISO3 alphabetic = 111, omitted\cell\qc \cell\qc -\cell\qc \cell\qc \cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpo = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpd = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpco = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql lgdpcd = o,\cell\qc \cell\qc \cell\qc \cell\qc -\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Constant\cell\qc -23.47***\cell\qc -44.26***\cell\qc -16.50***\cell\qc 20.80***\cell\row
+\ql \cell\qc (0.440)\cell\qc (3.180)\cell\qc (0.915)\cell\qc (0.351)\cell\row
+\ql \cell\qc \cell\qc \cell\qc \cell\qc \cell\row
+\ql Observations\cell\qc 9,880\cell\qc 9,880\cell\qc 9,880\cell\qc 9,880\cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx6336\clbrdrb\brdrs\cellx7776\clbrdrb\brdrs\cellx9216\clbrdrb\brdrs\cellx10656\clbrdrb\brdrs\cellx12096
+\ql R-squared\cell\qc 0.717\cell\qc 0.803\cell\qc \cell\qc \cell\row
+\pard\qc
+Robust standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.54">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Krisna Gupta">
+<meta name="dcterms.date" content="2024-10-28">
+
+<title>Gravity in Stata: a short workshop – Krisna 'imed' Gupta</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Krisna ‘imed’ Gupta</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../misc.html"> 
+<span class="menu-text">misc</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-introduction" id="toc-sec-introduction" class="nav-link active" data-scroll-target="#sec-introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory">working directory</a></li>
+  </ul></li>
+  <li><a href="#simple-gravity-specification" id="toc-simple-gravity-specification" class="nav-link" data-scroll-target="#simple-gravity-specification">Simple gravity specification</a>
+  <ul class="collapse">
+  <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory">Theory</a></li>
+  <li><a href="#setting-data" id="toc-setting-data" class="nav-link" data-scroll-target="#setting-data">Setting data</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
+  <li><a href="#ppml-hdfe" id="toc-ppml-hdfe" class="nav-link" data-scroll-target="#ppml-hdfe">PPML HDFE</a></li>
+  </ul></li>
+  <li><a href="#product-level-gravity" id="toc-product-level-gravity" class="nav-link" data-scroll-target="#product-level-gravity">Product level gravity</a>
+  <ul class="collapse">
+  <li><a href="#theory-1" id="toc-theory-1" class="nav-link" data-scroll-target="#theory-1">Theory</a></li>
+  <li><a href="#setting-data-1" id="toc-setting-data-1" class="nav-link" data-scroll-target="#setting-data-1">Setting data</a></li>
+  </ul></li>
+  <li><a href="#closing" id="toc-closing" class="nav-link" data-scroll-target="#closing">Closing</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gravity in Stata: a short workshop</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Krisna Gupta </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Universitas Indonesia
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 28, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">abstract</div>
+    This page is dedicated to teach students on running the gravity model in Stata. We uses dataset from CEPII, specifically BACI and the gravity dataset. We rely on ppmlhdfe when demonstrating PPML. We try to replicate Silva and Tenreyro (2006), an excellent paper for an introduction to the log gravity model and PPML.
+  </div>
+</div>
+
+
+</header>
+
+
+<p>For the latest version <a href="https://imedkrisna.github.io/statagravity/">click here.</a></p>
+<section id="sec-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="sec-introduction">Introduction</h2>
+<p>The gravity model is probably the most popular model in international trade. Many uses them. It is very intuitive, great predictive power, and most importantly, tweakable <span class="citation" data-cites="yotov">(<a href="#ref-yotov" role="doc-biblioref">Yotov 2022</a>)</span>. But the even most important is that UI students love them. If you’re doing trade for your thesis, then you probably going to use the gravity model as your backbone.</p>
+<p>This guide is my attempt to help you learn gravity model much easier. The most important part is probably the data and the model itself. What is the minimum things you need in the gravity model, how to arrange the database, run them, and interpret them. You must familiarize yourself with the data and its wrangling (80% of your coding) as well as the main gravity specification to date. I encourage students to pay careful attention to <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span> as it hosts the recent development in the gravity model, a must read if you’re planning to utilize gravity model.</p>
+<p>I use Stata here because most economists I know are still using Stata. I myself quite often do R these days. However, the two language aren’t very different. You can do the same thing on both, but you may need to google a bit. It’s okay to use google a lot. I did as well even right now.</p>
+<p>Oh yeah I also informed you guys know Stata already so I won’t go into too much basic stuff. For example, you probably already know the function <code>gen</code> and <code>egen</code>, also <code>import</code> and <code>cd</code>. Some I will repeat but won’t discuss too much. Also, you’d want to learn how to use <code>outreg2</code>, a package to save regression results.</p>
+<p>By the way, for the R version of gravity, you can consult to <a href="https://imedkrisna.github.io/gravity/">this page</a>.</p>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>I procure data for this workshop from <a href="http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele.asp">CEPII</a>. From their website, CEPII is:</p>
+<blockquote class="blockquote">
+<p>The CEPII is the leading French center for research and expertise on the world economy. It contributes to the policy making process trough its independent in-depth analyses on international trade, migrations, macroeconomics and finance. The CEPII also produces databases and provides a platform for debate among academics, experts, practitioners, decision makers and other private and public stakeholders. Founded in 1978, the CEPII is part of the network coordinated by France Strategy, within the Prime Minister’s services.</p>
+</blockquote>
+<p>I use their BACI dataset <span class="citation" data-cites="baci">(<a href="#ref-baci" role="doc-biblioref">Gaulier and Zignago 2010</a>)</span> and gravity dataset <span class="citation" data-cites="gravity">(<a href="#ref-gravity" role="doc-biblioref">Conte, Cotterlaz, and Mayer 2022</a>)</span>. You can get those from this <a href="http://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele.asp">link</a>. BACI is under “international trade” banner while gravity is under “Gravity” banner. Specifically, I downloaded the 2017-2022 version of BACI and for the gravity dataset I downloaded the R version. You can of course download whichever version you like but for the purpose of this workshop maybe its best to stick with the same dataset as I.</p>
+<p>You can also download from <a href="https://1drv.ms/f/s!AjelszXKKcmskMsKLZRRwRJq1a2MnA?e=xsdpxL">my drive</a>.</p>
+<p>Note that the data here is <strong>extremely large</strong> in size so be mindful. You need hefty internet quota and reasonable speed. Also, you can try opening it with spreadsheet software but unless you have a strong computer, i’d advice against it. Use R instead.</p>
+<p>In the CEPII website you can use various other dataset that may be useful for you. At the same time, there are various other source you can utilise for your actual project that’s not necessarily from CEPII.</p>
+</section>
+<section id="working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="working-directory">working directory</h3>
+<p>If you finished downloading data and installing softwares, you then need to set up a working directory. A working directory is basically a folder where you have all the data and your do file. For now what you want is to have a <strong>folder filled with your downloaded data</strong>. Make sure you know the path to this folder. I tend to use easy path for my projects and move it somewhere else when I finished. If you use github or the likes, it’ll be even nicer because you can actually wipe out your local repo when you’re done.</p>
+<p>All in all, you should have a folder with these stuff in it:</p>
+<p><img src="pic1.png" class="img-fluid"></p>
+<p>Notes about the data country_codes, product_codes and Readme are all for reading BACI. Moreover, you wont need Gravity_V202211.rds because it’s an R file. Take the dta one.</p>
+</section>
+</section>
+<section id="simple-gravity-specification" class="level2">
+<h2 class="anchored" data-anchor-id="simple-gravity-specification">Simple gravity specification</h2>
+<section id="theory" class="level3">
+<h3 class="anchored" data-anchor-id="theory">Theory</h3>
+<p>The earliest (e.g., naive) gravity model taking directly from Newtonian gravity theory looks something like this:</p>
+<p><span id="eq-1"><span class="math display">\[
+X_{ij}=\tilde{G}\frac{Y_iE_j}{T_{ij}^\theta}
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(X_{it}\)</span> is the value of trade flow from country <span class="math inline">\(i\)</span> to country <span class="math inline">\(j\)</span>, <span class="math inline">\(\tilde{G}\)</span> is the gravitational constant (aka our usual constant), <span class="math inline">\(Y_i\)</span> is the output in country <span class="math inline">\(i\)</span> <span class="math inline">\(E_j\)</span> is the value of expenditure in country <span class="math inline">\(j\)</span> and <span class="math inline">\(T_{ij}\)</span> is the total bilateral trade frictions / trade cost between country <span class="math inline">\(i\)</span> and country <span class="math inline">\(j\)</span>.</p>
+<p>There are various other types of gravity equations, but let’s start with a relatively simple one. One of my favorite simple gravity specification is a budget version of <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span> which is taken from <span class="citation" data-cites="avw">Anderson and Wincoop (<a href="#ref-avw" role="doc-biblioref">2003</a>)</span> which looks like this:</p>
+<p><span id="eq-2"><span class="math display">\[
+X_{ij}=\alpha_0 Y_i^{\alpha_1}Y_j^{\alpha_2}D_{ij}^{\alpha_3}e^{\theta_id_i+\theta_jd_j}
+\tag{2}\]</span></span></p>
+<p>where <span class="math inline">\(\alpha_0\)</span> is your <span class="math inline">\(\tilde{G}\)</span>, while <span class="math inline">\(Y\)</span> is the output and expenditure which is proxied with GDP. <span class="math inline">\(D_{ij}\)</span> is the distance between the two countries, which can be generalized as a vector of trade cost measures. Typically we use physical distance but also other types of bilateral trade cost. Lastly, the <span class="math inline">\(d_i\)</span> and <span class="math inline">\(d_j\)</span> is country-specific characteristics.</p>
+<p>There are various variables used in <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span>. log of exporter’s and importer’s GDP and GDP per capita. Various “distance” variables is used as well e.g., physical distance and variables like contiguity, common-language dummy, colonial-tie dummy and free trade agreement dummy.</p>
+<p>Note that our regression consists only of two indices: exporter <span class="math inline">\(i\)</span> and importer <span class="math inline">\(j\)</span>. We are going to use the gravity data I mentioned earlier, slice the dataset to cover only one year chosen arbitrarily (which is 2019), and run <a href="#eq-2" class="quarto-xref">Equation&nbsp;2</a>.</p>
+</section>
+<section id="setting-data" class="level3">
+<h3 class="anchored" data-anchor-id="setting-data">Setting data</h3>
+<p>First of all, let me share you my typical routine at the top:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// preambule</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="kw">more</span> <span class="kw">off</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cd C:\github\statagravity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Change the working directory after cd with your own working directory. sometimes I set logs but sometimes I am too lazy. Anyway, the next is to read our gravity dataset. First of all, we want to filter countries to match <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span>. First we read our country key, then we use it to filter out the gravity data so we only have those countries.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>\\ read <span class="kw">data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> Countries_V202211,<span class="kw">clear</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> country==<span class="st">"Albania"</span> | country == <span class="st">"Denmark"</span> | country == <span class="st">"Kenya"</span> | country == <span class="st">"Romania"</span> | country == <span class="st">"Algeria"</span> | country == <span class="st">"Djibouti"</span> | country == <span class="st">"Kiribati"</span> | country == <span class="st">"Russian Federation"</span> | country == <span class="st">"Angola"</span> | country == <span class="st">"Dominican Rep."</span> | country == <span class="st">"Korea, Rep."</span> | country == <span class="st">"Rwanda"</span> | country == <span class="st">"Argentina"</span> | country == <span class="st">"Ecuador"</span> | country == <span class="st">"Laos"</span> | country == <span class="st">"P. Dem. Rep."</span> | country == <span class="st">"Saudi Arabia"</span> | country == <span class="st">"Australia"</span> | country == <span class="st">"Egypt"</span> | country == <span class="st">"Lebanon"</span> | country == <span class="st">"Senegal"</span> | country == <span class="st">"Austria"</span> | country == <span class="st">"El Salvador"</span> | country == <span class="st">"Madagascar"</span> | country == <span class="st">"Seychelles"</span> | country == <span class="st">"Bahamas"</span> | country == <span class="st">"Eq. Guinea"</span> | country == <span class="st">"Malawi"</span> | country == <span class="st">"Sierra Leone"</span> | country == <span class="st">"Bahrain"</span> | country == <span class="st">"Ethiopia"</span> | country == <span class="st">"Malaysia"</span> | country == <span class="st">"Singapore"</span> | country == <span class="st">"Bangladesh"</span> | country == <span class="st">"Fiji"</span> | country == <span class="st">"Maldives"</span> | country == <span class="st">"Solomon Islands"</span> | country == <span class="st">"Barbados"</span> | country == <span class="st">"Finland"</span> | country == <span class="st">"Mali"</span> | country == <span class="st">"South Africa"</span> | country == <span class="st">"Belgium-Lux."</span> | country == <span class="st">"France"</span> | country == <span class="st">"Malta"</span> | country == <span class="st">"Spain"</span> | country == <span class="st">"Belize"</span> | country == <span class="st">"Gabon"</span> | country == <span class="st">"Mauritania"</span> | country == <span class="st">"Sri Lanka"</span> | country == <span class="st">"Benin"</span> | country == <span class="st">"Gambia"</span> | country == <span class="st">"Mauritius"</span> | country == <span class="st">"St. Kitts and Nevis"</span> | country == <span class="st">"Bhutan"</span> | country == <span class="st">"Germany"</span> | country == <span class="st">"Mexico"</span> | country == <span class="st">"Sudan"</span> | country == <span class="st">"Bolivia"</span> | country == <span class="st">"Ghana"</span> | country == <span class="st">"Mongolia"</span> | country == <span class="st">"Suriname"</span> | country == <span class="st">"Brazil"</span> | country == <span class="st">"Greece"</span> | country == <span class="st">"Morocco"</span> | country == <span class="st">"Sweden"</span> | country == <span class="st">"Brunei"</span> | country == <span class="st">"Guatemala"</span> | country == <span class="st">"Mozambique"</span> | country == <span class="st">"Switzerland"</span> | country == <span class="st">"Bulgaria"</span> | country == <span class="st">"Guinea"</span> | country == <span class="st">"Nepal"</span> | country == <span class="st">"Syrian Arab Rep."</span> | country == <span class="st">"Burkina Faso"</span> | country == <span class="st">"Guinea-Bissau"</span> | country == <span class="st">"Netherlands"</span> | country == <span class="st">"Tanzania"</span> | country == <span class="st">"Burundi"</span> | country == <span class="st">"Guyana"</span> | country == <span class="st">"New Caledonia"</span> | country == <span class="st">"Thailand"</span> | country == <span class="st">"Cambodia"</span> | country == <span class="st">"Haiti"</span> | country == <span class="st">"New Zealand"</span> | country == <span class="st">"Togo"</span> | country == <span class="st">"Cameroon"</span> | country == <span class="st">"Honduras"</span> | country == <span class="st">"Nicaragua"</span> | country == <span class="st">"Trinidad and Tobago"</span> | country == <span class="st">"Canada"</span> | country == <span class="st">"Hong Kong"</span> | country == <span class="st">"Niger"</span> | country == <span class="st">"Tunisia"</span> | country == <span class="st">"Central African Rep."</span> | country == <span class="st">"Hungary"</span> | country == <span class="st">"Nigeria"</span> | country == <span class="st">"Turkey"</span> | country == <span class="st">"Chad"</span> | country == <span class="st">"Iceland"</span> | country == <span class="st">"Norway"</span> | country == <span class="st">"Uganda"</span> | country == <span class="st">"Chile"</span> | country == <span class="st">"India"</span> | country == <span class="st">"Oman"</span> | country == <span class="st">"United Arab Em."</span> | country == <span class="st">"China"</span> | country == <span class="st">"Indonesia"</span> | country == <span class="st">"Pakistan"</span> | country == <span class="st">"United Kingdom"</span> | country == <span class="st">"Colombia"</span> | country == <span class="st">"Iran"</span> | country == <span class="st">"Panama"</span> | country == <span class="st">"United States"</span> | country == <span class="st">"Comoros"</span> | country == <span class="st">"Ireland"</span> | country == <span class="st">"Papua New Guinea"</span> | country == <span class="st">"Uruguay"</span> | country == <span class="st">"Congo Dem. Rep."</span> | country == <span class="st">"Israel"</span> | country == <span class="st">"Paraguay"</span> | country == <span class="st">"Venezuela"</span> | country == <span class="st">"Congo Rep."</span> | country == <span class="st">"Italy"</span> | country == <span class="st">"Peru"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">//// There's certainly a better way to do the above. maybe next time.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">/// we need to select destination and origin in two step</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> iso3_o=iso3 <span class="co">// select origin countries</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ctr,<span class="kw">replace</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> Gravity_V202211,<span class="kw">clear</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 iso3_o <span class="kw">using</span> ctr</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="dt">_merge</span>==3</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="dt">_merge</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> grav,<span class="kw">replace</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ctr,<span class="kw">clear</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> iso3_o iso3_d  <span class="co">// now select destination country</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ctr,<span class="kw">replace</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> grav,<span class="kw">clear</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 iso3_d <span class="kw">using</span> ctr</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="dt">_merge</span>==3</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="dt">_merge</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> grav,<span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The above is preparation for the gravity dataset we’re doing. It is complicated but I put comments to help. This kind of manipulation would be what you will do a lot.</p>
+<p>The first thing to do is <code>sum</code> your data to see what variables you have and its descriptive statistics. Descriptive statistics helps with visualizing the overall data in your head, and typically a must-do when you write your thesis. Some put it in chapter 3, some in 4. You can use <code>ds</code> if you’d like to see variable names.</p>
+<p>If you ran either <code>sum</code> or <code>ds</code>, you will see that the column names are so plenty. Consult to the CEPII website or <span class="citation" data-cites="gravity">Conte, Cotterlaz, and Mayer (<a href="#ref-gravity" role="doc-biblioref">2022</a>)</span> to learn more. We will only use some of them, so we will filter these data to make it more concise. Specifically, we will (1) remove some countries, (2) remove non-2019, and (3) remove variables we are not using.</p>
+<p>For variables, we will keep iso3_o, iso3_d, distw_harmonic, contig, comcol, comlang_off,gdp_o,gdp_d, gdpcap_o, gdpcap_d,fta_wto. Note that o means origin / exporter and d means destination / importer. We then add log version of variables.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/// Now we keep variable we need</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> iso3num_o iso3num_d <span class="fu">year</span> iso3_o iso3_d distw_harmonic contig comcol comlang_off gdp_o gdp_d gdpcap_o gdpcap_d fta_wto tradeflow_baci</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">/// add log version</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> ldist=<span class="fu">log</span>(distw_harmonic)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpo=<span class="fu">log</span>(gdp_o)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpd=<span class="fu">log</span>(gdp_d)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpco=<span class="fu">log</span>(gdpcap_o)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpcd=<span class="fu">log</span>(gdpcap_d)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> logtrade=<span class="fu">log</span>(1+tradeflow_baci)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> grav,<span class="kw">replace</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>         </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>you can quickly <code>sum</code> our new grav.</p>
+</section>
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<p>Let’s do 2 types of regression. First we do a regression using a normal ols, and secondly we do ppml.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>reg1&lt;-feols(<span class="kw">data</span>=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            comcol+comlang_off+fta_wto)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>reg2&lt;-feols(<span class="kw">data</span>=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            comcol+comlang_off+fta_wto+iso3_o+iso3_d)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">reg3</span>&lt;-fepois(<span class="kw">data</span>=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>             contig+comcol+comlang_off+fta_wto)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>reg4&lt;-fepois(<span class="kw">data</span>=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>             contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can call each reg’s table with <code>summary(reg1)</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// regression</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">/// generate factor variable first</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">/// we keep 1 year for now, you can experiment later</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="fu">year</span>==2019</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto iiso3_d iiso3_o</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(iso3_d iso3_o)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML FE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Results are saved in your working directory as myreg.doc. It should look like this:</p>
+<iframe src="https://1drv.ms/w/s!AjelszXKKcmskZg6Hv6bJ6VZbhvIlQ?embed=1&amp;em=2" width="800" height="600" frameborder="0" scrolling="no">
+</iframe>
+<p>You can compare results with <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span>. Note that they don’t use fixed effects. Remember, PPML interpretation is percent change for logged independent variable and <span class="math inline">\(e^{\beta}\)</span> magnitude (around <span class="math inline">\(\beta \times 100\%\)</span>) for level independent variable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic2.png" class="img-fluid figure-img"></p>
+<figcaption>source: <span class="citation" data-cites="st">Silva and Tenreyro (<a href="#ref-st" role="doc-biblioref">2006</a>)</span></figcaption>
+</figure>
+</div>
+</section>
+<section id="ppml-hdfe" class="level3">
+<h3 class="anchored" data-anchor-id="ppml-hdfe">PPML HDFE</h3>
+<p>Here I show a multiyear version of the regression. Instead of keep year at 2019, we use all observation.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> grav,<span class="kw">clear</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> contig!=. <span class="co">//drop multi input</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> id=<span class="fu">group</span>(iso3_o iso3_d)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>xtset id <span class="fu">year</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto, <span class="fu">r</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">fe</span> <span class="fu">r</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(i.iiso3_d#i.<span class="fu">year</span> i.iiso3_o#year) <span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPMLHDFE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<iframe src="https://1drv.ms/w/s!AjelszXKKcmskZg9GuyN_pkWljFIvA?embed=1&amp;em=2" width="800" height="600" frameborder="0" scrolling="no">
+</iframe>
+</section>
+</section>
+<section id="product-level-gravity" class="level2">
+<h2 class="anchored" data-anchor-id="product-level-gravity">Product level gravity</h2>
+<section id="theory-1" class="level3">
+<h3 class="anchored" data-anchor-id="theory-1">Theory</h3>
+<p>We then proceed to a higher-dimension trade data which you may be interested in. In the field, UI students often interested largely in Indonesian affairs. That is, we are not interested so much in the bilateral flow of all countries, but only on Indonesia. However, we often use more granular dimension than just exporter/importer. Often times we use indices like time, commodities or industries, or even firms (shamelessly inserting my paper here <span class="citation" data-cites="gupta">Gupta (<a href="#ref-gupta" role="doc-biblioref">2023</a>)</span>).</p>
+<p>Now, if you are planning to do these kinds of studies, then you are going to need to tackle higher degree dataset and merging the gravity variables. Most often you can get these variables from <a href="https://databank.worldbank.org/source/world-development-indicators">World Development Indicators</a> but CEPII is ok for now (note the main problem of CEPII is its timeliness).</p>
+<p>The theory isn’t so different compared to our previous gravity model. What we want is an additional indices. We are going to estimate something similar as <a href="#eq-2" class="quarto-xref">Equation&nbsp;2</a> but with more indices. We need to care about multilateral resistance (MR) and we can use dummies since we now have more variations from indices like time and HS code.</p>
+<p>According to <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>, we need at least 3 dummies to run a multi-country, multi-time and multi-goods/sectors<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We need to have exporter-time dummy, importer-time dummy and country-pair dummy. We need to construct this first. Note that these dummies will likely absorb some of your variables like distance (consistant between pair across time, typically).</p>
+<p>So we will do the HS,time varying version of <a href="#eq-2" class="quarto-xref">Equation&nbsp;2</a>:</p>
+<p><span id="eq-3"><span class="math display">\[
+X_{ijpt}=\alpha_0 Y_{it}^{\alpha_1}Y_{jt}^{\alpha_2}D_{ijpt}^{\alpha_3}e^{\theta_1o_{it}+\theta_2d_{jt}+\theta_3p_{ij}}
+\tag{3}\]</span></span></p>
+</section>
+<section id="setting-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="setting-data-1">Setting data</h3>
+<p>Maybe later guys. Check out the R version if you wanna.</p>
+</section>
+</section>
+<section id="closing" class="level2">
+<h2 class="anchored" data-anchor-id="closing">Closing</h2>
+<p>OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more concentrated.</p>
+<p>Running this on R is also excellent. I must confess that R is also speedy (these guys making the package is extremely good), but Stata is a bit more intuitive and compute you with important stats as well such as pseudo-R. Nevertheless, now you should be able to do both!</p>
+<p>As you are a student now, I encourage you to explore as much as you can because this is the moment. Once you’re a proper adult, you must think more mundane stuff so please value your freedom at this point and explore as much as you can! Go out there make mistakes while you can!</p>
+<p>I cannot emphasize enough references in <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>. Whatever you want to do, a paper prolly covered it already. Learn from them and look for an insight to add. Work with your spv and you’ll be fine.</p>
+</section>
+<section id="references" class="level2 unnumbered">
+
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-avw" class="csl-entry" role="listitem">
+Anderson, James E., and Eric van Wincoop. 2003. <span>“Gravity with Gravitas: A Solution to the Border Puzzle.”</span> Journal Article. <em>The American Economic Review</em> 93 (1): 24.
+</div>
+<div id="ref-gravity" class="csl-entry" role="listitem">
+Conte, Madallena, Pierre Cotterlaz, and Thierry Mayer. 2022. <span>“The CEPII Gravity Database.”</span> Working Papers 2022-05. CEPII. <a href="http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726">http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726</a>.
+</div>
+<div id="ref-baci" class="csl-entry" role="listitem">
+Gaulier, Guillaume, and Soledad Zignago. 2010. <span>“BACI: International Trade Database at the Product-Level. The 1994-2007 Version.”</span> Working Papers 2010-23. CEPII. <a href="http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726">http://www.cepii.fr/CEPII/fr/publications/wp/abstract.asp?NoDoc=2726</a>.
+</div>
+<div id="ref-gupta" class="csl-entry" role="listitem">
+Gupta, Krisna. 2023. <span>“The Heterogeneous Impact of Tariffs and Ntms on Total Factor Productivity for Indonesian Firms.”</span> Journal Article. <em>Bulletin of Indonesian Economic Studies</em> 59 (2): 269–300. <a href="https://doi.org/10.1080/00074918.2021.2016613">https://doi.org/10.1080/00074918.2021.2016613</a>.
+</div>
+<div id="ref-st" class="csl-entry" role="listitem">
+Silva, Santos, and Silvana Tenreyro. 2006. <span>“The Log of Gravity.”</span> Journal Article. <em>The Review of Economics and Statistics</em> 88 (4): 19.
+</div>
+<div id="ref-yotov" class="csl-entry" role="listitem">
+Yotov, Yoto. 2022. <span>“Gravity at Sixty: The Workhorse Model of Trade.”</span> Journal Article. <em>CESifo Working Papers</em> 9584. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4037001">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4037001</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>unless you have domestic trade data which we typically don’t. If you do, then there’s borders dummy. More on <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
