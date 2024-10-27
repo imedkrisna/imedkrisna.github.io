@@ -385,29 +385,20 @@ X_{ij}=\alpha_0 Y_i^{\alpha_1}Y_j^{\alpha_2}D_{ij}^{\alpha_3}e^{\theta_id_i+\the
 <section id="regression" class="level3">
 <h3 class="anchored" data-anchor-id="regression">Regression</h3>
 <p>Let’s do 2 types of regression. First we do a regression using a normal ols, and secondly we do ppml.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>reg1&lt;-feols(<span class="kw">data</span>=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            comcol+comlang_off+fta_wto)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>reg2&lt;-feols(<span class="kw">data</span>=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            comcol+comlang_off+fta_wto+iso3_o+iso3_d)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">reg3</span>&lt;-fepois(<span class="kw">data</span>=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>             contig+comcol+comlang_off+fta_wto)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>reg4&lt;-fepois(<span class="kw">data</span>=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>             contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can call each reg’s table with <code>summary(reg1)</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// regression</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">/// generate factor variable first</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">/// we keep 1 year for now, you can experiment later</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="fu">year</span>==2019</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto iiso3_d iiso3_o</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(iso3_d iso3_o)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML FE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// regression</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">/// generate factor variable first</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">/// we keep 1 year for now, you can experiment later</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="fu">year</span>==2019</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto iiso3_d iiso3_o</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(iso3_d iso3_o)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML FE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Results are saved in your working directory as myreg.doc. It should look like this:</p>
 <iframe src="https://1drv.ms/w/s!AjelszXKKcmskZg6Hv6bJ6VZbhvIlQ?embed=1&amp;em=2" width="800" height="600" frameborder="0" scrolling="no">
 </iframe>
@@ -422,22 +413,23 @@ X_{ij}=\alpha_0 Y_i^{\alpha_1}Y_j^{\alpha_2}D_{ij}^{\alpha_3}e^{\theta_id_i+\the
 <section id="ppml-hdfe" class="level3">
 <h3 class="anchored" data-anchor-id="ppml-hdfe">PPML HDFE</h3>
 <p>Here I show a multiyear version of the regression. Instead of keep year at 2019, we use all observation.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> grav,<span class="kw">clear</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> contig!=. <span class="co">//drop multi input</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> id=<span class="fu">group</span>(iso3_o iso3_d)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>xtset id <span class="fu">year</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto, <span class="fu">r</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">fe</span> <span class="fu">r</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">vce</span>(<span class="kw">robust</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(i.iiso3_d#i.<span class="fu">year</span> i.iiso3_o#year) <span class="kw">vce</span>(<span class="kw">robust</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPMLHDFE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We use exporter-year fixed effect and importer-year fixed effect in this exercise, following <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>. In the PPMLHDFE, sometimes you’d see inability for the model to converge, which is quite normal in PPML. The more fixed effect you add, the more likely it is to not converge.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> grav,<span class="kw">clear</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> contig!=. <span class="co">//drop multi input</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> id=<span class="fu">group</span>(iso3_o iso3_d)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>xtset id <span class="fu">year</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto, <span class="fu">r</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">fe</span> <span class="fu">r</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(i.iiso3_d#i.<span class="fu">year</span> i.iiso3_o#year) <span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPMLHDFE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <iframe src="https://1drv.ms/w/s!AjelszXKKcmskZg9GuyN_pkWljFIvA?embed=1&amp;em=2" width="800" height="600" frameborder="0" scrolling="no">
 </iframe>
 </section>
@@ -462,7 +454,8 @@ X_{ijpt}=\alpha_0 Y_{it}^{\alpha_1}Y_{jt}^{\alpha_2}D_{ijpt}^{\alpha_3}e^{\theta
 </section>
 <section id="closing" class="level2">
 <h2 class="anchored" data-anchor-id="closing">Closing</h2>
-<p>OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more concentrated.</p>
+<p>OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more specific on some issues.</p>
+<p>Of course typically we want to add more trade cost variables, comparative advantage variable and other types of policy variables. For example, export ban dummy, subsidy variable in certain sector, anti-dumping, etc. While you’d do various other variables, you’d want these variables presented in this class at the minimum.</p>
 <p>Running this on R is also excellent. I must confess that R is also speedy (these guys making the package is extremely good), but Stata is a bit more intuitive and compute you with important stats as well such as pseudo-R. Nevertheless, now you should be able to do both!</p>
 <p>As you are a student now, I encourage you to explore as much as you can because this is the moment. Once you’re a proper adult, you must think more mundane stuff so please value your freedom at this point and explore as much as you can! Go out there make mistakes while you can!</p>
 <p>I cannot emphasize enough references in <span class="citation" data-cites="yotov">Yotov (<a href="#ref-yotov" role="doc-biblioref">2022</a>)</span>. Whatever you want to do, a paper prolly covered it already. Learn from them and look for an insight to add. Work with your spv and you’ll be fine.</p>

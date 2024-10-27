@@ -157,18 +157,6 @@ you can quickly `sum` our new grav.
 
 Let's do 2 types of regression. First we do a regression using a normal ols, and secondly we do ppml.
 
-```stata
-reg1<-feols(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+
-            comcol+comlang_off+fta_wto)
-reg2<-feols(data=gravity2,logtrade~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+contig+
-            comcol+comlang_off+fta_wto+iso3_o+iso3_d)
-reg3<-fepois(data=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+
-             contig+comcol+comlang_off+fta_wto)
-reg4<-fepois(data=gravity2,tradeflow_baci~lgdpo+lgdpd+lgdpco+lgdpcd+ldist+
-             contig+comcol+comlang_off+fta_wto+iso3_o+iso3_d)
-```
-
-You can call each reg's table with `summary(reg1)`.
 
 ```stata
 // regression
@@ -199,6 +187,8 @@ You can compare results with @st. Note that they don't use fixed effects. Rememb
 ### PPML HDFE
 
 Here I show a multiyear version of the regression. Instead of keep year at 2019, we use all observation.
+
+We use exporter-year fixed effect and importer-year fixed effect in this exercise, following @yotov. In the PPMLHDFE, sometimes you'd see inability for the model to converge, which is quite normal in PPML. The more fixed effect you add, the more likely it is to not converge. 
 
 ```stata
 clear all
@@ -248,7 +238,9 @@ Maybe later guys. Check out the R version if you wanna.
 
 ## Closing
 
-OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more concentrated. 
+OKay now you are ready to run regression yourself. Try to replicate what I do here and you prolly finished 50% of your thesis. You then can work to update this with your own hypothesis, adding more variable and more specific on some issues.
+
+Of course typically we want to add more trade cost variables, comparative advantage variable and other types of policy variables. For example, export ban dummy, subsidy variable in certain sector, anti-dumping, etc. While you'd do various other variables, you'd want these variables presented in this class at the minimum.
 
 Running this on R is also excellent. I must confess that R is also speedy (these guys making the package is extremely good), but Stata is a bit more intuitive and compute you with important stats as well such as pseudo-R. Nevertheless, now you should be able to do both!
 
