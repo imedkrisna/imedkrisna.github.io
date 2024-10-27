@@ -11,3 +11,5 @@ Some of my workshop in universities and other occasions.
 - [Latihan R (Bahasa Indonesia)](/latihanR)
 
 - [Gravity in R](/gravity)
+
+- [Gravity in Stata](/statagravity)
