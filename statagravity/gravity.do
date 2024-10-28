@@ -142,9 +142,13 @@ egen id=group(iso3_d iso3_o k) // grouping all non-time index
 xtset id year
 
 xtreg lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,r
+outreg2 using myreg3.doc, replace label ctitle(OLS) title(Table XX: my amazing regression)
 xtreg lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,fe r
+outreg2 using myreg3.doc, append label ctitle(FE)
 ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,vce(robust)
-ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,abs(i.iso3_d#year) vce(robust)
+outreg2 using myreg3.doc, append label ctitle(PPML)
+ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,abs(i.iiso3_d#year i.iiso3_o#year) vce(robust)
+outreg2 using myreg3.doc, append label ctitle(PPMLHDFE)
 
 
 
