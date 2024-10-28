@@ -227,6 +227,7 @@ window.Quarto = {
   <li><a href="#setting-data-1" id="toc-setting-data-1" class="nav-link" data-scroll-target="#setting-data-1">Setting data</a></li>
   <li><a href="#regression-1" id="toc-regression-1" class="nav-link" data-scroll-target="#regression-1">Regression</a></li>
   </ul></li>
+  <li><a href="#end-result" id="toc-end-result" class="nav-link" data-scroll-target="#end-result">End result</a></li>
   <li><a href="#closing" id="toc-closing" class="nav-link" data-scroll-target="#closing">Closing</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -569,6 +570,162 @@ X_{ijpt}=\alpha_0 Y_{it}^{\alpha_1}Y_{jt}^{\alpha_2}D_{ijpt}^{\alpha_3}e^{\theta
 <p>HS-related gravity typically is used when we want to regress certain goods in certain countries. Of course if you need to run multi-HS goods, you’re going to need various controls (e.g., industry or HS fixed effect). As you can see, I only use exporter-year and importer-year FE, which isn’t enough to control all possible non-observed heterogeneity.</p>
 <p>You might notice how long it took for the whole process to run. We have very long time to read data and run the regression algorithm. This is due to the size of our gravity dataset. Stata (and R and python for that matter) is, to my understanding, an optimisation for ease to code and speed. Remember, our main goal is TO UNDERSTAND the results. If you know how to code an algorithm, that’s cool. But as an economist, understanding economic phenomenon and inferring the results is arguably more important.</p>
 </section>
+</section>
+<section id="end-result" class="level2">
+<h2 class="anchored" data-anchor-id="end-result">End result</h2>
+<p>The full do file look like this</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="kw">more</span> <span class="kw">off</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>cd C:\github\imedkrisna.github.io\statagravity</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Data preparation</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">/// pick countries as in Silva &amp; Tenreyro (2006)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> Countries_V202211,<span class="kw">clear</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> country==<span class="st">"Albania"</span> | country == <span class="st">"Denmark"</span> | country == <span class="st">"Kenya"</span> | country == <span class="st">"Romania"</span> | country == <span class="st">"Algeria"</span> | country == <span class="st">"Djibouti"</span> | country == <span class="st">"Kiribati"</span> | country == <span class="st">"Russian Federation"</span> | country == <span class="st">"Angola"</span> | country == <span class="st">"Dominican Rep."</span> | country == <span class="st">"Korea, Rep."</span> | country == <span class="st">"Rwanda"</span> | country == <span class="st">"Argentina"</span> | country == <span class="st">"Ecuador"</span> | country == <span class="st">"Laos"</span> | country == <span class="st">"P. Dem. Rep."</span> | country == <span class="st">"Saudi Arabia"</span> | country == <span class="st">"Australia"</span> | country == <span class="st">"Egypt"</span> | country == <span class="st">"Lebanon"</span> | country == <span class="st">"Senegal"</span> | country == <span class="st">"Austria"</span> | country == <span class="st">"El Salvador"</span> | country == <span class="st">"Madagascar"</span> | country == <span class="st">"Seychelles"</span> | country == <span class="st">"Bahamas"</span> | country == <span class="st">"Eq. Guinea"</span> | country == <span class="st">"Malawi"</span> | country == <span class="st">"Sierra Leone"</span> | country == <span class="st">"Bahrain"</span> | country == <span class="st">"Ethiopia"</span> | country == <span class="st">"Malaysia"</span> | country == <span class="st">"Singapore"</span> | country == <span class="st">"Bangladesh"</span> | country == <span class="st">"Fiji"</span> | country == <span class="st">"Maldives"</span> | country == <span class="st">"Solomon Islands"</span> | country == <span class="st">"Barbados"</span> | country == <span class="st">"Finland"</span> | country == <span class="st">"Mali"</span> | country == <span class="st">"South Africa"</span> | country == <span class="st">"Belgium-Lux."</span> | country == <span class="st">"France"</span> | country == <span class="st">"Malta"</span> | country == <span class="st">"Spain"</span> | country == <span class="st">"Belize"</span> | country == <span class="st">"Gabon"</span> | country == <span class="st">"Mauritania"</span> | country == <span class="st">"Sri Lanka"</span> | country == <span class="st">"Benin"</span> | country == <span class="st">"Gambia"</span> | country == <span class="st">"Mauritius"</span> | country == <span class="st">"St. Kitts and Nevis"</span> | country == <span class="st">"Bhutan"</span> | country == <span class="st">"Germany"</span> | country == <span class="st">"Mexico"</span> | country == <span class="st">"Sudan"</span> | country == <span class="st">"Bolivia"</span> | country == <span class="st">"Ghana"</span> | country == <span class="st">"Mongolia"</span> | country == <span class="st">"Suriname"</span> | country == <span class="st">"Brazil"</span> | country == <span class="st">"Greece"</span> | country == <span class="st">"Morocco"</span> | country == <span class="st">"Sweden"</span> | country == <span class="st">"Brunei"</span> | country == <span class="st">"Guatemala"</span> | country == <span class="st">"Mozambique"</span> | country == <span class="st">"Switzerland"</span> | country == <span class="st">"Bulgaria"</span> | country == <span class="st">"Guinea"</span> | country == <span class="st">"Nepal"</span> | country == <span class="st">"Syrian Arab Rep."</span> | country == <span class="st">"Burkina Faso"</span> | country == <span class="st">"Guinea-Bissau"</span> | country == <span class="st">"Netherlands"</span> | country == <span class="st">"Tanzania"</span> | country == <span class="st">"Burundi"</span> | country == <span class="st">"Guyana"</span> | country == <span class="st">"New Caledonia"</span> | country == <span class="st">"Thailand"</span> | country == <span class="st">"Cambodia"</span> | country == <span class="st">"Haiti"</span> | country == <span class="st">"New Zealand"</span> | country == <span class="st">"Togo"</span> | country == <span class="st">"Cameroon"</span> | country == <span class="st">"Honduras"</span> | country == <span class="st">"Nicaragua"</span> | country == <span class="st">"Trinidad and Tobago"</span> | country == <span class="st">"Canada"</span> | country == <span class="st">"Hong Kong"</span> | country == <span class="st">"Niger"</span> | country == <span class="st">"Tunisia"</span> | country == <span class="st">"Central African Rep."</span> | country == <span class="st">"Hungary"</span> | country == <span class="st">"Nigeria"</span> | country == <span class="st">"Turkey"</span> | country == <span class="st">"Chad"</span> | country == <span class="st">"Iceland"</span> | country == <span class="st">"Norway"</span> | country == <span class="st">"Uganda"</span> | country == <span class="st">"Chile"</span> | country == <span class="st">"India"</span> | country == <span class="st">"Oman"</span> | country == <span class="st">"United Arab Em."</span> | country == <span class="st">"China"</span> | country == <span class="st">"Indonesia"</span> | country == <span class="st">"Pakistan"</span> | country == <span class="st">"United Kingdom"</span> | country == <span class="st">"Colombia"</span> | country == <span class="st">"Iran"</span> | country == <span class="st">"Panama"</span> | country == <span class="st">"United States"</span> | country == <span class="st">"Comoros"</span> | country == <span class="st">"Ireland"</span> | country == <span class="st">"Papua New Guinea"</span> | country == <span class="st">"Uruguay"</span> | country == <span class="st">"Congo Dem. Rep."</span> | country == <span class="st">"Israel"</span> | country == <span class="st">"Paraguay"</span> | country == <span class="st">"Venezuela"</span> | country == <span class="st">"Congo Rep."</span> | country == <span class="st">"Italy"</span> | country == <span class="st">"Peru"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">//// There's certainly a better way to do the above. maybe next time.</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">/// we need to select destination and origin in two step</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> iso3_o=iso3 <span class="co">// select origin countries</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ctr,<span class="kw">replace</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> Gravity_V202211,<span class="kw">clear</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 iso3_o <span class="kw">using</span> ctr <span class="co">// merge is your friend. gonna do this a lot</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="dt">_merge</span>==3</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="dt">_merge</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> grav,<span class="kw">replace</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ctr,<span class="kw">clear</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> iso3_o iso3_d  <span class="co">// now select destination country</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ctr,<span class="kw">replace</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> grav,<span class="kw">clear</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 iso3_d <span class="kw">using</span> ctr</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="dt">_merge</span>==3</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="dt">_merge</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co">/// Now we keep variable we need</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> iso3num_o iso3num_d <span class="fu">year</span> iso3_o iso3_d distw_harmonic contig comcol comlang_off gdp_o gdp_d gdpcap_o gdpcap_d fta_wto tradeflow_baci</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> grav,<span class="kw">replace</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co">/// add log version</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> ldist=<span class="fu">log</span>(distw_harmonic)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpo=<span class="fu">log</span>(gdp_o)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpd=<span class="fu">log</span>(gdp_d)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpco=<span class="fu">log</span>(gdpcap_o)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lgdpcd=<span class="fu">log</span>(gdpcap_d)</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> logtrade=<span class="fu">log</span>(1+tradeflow_baci)</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> contig!=. <span class="co">//drop multi input</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> grav,<span class="kw">replace</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co">// regression</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> grav,<span class="kw">clear</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="co">/// try one year</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="fu">year</span>==2019</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co">/// set up encode for dummy country</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto, <span class="fu">r</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="kw">reg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto i.iiso3_d i.iiso3_o, <span class="fu">r</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(iso3_d iso3_o) <span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPMLHDFE)</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="co">/// try multi year, thus panel</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="co">/// since 2 dimension, generate group that's not year</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> grav,<span class="kw">clear</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d)</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o)</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> id=<span class="fu">group</span>(iso3_o iso3_d)</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>xtset id <span class="fu">year</span></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto, <span class="fu">r</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">fe</span> <span class="fu">r</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,<span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(i.iiso3_d#i.<span class="fu">year</span> i.iiso3_o#year) <span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg2.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPMLHDFE)</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a><span class="co">// BACI</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="co">// combine into 1 file</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2017_V202401b.csv"</span>,numericcols(6) <span class="co">// for some reason my stata thought q is str so i had to change it into float by using numericcols</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2017,<span class="kw">replace</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2018_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2018,<span class="kw">replace</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2019_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2019,<span class="kw">replace</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2020_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2020,<span class="kw">replace</span></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2021_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2021,<span class="kw">replace</span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2022_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2022,<span class="kw">replace</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a><span class="co">// appending</span></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> baci2017,<span class="kw">clear</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2018</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2019</span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2020</span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2021</span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2022</span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci,<span class="kw">replace</span> <span class="co">// the complete baci</span></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a><span class="co">// remove individual files to save space</span></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>rm baci2017.dta  </span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>rm baci2018.dta </span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>rm baci2019.dta</span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>rm baci2020.dta </span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>rm baci2021.dta </span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>rm baci2022.dta</span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="co">/// merge baci with grav</span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="co">/// rename to match key</span></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> t <span class="fu">year</span></span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> i iso3num_o</span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> j iso3num_d</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a><span class="co">/// merging</span></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 <span class="fu">year</span> iso3num_o iso3num_d <span class="kw">using</span> grav</span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a><span class="co">/// keep only if both match</span></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="dt">_merge</span>==3</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="dt">_merge</span> <span class="co">// we no longer need the _merge variable</span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a><span class="co">// add log version of hs6digit trade</span></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lvv=<span class="fu">log</span>(1+v)</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lq=<span class="fu">log</span>(1+<span class="fu">q</span>)</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a><span class="co">// Regression</span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a><span class="co">/// creating id</span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d) <span class="co">// encoding again for fixed effect</span></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o) </span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> id=<span class="fu">group</span>(iso3_d iso3_o <span class="kw">k</span>) <span class="co">// grouping all non-time index</span></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>xtset id <span class="fu">year</span></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="fu">r</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="kw">fe</span> <span class="fu">r</span></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="fu">abs</span>(i.iiso3_d#year i.iiso3_o#year) <span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPMLHDFE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Your folder will ended up in having some files, which are grav.dta, baci.dta, myreg.doc, myreg2.doc, and myreg3.doc. The first two are your data we generated from before, the last three are your regression results. You can open the doc file with word or any other word processor. And of course don’t forget to save your dofile.</p>
 </section>
 <section id="closing" class="level2">
 <h2 class="anchored" data-anchor-id="closing">Closing</h2>
