@@ -167,11 +167,11 @@ encode iso3_o,generate(iiso3_o)
 keep if year==2019
 reg logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto
 outreg2 using myreg.doc, replace label ctitle(OLS) title(Table XX: my amazing regression)
-reg logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto iiso3_d iiso3_o
+reg logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto i.iiso3_d i.iiso3_o
 outreg2 using myreg.doc, append label ctitle(FE)
-ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto
+ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto
 outreg2 using myreg.doc, append label ctitle(PPML)
-ppmlhdfe logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(iso3_d iso3_o)
+ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(iso3_d iso3_o)
 outreg2 using myreg.doc, append label ctitle(PPML FE)
 
 ```
