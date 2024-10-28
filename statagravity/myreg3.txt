@@ -1,0 +1,44 @@
+Table XX: my amazing regression					
+		(1)	(2)	(3)	(4)
+VARIABLES	LABELS	OLS	FE	PPML	PPMLHDFE
+					
+lgdpo	lgdpo	0.484***	-0.154***	0.620***	
+		(0.000636)	(0.0273)	(0.00684)	
+lgdpd	lgdpd	0.308***	-0.0524***	0.691***	
+		(0.000516)	(0.0175)	(0.00862)	
+lgdpco	lgdpco	-0.0346***	0.466***	-0.273***	
+		(0.000803)	(0.0274)	(0.0115)	
+lgdpcd	lgdpcd	0.00890***	0.571***	-0.000338	
+		(0.000696)	(0.0177)	(0.00786)	
+contig	=1 if origin and destination are contiguous	0.296***		0.387***	0.223***
+		(0.00445)		(0.0240)	(0.0211)
+comcol	1 = Common colonizer post 1945	0.407***		1.156***	0.673***
+		(0.00361)		(0.0708)	(0.0806)
+comlang_off	1 = Common official or primary language	0.0218***		0.362***	0.0171
+		(0.00219)		(0.0244)	(0.0330)
+fta_wto	1=RTA (Source: WTO, 2011)	-0.00634***	-0.0525***	0.145***	0.276***
+		(0.00159)	(0.00230)	(0.0353)	(0.0306)
+ldist	ldist	-0.468***	0.776***	-0.413***	-0.415***
+		(0.00114)	(0.166)	(0.0170)	(0.0130)
+o.contig	=1 if origin and destination are contiguous = o,		-		
+					
+o.comcol	1 = Common colonizer post 1945 = o,		-		
+					
+o.comlang_off	1 = Common official or primary language = o,		-		
+					
+o.lgdpo	lgdpo = o,				-
+					
+o.lgdpd	lgdpd = o,				-
+					
+o.lgdpco	lgdpco = o,				-
+					
+o.lgdpcd	lgdpcd = o,				-
+					
+Constant	Constant	-9.155***	-2.017	-15.50***	11.46***
+		(0.0176)	(1.444)	(0.331)	(0.116)
+					
+Observations		18,538,888	18,538,888	18,538,888	18,538,888
+R-squared			0.004		
+Number of id		6,174,076	6,174,076		
+Robust standard errors in parentheses					
+*** p<0.01, ** p<0.05, * p<0.1					

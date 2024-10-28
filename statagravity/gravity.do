@@ -48,7 +48,7 @@ gen lgdpd=log(gdp_d)
 gen lgdpco=log(gdpcap_o)
 gen lgdpcd=log(gdpcap_d)
 gen logtrade=log(1+tradeflow_baci)
-
+keep if contig!=. //drop multi input
 save grav,replace
 
 // regression
@@ -73,7 +73,7 @@ outreg2 using myreg.doc, append label ctitle(PPMLHDFE)
 /// since 2 dimension, generate group that's not year
 clear all
 use grav,clear
-keep if contig!=. //drop multi input
+
 
 encode iso3_d,generate(iiso3_d)
 encode iso3_o,generate(iiso3_o)
@@ -87,4 +87,67 @@ ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_of
 outreg2 using myreg2.doc, append label ctitle(PPML)
 ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(i.iiso3_d#i.year i.iiso3_o#year) vce(robust)
 outreg2 using myreg2.doc, append label ctitle(PPMLHDFE)
+
+// BACI
+clear all
+// combine into 1 file
+
+import delimited "BACI_HS17_Y2017_V202401b.csv",numericcols(6) // for some reason my stata thought q is str so i had to change it into float by using numericcols
+save baci2017,replace
+import delimited "BACI_HS17_Y2018_V202401b.csv",numericcols(6) clear
+save baci2018,replace
+import delimited "BACI_HS17_Y2019_V202401b.csv",numericcols(6) clear
+save baci2019,replace
+import delimited "BACI_HS17_Y2020_V202401b.csv",numericcols(6) clear
+save baci2020,replace
+import delimited "BACI_HS17_Y2021_V202401b.csv",numericcols(6) clear
+save baci2021,replace
+import delimited "BACI_HS17_Y2022_V202401b.csv",numericcols(6) clear
+save baci2022,replace
+// appending
+use baci2017,clear
+append using baci2018
+append using baci2019
+append using baci2020
+append using baci2021
+append using baci2022
+save baci,replace // the complete baci
+// remove individual files to save space
+rm baci2017.dta  
+rm baci2018.dta 
+rm baci2019.dta
+rm baci2020.dta 
+rm baci2021.dta 
+rm baci2022.dta
+
+/// merge baci with grav
+/// rename to match key
+rename t year
+rename i iso3num_o
+rename j iso3num_d
+/// merging
+merge m:1 year iso3num_o iso3num_d using grav
+/// keep only if both match
+keep if _merge==3
+drop _merge // we no longer need the _merge variable
+// add log version of hs6digit trade
+gen lvv=log(1+v)
+gen lq=log(1+q)
+
+// Regression
+/// creating id
+encode iso3_d,generate(iiso3_d) // encoding again for fixed effect
+encode iso3_o,generate(iiso3_o) 
+egen id=group(iso3_d iso3_o k) // grouping all non-time index
+xtset id year
+
+xtreg lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,r
+xtreg lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,fe r
+ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,vce(robust)
+ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,abs(i.iso3_d#year) vce(robust)
+
+
+
+
+
 

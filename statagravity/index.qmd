@@ -233,7 +233,109 @@ $$ {#eq-3}
 
 ### Setting data
 
-Maybe later guys. Check out the R version if you wanna.
+As you can see, the BACI dataset is not combined into 1 dataset. We kinda has to combine 'em. So we gotta read 'em 1 by 1. This process reuire quite a long line of code in Stata but you'd do fine once you're experienced.
+
+```stata
+// BACI
+clear all
+// combine into 1 file
+
+import delimited "BACI_HS17_Y2017_V202401b.csv",numericcols(6) // for some reason my stata thought q is str so i had to change it into float by using numericcols
+save baci2017,replace
+import delimited "BACI_HS17_Y2018_V202401b.csv",numericcols(6) clear
+save baci2018,replace
+import delimited "BACI_HS17_Y2019_V202401b.csv",numericcols(6) clear
+save baci2019,replace
+import delimited "BACI_HS17_Y2020_V202401b.csv",numericcols(6) clear
+save baci2020,replace
+import delimited "BACI_HS17_Y2021_V202401b.csv",numericcols(6) clear
+save baci2021,replace
+import delimited "BACI_HS17_Y2022_V202401b.csv",numericcols(6) clear
+save baci2022,replace
+// appending
+use baci2017,clear
+append using baci2018
+append using baci2019
+append using baci2020
+append using baci2021
+append using baci2022
+save baci,replace // the complete baci
+// remove individual files to save space
+rm baci2017.dta  
+rm baci2018.dta 
+rm baci2019.dta
+rm baci2020.dta 
+rm baci2021.dta 
+rm baci2022.dta
+
+```
+There are only 6 columns / variables. Here's some information on what thos means. You notice that we need more information from our grav dataset (note that baci doesn't have gravity information like distance and GDP). We are going to use t,i, and j as a key to merge grav and baci.
+
+| var | meaning | grav equivalence |
+| --- | --------- | ----- |
+| t | year | year |
+| i | exporter | iso3num_o |
+| j | importer | iso3num_d |
+| k | product | - |
+| v | value | - |
+| q | quantity | - |
+
+: Variable explanations
+
+If you `sum` this data, you'll see that we have a very big data! It kinda look like this
+
+![](Picture1.png)
+
+Their country code is in number so you need to combine the information we get from our grav data. We need to rename some of the key in our baci dataset to match with our grav data.
+
+```stata
+/// merge baci with grav
+/// rename to match key
+rename t year
+rename i iso3num_o
+rename j iso3num_d
+/// merging
+merge m:1 year iso3num_o iso3num_d using grav
+/// keep only if both match
+keep if _merge==3
+drop _merge // no longer need this variable
+// add log version of hs6digit trade
+gen lvv=log(1+v)
+gen lq=log(1+q)
+```
+
+you can try sum again to see that we trimmed some countries we don't need! Also you now have all information from the grav dataset!
+
+![](Picture2.png)
+
+
+### Regression
+
+Now let's do the regression! We again is going to use `xtreg` and `ppmlhdfe`. Note that now you have several dimension: year, exporter,importer, and hs6digit! We need to use group again for the xtreg, but ppmlhdfe does not require such thing!
+
+```stata
+// Regression
+/// creating id
+encode iso3_d,generate(iiso3_d) // encoding again for fixed effect
+encode iso3_o,generate(iiso3_o) 
+egen id=group(iso3_d iso3_o k) // grouping all non-time index
+xtset id year
+
+xtreg lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,r
+outreg2 using myreg3.doc, replace label ctitle(OLS) title(Table XX: my amazing regression)
+xtreg lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,fe r
+outreg2 using myreg3.doc, append label ctitle(FE)
+ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,vce(robust)
+outreg2 using myreg3.doc, append label ctitle(PPML)
+ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,abs(i.iiso3_d#year i.iiso3_o#year) vce(robust)
+outreg2 using myreg3.doc, append label ctitle(PPMLHDFE)
+```
+
+Results below
+
+<iframe src="https://1drv.ms/w/s!AjelszXKKcmskZhBcfebqcu6EKDqyw?embed=1&em=2" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+You might notice how long it took for the whole process to run. We have very long time to read data and run the regression algorithm. This is due to the size of our gravity dataset. Stata (and R and python for that matter) is, to my understanding, an optimisation for ease to code and speed. Remember, our main goal is TO UNDERSTAND the results. If you know how to code an algorithm, that's cool. But as an economist, understanding economic phenomenon and inferring the results is arguably more important.
 
 
 ## Closing

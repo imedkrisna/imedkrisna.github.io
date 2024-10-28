@@ -225,6 +225,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#theory-1" id="toc-theory-1" class="nav-link" data-scroll-target="#theory-1">Theory</a></li>
   <li><a href="#setting-data-1" id="toc-setting-data-1" class="nav-link" data-scroll-target="#setting-data-1">Setting data</a></li>
+  <li><a href="#regression-1" id="toc-regression-1" class="nav-link" data-scroll-target="#regression-1">Regression</a></li>
   </ul></li>
   <li><a href="#closing" id="toc-closing" class="nav-link" data-scroll-target="#closing">Closing</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -449,7 +450,122 @@ X_{ijpt}=\alpha_0 Y_{it}^{\alpha_1}Y_{jt}^{\alpha_2}D_{ijpt}^{\alpha_3}e^{\theta
 </section>
 <section id="setting-data-1" class="level3">
 <h3 class="anchored" data-anchor-id="setting-data-1">Setting data</h3>
-<p>Maybe later guys. Check out the R version if you wanna.</p>
+<p>As you can see, the BACI dataset is not combined into 1 dataset. We kinda has to combine ’em. So we gotta read ’em 1 by 1. This process reuire quite a long line of code in Stata but you’d do fine once you’re experienced.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// BACI</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">// combine into 1 file</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2017_V202401b.csv"</span>,numericcols(6) <span class="co">// for some reason my stata thought q is str so i had to change it into float by using numericcols</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2017,<span class="kw">replace</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2018_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2018,<span class="kw">replace</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2019_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2019,<span class="kw">replace</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2020_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2020,<span class="kw">replace</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2021_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2021,<span class="kw">replace</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>import delimited <span class="st">"BACI_HS17_Y2022_V202401b.csv"</span>,numericcols(6) <span class="kw">clear</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci2022,<span class="kw">replace</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">// appending</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> baci2017,<span class="kw">clear</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2018</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2019</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2020</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2021</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="kw">append</span> <span class="kw">using</span> baci2022</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> baci,<span class="kw">replace</span> <span class="co">// the complete baci</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">// remove individual files to save space</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>rm baci2017.dta  </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>rm baci2018.dta </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>rm baci2019.dta</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>rm baci2020.dta </span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>rm baci2021.dta </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>rm baci2022.dta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are only 6 columns / variables. Here’s some information on what thos means. You notice that we need more information from our grav dataset (note that baci doesn’t have gravity information like distance and GDP). We are going to use t,i, and j as a key to merge grav and baci.</p>
+<table class="caption-top table">
+<caption>Variable explanations</caption>
+<thead>
+<tr class="header">
+<th>var</th>
+<th>meaning</th>
+<th>grav equivalence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>t</td>
+<td>year</td>
+<td>year</td>
+</tr>
+<tr class="even">
+<td>i</td>
+<td>exporter</td>
+<td>iso3num_o</td>
+</tr>
+<tr class="odd">
+<td>j</td>
+<td>importer</td>
+<td>iso3num_d</td>
+</tr>
+<tr class="even">
+<td>k</td>
+<td>product</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>v</td>
+<td>value</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>q</td>
+<td>quantity</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>If you <code>sum</code> this data, you’ll see that we have a very big data! It kinda look like this</p>
+<p><img src="Picture1.png" class="img-fluid"></p>
+<p>Their country code is in number so you need to combine the information we get from our grav data. We need to rename some of the key in our baci dataset to match with our grav data.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">/// merge baci with grav</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">/// rename to match key</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> t <span class="fu">year</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> i iso3num_o</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">rename</span> j iso3num_d</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">/// merging</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 <span class="fu">year</span> iso3num_o iso3num_d <span class="kw">using</span> grav</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">/// keep only if both match</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> <span class="dt">_merge</span>==3</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="dt">_merge</span> <span class="co">// no longer need this variable</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">// add log version of hs6digit trade</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lvv=<span class="fu">log</span>(1+v)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> lq=<span class="fu">log</span>(1+<span class="fu">q</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>you can try sum again to see that we trimmed some countries we don’t need! Also you now have all information from the grav dataset!</p>
+<p><img src="Picture2.png" class="img-fluid"></p>
+</section>
+<section id="regression-1" class="level3">
+<h3 class="anchored" data-anchor-id="regression-1">Regression</h3>
+<p>Now let’s do the regression! We again is going to use <code>xtreg</code> and <code>ppmlhdfe</code>. Note that now you have several dimension: year, exporter,importer, and hs6digit! We need to use group again for the xtreg, but ppmlhdfe does not require such thing!</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Regression</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">/// creating id</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_d,<span class="kw">generate</span>(iiso3_d) <span class="co">// encoding again for fixed effect</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso3_o,<span class="kw">generate</span>(iiso3_o) </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">egen</span> id=<span class="fu">group</span>(iso3_d iso3_o <span class="kw">k</span>) <span class="co">// grouping all non-time index</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>xtset id <span class="fu">year</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="fu">r</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">replace</span> <span class="kw">label</span> ctitle(OLS) <span class="bn">title</span>(Table XX: my amazing regression)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">xtreg</span> lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="kw">fe</span> <span class="fu">r</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(FE)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPML)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,<span class="fu">abs</span>(i.iiso3_d#year i.iiso3_o#year) <span class="kw">vce</span>(<span class="kw">robust</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>outreg2 <span class="kw">using</span> myreg3.doc, <span class="kw">append</span> <span class="kw">label</span> ctitle(PPMLHDFE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Results below</p>
+<iframe src="https://1drv.ms/w/s!AjelszXKKcmskZhBcfebqcu6EKDqyw?embed=1&amp;em=2" width="800" height="600" frameborder="0" scrolling="no">
+</iframe>
+<p>You might notice how long it took for the whole process to run. We have very long time to read data and run the regression algorithm. This is due to the size of our gravity dataset. Stata (and R and python for that matter) is, to my understanding, an optimisation for ease to code and speed. Remember, our main goal is TO UNDERSTAND the results. If you know how to code an algorithm, that’s cool. But as an economist, understanding economic phenomenon and inferring the results is arguably more important.</p>
 </section>
 </section>
 <section id="closing" class="level2">
