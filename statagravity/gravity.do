@@ -85,7 +85,7 @@ xtreg logtrade lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto
 outreg2 using myreg2.doc, append label ctitle(FE)
 ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,vce(robust)
 outreg2 using myreg2.doc, append label ctitle(PPML)
-ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(i.iiso3_d#i.year i.iiso3_o#year) vce(robust)
+ppmlhdfe tradeflow_baci lgdpo lgdpd lgdpco lgdpcd ldist contig comcol comlang_off fta_wto,absorb(i.iiso3_d#i.year i.iiso3_o#i.year) vce(robust)
 outreg2 using myreg2.doc, append label ctitle(PPMLHDFE)
 
 // BACI
@@ -147,11 +147,5 @@ xtreg lvv lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,fe r
 outreg2 using myreg3.doc, append label ctitle(FE)
 ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,vce(robust)
 outreg2 using myreg3.doc, append label ctitle(PPML)
-ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,abs(i.iiso3_d#year i.iiso3_o#year) vce(robust)
+ppmlhdfe v lgdpo lgdpd lgdpco lgdpcd contig comcol comlang_off fta_wto ldist,abs(i.iiso3_d#i.year i.iiso3_o#i.year) vce(robust)
 outreg2 using myreg3.doc, append label ctitle(PPMLHDFE)
-
-
-
-
-
-
