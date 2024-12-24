@@ -1,0 +1,24 @@
+project:
+  type: book
+
+book:
+  title: "Metodologi Penelitian"
+  author: "Krisna Gupta"
+  date: "24/12/2024"
+  date-format: long
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

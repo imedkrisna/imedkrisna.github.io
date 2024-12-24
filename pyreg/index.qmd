@@ -1,0 +1,5 @@
+# Preface {.unnumbered}
+
+Tentang buku ini
+
+Buku ini dibuat dengan menggunakan Quarto. Pelajari lebih banyak tentang Quarto di  <https://quarto.org/docs/books>.
