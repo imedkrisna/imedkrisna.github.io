@@ -137,7 +137,7 @@
     "href": "index.html",
     "title": "Krisna ‘imed’ Gupta",
     "section": "",
-    "text": "I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I am also a senior fellow at Center for Indonesian Policy Studies (CIPS). I sometimes help various organisation with consultancy. I spent my free time playing some games and guitars. Do check my twitter and blog (mostly in Indonesian)."
+    "text": "I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I am also a senior fellow at Center for Indonesian Policy Studies (CIPS). I sometimes help various organisation with consultancy.\nI regularly contribute to East Asia Forum and The Conversation Indonesia\nI spent my free time playing some games and guitars. Do check my twitter and blog (mostly in Indonesian)."
   },
   {
     "objectID": "index.html#affiliations",
@@ -165,7 +165,7 @@
     "href": "index.html#consultancies",
     "title": "Krisna ‘imed’ Gupta",
     "section": "Consultancies",
-    "text": "Consultancies\n\nOngoing\n\nHelping ADBI on estimating cross-price elasticity of cigarette excise.\nAdvising Prospera on various public policy issues and evaluations with Prospera’s revenue team managed by Rubino Sugana\n\n\n\n2022\n\nCIPS Indonesia and Prospera on the Indonesia’s strategic implementation of RCEP with Achmad Shauki and Julia Tijaja. 2022.\n\n\n\n2021\n\nCIPS Indonesia and Katalis on the impact of IACEPA to Indonesian economy with Rainer Heufers and David Mitchell.\nPT. LAPI ITB on the economic impact of The Indonesian Sovereign Wealth Funds with Barli Suryanta, PhD."
+    "text": "Consultancies\n\n2024\n\nHelping ADBI on estimating cross-price elasticity of cigarette excise.\n\n\n\n2023\n\nAdvising Prospera on various public policy issues and evaluations with Prospera’s revenue team managed by Rubino Sugana\n\n\n\n2022\n\nCIPS Indonesia and Prospera on the Indonesia’s strategic implementation of RCEP with Achmad Shauki and Julia Tijaja. 2022.\n\n\n\n2021\n\nCIPS Indonesia and Katalis on the impact of IACEPA to Indonesian economy with Rainer Heufers and David Mitchell.\nPT. LAPI ITB on the economic impact of The Indonesian Sovereign Wealth Funds with Barli Suryanta, PhD."
   },
   {
     "objectID": "project.html",
@@ -264,5 +264,40 @@
     "title": "Teaching",
     "section": "2021",
     "text": "2021\n\nEconomics at Universitas Petra.\n\nPowered by Quarto. visit https://quarto.org/docs/websites to learn more."
+  },
+  {
+    "objectID": "pyreg/dataviz.html",
+    "href": "pyreg/dataviz.html",
+    "title": "Visualisasi data",
+    "section": "",
+    "text": "Melakukan visualisasi data.\n\nimport pandas as pd\nimport world_bank_data as wb"
+  },
+  {
+    "objectID": "pyreg/references.html",
+    "href": "pyreg/references.html",
+    "title": "References",
+    "section": "",
+    "text": "References"
+  },
+  {
+    "objectID": "pyreg/index.html",
+    "href": "pyreg/index.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Preface\nTentang buku ini\nBuku ini dibuat dengan menggunakan Quarto. Pelajari lebih banyak tentang Quarto di https://quarto.org/docs/books."
+  },
+  {
+    "objectID": "pyreg/intro.html",
+    "href": "pyreg/intro.html",
+    "title": "Pendahuluan",
+    "section": "",
+    "text": "Pendahuluan\nThis is a book created from markdown and executable code.\nSee @knuth84 for additional discussion of literate programming."
+  },
+  {
+    "objectID": "pyreg/summary.html",
+    "href": "pyreg/summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "Summary\nIn summary, this book has no content whatsoever."
   }
 ]

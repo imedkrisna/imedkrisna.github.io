@@ -26,7 +26,11 @@ about:
     href: https://www.krisna.or.id/en/#CV
 ---
 
-I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I am also a senior fellow at Center for Indonesian Policy Studies (CIPS). I sometimes help various organisation with consultancy. I spent my free time playing some games and guitars. Do check my twitter and blog (mostly in Indonesian).
+I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I am also a senior fellow at Center for Indonesian Policy Studies (CIPS). I sometimes help various organisation with consultancy. 
+
+I regularly contribute to [East Asia Forum](https://eastasiaforum.org/author/krisna-gupta/) and [The Conversation Indonesia](https://theconversation.com/profiles/krisna-gupta-1133995)
+
+I spent my free time playing some games and guitars. Do check my twitter and blog (mostly in Indonesian).
 
 ## Affiliations
 
@@ -52,9 +56,11 @@ I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I am also a
 
 ## Consultancies
 
-### Ongoing
+### 2024
 
 - Helping ADBI on estimating cross-price elasticity of cigarette excise.
+
+### 2023
 
 - Advising Prospera on various public policy issues and evaluations with Prospera's revenue team managed by [Rubino Sugana](https://www.linkedin.com/in/rubino-sugana-3aa341/)
 
