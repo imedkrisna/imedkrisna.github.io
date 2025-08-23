@@ -26,7 +26,7 @@ about:
     href: https://www.krisna.or.id/en/#CV
 ---
 
-I am a lecturer at Politeknik APP Jakarta and Universitas Indonesia. I am also a senior fellow at Center for Indonesian Policy Studies (CIPS). I sometimes help various organisation with consultancy. 
+I am an advisor at Indonesian National Economic Council (Dewan Ekonomi Nasional, DEN). I lecture at Universitas Indonesia and a senior fellow at Center for Indonesian Policy Studies (CIPS).
 
 I regularly contribute to [East Asia Forum](https://eastasiaforum.org/author/krisna-gupta/) and [The Conversation Indonesia](https://theconversation.com/profiles/krisna-gupta-1133995)
 
@@ -34,8 +34,8 @@ I spent my free time playing some games and guitars. Do check my twitter and blo
 
 ## Affiliations
 
-- Lecturer at Politeknik APP Jakarta
-- Guest lecturer at Universitas Indonesia
+- Advisor at Indonesian Economic Council
+- Lecturer at Universitas Indonesia
 - Senior fellow at Center for Indonesian Policy Studies [(CIPS)](https://www.cips-indonesia.org/about)
 
 ## Educations

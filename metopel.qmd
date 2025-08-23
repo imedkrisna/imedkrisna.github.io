@@ -39,6 +39,7 @@ packages yang digunakan antara lain sebagai berikut:
 #| warning: false
 
 library(tidyverse)
+library(rmarkdown)
 ```
 
 ## Data dan visualisasi
@@ -74,4 +75,3 @@ Dapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk.
 ## Kesimpulan
 
 Kesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset @RN468 yha.
-
