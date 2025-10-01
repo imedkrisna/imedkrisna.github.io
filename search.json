@@ -126,18 +126,25 @@
     "text": "3 Methodology\nUnlike Henderson, Storeygard, and Weil (2012) and others, our dataset does not contain any cross-sectional variation. Therefore, techniques that utilise cross-sectional mean cannot be exploited. Multivariate time series techniques, thus, should be the appropriate method.\nGiven the nature of the data as multivariate time series, certain tests need to be performed before moving on to the modeling process (Enders 2014; Shrestha and Bhatta 2018). First, we check stationarity using the ADF test to determine whether the two series are stationary at the same level. Growth data are usually stationary for level variables. If the series are truly stationary, Vector AutoRegression (VAR) would be the most appropriate model choice. However, the structural breaks experienced during COVID-19 could create potential problems due to shock and scarring effects. There is a possibility of cointegration existing between the two series. In such a case, the Vector Error Correction Model (VECM) is the appropriate method to use. (Enders 2014; Shrestha and Bhatta 2018).\n\n\n\n\n\n\nFigure 4: OLS fit and the residuals\n\n\n\nThe ADF test shows that while the nighttime lights series is stationary, the GDP growth series is not. We cannot reject the null hypothesis of non-stationarity of the GDP growth series at the 5% level. This is contrary to typical growth number, potentially amid covid. It is important to note that the p-value is pretty close to a rejection. This suggestst that a structural VAR model model may still suitable if we control for the COVID variable. Lastly, the potency that the two series integrate at a different level also warrants the use of ARDL (Shrestha and Bhatta 2018; Enders 2014).\nWe then proceed to the Johansen cointegration test. We first find a proper lag, then proceed to the Johansen cointegration test. The null hypothesis is there is no cointegration among variables used. The trace test statistic results are larger than the critical value, which suggest that we reject the null hypothesis. This would suggests a VECM as a method of choice. However, the null hypothesis of the number of rank equals two is also rejected. This suggests a potentially feasible two cointegration equations. An equal number between the cointegration equations and the endogeneous variables mean the VECM may perform no different than VAR.\nThe ADF test and the Johanse cointegration test are not terribly conclusive, we proceed with testing three potential multivariate time series technique, namely VAR, ARDL and VECM. To sum up:\n\nVECM reasons: Both are not integrated at the same level, OLS-residuals is stationary, Johansen Cointegration failed to reject \\(H_0\\).\nVAR reasons: Economic growth is almost stationary (p-value is very close to the critical level), Johansen Cointegration failed to reject a possibility of only 1 cointegration coefficient.\nARDL reason: Economic growth \\(I(1)\\) while the night light growth is \\(I(0)\\). Additionally, ARDL allows for one endogeneous variable1.\n\nFor robustness, we also try to do the time series on the log quarterly GDP and night light instead of growth."
   },
   {
-    "objectID": "nitelite/index.html#results-and-discussions",
-    "href": "nitelite/index.html#results-and-discussions",
+    "objectID": "nitelite/index.html#economic-growth-estimations",
+    "href": "nitelite/index.html#economic-growth-estimations",
     "title": "Forecasting Indonesian economic growth using night light",
-    "section": "4 Results and discussions",
-    "text": "4 Results and discussions\nWe ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are at the appendix.\n\n4.1 Growth regression\n\n4.1.1 VECM\n\n\n\n4.1.2 VAR\n\n\n\n4.1.3 ARDL\n\n\n\n\n4.2 Quarterly regression\n\n\n\n4.2.1 VECM\n\n\n\n4.2.2 ARDL"
+    "section": "4 Economic growth estimations",
+    "text": "4 Economic growth estimations\nWe ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarring (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and full replication notebook can be access here.\nAs discussed, this section presents graphs for the observed line and the predicted line of three different models: VECM, VAR and ARDL. Each model have six specifications. Panel (a) shows only the two variables, quarterly economic growth and quarterly night light index growth. Panel (b) adds a dummy covid, while panel (c) adds a dummy scarring. The next three panels repeat with quarter dummies added.\n\n\n\n\n\n\nFigure 5: Economic growth prediction with VECM\n\n\n\n\n\n\n\n\n\nFigure 6: Economic growth prediction with VAR\n\n\n\n\n\n\n\n\n\nFigure 7: Economic growth prediction with ARDL"
+  },
+  {
+    "objectID": "nitelite/index.html#quarterly-real-gdp-regression",
+    "href": "nitelite/index.html#quarterly-real-gdp-regression",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "5 Quarterly real GDP regression",
+    "text": "5 Quarterly real GDP regression\nThis section uses log quarterly real GDP and log quarterly night light index instead. We run this regression for robustness check. The possibility of a less volatile night light index progression may improve our estimation for the real GDP. It also quite common in macroeconometric literatures to regress level equations instead of growth (Enders 2014).\nThis section follows the same procedure as previously. We first show the dataset for both series, then run an OLS regression to check if the residuals are stationary. Johansen Cointegration test is also applied, and we try both VECM and ARDL to the two series. VAR is not used in this case since the two series are not stationary at level.\n\n\n\n\n\n\nFigure 8: Indonesian GDP and night light index\n\n\n\nawokwokwokwo\n\n\n\n\n\n\nFigure 9: OLS prediction and residuals for GDP\n\n\n\naokaowkoakwoakwo\n\n5.1 VECM\n\n\n\n\n\n\nFigure 10: GDP projection with night light index, VECM\n\n\n\n\n\n5.2 ARDL\n\n\n\n\n\n\nFigure 11: GDP projection with night light index, ARDL"
   },
   {
     "objectID": "nitelite/index.html#conclusion",
     "href": "nitelite/index.html#conclusion",
     "title": "Forecasting Indonesian economic growth using night light",
     "section": "6 Conclusion",
-    "text": "6 Conclusion"
+    "text": "6 Conclusion\nwqwqwq"
   },
   {
     "objectID": "nitelite/index.html#references",
@@ -158,7 +165,7 @@
     "href": "nitelite/index.html#appendix-a",
     "title": "Forecasting Indonesian economic growth using night light",
     "section": "Appendix A",
-    "text": "Appendix A"
+    "text": "Appendix A\nSee imedkrisna.github.io/misc/nitelite/nitelite3stata.html"
   },
   {
     "objectID": "nitelite/index.html#footnotes",
@@ -369,19 +376,5 @@
     "title": "Projects",
     "section": "",
     "text": "Gani, Muhammad R. Analisis Pengaruh Pajak Ekspor Terhadap Kinerja Ekspor Turunan Minyak Kelapa Sawit Di Indonesia.\nAndiani, Desy. Analisis Pengaruh Rules of Origin (ROO) terhadap kinerja ekspor Indonesia: studi kasus perdagangan Indonesia-Jepang.\nSyahputri, Evanti A. Analisis pengaruh perjanjian bilateral Indonesia-Japan Partnership Agreement (IJEPA) pada perdagangan sektor jasa di Indonesia.\nPertiwi, Gita P. Pengaruh Technical Barriers to Trade (TBT) dan Sanitary and Phytosanitary (SPS) oleh negara RCEP terhadap ekspor Indonesia.\nPane, Rio B.M. Foreign Dircet Investment (FDI) dan ekspor spillover pada industri manufaktur di Indonesia."
-  },
-  {
-    "objectID": "nitelite/index.html#economic-growth-estimations",
-    "href": "nitelite/index.html#economic-growth-estimations",
-    "title": "Forecasting Indonesian economic growth using night light",
-    "section": "4 Economic growth estimations",
-    "text": "4 Economic growth estimations\nWe ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are presented on the appendix.\nAs discussed, this section presents graphs for the observed line and the predicted line of three different models: VECM, VAR and ARDL. Each model have six specifications. Panel (a) shows only the two variables, quarterly economic growth and quarterly night light index growth. Panel (b) adds a dummy covid, while panel (c) adds a dummy scarring. The next three panels repeat with quarter dummies added.\n\n4.1 VECM\n\n\n\n\n\n\nFigure 5: Economic growth prediction with VECM\n\n\n\n\n\n4.2 VAR\n\n\n\n\n\n\nFigure 6: Economic growth prediction with VAR\n\n\n\n\n\n4.3 ARDL\n\n\n\n\n\n\nFigure 7: Economic growth prediction with ARDL"
-  },
-  {
-    "objectID": "nitelite/index.html#quarterly-real-gdp-regression",
-    "href": "nitelite/index.html#quarterly-real-gdp-regression",
-    "title": "Forecasting Indonesian economic growth using night light",
-    "section": "5 Quarterly real GDP regression",
-    "text": "5 Quarterly real GDP regression\nThis section uses log quarterly real GDP and log quarterly night light index instead. We run this regression for robustness check. The possibility of a less volatile night light index progression may improve our estimation for the real GDP. It also quite common in macroeconometric literatures to regress level equations instead of growth (Enders 2014).\nThis section follows the same procedure as previously. We first show the dataset for both series, then run an OLS regression to check if the residuals are stationary. Johansen Cointegration test is also applied, and we try both VECM and ARDL to the two series. VAR is not used in this case since the two series are not stationary at level.\n\n\n\n\n\n\nFigure 8: Indonesian GDP and night light index\n\n\n\nawokwokwokwo\n\n\n\n\n\n\nFigure 9: OLS prediction and residuals for GDP\n\n\n\naokaowkoakwoakwo\n\n5.1 VECM\n\n\n\n\n\n\nFigure 10\n\n\n\n\n\n5.2 ARDL\n\n\n\n\n\n\nFigure 11"
   }
 ]

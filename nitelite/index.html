@@ -182,16 +182,11 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#data-collection-and-processing" id="toc-data-collection-and-processing" class="nav-link" data-scroll-target="#data-collection-and-processing"><span class="header-section-number">2</span> Data Collection and Processing</a></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">3</span> Methodology</a></li>
-  <li><a href="#economic-growth-estimations" id="toc-economic-growth-estimations" class="nav-link" data-scroll-target="#economic-growth-estimations"><span class="header-section-number">4</span> Economic growth estimations</a>
-  <ul class="collapse">
-  <li><a href="#vecm" id="toc-vecm" class="nav-link" data-scroll-target="#vecm"><span class="header-section-number">4.1</span> VECM</a></li>
-  <li><a href="#var" id="toc-var" class="nav-link" data-scroll-target="#var"><span class="header-section-number">4.2</span> VAR</a></li>
-  <li><a href="#ardl" id="toc-ardl" class="nav-link" data-scroll-target="#ardl"><span class="header-section-number">4.3</span> ARDL</a></li>
-  </ul></li>
+  <li><a href="#economic-growth-estimations" id="toc-economic-growth-estimations" class="nav-link" data-scroll-target="#economic-growth-estimations"><span class="header-section-number">4</span> Economic growth estimations</a></li>
   <li><a href="#quarterly-real-gdp-regression" id="toc-quarterly-real-gdp-regression" class="nav-link" data-scroll-target="#quarterly-real-gdp-regression"><span class="header-section-number">5</span> Quarterly real GDP regression</a>
   <ul class="collapse">
-  <li><a href="#vecm-1" id="toc-vecm-1" class="nav-link" data-scroll-target="#vecm-1"><span class="header-section-number">5.1</span> VECM</a></li>
-  <li><a href="#ardl-1" id="toc-ardl-1" class="nav-link" data-scroll-target="#ardl-1"><span class="header-section-number">5.2</span> ARDL</a></li>
+  <li><a href="#vecm" id="toc-vecm" class="nav-link" data-scroll-target="#vecm"><span class="header-section-number">5.1</span> VECM</a></li>
+  <li><a href="#ardl" id="toc-ardl" class="nav-link" data-scroll-target="#ardl"><span class="header-section-number">5.2</span> ARDL</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -337,10 +332,8 @@ Figure&nbsp;4: OLS fit and the residuals
 </section>
 <section id="economic-growth-estimations" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="economic-growth-estimations"><span class="header-section-number">4</span> Economic growth estimations</h2>
-<p>We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are presented on the appendix.</p>
+<p>We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarring (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and full replication notebook can be access <a href="nitelite3stata.html">here</a>.</p>
 <p>As discussed, this section presents graphs for the observed line and the predicted line of three different models: VECM, VAR and ARDL. Each model have six specifications. Panel (a) shows only the two variables, quarterly economic growth and quarterly night light index growth. Panel (b) adds a dummy covid, while panel (c) adds a dummy scarring. The next three panels repeat with quarter dummies added.</p>
-<section id="vecm" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="vecm"><span class="header-section-number">4.1</span> VECM</h3>
 <div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -351,9 +344,6 @@ Figure&nbsp;5: Economic growth prediction with VECM
 </figcaption>
 </figure>
 </div>
-</section>
-<section id="var" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="var"><span class="header-section-number">4.2</span> VAR</h3>
 <div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -364,9 +354,6 @@ Figure&nbsp;6: Economic growth prediction with VAR
 </figcaption>
 </figure>
 </div>
-</section>
-<section id="ardl" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="ardl"><span class="header-section-number">4.3</span> ARDL</h3>
 <div id="fig-6" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -377,7 +364,6 @@ Figure&nbsp;7: Economic growth prediction with ARDL
 </figcaption>
 </figure>
 </div>
-</section>
 </section>
 <section id="quarterly-real-gdp-regression" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="quarterly-real-gdp-regression"><span class="header-section-number">5</span> Quarterly real GDP regression</h2>
@@ -405,28 +391,28 @@ Figure&nbsp;9: OLS prediction and residuals for GDP
 </figure>
 </div>
 <p>aokaowkoakwoakwo</p>
-<section id="vecm-1" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="vecm-1"><span class="header-section-number">5.1</span> VECM</h3>
+<section id="vecm" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="vecm"><span class="header-section-number">5.1</span> VECM</h3>
 <div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="fig/VECMQ.png" id="fig-9" class="img-fluid figure-img">
+<img src="fig/VECMQ.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: GDP projection with night light index, VECM
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="ardl-1" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="ardl-1"><span class="header-section-number">5.2</span> ARDL</h3>
+<section id="ardl" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="ardl"><span class="header-section-number">5.2</span> ARDL</h3>
 <div id="fig-10" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="fig/ARDLQ.png" id="fig-10" class="img-fluid figure-img">
+<img src="fig/ARDLQ.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: GDP projection with night light index, ARDL
 </figcaption>
 </figure>
 </div>
@@ -434,6 +420,7 @@ Figure&nbsp;11
 </section>
 <section id="conclusion" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
+<p>wqwqwq</p>
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
@@ -469,6 +456,7 @@ Stefanini Vicente, Gabriel, and Robert Marty. 2023. <em><span class="nocase">Bla
 </section>
 <section id="appendix-a" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="appendix-a">Appendix A</h2>
+<p>See <a href="nitelite3stata.html">imedkrisna.github.io/misc/nitelite/nitelite3stata.html</a></p>
 
 
 </section>
