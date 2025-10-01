@@ -53,7 +53,7 @@ articleurl: https://www.github.io/imedkrisna/nitelite
 
 ## Introduction
 
-GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number [@nl3].It is therefore essential to develop alternative methods to validate and evaluate economic growth data.
+GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number [@nl3]. It is therefore essential to develop alternative methods to validate and evaluate economic growth data.
 
 One such method lies in the use of nighttime lights as a proxy to nowcast economic growth. The use of satellite imagery, particularly in the form of nighttime lights, has increased in relevance over the last 20 years. Technology has developed to allow for the detection of signals at night coming from common artificial light sources such as streetlights, buildings, and vehicles. This data can then be used to measure human activity, a critical component of economic growth. Nighttime lights growth serves as a good predictor of economic growth at the national and sub-national levels [@nl;@nl2;@nl3]. @nl shows how nighttime lights data are able to serve as a better predictor of economic growth than various indicators and proxies in other countries. The fact that nighttime lights data is procured from NASA as an open source ensures full transparency. The data is readily available without any pre-processing or involvement from third parties, meaning it is immune to the fluctuations in perceived credibility that are associated with statistical agencies. The independence from statistical agencies is an important condition that positions nighttime lights well as a leading indicator for GDP growth [@enders].
 
@@ -107,45 +107,47 @@ The ADF test and the Johanse cointegration test are not terribly conclusive, we 
 
 - VAR reasons: Economic growth is _almost_ stationary (p-value is very close to the critical level), Johansen Cointegration failed to reject a possibility of only 1 cointegration coefficient.
 
-- ARDL reason: Economic growth $I(1)$ while the night light growth is $I(0)$. Additionally, ARDL allows for one endogeneous variable[^2].
+- ARDL reason: Economic growth $I(1)$ while the night light growth is $I(0)$. Additionally, ARDL allows for one endogeneous variable[^1].
 
 For robustness, we also try to do the time series on the log quarterly GDP and night light instead of growth.
 
-## Results and discussions
+## Economic growth estimations
 
-We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags.  In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are at the appendix.
+We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags.  In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are presented on the appendix.
 
-### Growth regression
+As discussed, this section presents graphs for the observed line and the predicted line of three different models: VECM, VAR and ARDL. Each model have six specifications. Panel (a) shows only the two variables, quarterly economic growth and quarterly night light index growth. Panel (b) adds a dummy covid, while panel (c) adds a dummy scarring. The next three panels repeat with quarter dummies added.
 
-#### VECM
+![Economic growth prediction with VECM](fig/VECM.png){#fig-4}
 
-![](fig/VECM.png)
+![Economic growth prediction with VAR](fig/VARstata.png){#fig-5}
 
-#### VAR
+![Economic growth prediction with ARDL](fig/ARDL.png){#fig-6}
 
-![](fig/VAR.png)
+## Quarterly real GDP regression
 
-#### ARDL
+This section uses log quarterly real GDP and log quarterly night light index instead. We run this regression for robustness check. The possibility of a less volatile night light index progression may improve our estimation for the real GDP. It also quite common in macroeconometric literatures to regress level equations instead of growth [@enders].
 
-![](fig/ARDL.png)
+This section follows the same procedure as previously. We first show the dataset for both series, then run an OLS regression to check if the residuals are stationary. Johansen Cointegration test is also applied, and we try both VECM and ARDL to the two series. VAR is not used in this case since the two series are not stationary at level.
 
-### Quarterly regression
+![Indonesian GDP and night light index](fig/figQ.png){#fig-7}
 
-![](fig/figQ.png)
+awokwokwokwo
 
-![](fig/Qols.png)
+![OLS prediction and residuals for GDP](fig/Qols.png){#fig-8}
 
-#### VECM
+aokaowkoakwoakwo
 
-![](fig/VECMQ.png)
+### VECM
 
-#### ARDL
+![GDP projection with night light index, VECM](fig/VECMQ.png){#fig-9}
 
-![](fig/ARDLQ.png)
+### ARDL
+
+![GDP projection with night light index, ARDL](fig/ARDLQ.png){#fig-10}
 
 ## Conclusion
 
-
+wqwqwq
 
 ## References {.unnumbered}
 
@@ -157,7 +159,4 @@ We ran various specifications, including dummy quarterly, dummy COVID (2020-2022
 ## Appendix A {.unnumbered}
 
 
-
-[^1]: We tried using the BIC-chosen lag but the fit is inferior to AIC-chosen lag.
-
-[^2]: As discussed above, previous papers use cross-sectional regression which presents no lag. Night light is also more immune from administrative error and other kinds of potential biases.
+[^1]: As discussed above, previous papers use cross-sectional regression which presents no lag. Night light is also more immune from administrative error and other kinds of potential biases.

@@ -182,14 +182,20 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#data-collection-and-processing" id="toc-data-collection-and-processing" class="nav-link" data-scroll-target="#data-collection-and-processing"><span class="header-section-number">2</span> Data Collection and Processing</a></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">3</span> Methodology</a></li>
-  <li><a href="#results-and-discussions" id="toc-results-and-discussions" class="nav-link" data-scroll-target="#results-and-discussions"><span class="header-section-number">4</span> Results and discussions</a>
+  <li><a href="#economic-growth-estimations" id="toc-economic-growth-estimations" class="nav-link" data-scroll-target="#economic-growth-estimations"><span class="header-section-number">4</span> Economic growth estimations</a>
   <ul class="collapse">
-  <li><a href="#growth-regression" id="toc-growth-regression" class="nav-link" data-scroll-target="#growth-regression"><span class="header-section-number">4.1</span> Growth regression</a></li>
-  <li><a href="#quarterly-regression" id="toc-quarterly-regression" class="nav-link" data-scroll-target="#quarterly-regression"><span class="header-section-number">4.2</span> Quarterly regression</a></li>
+  <li><a href="#vecm" id="toc-vecm" class="nav-link" data-scroll-target="#vecm"><span class="header-section-number">4.1</span> VECM</a></li>
+  <li><a href="#var" id="toc-var" class="nav-link" data-scroll-target="#var"><span class="header-section-number">4.2</span> VAR</a></li>
+  <li><a href="#ardl" id="toc-ardl" class="nav-link" data-scroll-target="#ardl"><span class="header-section-number">4.3</span> ARDL</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
+  <li><a href="#quarterly-real-gdp-regression" id="toc-quarterly-real-gdp-regression" class="nav-link" data-scroll-target="#quarterly-real-gdp-regression"><span class="header-section-number">5</span> Quarterly real GDP regression</a>
+  <ul class="collapse">
+  <li><a href="#vecm-1" id="toc-vecm-1" class="nav-link" data-scroll-target="#vecm-1"><span class="header-section-number">5.1</span> VECM</a></li>
+  <li><a href="#ardl-1" id="toc-ardl-1" class="nav-link" data-scroll-target="#ardl-1"><span class="header-section-number">5.2</span> ARDL</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">6</span> Appendix</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">7</span> Appendix</a></li>
   <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a">Appendix A</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (tandf)</a></li></ul></div></nav>
@@ -257,7 +263,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number <span class="citation" data-cites="nl3">(<a href="#ref-nl3" role="doc-biblioref">Martínez 2022</a>)</span>.It is therefore essential to develop alternative methods to validate and evaluate economic growth data.</p>
+<p>GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number <span class="citation" data-cites="nl3">(<a href="#ref-nl3" role="doc-biblioref">Martínez 2022</a>)</span>. It is therefore essential to develop alternative methods to validate and evaluate economic growth data.</p>
 <p>One such method lies in the use of nighttime lights as a proxy to nowcast economic growth. The use of satellite imagery, particularly in the form of nighttime lights, has increased in relevance over the last 20 years. Technology has developed to allow for the detection of signals at night coming from common artificial light sources such as streetlights, buildings, and vehicles. This data can then be used to measure human activity, a critical component of economic growth. Nighttime lights growth serves as a good predictor of economic growth at the national and sub-national levels <span class="citation" data-cites="nl nl2 nl3">(<a href="#ref-nl" role="doc-biblioref">Henderson, Storeygard, and Weil 2012</a>; <a href="#ref-nl2" role="doc-biblioref">Bickenbach et al. 2016</a>; <a href="#ref-nl3" role="doc-biblioref">Martínez 2022</a>)</span>. <span class="citation" data-cites="nl">Henderson, Storeygard, and Weil (<a href="#ref-nl" role="doc-biblioref">2012</a>)</span> shows how nighttime lights data are able to serve as a better predictor of economic growth than various indicators and proxies in other countries. The fact that nighttime lights data is procured from NASA as an open source ensures full transparency. The data is readily available without any pre-processing or involvement from third parties, meaning it is immune to the fluctuations in perceived credibility that are associated with statistical agencies. The independence from statistical agencies is an important condition that positions nighttime lights well as a leading indicator for GDP growth <span class="citation" data-cites="enders">(<a href="#ref-enders" role="doc-biblioref">Enders 2014</a>)</span>.</p>
 <p>In this paper, we utilize a raster of monthly nighttime lights data from Indonesia provided by NASA’s Black Marble project <span class="citation" data-cites="blackmarblepy">(<a href="#ref-blackmarblepy" role="doc-biblioref">Stefanini Vicente and Marty 2023</a>)</span>. We then transform the data into year-on-year form and resample it into a quarterly growth rate, mirroring the GDP data from BPS. We then fit nighttime lights growth on GDP growth using various models. Out of all the models used, the Vector Error Correction Model (VECM) showed the most promising fit. Importantly, we find evidence of a potential structural break between Q2 economic growth figure from BPS and the Q2 economic growth predicted by the nighttime lights models.</p>
 <p>The paper is organised as follows. We discuss the nighttime lights data collection process and exploratory data analysis section two. The methodology and theory behind model development is covered in section three. Section four discusses the model results, followed by a conclusion in section five.</p>
@@ -329,40 +335,105 @@ Figure&nbsp;4: OLS fit and the residuals
 </ul>
 <p>For robustness, we also try to do the time series on the log quarterly GDP and night light instead of growth.</p>
 </section>
-<section id="results-and-discussions" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="results-and-discussions"><span class="header-section-number">4</span> Results and discussions</h2>
-<p>We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are at the appendix.</p>
-<section id="growth-regression" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="growth-regression"><span class="header-section-number">4.1</span> Growth regression</h3>
-<section id="vecm" class="level4" data-number="4.1.1">
-<h4 data-number="4.1.1" class="anchored" data-anchor-id="vecm"><span class="header-section-number">4.1.1</span> VECM</h4>
-<p><img src="fig/VECM.png" class="img-fluid"></p>
+<section id="economic-growth-estimations" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="economic-growth-estimations"><span class="header-section-number">4</span> Economic growth estimations</h2>
+<p>We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are presented on the appendix.</p>
+<p>As discussed, this section presents graphs for the observed line and the predicted line of three different models: VECM, VAR and ARDL. Each model have six specifications. Panel (a) shows only the two variables, quarterly economic growth and quarterly night light index growth. Panel (b) adds a dummy covid, while panel (c) adds a dummy scarring. The next three panels repeat with quarter dummies added.</p>
+<section id="vecm" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="vecm"><span class="header-section-number">4.1</span> VECM</h3>
+<div id="fig-4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/VECM.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Economic growth prediction with VECM
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="var" class="level4" data-number="4.1.2">
-<h4 data-number="4.1.2" class="anchored" data-anchor-id="var"><span class="header-section-number">4.1.2</span> VAR</h4>
-<p><img src="fig/VAR.png" class="img-fluid"></p>
+<section id="var" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="var"><span class="header-section-number">4.2</span> VAR</h3>
+<div id="fig-5" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/VARstata.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Economic growth prediction with VAR
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="ardl" class="level4" data-number="4.1.3">
-<h4 data-number="4.1.3" class="anchored" data-anchor-id="ardl"><span class="header-section-number">4.1.3</span> ARDL</h4>
-<p><img src="fig/ARDL.png" class="img-fluid"></p>
+<section id="ardl" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="ardl"><span class="header-section-number">4.3</span> ARDL</h3>
+<div id="fig-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/ARDL.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Economic growth prediction with ARDL
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
-<section id="quarterly-regression" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="quarterly-regression"><span class="header-section-number">4.2</span> Quarterly regression</h3>
-<p><img src="fig/figQ.png" class="img-fluid"></p>
-<p><img src="fig/Qols.png" class="img-fluid"></p>
-<section id="vecm-1" class="level4" data-number="4.2.1">
-<h4 data-number="4.2.1" class="anchored" data-anchor-id="vecm-1"><span class="header-section-number">4.2.1</span> VECM</h4>
-<p><img src="fig/VECMQ.png" class="img-fluid"></p>
+<section id="quarterly-real-gdp-regression" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="quarterly-real-gdp-regression"><span class="header-section-number">5</span> Quarterly real GDP regression</h2>
+<p>This section uses log quarterly real GDP and log quarterly night light index instead. We run this regression for robustness check. The possibility of a less volatile night light index progression may improve our estimation for the real GDP. It also quite common in macroeconometric literatures to regress level equations instead of growth <span class="citation" data-cites="enders">(<a href="#ref-enders" role="doc-biblioref">Enders 2014</a>)</span>.</p>
+<p>This section follows the same procedure as previously. We first show the dataset for both series, then run an OLS regression to check if the residuals are stationary. Johansen Cointegration test is also applied, and we try both VECM and ARDL to the two series. VAR is not used in this case since the two series are not stationary at level.</p>
+<div id="fig-7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/figQ.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Indonesian GDP and night light index
+</figcaption>
+</figure>
+</div>
+<p>awokwokwokwo</p>
+<div id="fig-8" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/Qols.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-8-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: OLS prediction and residuals for GDP
+</figcaption>
+</figure>
+</div>
+<p>aokaowkoakwoakwo</p>
+<section id="vecm-1" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="vecm-1"><span class="header-section-number">5.1</span> VECM</h3>
+<div id="fig-9" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/VECMQ.png" id="fig-9" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="ardl-1" class="level4" data-number="4.2.2">
-<h4 data-number="4.2.2" class="anchored" data-anchor-id="ardl-1"><span class="header-section-number">4.2.2</span> ARDL</h4>
-<p><img src="fig/ARDLQ.png" class="img-fluid"></p>
+<section id="ardl-1" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="ardl-1"><span class="header-section-number">5.2</span> ARDL</h3>
+<div id="fig-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/ARDLQ.png" id="fig-10" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
-</section>
-<section id="conclusion" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
 </section>
 <section id="references" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
@@ -393,8 +464,8 @@ Stefanini Vicente, Gabriel, and Robert Marty. 2023. <em><span class="nocase">Bla
 </div>
 </div>
 </section>
-<section id="appendix" class="level2 supplementary" data-number="6">
-<h2 class="supplementary anchored" data-number="6" data-anchor-id="appendix"><span class="header-section-number">6</span> Appendix</h2>
+<section id="appendix" class="level2 supplementary" data-number="7">
+<h2 class="supplementary anchored" data-number="7" data-anchor-id="appendix"><span class="header-section-number">7</span> Appendix</h2>
 </section>
 <section id="appendix-a" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="appendix-a">Appendix A</h2>

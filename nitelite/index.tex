@@ -221,7 +221,7 @@ various other indicators. It forms the foundation for critical modeling
 and analysis used by both governments and private investors to make
 economic decisions and implement policy measures. More importantly, GDP
 often serves as a performance indicators for the government, which
-provides an incentive for misreporting growth number (Martínez 2022).It
+provides an incentive for misreporting growth number (Martínez 2022). It
 is therefore essential to develop alternative methods to validate and
 evaluate economic growth data.
 
@@ -478,7 +478,7 @@ series technique, namely VAR, ARDL and VECM. To sum up:
 For robustness, we also try to do the time series on the log quarterly
 GDP and night light instead of growth.
 
-\section{Results and discussions}\label{results-and-discussions}
+\section{Economic growth estimations}\label{economic-growth-estimations}
 
 We ran various specifications, including dummy quarterly, dummy COVID
 (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also
@@ -487,35 +487,129 @@ HQ-selected lags. In this paper, we show results from the no dummy and
 dummy scarring using AIC-selected lags amid the most consistent. We show
 all VECM, VAR and ARDL models. We also only show graph in this section
 because we concern mostly on fitting the model at this stage of
-reasearch. Regression table and some explanations are at the appendix.
+reasearch. Regression table and some explanations are presented on the
+appendix.
 
-\subsection{Growth regression}\label{growth-regression}
+As discussed, this section presents graphs for the observed line and the
+predicted line of three different models: VECM, VAR and ARDL. Each model
+have six specifications. Panel (a) shows only the two variables,
+quarterly economic growth and quarterly night light index growth. Panel
+(b) adds a dummy covid, while panel (c) adds a dummy scarring. The next
+three panels repeat with quarter dummies added.
 
-\subsubsection{VECM}\label{vecm}
+\subsection{VECM}\label{vecm}
+
+\begin{figure}
+
+\centering{
 
 \pandocbounded{\includegraphics[keepaspectratio]{fig/VECM.png}}
 
-\subsubsection{VAR}\label{var}
+}
 
-\pandocbounded{\includegraphics[keepaspectratio]{fig/VAR.png}}
+\caption{\label{fig-4}Economic growth prediction with VECM}
 
-\subsubsection{ARDL}\label{ardl}
+\end{figure}%
+
+\subsection{VAR}\label{var}
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{fig/VARstata.png}}
+
+}
+
+\caption{\label{fig-5}Economic growth prediction with VAR}
+
+\end{figure}%
+
+\subsection{ARDL}\label{ardl}
+
+\begin{figure}
+
+\centering{
 
 \pandocbounded{\includegraphics[keepaspectratio]{fig/ARDL.png}}
 
-\subsection{Quarterly regression}\label{quarterly-regression}
+}
+
+\caption{\label{fig-6}Economic growth prediction with ARDL}
+
+\end{figure}%
+
+\section{Quarterly real GDP
+regression}\label{quarterly-real-gdp-regression}
+
+This section uses log quarterly real GDP and log quarterly night light
+index instead. We run this regression for robustness check. The
+possibility of a less volatile night light index progression may improve
+our estimation for the real GDP. It also quite common in
+macroeconometric literatures to regress level equations instead of
+growth (Enders 2014).
+
+This section follows the same procedure as previously. We first show the
+dataset for both series, then run an OLS regression to check if the
+residuals are stationary. Johansen Cointegration test is also applied,
+and we try both VECM and ARDL to the two series. VAR is not used in this
+case since the two series are not stationary at level.
+
+\begin{figure}
+
+\centering{
 
 \pandocbounded{\includegraphics[keepaspectratio]{fig/figQ.png}}
 
+}
+
+\caption{\label{fig-7}Indonesian GDP and night light index}
+
+\end{figure}%
+
+awokwokwokwo
+
+\begin{figure}
+
+\centering{
+
 \pandocbounded{\includegraphics[keepaspectratio]{fig/Qols.png}}
 
-\subsubsection{VECM}\label{vecm-1}
+}
+
+\caption{\label{fig-8}OLS prediction and residuals for GDP}
+
+\end{figure}%
+
+aokaowkoakwoakwo
+
+\subsection{VECM}\label{vecm-1}
+
+\begin{figure}
+
+\centering{
 
 \pandocbounded{\includegraphics[keepaspectratio]{fig/VECMQ.png}}
 
-\subsubsection{ARDL}\label{ardl-1}
+}
+
+\caption{\label{fig-9}}
+
+\end{figure}%
+
+\subsection{ARDL}\label{ardl-1}
+
+\begin{figure}
+
+\centering{
 
 \pandocbounded{\includegraphics[keepaspectratio]{fig/ARDLQ.png}}
+
+}
+
+\caption{\label{fig-10}}
+
+\end{figure}%
 
 \section{Conclusion}\label{conclusion}
 
