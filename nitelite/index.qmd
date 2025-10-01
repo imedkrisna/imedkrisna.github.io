@@ -113,7 +113,7 @@ For robustness, we also try to do the time series on the log quarterly GDP and n
 
 ## Economic growth estimations
 
-We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarring (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags.  In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and full replication notebook can be access [here](nitelite3stata.html).
+We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarring (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags.  In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and full replication notebook can be access [here](nitelite3stata.html){target="_blank"}.
 
 As discussed, this section presents graphs for the observed line and the predicted line of three different models: VECM, VAR and ARDL. Each model have six specifications. Panel (a) shows only the two variables, quarterly economic growth and quarterly night light index growth. Panel (b) adds a dummy covid, while panel (c) adds a dummy scarring. The next three panels repeat with quarter dummies added.
 
@@ -158,7 +158,7 @@ wqwqwq
 
 ## Appendix A {.unnumbered}
 
-See [imedkrisna.github.io/misc/nitelite/nitelite3stata.html](nitelite3stata.html)
+See [imedkrisna.github.io/misc/nitelite/nitelite3stata.html](nitelite3stata.html){target="_blank"}
 
 
 [^1]: As discussed above, previous papers use cross-sectional regression which presents no lag. Night light is also more immune from administrative error and other kinds of potential biases.
