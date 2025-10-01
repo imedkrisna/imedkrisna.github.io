@@ -1,0 +1,163 @@
+---
+jupyter: python3
+license: "This work is dedicated to the Public Domain"
+title: Forecasting Indonesian economic growth using night light
+#subtitle: ""
+author:
+  - name: Krisna Gupta
+    email: krisna@dewanekonomi.go.id
+    orcid: 0000-0001-8695-0514
+    url: https://imedkrisna.github.io/
+    affiliation:
+      - id: den
+        name: National Economic Council, Republic of Indonesia
+#        department: Executive Director for Economic Strategy and Policy
+        city: Jakarta
+        country: Indonesia
+    note: "for reproduction see https://www.github.com/imedkrisna/nitelite"
+    acknowledgements: "This is a ongoing works and still being updated."
+    corresponding: true
+  - name: Timothy Kinmekita Ginting
+#    email: timothy.ginting@dewanekonomi.go.id
+    affiliation: 
+      - ref: den
+#    note: ""
+abstract: |
+  Economic growth is one of the most important indicator that influences economic decisions of private enterprises and governments. Therefore, tracking economic growth in higher frequency would benefit decision makers. One way to verify the official growth number is to use relevant leading indicators for economic growth that are independent from the statistical agency. In this paper, we use the Indonesian nighttime light index to fit historical economic growth of Indonesia. We utilise three different macroeconometric techniques and compare their performances.  
+  
+keywords: 
+  - Night Light
+  - Growth Forecasting
+date: last-modified
+execute:
+  echo: false
+  warning: false
+bibliography: ref.bib
+csl: taylor-and-francis-chicago-author-date.csl
+citation: true
+format:
+  tandf-pdf:
+    keep-tex: true
+    journal:
+      blinded: false
+    indent: true
+    citecolor: cyan
+    linkcolor: cyan
+    urlcolor: cyan
+  tandf-html: default
+title-footnote: |
+  Some footnotes on the title...
+author-format: horizontal
+articleurl: https://www.github.io/imedkrisna/nitelite
+---
+
+## Introduction
+
+GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number [@nl3].It is therefore essential to develop alternative methods to validate and evaluate economic growth data.
+
+One such method lies in the use of nighttime lights as a proxy to nowcast economic growth. The use of satellite imagery, particularly in the form of nighttime lights, has increased in relevance over the last 20 years. Technology has developed to allow for the detection of signals at night coming from common artificial light sources such as streetlights, buildings, and vehicles. This data can then be used to measure human activity, a critical component of economic growth. Nighttime lights growth serves as a good predictor of economic growth at the national and sub-national levels [@nl;@nl2;@nl3]. @nl shows how nighttime lights data are able to serve as a better predictor of economic growth than various indicators and proxies in other countries. The fact that nighttime lights data is procured from NASA as an open source ensures full transparency. The data is readily available without any pre-processing or involvement from third parties, meaning it is immune to the fluctuations in perceived credibility that are associated with statistical agencies. The independence from statistical agencies is an important condition that positions nighttime lights well as a leading indicator for GDP growth [@enders].
+
+In this paper, we utilize a raster of monthly nighttime lights data from Indonesia provided by NASA's Black Marble project [@blackmarblepy]. We then transform the data into year-on-year form and resample it into a quarterly growth rate, mirroring the GDP data from BPS. We then fit nighttime lights growth on GDP growth using various models. Out of all the models used, the Vector Error Correction Model (VECM) showed the most promising fit. Importantly, we find evidence of a potential structural break between Q2 economic growth figure from BPS and the Q2 economic growth predicted by the nighttime lights models.
+
+The paper is organised as follows. We discuss the nighttime lights data collection process and exploratory data analysis section two. The methodology and theory behind model development is covered in section three. Section four discusses the model results, followed by a conclusion in section five.
+
+## Data Collection and Processing
+NASA Black Marble [@blackmarblepy] is a a daily calibrated, corrected, and validated product suite, curated such that nighttime lights data can be used effectively for scientific observations. The product suite takes full advantage of the capabilities of the Visible Infrared Imaging Radiometer Suite (VIIRS) instrument, which is a component of the Suomi National Polar-orbiting Partnership (NPP) satellite. The instrument consists of 22 spectral bands from the ultra-violet to the infrared, of which the day night band (DNB) in particular is used to observe nighttime lights. The DNB is ultra-sensitive, and can detect very dim light that is several times fainter than daylight. The band covers 0.5–0.9 µm wavelengths (visible green to near-infrared), which is exactly the range of light emitted by common artificial sources like streetlights, buildings, vehicles, and even fishing boats. 
+
+While the analysis of nighttime lights has become more popular over the last two decades, a surprisingly few number of studies employ the use of data from VIIRS [@nle]. The new nighttime lights data offers a sharper resolution and higher frequency compared to the previous generation of nighttime lights data. Black Marble's standard science removes cloud-contaminated pixels and and corrects for atmospheric, terrain, vegetation, snow, lunar, and stray light effects on the VIIRS instrument. 
+
+The data collection process was performed using the Black Marble Python package developed by the World Bank [@blackmarblepy]. After mapping and defining Indonesia's coordinates as the region of interest, we were able to use the `blackmarblepy` package to access NASA Black Marble as a xarray dataset. NASA's Black Marble suite offers daily, monthly, and yearly global nighttime lights data. Rasters were able to be created at all three frequency levels. Each xarray dataset contains a nighttime lights tile that is gap-filled and corrected, with a resolution of 500m. Critically, each dataset also contains a main variable representing radiance, a numerical measure of the amount of light energy emitted or reflected from a surface per unit area in a given direction, expressed in watts per square meter per steradian $(W \cdot m^{-2} \cdot sr^{-1})$. It is this measure that allows for nighttime lights to be compared and used as a proxy for GDP growth. 
+
+![Annual Nighttime Lights in Indonesia, 2023](fig/nitelite.png){#fig-1}
+
+@fig-1 The figure is a visualization of the yearly raster for nighttime lights in Indonesia in 2023. There is a stark contrast between the nighttime lights activity in Java compared to other islands, which is reflective of significant gaps in various socioeconomic indicators between Java and the rest of Indonesia. The stark difference in economic activity between Java and the rest of Indonesia is well-documented in literature, and is a consequence of the landscape and soil of the island facilitating stronger agricultural yields and population growth. 
+
+Black Marble data can also be extracted for multiple time periods. The function will return a raster stack, where each raster band corresponds to a different date. The following code snippet provides examples of getting data across multiple days, for the month of May 2024 in Indonesia. We define a date range using pd.date_range.
+
+![Daily Average Nighttime Light Radiance in Indonesia, May 2024](fig/file_show.png){#fig-may}
+
+
+Here we can see the fluctuations that exist within a given month, fluctuations that may be difficult to pinpoint from monthly or yearly rasters. One advantage of the flexibility of nighttime lights data is the ability to process it to suit the needs of any kind of time series analysis. In this instance, to facilitate the goal of making a proper comparison between nighttime lights and GDP, both series needed to be expressed on the same unit level. In Indonesia, GDP growth is typically reported in quarterly year-on-year terms. To align the nighttime lights data with this format, multiple steps were needed. First, monthly rasters were extracted from January 2012 to December 2024, covering the full period of available Black Marble nighttime lights data. The data was then saved as a .zip file. The radiance values were also extracted and saved as a separate .csv file.
+
+With the radiance values extracted in a monthly form, the next steps involved transforming the data into quarterly year-on-year terms. Nighttime lights data was aggregated into quarterly terms. The data was then lagged and shifted 1 year back, from which the year-on-year change was able to be calculated. 
+
+GDP growth data was straightforward to collect due to the data being readily available from the BPS website [@bps]. Quarterly GDP growth from consumption side and aggregate GDP growth was used for the purposes of this study. The GDP series includes data from Q1-2010 to Q2-2025, but we will use Q1-2012 as our starting point in line with the availability of nighttime lights data from NASA Black Marble.
+
+![Indonesian economic growth and night light growth](fig/fig.png){#fig-2}
+
+@fig-2 shows our two main variables. The left panel is the GDP growth sourced from @bps while the right panel is the calculated night lights we gathered via Black Marble python package. Both seems to follow similar trend. The pearson correlation for the two vaariables is 0.44 which suggests a potential cointegration. However, night light index doesn't show significant drop during the COVID time, unlike the GDP growth.
+
+Moreover, the volatility of the nighttime lights series could indicate that there is no stable mean and that variance is constantly changing. From the eye-test, it would appear that the series is non-stationary. GDP growth, on the other hand, appears mostly stable outside of a large structural break during the COVID period. This normally indicates the series is stationary, but the structural break could cause potential problems for formal models. An ADF test is needed to confirm the stationarity of both series. 
+
+## Methodology
+
+Unlike @nl and others, our dataset does not contain any cross-sectional variation. Therefore, techniques that utilise cross-sectional mean cannot be exploited. Multivariate time series techniques, thus, should be the appropriate method.
+
+Given the nature of the data as multivariate time series, certain tests need to be performed before moving on to the modeling process [@enders;@ts]. First, we check stationarity using the ADF test to determine whether the two series are stationary at the same level. Growth data are usually stationary for level variables. If the series are truly stationary, Vector AutoRegression (VAR) would be the most appropriate model choice. However, the structural breaks experienced during COVID-19 could create potential problems due to shock and scarring effects. There is a possibility of  cointegration existing between the two series. In such a case, the Vector Error Correction Model (VECM) is the appropriate method to use. [@enders;@ts].
+
+![OLS fit and the residuals](fig/ols.png){#fig-3}
+
+The ADF test shows that while the nighttime lights series is stationary, the GDP growth series is not. We cannot reject the null hypothesis of non-stationarity of the GDP growth series at the 5\% level. This is contrary to typical growth number, potentially amid covid. It is important to note that the p-value is pretty close to a rejection. This suggestst that a structural VAR model model may still suitable if we control for the COVID variable. Lastly, the potency that the two series integrate at a different level also warrants the use of ARDL [@ts;@enders].
+
+We then proceed to the Johansen cointegration test. We first find a proper lag, then proceed to the Johansen cointegration test. The null hypothesis is there is no cointegration among variables used. The trace test statistic results are larger than the critical value, which suggest that we reject the null hypothesis. This would suggests a VECM as a method of choice. However, the null hypothesis of the number of rank equals two is also rejected. This suggests a potentially feasible two cointegration equations. An equal number between the cointegration equations and the endogeneous variables mean the VECM may perform no different than VAR.
+
+The ADF test and the Johanse cointegration test are not terribly conclusive, we proceed with testing three potential multivariate time series technique, namely VAR, ARDL and VECM. To sum up:
+
+- VECM reasons: Both are not integrated at the same level, OLS-residuals is stationary, Johansen Cointegration failed to reject $H_0$.
+
+- VAR reasons: Economic growth is _almost_ stationary (p-value is very close to the critical level), Johansen Cointegration failed to reject a possibility of only 1 cointegration coefficient.
+
+- ARDL reason: Economic growth $I(1)$ while the night light growth is $I(0)$. Additionally, ARDL allows for one endogeneous variable[^2].
+
+For robustness, we also try to do the time series on the log quarterly GDP and night light instead of growth.
+
+## Results and discussions
+
+We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags.  In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are at the appendix.
+
+### Growth regression
+
+#### VECM
+
+![](fig/VECM.png)
+
+#### VAR
+
+![](fig/VAR.png)
+
+#### ARDL
+
+![](fig/ARDL.png)
+
+### Quarterly regression
+
+![](fig/figQ.png)
+
+![](fig/Qols.png)
+
+#### VECM
+
+![](fig/VECMQ.png)
+
+#### ARDL
+
+![](fig/ARDLQ.png)
+
+## Conclusion
+
+
+
+## References {.unnumbered}
+
+::: {#refs}
+:::
+
+## Appendix {.supplementary}
+
+## Appendix A {.unnumbered}
+
+
+
+[^1]: We tried using the BIC-chosen lag but the fit is inferior to AIC-chosen lag.
+
+[^2]: As discussed above, previous papers use cross-sectional regression which presents no lag. Night light is also more immune from administrative error and other kinds of potential biases.

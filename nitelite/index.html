@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Krisna Gupta">
+<meta name="author" content="Timothy Kinmekita Ginting">
+<meta name="dcterms.date" content="2025-10-01">
+<meta name="keywords" content="Night Light, Growth Forecasting">
+
+<title>Forecasting Indonesian economic growth using night light – Krisna ‘imed’ Gupta</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1d4f84655f446305ac42a8f1abcf7405.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Krisna ‘imed’ Gupta</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../misc.html"> 
+<span class="menu-text">misc</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#data-collection-and-processing" id="toc-data-collection-and-processing" class="nav-link" data-scroll-target="#data-collection-and-processing"><span class="header-section-number">2</span> Data Collection and Processing</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">3</span> Methodology</a></li>
+  <li><a href="#results-and-discussions" id="toc-results-and-discussions" class="nav-link" data-scroll-target="#results-and-discussions"><span class="header-section-number">4</span> Results and discussions</a>
+  <ul class="collapse">
+  <li><a href="#growth-regression" id="toc-growth-regression" class="nav-link" data-scroll-target="#growth-regression"><span class="header-section-number">4.1</span> Growth regression</a></li>
+  <li><a href="#quarterly-regression" id="toc-quarterly-regression" class="nav-link" data-scroll-target="#quarterly-regression"><span class="header-section-number">4.2</span> Quarterly regression</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">6</span> Appendix</a></li>
+  <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a">Appendix A</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (tandf)</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Forecasting Indonesian economic growth using night light</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://imedkrisna.github.io/">Krisna Gupta</a> <a href="mailto:krisna@dewanekonomi.go.id" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-8695-0514" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            National Economic Council, Republic of Indonesia
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Timothy Kinmekita Ginting </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            National Economic Council, Republic of Indonesia
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    <p>Economic growth is one of the most important indicator that influences economic decisions of private enterprises and governments. Therefore, tracking economic growth in higher frequency would benefit decision makers. One way to verify the official growth number is to use relevant leading indicators for economic growth that are independent from the statistical agency. In this paper, we use the Indonesian nighttime light index to fit historical economic growth of Indonesia. We utilise three different macroeconometric techniques and compare their performances.</p>
+  </div>
+</div>
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>Night Light, Growth Forecasting</p>
+  </div>
+</div>
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number <span class="citation" data-cites="nl3">(<a href="#ref-nl3" role="doc-biblioref">Martínez 2022</a>)</span>.It is therefore essential to develop alternative methods to validate and evaluate economic growth data.</p>
+<p>One such method lies in the use of nighttime lights as a proxy to nowcast economic growth. The use of satellite imagery, particularly in the form of nighttime lights, has increased in relevance over the last 20 years. Technology has developed to allow for the detection of signals at night coming from common artificial light sources such as streetlights, buildings, and vehicles. This data can then be used to measure human activity, a critical component of economic growth. Nighttime lights growth serves as a good predictor of economic growth at the national and sub-national levels <span class="citation" data-cites="nl nl2 nl3">(<a href="#ref-nl" role="doc-biblioref">Henderson, Storeygard, and Weil 2012</a>; <a href="#ref-nl2" role="doc-biblioref">Bickenbach et al. 2016</a>; <a href="#ref-nl3" role="doc-biblioref">Martínez 2022</a>)</span>. <span class="citation" data-cites="nl">Henderson, Storeygard, and Weil (<a href="#ref-nl" role="doc-biblioref">2012</a>)</span> shows how nighttime lights data are able to serve as a better predictor of economic growth than various indicators and proxies in other countries. The fact that nighttime lights data is procured from NASA as an open source ensures full transparency. The data is readily available without any pre-processing or involvement from third parties, meaning it is immune to the fluctuations in perceived credibility that are associated with statistical agencies. The independence from statistical agencies is an important condition that positions nighttime lights well as a leading indicator for GDP growth <span class="citation" data-cites="enders">(<a href="#ref-enders" role="doc-biblioref">Enders 2014</a>)</span>.</p>
+<p>In this paper, we utilize a raster of monthly nighttime lights data from Indonesia provided by NASA’s Black Marble project <span class="citation" data-cites="blackmarblepy">(<a href="#ref-blackmarblepy" role="doc-biblioref">Stefanini Vicente and Marty 2023</a>)</span>. We then transform the data into year-on-year form and resample it into a quarterly growth rate, mirroring the GDP data from BPS. We then fit nighttime lights growth on GDP growth using various models. Out of all the models used, the Vector Error Correction Model (VECM) showed the most promising fit. Importantly, we find evidence of a potential structural break between Q2 economic growth figure from BPS and the Q2 economic growth predicted by the nighttime lights models.</p>
+<p>The paper is organised as follows. We discuss the nighttime lights data collection process and exploratory data analysis section two. The methodology and theory behind model development is covered in section three. Section four discusses the model results, followed by a conclusion in section five.</p>
+</section>
+<section id="data-collection-and-processing" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="data-collection-and-processing"><span class="header-section-number">2</span> Data Collection and Processing</h2>
+<p>NASA Black Marble <span class="citation" data-cites="blackmarblepy">(<a href="#ref-blackmarblepy" role="doc-biblioref">Stefanini Vicente and Marty 2023</a>)</span> is a a daily calibrated, corrected, and validated product suite, curated such that nighttime lights data can be used effectively for scientific observations. The product suite takes full advantage of the capabilities of the Visible Infrared Imaging Radiometer Suite (VIIRS) instrument, which is a component of the Suomi National Polar-orbiting Partnership (NPP) satellite. The instrument consists of 22 spectral bands from the ultra-violet to the infrared, of which the day night band (DNB) in particular is used to observe nighttime lights. The DNB is ultra-sensitive, and can detect very dim light that is several times fainter than daylight. The band covers 0.5–0.9 µm wavelengths (visible green to near-infrared), which is exactly the range of light emitted by common artificial sources like streetlights, buildings, vehicles, and even fishing boats.</p>
+<p>While the analysis of nighttime lights has become more popular over the last two decades, a surprisingly few number of studies employ the use of data from VIIRS <span class="citation" data-cites="nle">(<a href="#ref-nle" role="doc-biblioref">Gibson, Olivia, and Boe-Gibson 2020</a>)</span>. The new nighttime lights data offers a sharper resolution and higher frequency compared to the previous generation of nighttime lights data. Black Marble’s standard science removes cloud-contaminated pixels and and corrects for atmospheric, terrain, vegetation, snow, lunar, and stray light effects on the VIIRS instrument.</p>
+<p>The data collection process was performed using the Black Marble Python package developed by the World Bank <span class="citation" data-cites="blackmarblepy">(<a href="#ref-blackmarblepy" role="doc-biblioref">Stefanini Vicente and Marty 2023</a>)</span>. After mapping and defining Indonesia’s coordinates as the region of interest, we were able to use the <code>blackmarblepy</code> package to access NASA Black Marble as a xarray dataset. NASA’s Black Marble suite offers daily, monthly, and yearly global nighttime lights data. Rasters were able to be created at all three frequency levels. Each xarray dataset contains a nighttime lights tile that is gap-filled and corrected, with a resolution of 500m. Critically, each dataset also contains a main variable representing radiance, a numerical measure of the amount of light energy emitted or reflected from a surface per unit area in a given direction, expressed in watts per square meter per steradian <span class="math inline">\((W \cdot m^{-2} \cdot sr^{-1})\)</span>. It is this measure that allows for nighttime lights to be compared and used as a proxy for GDP growth.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/nitelite.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Annual Nighttime Lights in Indonesia, 2023
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-1" class="quarto-xref">Figure&nbsp;1</a> The figure is a visualization of the yearly raster for nighttime lights in Indonesia in 2023. There is a stark contrast between the nighttime lights activity in Java compared to other islands, which is reflective of significant gaps in various socioeconomic indicators between Java and the rest of Indonesia. The stark difference in economic activity between Java and the rest of Indonesia is well-documented in literature, and is a consequence of the landscape and soil of the island facilitating stronger agricultural yields and population growth.</p>
+<p>Black Marble data can also be extracted for multiple time periods. The function will return a raster stack, where each raster band corresponds to a different date. The following code snippet provides examples of getting data across multiple days, for the month of May 2024 in Indonesia. We define a date range using pd.date_range.</p>
+<div id="fig-may" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-may-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/file_show.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-may-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Daily Average Nighttime Light Radiance in Indonesia, May 2024
+</figcaption>
+</figure>
+</div>
+<p>Here we can see the fluctuations that exist within a given month, fluctuations that may be difficult to pinpoint from monthly or yearly rasters. One advantage of the flexibility of nighttime lights data is the ability to process it to suit the needs of any kind of time series analysis. In this instance, to facilitate the goal of making a proper comparison between nighttime lights and GDP, both series needed to be expressed on the same unit level. In Indonesia, GDP growth is typically reported in quarterly year-on-year terms. To align the nighttime lights data with this format, multiple steps were needed. First, monthly rasters were extracted from January 2012 to December 2024, covering the full period of available Black Marble nighttime lights data. The data was then saved as a .zip file. The radiance values were also extracted and saved as a separate .csv file.</p>
+<p>With the radiance values extracted in a monthly form, the next steps involved transforming the data into quarterly year-on-year terms. Nighttime lights data was aggregated into quarterly terms. The data was then lagged and shifted 1 year back, from which the year-on-year change was able to be calculated.</p>
+<p>GDP growth data was straightforward to collect due to the data being readily available from the BPS website <span class="citation" data-cites="bps">(<a href="#ref-bps" role="doc-biblioref">BPS 2025</a>)</span>. Quarterly GDP growth from consumption side and aggregate GDP growth was used for the purposes of this study. The GDP series includes data from Q1-2010 to Q2-2025, but we will use Q1-2012 as our starting point in line with the availability of nighttime lights data from NASA Black Marble.</p>
+<div id="fig-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/fig.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Indonesian economic growth and night light growth
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-2" class="quarto-xref">Figure&nbsp;3</a> shows our two main variables. The left panel is the GDP growth sourced from <span class="citation" data-cites="bps">BPS (<a href="#ref-bps" role="doc-biblioref">2025</a>)</span> while the right panel is the calculated night lights we gathered via Black Marble python package. Both seems to follow similar trend. The pearson correlation for the two vaariables is 0.44 which suggests a potential cointegration. However, night light index doesn’t show significant drop during the COVID time, unlike the GDP growth.</p>
+<p>Moreover, the volatility of the nighttime lights series could indicate that there is no stable mean and that variance is constantly changing. From the eye-test, it would appear that the series is non-stationary. GDP growth, on the other hand, appears mostly stable outside of a large structural break during the COVID period. This normally indicates the series is stationary, but the structural break could cause potential problems for formal models. An ADF test is needed to confirm the stationarity of both series.</p>
+</section>
+<section id="methodology" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="methodology"><span class="header-section-number">3</span> Methodology</h2>
+<p>Unlike <span class="citation" data-cites="nl">Henderson, Storeygard, and Weil (<a href="#ref-nl" role="doc-biblioref">2012</a>)</span> and others, our dataset does not contain any cross-sectional variation. Therefore, techniques that utilise cross-sectional mean cannot be exploited. Multivariate time series techniques, thus, should be the appropriate method.</p>
+<p>Given the nature of the data as multivariate time series, certain tests need to be performed before moving on to the modeling process <span class="citation" data-cites="enders ts">(<a href="#ref-enders" role="doc-biblioref">Enders 2014</a>; <a href="#ref-ts" role="doc-biblioref">Shrestha and Bhatta 2018</a>)</span>. First, we check stationarity using the ADF test to determine whether the two series are stationary at the same level. Growth data are usually stationary for level variables. If the series are truly stationary, Vector AutoRegression (VAR) would be the most appropriate model choice. However, the structural breaks experienced during COVID-19 could create potential problems due to shock and scarring effects. There is a possibility of cointegration existing between the two series. In such a case, the Vector Error Correction Model (VECM) is the appropriate method to use. <span class="citation" data-cites="enders ts">(<a href="#ref-enders" role="doc-biblioref">Enders 2014</a>; <a href="#ref-ts" role="doc-biblioref">Shrestha and Bhatta 2018</a>)</span>.</p>
+<div id="fig-3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fig/ols.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: OLS fit and the residuals
+</figcaption>
+</figure>
+</div>
+<p>The ADF test shows that while the nighttime lights series is stationary, the GDP growth series is not. We cannot reject the null hypothesis of non-stationarity of the GDP growth series at the 5% level. This is contrary to typical growth number, potentially amid covid. It is important to note that the p-value is pretty close to a rejection. This suggestst that a structural VAR model model may still suitable if we control for the COVID variable. Lastly, the potency that the two series integrate at a different level also warrants the use of ARDL <span class="citation" data-cites="ts enders">(<a href="#ref-ts" role="doc-biblioref">Shrestha and Bhatta 2018</a>; <a href="#ref-enders" role="doc-biblioref">Enders 2014</a>)</span>.</p>
+<p>We then proceed to the Johansen cointegration test. We first find a proper lag, then proceed to the Johansen cointegration test. The null hypothesis is there is no cointegration among variables used. The trace test statistic results are larger than the critical value, which suggest that we reject the null hypothesis. This would suggests a VECM as a method of choice. However, the null hypothesis of the number of rank equals two is also rejected. This suggests a potentially feasible two cointegration equations. An equal number between the cointegration equations and the endogeneous variables mean the VECM may perform no different than VAR.</p>
+<p>The ADF test and the Johanse cointegration test are not terribly conclusive, we proceed with testing three potential multivariate time series technique, namely VAR, ARDL and VECM. To sum up:</p>
+<ul>
+<li><p>VECM reasons: Both are not integrated at the same level, OLS-residuals is stationary, Johansen Cointegration failed to reject <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>VAR reasons: Economic growth is <em>almost</em> stationary (p-value is very close to the critical level), Johansen Cointegration failed to reject a possibility of only 1 cointegration coefficient.</p></li>
+<li><p>ARDL reason: Economic growth <span class="math inline">\(I(1)\)</span> while the night light growth is <span class="math inline">\(I(0)\)</span>. Additionally, ARDL allows for one endogeneous variable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
+</ul>
+<p>For robustness, we also try to do the time series on the log quarterly GDP and night light instead of growth.</p>
+</section>
+<section id="results-and-discussions" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="results-and-discussions"><span class="header-section-number">4</span> Results and discussions</h2>
+<p>We ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are at the appendix.</p>
+<section id="growth-regression" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="growth-regression"><span class="header-section-number">4.1</span> Growth regression</h3>
+<section id="vecm" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="vecm"><span class="header-section-number">4.1.1</span> VECM</h4>
+<p><img src="fig/VECM.png" class="img-fluid"></p>
+</section>
+<section id="var" class="level4" data-number="4.1.2">
+<h4 data-number="4.1.2" class="anchored" data-anchor-id="var"><span class="header-section-number">4.1.2</span> VAR</h4>
+<p><img src="fig/VAR.png" class="img-fluid"></p>
+</section>
+<section id="ardl" class="level4" data-number="4.1.3">
+<h4 data-number="4.1.3" class="anchored" data-anchor-id="ardl"><span class="header-section-number">4.1.3</span> ARDL</h4>
+<p><img src="fig/ARDL.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="quarterly-regression" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="quarterly-regression"><span class="header-section-number">4.2</span> Quarterly regression</h3>
+<p><img src="fig/figQ.png" class="img-fluid"></p>
+<p><img src="fig/Qols.png" class="img-fluid"></p>
+<section id="vecm-1" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="vecm-1"><span class="header-section-number">4.2.1</span> VECM</h4>
+<p><img src="fig/VECMQ.png" class="img-fluid"></p>
+</section>
+<section id="ardl-1" class="level4" data-number="4.2.2">
+<h4 data-number="4.2.2" class="anchored" data-anchor-id="ardl-1"><span class="header-section-number">4.2.2</span> ARDL</h4>
+<p><img src="fig/ARDLQ.png" class="img-fluid"></p>
+</section>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5</span> Conclusion</h2>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-nl2" class="csl-entry" role="listitem">
+Bickenbach, Frank, Eckhardt Bode, Peter Nunnenkamp, and Mareike Söder. 2016. <span>“Night Lights and Regional GDP.”</span> Journal Article. <em>Review of World Economics</em> 152 (2): 425–447. https://doi.org/<a href="https://doi.org/10.1007/s10290-016-0246-0">https://doi.org/10.1007/s10290-016-0246-0</a>.
+</div>
+<div id="ref-bps" class="csl-entry" role="listitem">
+BPS. 2025. <em>[Seri 2010] 4. Laju Pertumbuhan PDB Menurut Pengeluaran, 2025. Diakses Pada 14 September 2025</em>. Https://www.bps.go.id/id/statistics-table/2/MTA4IzI=/-seri-2010–4–laju-pertumbuhan-pdb-menurut-pengeluaran–persen-.html.
+</div>
+<div id="ref-enders" class="csl-entry" role="listitem">
+Enders, Walter. 2014. <em>Applied Econometric Time Series</em>. Wiley.
+</div>
+<div id="ref-nle" class="csl-entry" role="listitem">
+Gibson, John, Susan Olivia, and Geua Boe-Gibson. 2020. <span>“Night Lights in Economics: Sources and Uses.”</span> Journal Article. <em>Journal of Economic Surveys</em> 34: 955–980. https://doi.org/<a href="https://doi.org/10.1111/joes.12387">https://doi.org/10.1111/joes.12387</a>.
+</div>
+<div id="ref-nl" class="csl-entry" role="listitem">
+Henderson, J. Vernon, Adam Storeygard, and David N. Weil. 2012. <span>“Measuring Economic Growth from Outer Space.”</span> <em>The American Economic Review</em> 102 (2): 994–1028. <a href="http://www.jstor.org/stable/23245442">http://www.jstor.org/stable/23245442</a>.
+</div>
+<div id="ref-nl3" class="csl-entry" role="listitem">
+Martínez, Luis R. 2022. <span>“How Much Should We Trust the Dictator’s GDP Growth Estimates?”</span> Journal Article. <em>Journal of Political Economy</em> 130 (10): 2731–2769. <a href="https://doi.org/10.1086/720458">https://doi.org/10.1086/720458</a>.
+</div>
+<div id="ref-ts" class="csl-entry" role="listitem">
+Shrestha, Min B., and Guna R. Bhatta. 2018. <span>“Selecting Appropriate Methodological Framework for Time Series Data Analysis.”</span> Journal Article. <em>The Journal of Finance and Data Science</em> 4 (2): 71–89. https://doi.org/<a href="https://doi.org/10.1016/j.jfds.2017.11.001">https://doi.org/10.1016/j.jfds.2017.11.001</a>.
+</div>
+<div id="ref-blackmarblepy" class="csl-entry" role="listitem">
+Stefanini Vicente, Gabriel, and Robert Marty. 2023. <em><span class="nocase">BlackMarblePy: Georeferenced Rasters and Statistics of Nighttime Lights from NASA Black Marble</span></em>. <a href="https://worldbank.github.io/blackmarblepy" class="uri">Https://worldbank.github.io/blackmarblepy</a>. <a href="https://doi.org/10.5281/zenodo.10667907">https://doi.org/10.5281/zenodo.10667907</a>.
+</div>
+</div>
+</section>
+<section id="appendix" class="level2 supplementary" data-number="6">
+<h2 class="supplementary anchored" data-number="6" data-anchor-id="appendix"><span class="header-section-number">6</span> Appendix</h2>
+</section>
+<section id="appendix-a" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="appendix-a">Appendix A</h2>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>As discussed above, previous papers use cross-sectional regression which presents no lag. Night light is also more immune from administrative error and other kinds of potential biases.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>This work is dedicated to the Public Domain</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gupta2025,
+  author = {Gupta, Krisna and Kinmekita Ginting, Timothy},
+  title = {Forecasting {Indonesian} Economic Growth Using Night Light},
+  date = {2025-10-01},
+  langid = {en},
+  abstract = {Economic growth is one of the most important indicator
+    that influences economic decisions of private enterprises and
+    governments. Therefore, tracking economic growth in higher frequency
+    would benefit decision makers. One way to verify the official growth
+    number is to use relevant leading indicators for economic growth
+    that are independent from the statistical agency. In this paper, we
+    use the Indonesian nighttime light index to fit historical economic
+    growth of Indonesia. We utilise three different macroeconometric
+    techniques and compare their performances.}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gupta2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Gupta, Krisna, and Timothy Kinmekita Ginting. 2025. <span>“Forecasting
+Indonesian Economic Growth Using Night Light.”</span> October 1.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

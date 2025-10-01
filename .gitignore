@@ -8,3 +8,5 @@
 *.dta
 
 /.quarto/
+
+**/*.quarto_ipynb
