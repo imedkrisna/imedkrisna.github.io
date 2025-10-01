@@ -98,18 +98,109 @@
     "text": "Melakukan visualisasi data.\n\nimport pandas as pd\nimport world_bank_data as wb"
   },
   {
-    "objectID": "misc.html",
-    "href": "misc.html",
-    "title": "Miscelaneous",
+    "objectID": "nitelite/index.html",
+    "href": "nitelite/index.html",
+    "title": "Forecasting Indonesian economic growth using night light",
     "section": "",
-    "text": "Some of my courses at Politeknik APP Jakarta and Universitas Indonesia can be found here\nSome of my workshop in universities and other occasions.\n\nLatihan R (Bahasa Indonesia)\nGravity in R\nGravity in Stata"
+    "text": "GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number (Martínez 2022).It is therefore essential to develop alternative methods to validate and evaluate economic growth data.\nOne such method lies in the use of nighttime lights as a proxy to nowcast economic growth. The use of satellite imagery, particularly in the form of nighttime lights, has increased in relevance over the last 20 years. Technology has developed to allow for the detection of signals at night coming from common artificial light sources such as streetlights, buildings, and vehicles. This data can then be used to measure human activity, a critical component of economic growth. Nighttime lights growth serves as a good predictor of economic growth at the national and sub-national levels (Henderson, Storeygard, and Weil 2012; Bickenbach et al. 2016; Martínez 2022). Henderson, Storeygard, and Weil (2012) shows how nighttime lights data are able to serve as a better predictor of economic growth than various indicators and proxies in other countries. The fact that nighttime lights data is procured from NASA as an open source ensures full transparency. The data is readily available without any pre-processing or involvement from third parties, meaning it is immune to the fluctuations in perceived credibility that are associated with statistical agencies. The independence from statistical agencies is an important condition that positions nighttime lights well as a leading indicator for GDP growth (Enders 2014).\nIn this paper, we utilize a raster of monthly nighttime lights data from Indonesia provided by NASA’s Black Marble project (Stefanini Vicente and Marty 2023). We then transform the data into year-on-year form and resample it into a quarterly growth rate, mirroring the GDP data from BPS. We then fit nighttime lights growth on GDP growth using various models. Out of all the models used, the Vector Error Correction Model (VECM) showed the most promising fit. Importantly, we find evidence of a potential structural break between Q2 economic growth figure from BPS and the Q2 economic growth predicted by the nighttime lights models.\nThe paper is organised as follows. We discuss the nighttime lights data collection process and exploratory data analysis section two. The methodology and theory behind model development is covered in section three. Section four discusses the model results, followed by a conclusion in section five."
   },
   {
-    "objectID": "misc.html#quick-workshop",
-    "href": "misc.html#quick-workshop",
-    "title": "Miscelaneous",
+    "objectID": "nitelite/index.html#introduction",
+    "href": "nitelite/index.html#introduction",
+    "title": "Forecasting Indonesian economic growth using night light",
     "section": "",
-    "text": "Some of my courses at Politeknik APP Jakarta and Universitas Indonesia can be found here\nSome of my workshop in universities and other occasions.\n\nLatihan R (Bahasa Indonesia)\nGravity in R\nGravity in Stata"
+    "text": "GDP and economic growth are arguably the most significant sources of data for the government. Economic growth rate is used as an anchor for various other indicators. It forms the foundation for critical modeling and analysis used by both governments and private investors to make economic decisions and implement policy measures. More importantly, GDP often serves as a performance indicators for the government, which provides an incentive for misreporting growth number (Martínez 2022).It is therefore essential to develop alternative methods to validate and evaluate economic growth data.\nOne such method lies in the use of nighttime lights as a proxy to nowcast economic growth. The use of satellite imagery, particularly in the form of nighttime lights, has increased in relevance over the last 20 years. Technology has developed to allow for the detection of signals at night coming from common artificial light sources such as streetlights, buildings, and vehicles. This data can then be used to measure human activity, a critical component of economic growth. Nighttime lights growth serves as a good predictor of economic growth at the national and sub-national levels (Henderson, Storeygard, and Weil 2012; Bickenbach et al. 2016; Martínez 2022). Henderson, Storeygard, and Weil (2012) shows how nighttime lights data are able to serve as a better predictor of economic growth than various indicators and proxies in other countries. The fact that nighttime lights data is procured from NASA as an open source ensures full transparency. The data is readily available without any pre-processing or involvement from third parties, meaning it is immune to the fluctuations in perceived credibility that are associated with statistical agencies. The independence from statistical agencies is an important condition that positions nighttime lights well as a leading indicator for GDP growth (Enders 2014).\nIn this paper, we utilize a raster of monthly nighttime lights data from Indonesia provided by NASA’s Black Marble project (Stefanini Vicente and Marty 2023). We then transform the data into year-on-year form and resample it into a quarterly growth rate, mirroring the GDP data from BPS. We then fit nighttime lights growth on GDP growth using various models. Out of all the models used, the Vector Error Correction Model (VECM) showed the most promising fit. Importantly, we find evidence of a potential structural break between Q2 economic growth figure from BPS and the Q2 economic growth predicted by the nighttime lights models.\nThe paper is organised as follows. We discuss the nighttime lights data collection process and exploratory data analysis section two. The methodology and theory behind model development is covered in section three. Section four discusses the model results, followed by a conclusion in section five."
+  },
+  {
+    "objectID": "nitelite/index.html#data-collection-and-processing",
+    "href": "nitelite/index.html#data-collection-and-processing",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "2 Data Collection and Processing",
+    "text": "2 Data Collection and Processing\nNASA Black Marble (Stefanini Vicente and Marty 2023) is a a daily calibrated, corrected, and validated product suite, curated such that nighttime lights data can be used effectively for scientific observations. The product suite takes full advantage of the capabilities of the Visible Infrared Imaging Radiometer Suite (VIIRS) instrument, which is a component of the Suomi National Polar-orbiting Partnership (NPP) satellite. The instrument consists of 22 spectral bands from the ultra-violet to the infrared, of which the day night band (DNB) in particular is used to observe nighttime lights. The DNB is ultra-sensitive, and can detect very dim light that is several times fainter than daylight. The band covers 0.5–0.9 µm wavelengths (visible green to near-infrared), which is exactly the range of light emitted by common artificial sources like streetlights, buildings, vehicles, and even fishing boats.\nWhile the analysis of nighttime lights has become more popular over the last two decades, a surprisingly few number of studies employ the use of data from VIIRS (Gibson, Olivia, and Boe-Gibson 2020). The new nighttime lights data offers a sharper resolution and higher frequency compared to the previous generation of nighttime lights data. Black Marble’s standard science removes cloud-contaminated pixels and and corrects for atmospheric, terrain, vegetation, snow, lunar, and stray light effects on the VIIRS instrument.\nThe data collection process was performed using the Black Marble Python package developed by the World Bank (Stefanini Vicente and Marty 2023). After mapping and defining Indonesia’s coordinates as the region of interest, we were able to use the blackmarblepy package to access NASA Black Marble as a xarray dataset. NASA’s Black Marble suite offers daily, monthly, and yearly global nighttime lights data. Rasters were able to be created at all three frequency levels. Each xarray dataset contains a nighttime lights tile that is gap-filled and corrected, with a resolution of 500m. Critically, each dataset also contains a main variable representing radiance, a numerical measure of the amount of light energy emitted or reflected from a surface per unit area in a given direction, expressed in watts per square meter per steradian \\((W \\cdot m^{-2} \\cdot sr^{-1})\\). It is this measure that allows for nighttime lights to be compared and used as a proxy for GDP growth.\n\n\n\n\n\n\nFigure 1: Annual Nighttime Lights in Indonesia, 2023\n\n\n\nFigure 1 The figure is a visualization of the yearly raster for nighttime lights in Indonesia in 2023. There is a stark contrast between the nighttime lights activity in Java compared to other islands, which is reflective of significant gaps in various socioeconomic indicators between Java and the rest of Indonesia. The stark difference in economic activity between Java and the rest of Indonesia is well-documented in literature, and is a consequence of the landscape and soil of the island facilitating stronger agricultural yields and population growth.\nBlack Marble data can also be extracted for multiple time periods. The function will return a raster stack, where each raster band corresponds to a different date. The following code snippet provides examples of getting data across multiple days, for the month of May 2024 in Indonesia. We define a date range using pd.date_range.\n\n\n\n\n\n\nFigure 2: Daily Average Nighttime Light Radiance in Indonesia, May 2024\n\n\n\nHere we can see the fluctuations that exist within a given month, fluctuations that may be difficult to pinpoint from monthly or yearly rasters. One advantage of the flexibility of nighttime lights data is the ability to process it to suit the needs of any kind of time series analysis. In this instance, to facilitate the goal of making a proper comparison between nighttime lights and GDP, both series needed to be expressed on the same unit level. In Indonesia, GDP growth is typically reported in quarterly year-on-year terms. To align the nighttime lights data with this format, multiple steps were needed. First, monthly rasters were extracted from January 2012 to December 2024, covering the full period of available Black Marble nighttime lights data. The data was then saved as a .zip file. The radiance values were also extracted and saved as a separate .csv file.\nWith the radiance values extracted in a monthly form, the next steps involved transforming the data into quarterly year-on-year terms. Nighttime lights data was aggregated into quarterly terms. The data was then lagged and shifted 1 year back, from which the year-on-year change was able to be calculated.\nGDP growth data was straightforward to collect due to the data being readily available from the BPS website (BPS 2025). Quarterly GDP growth from consumption side and aggregate GDP growth was used for the purposes of this study. The GDP series includes data from Q1-2010 to Q2-2025, but we will use Q1-2012 as our starting point in line with the availability of nighttime lights data from NASA Black Marble.\n\n\n\n\n\n\nFigure 3: Indonesian economic growth and night light growth\n\n\n\nFigure 3 shows our two main variables. The left panel is the GDP growth sourced from BPS (2025) while the right panel is the calculated night lights we gathered via Black Marble python package. Both seems to follow similar trend. The pearson correlation for the two vaariables is 0.44 which suggests a potential cointegration. However, night light index doesn’t show significant drop during the COVID time, unlike the GDP growth.\nMoreover, the volatility of the nighttime lights series could indicate that there is no stable mean and that variance is constantly changing. From the eye-test, it would appear that the series is non-stationary. GDP growth, on the other hand, appears mostly stable outside of a large structural break during the COVID period. This normally indicates the series is stationary, but the structural break could cause potential problems for formal models. An ADF test is needed to confirm the stationarity of both series."
+  },
+  {
+    "objectID": "nitelite/index.html#methodology",
+    "href": "nitelite/index.html#methodology",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "3 Methodology",
+    "text": "3 Methodology\nUnlike Henderson, Storeygard, and Weil (2012) and others, our dataset does not contain any cross-sectional variation. Therefore, techniques that utilise cross-sectional mean cannot be exploited. Multivariate time series techniques, thus, should be the appropriate method.\nGiven the nature of the data as multivariate time series, certain tests need to be performed before moving on to the modeling process (Enders 2014; Shrestha and Bhatta 2018). First, we check stationarity using the ADF test to determine whether the two series are stationary at the same level. Growth data are usually stationary for level variables. If the series are truly stationary, Vector AutoRegression (VAR) would be the most appropriate model choice. However, the structural breaks experienced during COVID-19 could create potential problems due to shock and scarring effects. There is a possibility of cointegration existing between the two series. In such a case, the Vector Error Correction Model (VECM) is the appropriate method to use. (Enders 2014; Shrestha and Bhatta 2018).\n\n\n\n\n\n\nFigure 4: OLS fit and the residuals\n\n\n\nThe ADF test shows that while the nighttime lights series is stationary, the GDP growth series is not. We cannot reject the null hypothesis of non-stationarity of the GDP growth series at the 5% level. This is contrary to typical growth number, potentially amid covid. It is important to note that the p-value is pretty close to a rejection. This suggestst that a structural VAR model model may still suitable if we control for the COVID variable. Lastly, the potency that the two series integrate at a different level also warrants the use of ARDL (Shrestha and Bhatta 2018; Enders 2014).\nWe then proceed to the Johansen cointegration test. We first find a proper lag, then proceed to the Johansen cointegration test. The null hypothesis is there is no cointegration among variables used. The trace test statistic results are larger than the critical value, which suggest that we reject the null hypothesis. This would suggests a VECM as a method of choice. However, the null hypothesis of the number of rank equals two is also rejected. This suggests a potentially feasible two cointegration equations. An equal number between the cointegration equations and the endogeneous variables mean the VECM may perform no different than VAR.\nThe ADF test and the Johanse cointegration test are not terribly conclusive, we proceed with testing three potential multivariate time series technique, namely VAR, ARDL and VECM. To sum up:\n\nVECM reasons: Both are not integrated at the same level, OLS-residuals is stationary, Johansen Cointegration failed to reject \\(H_0\\).\nVAR reasons: Economic growth is almost stationary (p-value is very close to the critical level), Johansen Cointegration failed to reject a possibility of only 1 cointegration coefficient.\nARDL reason: Economic growth \\(I(1)\\) while the night light growth is \\(I(0)\\). Additionally, ARDL allows for one endogeneous variable1.\n\nFor robustness, we also try to do the time series on the log quarterly GDP and night light instead of growth."
+  },
+  {
+    "objectID": "nitelite/index.html#results-and-discussions",
+    "href": "nitelite/index.html#results-and-discussions",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "4 Results and discussions",
+    "text": "4 Results and discussions\nWe ran various specifications, including dummy quarterly, dummy COVID (2020-2022), and dummy scarrin (2020 onwards). Additionally, we also tried various lag specifications, including BIC-selected lags and HQ-selected lags. In this paper, we show results from the no dummy and dummy scarring using AIC-selected lags amid the most consistent. We show all VECM, VAR and ARDL models. We also only show graph in this section because we concern mostly on fitting the model at this stage of reasearch. Regression table and some explanations are at the appendix.\n\n4.1 Growth regression\n\n4.1.1 VECM\n\n\n\n4.1.2 VAR\n\n\n\n4.1.3 ARDL\n\n\n\n\n4.2 Quarterly regression\n\n\n\n4.2.1 VECM\n\n\n\n4.2.2 ARDL"
+  },
+  {
+    "objectID": "nitelite/index.html#conclusion",
+    "href": "nitelite/index.html#conclusion",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "5 Conclusion",
+    "text": "5 Conclusion"
+  },
+  {
+    "objectID": "nitelite/index.html#references",
+    "href": "nitelite/index.html#references",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "References",
+    "text": "References\n\n\nBickenbach, Frank, Eckhardt Bode, Peter Nunnenkamp, and Mareike Söder. 2016. “Night Lights and Regional GDP.” Journal Article. Review of World Economics 152 (2): 425–447. https://doi.org/https://doi.org/10.1007/s10290-016-0246-0.\n\n\nBPS. 2025. [Seri 2010] 4. Laju Pertumbuhan PDB Menurut Pengeluaran, 2025. Diakses Pada 14 September 2025. Https://www.bps.go.id/id/statistics-table/2/MTA4IzI=/-seri-2010–4–laju-pertumbuhan-pdb-menurut-pengeluaran–persen-.html.\n\n\nEnders, Walter. 2014. Applied Econometric Time Series. Wiley.\n\n\nGibson, John, Susan Olivia, and Geua Boe-Gibson. 2020. “Night Lights in Economics: Sources and Uses.” Journal Article. Journal of Economic Surveys 34: 955–980. https://doi.org/https://doi.org/10.1111/joes.12387.\n\n\nHenderson, J. Vernon, Adam Storeygard, and David N. Weil. 2012. “Measuring Economic Growth from Outer Space.” The American Economic Review 102 (2): 994–1028. http://www.jstor.org/stable/23245442.\n\n\nMartínez, Luis R. 2022. “How Much Should We Trust the Dictator’s GDP Growth Estimates?” Journal Article. Journal of Political Economy 130 (10): 2731–2769. https://doi.org/10.1086/720458.\n\n\nShrestha, Min B., and Guna R. Bhatta. 2018. “Selecting Appropriate Methodological Framework for Time Series Data Analysis.” Journal Article. The Journal of Finance and Data Science 4 (2): 71–89. https://doi.org/https://doi.org/10.1016/j.jfds.2017.11.001.\n\n\nStefanini Vicente, Gabriel, and Robert Marty. 2023. BlackMarblePy: Georeferenced Rasters and Statistics of Nighttime Lights from NASA Black Marble. Https://worldbank.github.io/blackmarblepy. https://doi.org/10.5281/zenodo.10667907."
+  },
+  {
+    "objectID": "nitelite/index.html#appendix",
+    "href": "nitelite/index.html#appendix",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "6 Appendix",
+    "text": "6 Appendix"
+  },
+  {
+    "objectID": "nitelite/index.html#appendix-a",
+    "href": "nitelite/index.html#appendix-a",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "Appendix A",
+    "text": "Appendix A"
+  },
+  {
+    "objectID": "nitelite/index.html#footnotes",
+    "href": "nitelite/index.html#footnotes",
+    "title": "Forecasting Indonesian economic growth using night light",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAs discussed above, previous papers use cross-sectional regression which presents no lag. Night light is also more immune from administrative error and other kinds of potential biases.↩︎"
+  },
+  {
+    "objectID": "metopel.html",
+    "href": "metopel.html",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "",
+    "text": "This just a showcase of what quarto docs can produce. I use this part for my students."
+  },
+  {
+    "objectID": "metopel.html#pendahuluan",
+    "href": "metopel.html#pendahuluan",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "1 Pendahuluan",
+    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\nlibrary(tidyverse)\nlibrary(rmarkdown)"
+  },
+  {
+    "objectID": "metopel.html#data-dan-visualisasi",
+    "href": "metopel.html#data-dan-visualisasi",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "2 Data dan visualisasi",
+    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
+  },
+  {
+    "objectID": "metopel.html#analisis",
+    "href": "metopel.html#analisis",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "3 Analisis",
+    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\nsummary(lm(hwy~cty,data=mpg))\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: &lt; 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
+  },
+  {
+    "objectID": "metopel.html#kesimpulan",
+    "href": "metopel.html#kesimpulan",
+    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "section": "4 Kesimpulan",
+    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset Gupta (2022) yha."
   },
   {
     "objectID": "index.html",
@@ -147,39 +238,18 @@
     "text": "Consultancies\n\n2024\n\nHelping ADBI on estimating cross-price elasticity of cigarette excise.\n\n\n\n2023\n\nAdvising Prospera on various public policy issues and evaluations with Prospera’s revenue team managed by Rubino Sugana\n\n\n\n2022\n\nCIPS Indonesia and Prospera on the Indonesia’s strategic implementation of RCEP with Achmad Shauki and Julia Tijaja. 2022.\n\n\n\n2021\n\nCIPS Indonesia and Katalis on the impact of IACEPA to Indonesian economy with Rainer Heufers and David Mitchell.\nPT. LAPI ITB on the economic impact of The Indonesian Sovereign Wealth Funds with Barli Suryanta, PhD."
   },
   {
-    "objectID": "metopel.html",
-    "href": "metopel.html",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
+    "objectID": "misc.html",
+    "href": "misc.html",
+    "title": "Miscelaneous",
     "section": "",
-    "text": "This just a showcase of what quarto docs can produce. I use this part for my students."
+    "text": "Some of my courses at Politeknik APP Jakarta and Universitas Indonesia can be found here\nSome of my workshop in universities and other occasions.\n\nLatihan R (Bahasa Indonesia)\nGravity in R\nGravity in Stata\nnightlight index"
   },
   {
-    "objectID": "metopel.html#pendahuluan",
-    "href": "metopel.html#pendahuluan",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "1 Pendahuluan",
-    "text": "1 Pendahuluan\n\n1.1 Latas belakang tugas\nTugas ini diberikan sebagai syarat kelulusan metopel. Mahasiswa ditugaskan memilih tema penelitian, mencari data, membuat visualisasi, dan melakukan analisis regresi. Mahasiswa juga diharuskan melakukan diskusi, menarik kesimpulan, dan menyampaikan kewaspadaan dari kesimpulan yang dapat ditarik dari metode analisis yang dipilih.\n\n\n1.2 Latar belakang masalah\nalasan memilih masalah ini (kenapa masalah ini menarik dan penting)\n\n\n1.3 Pertanyaan\nLaporan ini bermaksud untuk menjawab pertanyaan sebagai berikut:\n\nwkwkw\nwkwkkw\nwkwkwkwkkw\n\n\n\n1.4 Package\npackages yang digunakan antara lain sebagai berikut:\n\nlibrary(tidyverse)\nlibrary(rmarkdown)"
-  },
-  {
-    "objectID": "metopel.html#data-dan-visualisasi",
-    "href": "metopel.html#data-dan-visualisasi",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "2 Data dan visualisasi",
-    "text": "2 Data dan visualisasi\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n\n\n\n\n\n\n\nFigure 1: City and highway mileage for 38 popular models of cars.Color by number of cylinders"
-  },
-  {
-    "objectID": "metopel.html#analisis",
-    "href": "metopel.html#analisis",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "3 Analisis",
-    "text": "3 Analisis\nMetode yang dipilih adalah regresi Autoregression dengan spesifikasi AR(1) sebagai berikut:\n\\[\ny_{t}=\\beta_0 + \\beta_1 y_{t-1}+\\mu_t\n\\]\nHasil regresinya adalah\n\nsummary(lm(hwy~cty,data=mpg))\n\n\nCall:\nlm(formula = hwy ~ cty, data = mpg)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.3408 -1.2790  0.0214  1.0338  4.0461 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  0.89204    0.46895   1.902   0.0584 .  \ncty          1.33746    0.02697  49.585   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.752 on 232 degrees of freedom\nMultiple R-squared:  0.9138,    Adjusted R-squared:  0.9134 \nF-statistic:  2459 on 1 and 232 DF,  p-value: &lt; 2.2e-16\n\n\nDapat dilihat dari tabel di atas bahwa ini bukan regresi AR(1). wkkwkwkwk."
-  },
-  {
-    "objectID": "metopel.html#kesimpulan",
-    "href": "metopel.html#kesimpulan",
-    "title": "Melihat hubungan ekspor dan nilai tukar",
-    "section": "4 Kesimpulan",
-    "text": "4 Kesimpulan\nKesimpulannya, materinya belum selesai dibuat makanya bikin asal-asal dulu awokawokawok. Meskipun ga nyambung, jgn lupa baca riset Gupta (2022) yha."
+    "objectID": "misc.html#quick-workshop",
+    "href": "misc.html#quick-workshop",
+    "title": "Miscelaneous",
+    "section": "",
+    "text": "Some of my courses at Politeknik APP Jakarta and Universitas Indonesia can be found here\nSome of my workshop in universities and other occasions.\n\nLatihan R (Bahasa Indonesia)\nGravity in R\nGravity in Stata\nnightlight index"
   },
   {
     "objectID": "project.html",
