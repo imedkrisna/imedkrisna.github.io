@@ -44,7 +44,15 @@ format:
     citecolor: cyan
     linkcolor: cyan
     urlcolor: cyan
-  tandf-html: default
+  tandf-html:
+    toc: true
+    sidebar:
+      style: floating
+      contents:
+        - text: "Article in pdf"
+          href: nitelite.pdf
+        - text: "Supplementary notebook"
+          href: appendix.pdf
 title-footnote: |
   Some footnotes on the title...
 author-format: horizontal
