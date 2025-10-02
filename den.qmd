@@ -4,7 +4,7 @@ title: "DEN Working Papers"
 
 The page hosts my paper projects at Dewan Ekonomi Nasional (DEN)[^1]. Not all what I do at DEN is making papers, but when I do, I host it here. This project is a collaborative effort with many talented individuals at the council, whom it is a great privilege to work with.
 
-These papers are mostly works in progress and still frequently updated, so please cite it with care. Comments are very welcomed and feel free to reach me via email or X.
+These papers are mostly works in progress and still frequently updated. Depends on possible emergence of new evidence, our conclusion and stance may change. Results and opinions from all papers are ours alone and do not reflect the opinion of DEN. Comments are very welcomed and feel free to reach me via email or X.
 
 - [Projecting GDP with night light index](/nitelite) with Timothy Ginting
 
