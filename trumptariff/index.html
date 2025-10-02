@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Krisna Gupta">
+<meta name="author" content="Arief Anshory Yusuf">
+<meta name="author" content="M. Hafizh Ghifari Azizi">
+<meta name="author" content="Shakuntala Anjani Nindraswari">
+<meta name="dcterms.date" content="2025-10-02">
+<meta name="keywords" content="GTAP, Tarif resiprokal, Dampak ekonomi">
+
+<title>Dampak Tarif Resiprokal Trump Terhadap Perekonomian Indonesia: GTAP Model – Krisna ‘imed’ Gupta</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-1d4f84655f446305ac42a8f1abcf7405.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Krisna ‘imed’ Gupta</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../research.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../teaching.html"> 
+<span class="menu-text">Teaching</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../misc.html"> 
+<span class="menu-text">misc</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../den.html"> 
+<span class="menu-text">DEN papers</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#dinamika-tarif-resiprokal-as" id="toc-dinamika-tarif-resiprokal-as" class="nav-link" data-scroll-target="#dinamika-tarif-resiprokal-as"><span class="header-section-number">2</span> Dinamika Tarif Resiprokal AS</a></li>
+  <li><a href="#perdagangan-bilateral-indonesia-amerika-serikat" id="toc-perdagangan-bilateral-indonesia-amerika-serikat" class="nav-link" data-scroll-target="#perdagangan-bilateral-indonesia-amerika-serikat"><span class="header-section-number">3</span> Perdagangan Bilateral Indonesia – Amerika Serikat</a></li>
+  <li><a href="#metode" id="toc-metode" class="nav-link" data-scroll-target="#metode"><span class="header-section-number">4</span> Metode</a>
+  <ul class="collapse">
+  <li><a href="#gtap-model" id="toc-gtap-model" class="nav-link" data-scroll-target="#gtap-model"><span class="header-section-number">4.1</span> GTAP Model</a></li>
+  <li><a href="#closure-dan-shock" id="toc-closure-dan-shock" class="nav-link" data-scroll-target="#closure-dan-shock"><span class="header-section-number">4.2</span> Closure dan shock</a></li>
+  </ul></li>
+  <li><a href="#hasil-umum" id="toc-hasil-umum" class="nav-link" data-scroll-target="#hasil-umum"><span class="header-section-number">5</span> Hasil umum</a></li>
+  <li><a href="#keterbatasan" id="toc-keterbatasan" class="nav-link" data-scroll-target="#keterbatasan"><span class="header-section-number">6</span> Keterbatasan</a></li>
+  <li><a href="#referensi" id="toc-referensi" class="nav-link" data-scroll-target="#referensi">Referensi</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (tandf)</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Dampak Tarif Resiprokal Trump Terhadap Perekonomian Indonesia: GTAP Model</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author"><a href="https://imedkrisna.github.io/">Krisna Gupta</a> <a href="mailto:krisna@dewanekonomi.go.id" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0001-8695-0514" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            National Economic Council, Republic of Indonesia
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Arief Anshory Yusuf </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            National Economic Council, Republic of Indonesia
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">M. Hafizh Ghifari Azizi </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            National Economic Council, Republic of Indonesia
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Shakuntala Anjani Nindraswari </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            National Economic Council, Republic of Indonesia
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 2, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">executive summary</div>
+    <p>“Laporan ini merupakan hasil simulasi GTAP versi 7 untuk skenario tarif Trump untuk Indonesia.”</p>
+  </div>
+</div>
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>GTAP, Tarif resiprokal, Dampak ekonomi</p>
+  </div>
+</div>
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Pada 2 April 2025, Presiden Amerika Serikat Donald J. Trump mendeklarasikan “Liberation Day” setelah sebelumnya menandatangani memorandum terkait kebijakan perdagangan untuk menyelidiki defisit perdagangan AS dan praktik tidak adil mitra dagang AS. Presiden Trump menilai adanya ketimpangan tarif dan hambatan non tarif, serta kebijakan ekonomi sejumlah mitra dagang yang menekan tingkat upah dan konsumsi domestik telah berkontribusi pada defisit perdagangan tahunan yang besar dan berkelanjutan bagi Amerika Serikat. Hal ini dianggap oleh Presiden Trump suatu ancaman terhadap keamanan nasional dan stabilitas perekonomian nasional.</p>
+<p>Pada hari tersebut, Presiden Trump mengumumkan tarif dalam dua tingkat: tarif baseline sebesar 10% yang dikenakan pada impor dari semua negara yang tidak dikenai sanksi lain serta tarif tambahan setiap negara yang disebut tarif resiprokal yang berkisar antara 11% hingga 50% bagi negara-negara tertentu, termasuk terhadap negara-negara ASEAN seperti Vietnam (46%), Thailand (36%), Indonesia (32%), dikenakan tarif yang secara relatif lebih besar dibandingkan negara lainnya, seperti India (27%), Korea Selatan (26%), Jepang (24%), dan Uni Eropa (20%) <span class="citation" data-cites="wh">(<a href="#ref-wh" role="doc-biblioref">The White House 2025</a>)</span>.</p>
+<p>Laporan ini bertujuan untuk menganalisis dampak kebijakan tarif resiprokal AS terhadap perekonomian Indonesia, termasuk dampaknya terhadap PDB, neraca perdagangan, ekspor, impor, inflasi, kesejahteraan, dan ketenagakerjaan. paper ini diharapkan memberikan sumbangan terhadap literatur perdagangan internasional kontemporer melalui penyajian analisis dalam kerangka multi-negara. Selain itu, makalah ini turut memperkaya literatur mengenai tarif resiprokal dengan menunjukkan adanya pola dampak yang serupa sebagaimana teridentifikasi dalam isu tersebut.</p>
+<p>Simulasi dilakukan dengan model standar GTAP versi 7 <span class="citation" data-cites="model">(<a href="#ref-model" role="doc-biblioref">Corong et al. 2017</a>)</span> dan GTAP database versi 11 <span class="citation" data-cites="database">(<a href="#ref-database" role="doc-biblioref">Aguiar et al. 2022</a>)</span>. Tidak ada modifikasi pada model maupun database yang dilakukan di dalam simulasi ini.</p>
+</section>
+<section id="dinamika-tarif-resiprokal-as" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="dinamika-tarif-resiprokal-as"><span class="header-section-number">2</span> Dinamika Tarif Resiprokal AS</h2>
+<p>Terdapat beberapa tahap perubahan besaran tarif resiprokal AS terhadap berbagai negara, termasuk Indonesia. Saat pengumuman tarif tahap 1 pada 2 April 2025, AS mengenakan tarif resiprokal 32% terhadap seluruh barang Indonesia. Pemerintah merespon cepat atas pengenaan tarif yang relatif tinggi tersebut dan melakukan negosiasi melalui beberapa penawaran seperti penghapusan sebagian atau seluruh barang AS, penghapusan NTB (Non-Tariff Barriers), dan juga rencana peningkatan investasi ke AS.</p>
+<p>Hal ini menghasilkan kesepakatan bahwa AS akan menurunkan besaran tarif resiprokalnya terhadap Indonesia menjadi 19% atau yang terendah diantara negara ASEAN lainnya sebelum akhirnya AS pun menurunkan tarif resiprokalnya terhadap negara-negara lainnya, termasuk Vietnam menjadi 20% dan Cambodia, Thailand, Malaysia, Philippines menjadi 19% pada 31 Juli 2025. Selain itu, beberapa negara/kawasan lainnya juga mendapatkan tarif lebih rendah dibandingkan Indonesia seperti Korea Selatan, Jepang, dan Uni Eropa, yakni sebesar 15%.</p>
+<div class="cell">
+<div id="tbl-tarif" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tarif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Dinamika tarif resiprokal AS terhadap berbagai negara
+</figcaption>
+<div aria-describedby="tbl-tarif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 27%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">No.</th>
+<th style="text-align: left;">Code</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: right;">Tarif 1 (Sampai 2 April)</th>
+<th style="text-align: right;">Tarif 2 (Sampai 31 Juli)</th>
+<th style="text-align: right;">Tarif 3 (Sampai 16 Sep)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">chn</td>
+<td style="text-align: left;">China</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">0.55</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">ind</td>
+<td style="text-align: left;">India</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">lao</td>
+<td style="text-align: left;">Lao People’s Democratic Republ</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">can</td>
+<td style="text-align: left;">Canada</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">zaf</td>
+<td style="text-align: left;">South Africa</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">mex</td>
+<td style="text-align: left;">Mexico</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.30</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">brn</td>
+<td style="text-align: left;">Brunei Darussalam</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">vnm</td>
+<td style="text-align: left;">Viet Nam</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">khm</td>
+<td style="text-align: left;">Cambodia</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">tha</td>
+<td style="text-align: left;">Thailand</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">idn</td>
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: right;">0.32</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">mys</td>
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">phl</td>
+<td style="text-align: left;">Philippines</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">kor</td>
+<td style="text-align: left;">Republic of Korea</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">jpn</td>
+<td style="text-align: left;">Japan</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">fra</td>
+<td style="text-align: left;">France</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">deu</td>
+<td style="text-align: left;">Germany</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">ita</td>
+<td style="text-align: left;">Italy</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">eu</td>
+<td style="text-align: left;">European Union</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">tur</td>
+<td style="text-align: left;">Turkiye</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">arg</td>
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">aus</td>
+<td style="text-align: left;">Australia</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">bra</td>
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">rus</td>
+<td style="text-align: left;">Russian Federation</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">sau</td>
+<td style="text-align: left;">Saudi Arabia</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">sgp</td>
+<td style="text-align: left;">Singapore</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">gbr</td>
+<td style="text-align: left;">United Kingdom of Great Britain</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Pada 27 Agustus 2025, AS kembali menaikan tarif resiprokal pada India menjadi 50% meskipun sebelumnya AS memotong 1% poin tarif resiprokalnya terhadap India. Kebijakan ini diklaim sebagai hukuman terhadap India atas pembelian minyak dan senjata dari Rusia yang dinilai membantu mendanai perangnya dengan Ukraina.</p>
+</section>
+<section id="perdagangan-bilateral-indonesia-amerika-serikat" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="perdagangan-bilateral-indonesia-amerika-serikat"><span class="header-section-number">3</span> Perdagangan Bilateral Indonesia – Amerika Serikat</h2>
+<p>Amerika Serikat merupakan salah satu mitra dagang penting bagi Indonesia yang. Pada tahun 2024, AS menjadi negara penyumbang surplus neraca perdagangan terbesar, yaitu sebesar USD14,4 miliar. Pangsa pasar AS bagi ekspor Indonesia sebesar USD26,4 miliar atau 10,6% total ekspor nasional, menjadi yang terbesar kedua setelah China yang memiliki pangsa USD60,2 miliar atau 24,2%. Selain itu, komoditas ekspor Indonesia ke AS mayoritas merupakan sektor padat karya dengan AS sebagai negara tujuan utama ekspor seperti komoditas tekstil dan produk tekstil (55,4%), alas kaki (33,8%), furnitur (59,1%), dan komoditas perikanan dan udang (35,0%).</p>
+<p>Tarif resiprokal 32% berpotensi menurunkan daya saing ekspor Indonesia secara signifikan, terutama jika negara kompetitor memiliki tarif yang jauh lebih rendah. Hal ini dapat terlihat pada sektor udang dan perikanan, di mana ekuador menjadi kompetitor Indonesia yang kuat dengan volume produksi yang tinggi, beban tarif yang lebih rendah (10%), dan jarak geografis yang lebih dekat ke AS.</p>
+<p>Penurunan tarif AS terhadap Indonesia dari 32% menjadi 19% dapat terlihat dari posisi Indonesia yang menjadi lebih kompetitif dibandingkan dengan tarif yang diumumkan pada Presiden Trump pada 2 April 2025. Jika dilihat dari produk-produk ekspor utama Indonesia ke AS, seperti alas kaki, pakaian dan aksesoris pakaian, lemak dan minyak hewan/nabati, karet, serta olahan daging dan ikan, Indonesia menempati peringkat dengan tarif yang relatif lebih rendah dibandingkan negara-negara kompetitor lainnya, termasuk Vietnam, Bangladesh, dan India.</p>
+<p>Di sisi lain, Indonesia mengimpor USD12,0 miliar barang dari AS atau 5,1% dari total impor nasional 2024 dan menjadi terbesar ke-4 setelah China (31,1%), Singapura (9,2%), dan Jepang (6,4%). Adapun komoditas impor utama indonesia dari AS adalah bahan bakar mineral &amp; minyak bumi (24,4%), mesin &amp; peralatan mekanik (12,6%), minyak biji-bijian &amp; hasil pertanian (10,5%), limbah industri makanan &amp; pakan ternak (5,4%), dan mesin listrik &amp; peralatan elektronik (4,1%).</p>
+</section>
+<section id="metode" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="metode"><span class="header-section-number">4</span> Metode</h2>
+<section id="gtap-model" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="gtap-model"><span class="header-section-number">4.1</span> GTAP Model</h3>
+<p>GTAP versi 7 merupakan sebuah model riil dengna multi-sektor dan multi-regional. Setiap negara terdiri dari 1 rumah tangga representatif yang melakukan konsumsi privat (<em>private consumption, C</em>), menabung (sehingga memberi suplai permodalan), dan faktor produksi (tenaga kerja, tepatnya). Tabungan tersebut dipool ke dalam sebuah bank yang kemudian mendistribusikannya ke berbagai sektor.</p>
+<p>Setiap negara memiliki berbagai sektor yang diwakili 1 perusahaan yang mengambil tenaga kerja dan investasi dari rumah tangga dan bank. Setiap sektor juga mengambil input dari sektor lain.</p>
+<p>Rumah tangga dan industri membeli barang dan jasa dari sektor industri domestik maupun impor. Produk domestik dan impor dapat saling menggantikan dengan sebuah elastisitas bernama elastisitas Armington. Pendekatan ini adalah pendekatan standar dalam analisis perdagangan internasional.</p>
+</section>
+<section id="closure-dan-shock" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="closure-dan-shock"><span class="header-section-number">4.2</span> Closure dan shock</h3>
+<p>Simulasi ini menggunakan <em>unemployment closure</em> di mana kami melakukan <em>swap</em> antara real wage labor supply, yang seringkali disebut juga sebagai <em>sticky wage closure</em>. <em>sticky wage</em> berarti upahnya tidak bergerak. Ada perpindahan pekerja antar-sektor, tapi total employment berubah (bisa berkurang, bisa bertambah). Pada kenyataannya, upah mungkin saja tidak sepenuhnya sticky.</p>
+<p>Semua simulasi tersebut dilakukan dengan situasi di mana Vietnam terkena tarif 20% dan memberikan konsesi 0% untuk AS. Semua simulasi ketika Indonesia terkena 19% tarif AS juga disertai dengan tarif 0% dari AS ke Indonesia.</p>
+</section>
+</section>
+<section id="hasil-umum" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="hasil-umum"><span class="header-section-number">5</span> Hasil umum</h2>
+<p>Beberapa hasil simulasi yang disampaikan di sini adalah hasil makro dan hasil sektoral.</p>
+<div id="fig-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wew.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Dampak tarif resiprokal AS terhadap perekonomian Indonesia
+</figcaption>
+</figure>
+</div>
+<p>Hasil makroekonmi dapat dilihat pada <a href="#fig-1" class="quarto-xref">Figure&nbsp;1</a>. Hasil GTAP menunjukan bahwa melakukan negosiasi perdagangan dan mendapatkan tarif resiprokal yang lebih rendah akan berdampak positif bagi perekonomian Indonesia. Hal ini dapat dilihat dari beberapa indikator kunci perekonomian seperti PDB, inflasi, konsumsi masyarakat, investasi, pengeluaran pemerintah, ekspor impor, neraca perdagangan, kesejahteraan, maupun ketenagakerjaan.</p>
+<p>Turunnya tarif resiprokal terhadap Indonesia menjadi 19% akan meningkatkan perubahan PDB nasional sebesar 0,2%, berbeda dengan ketika Indonesia dikenakan tarif resiprokal 32% yang relatif tidak berdampak pada pertumbuhan PDB. Perubahan ini utamanya ditopang oleh dampak peningkatan konsumsi (0,3%), investasi (1,7%), pengeluaran pemerintah (0,3%), dan net ekspor (0,0%) yang lebih tinggi jika dibandingkan dampak yang dihasilkan dari dikenakannya tarif resiprokal 32%.</p>
+<p>Investasi menjadi komponen dengan perubahan positif tertinggi dibandingkan dengan Indikator lainnya. Peningkatan investasi utamanya akibat beralihnya investasi negara lain yang memiliki tarif resiprokal lebih tinggi dibanding yang dikenakan terhadap Indonesia, khususnya di sektor yang memiliki ekspor pasar utama di AS. Beberapa contoh negara tersebut adalah China (55%), India (50%), Laos (40%), dan Bangladesh (20%).</p>
+<p>Perubahan tarif resiprokal juga berdampak pada membaliknya perubahan tingkat inflasi dan kesejahteraan nasional menjadi positif. Perubahan inflasi dan kesejahteraan meningkat akibat perekonomian yang ekspansif seiring dengan meningkatnya investasi dan produksi nasional. Sementara itu, tenaga kerja naik lebih signifikan akibat tumbuhnya industri nasional, khususnya di sektor industri padat tenaga kerja.</p>
+<div class="cell">
+<div id="tbl-sektor" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sektor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Dampak tarif resiprokal terhadap sektor industri di Indonesia
+</figcaption>
+<div aria-describedby="tbl-sektor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 8%">
+<col style="width: 40%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">No</th>
+<th style="text-align: left;">Kode</th>
+<th style="text-align: left;">Industri</th>
+<th style="text-align: right;">Tarif Resiprokal 32%</th>
+<th style="text-align: right;">Tarif Resiprokal 19%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">lea</td>
+<td style="text-align: left;">Leather products</td>
+<td style="text-align: right;">-4.81</td>
+<td style="text-align: right;">5.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">wap</td>
+<td style="text-align: left;">Wearing apparel</td>
+<td style="text-align: right;">-10.55</td>
+<td style="text-align: right;">4.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">cns</td>
+<td style="text-align: left;">Construction</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">1.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">ele</td>
+<td style="text-align: left;">Computer, electronic and optic</td>
+<td style="text-align: right;">-0.11</td>
+<td style="text-align: right;">0.64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">frs</td>
+<td style="text-align: left;">Forestry</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">obs</td>
+<td style="text-align: left;">Business services nec</td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;">0.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">ctl</td>
+<td style="text-align: left;">Bovine cattle, sheep and goats</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">p_c</td>
+<td style="text-align: left;">Petroleum, coal products</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">omt</td>
+<td style="text-align: left;">Meat products nec</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">trd</td>
+<td style="text-align: left;">Trade</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">otp</td>
+<td style="text-align: left;">Transport nec</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">osg</td>
+<td style="text-align: left;">Public Administration</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">hht</td>
+<td style="text-align: left;">Human health and social work</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.34</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">afs</td>
+<td style="text-align: left;">Accommodation, Food and service</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">ros</td>
+<td style="text-align: left;">Recreational and other service</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.32</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">atp</td>
+<td style="text-align: left;">Air transport</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">ofi</td>
+<td style="text-align: left;">Financial services nec</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.28</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">cmn</td>
+<td style="text-align: left;">Communication</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">ins</td>
+<td style="text-align: left;">Insurance</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.27</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">edu</td>
+<td style="text-align: left;">Education</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">oap</td>
+<td style="text-align: left;">Animal products nec</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">dwe</td>
+<td style="text-align: left;">Dwellings</td>
+<td style="text-align: right;">-0.08</td>
+<td style="text-align: right;">0.21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">wol</td>
+<td style="text-align: left;">Wool, silk-worm cocoons</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">rsa</td>
+<td style="text-align: left;">Real estate activities</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">pcr</td>
+<td style="text-align: left;">Processed rice</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">rmk</td>
+<td style="text-align: left;">Raw milk</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">cmt</td>
+<td style="text-align: left;">Bovine meat products</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">28</td>
+<td style="text-align: left;">wtr</td>
+<td style="text-align: left;">Water</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">0.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">29</td>
+<td style="text-align: left;">whs</td>
+<td style="text-align: left;">Warehousing and support activities</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">pfb</td>
+<td style="text-align: left;">Plant-based fibers</td>
+<td style="text-align: right;">1.13</td>
+<td style="text-align: right;">0.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">mvh</td>
+<td style="text-align: left;">Motor vehicles and parts</td>
+<td style="text-align: right;">2.40</td>
+<td style="text-align: right;">0.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">nmm</td>
+<td style="text-align: left;">Mineral products nec</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">b_t</td>
+<td style="text-align: left;">Beverages and tobacco products</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">sgr</td>
+<td style="text-align: left;">Sugar</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">c_b</td>
+<td style="text-align: left;">Sugar cane, sugar beet</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">0.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">36</td>
+<td style="text-align: left;">pdr</td>
+<td style="text-align: left;">Paddy rice</td>
+<td style="text-align: right;">-0.14</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">37</td>
+<td style="text-align: left;">mil</td>
+<td style="text-align: left;">Dairy products</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">-0.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">38</td>
+<td style="text-align: left;">otn</td>
+<td style="text-align: left;">Transport equipment nec</td>
+<td style="text-align: right;">2.37</td>
+<td style="text-align: right;">-0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">39</td>
+<td style="text-align: left;">ome</td>
+<td style="text-align: left;">Machinery and equipment</td>
+<td style="text-align: right;">2.08</td>
+<td style="text-align: right;">-0.09</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">oxt</td>
+<td style="text-align: left;">Minerals nec</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">-0.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">41</td>
+<td style="text-align: left;">fsh</td>
+<td style="text-align: left;">Fishing</td>
+<td style="text-align: right;">-0.22</td>
+<td style="text-align: right;">-0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">42</td>
+<td style="text-align: left;">v_f</td>
+<td style="text-align: left;">Vegetables, fruit, nuts</td>
+<td style="text-align: right;">-0.01</td>
+<td style="text-align: right;">-0.13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">43</td>
+<td style="text-align: left;">ely</td>
+<td style="text-align: left;">Electricity</td>
+<td style="text-align: right;">-0.36</td>
+<td style="text-align: right;">-0.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">44</td>
+<td style="text-align: left;">gdt</td>
+<td style="text-align: left;">Gas manufacture, distribution</td>
+<td style="text-align: right;">-0.57</td>
+<td style="text-align: right;">-0.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">gro</td>
+<td style="text-align: left;">Cereal grains nec</td>
+<td style="text-align: right;">-0.77</td>
+<td style="text-align: right;">-0.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">fmp</td>
+<td style="text-align: left;">Metal products</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">-0.45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">47</td>
+<td style="text-align: left;">wtp</td>
+<td style="text-align: left;">Water transport</td>
+<td style="text-align: right;">-0.16</td>
+<td style="text-align: right;">-0.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">48</td>
+<td style="text-align: left;">bph</td>
+<td style="text-align: left;">Basic pharmaceutical products</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">-0.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">coa</td>
+<td style="text-align: left;">Coal</td>
+<td style="text-align: right;">-0.17</td>
+<td style="text-align: right;">-0.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">ppp</td>
+<td style="text-align: left;">Paper products, publishing</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">-0.73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">51</td>
+<td style="text-align: left;">osd</td>
+<td style="text-align: left;">Oil seeds</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">-0.87</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">52</td>
+<td style="text-align: left;">ofd</td>
+<td style="text-align: left;">Food products nec</td>
+<td style="text-align: right;">-1.54</td>
+<td style="text-align: right;">-0.89</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">oilgas</td>
+<td style="text-align: left;">Oil &amp; gas</td>
+<td style="text-align: right;">-0.48</td>
+<td style="text-align: right;">-1.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">54</td>
+<td style="text-align: left;">lum</td>
+<td style="text-align: left;">Wood products</td>
+<td style="text-align: right;">-0.76</td>
+<td style="text-align: right;">-1.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">vol</td>
+<td style="text-align: left;">Vegetable oils and fats</td>
+<td style="text-align: right;">-0.06</td>
+<td style="text-align: right;">-1.72</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">56</td>
+<td style="text-align: left;">ocr</td>
+<td style="text-align: left;">Crops nec</td>
+<td style="text-align: right;">-2.64</td>
+<td style="text-align: right;">-1.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">57</td>
+<td style="text-align: left;">eeq</td>
+<td style="text-align: left;">Electrical equipment</td>
+<td style="text-align: right;">-1.18</td>
+<td style="text-align: right;">-2.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">58</td>
+<td style="text-align: left;">i_s</td>
+<td style="text-align: left;">Ferrous metals</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">-2.17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">59</td>
+<td style="text-align: left;">chm</td>
+<td style="text-align: left;">Chemical products</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">-2.43</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">wht</td>
+<td style="text-align: left;">Wheat</td>
+<td style="text-align: right;">-1.26</td>
+<td style="text-align: right;">-2.59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">nfm</td>
+<td style="text-align: left;">Metals nec</td>
+<td style="text-align: right;">1.18</td>
+<td style="text-align: right;">-2.61</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">62</td>
+<td style="text-align: left;">rpp</td>
+<td style="text-align: left;">Rubber and plastic products</td>
+<td style="text-align: right;">-5.17</td>
+<td style="text-align: right;">-2.74</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">63</td>
+<td style="text-align: left;">tex</td>
+<td style="text-align: left;">Textiles</td>
+<td style="text-align: right;">-4.05</td>
+<td style="text-align: right;">-3.87</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">64</td>
+<td style="text-align: left;">omf</td>
+<td style="text-align: left;">Manufactures nec</td>
+<td style="text-align: right;">-9.82</td>
+<td style="text-align: right;">-4.62</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Hasil dari sektor industri dapat dilihat pada <a href="#tbl-sektor" class="quarto-xref">Table&nbsp;2</a>. Penurunan tarif resiprokal menjadi 19% berdampak positif terhadap mayoritas industri yang berorientasi pada ekspor dengan pangsa pasar utama AS. Industri produk kulit dan industri pakaian merupakan industri yang paling diuntungkan akibat perubahan tarif resiprokal. Dampak pada industri produk kulit berbalik menjadi +5,05% saat tarif resiprokal 19% dari dampak -4,81% saat tarif resiprokal 32%, sementara dampak pada industri pakaian meningkat menjadi +4,6% dari yang sebelumnya -10,55%. Perubahan positif ini terjadi akibat beralihnya beberapa produksi industri tersebut dari negara yang terkena tarif resiprokal di atas 19% ke Indonesia.</p>
+<p>Perubahan ini cukup sensitif terhadap hasil dari simulasi. Ketika Brazil dan India terkena 50% tarif, hasil simulasi Indonesia 32% untuk Indonesia masih memberikan nilai PDB yang tidak berubah, dibandingkan ketika negara-negara tersebut terkena tarif yang rendah.</p>
+<p>Tarif resiprokal yang dikeluarkan oleh Presiden Amerika Serikat Donald Trump memberikan guncangan yang cukup besar baik untuk pemerintah negara lain maupun pelaku bisnis. Tidak hanya tinggi levelnya, tarif tersebut juga terus mengalami perubahan. Publikasi ini bertujuan untuk memberikan gambaran mengenai kemungkinan dampaknya pada ekonomi Indonesia. Berdasarkan temuan di publikasi ini, besaran tarif 19% akan memberikan dampak yang lebih baik ketimbang tarif 32%. Di samping itu, besaran tarif Indonesia harus diusahakan untuk selalu lebih rendah ketimbang negara lain. Karena itu, Indonesia perlu senantiasa aktif bernegosiasi sembari memantau tarif yang diberikan AS kepada mitra dagangnya yang lain.</p>
+<p>Fakta bahwa tarif yang dikenakan oleh Presiden Donald Trump terus mengalami perubahan harus menjadi pertimbangan bagi tim negosiator. Akan sulit untuk bernegosiasi apabila kesepakatan yang telah dicapai bisa dengan mudah diamandemen secara sepihak oleh Amerika Serikat. Negosiator sebaiknya meminta klausul yang melindungi Indonesia dari perubahan nilai tarif ataupun hambatan dagang lainnya yang dikeluarkan secara sepihak oleh AS.</p>
+</section>
+<section id="keterbatasan" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="keterbatasan"><span class="header-section-number">6</span> Keterbatasan</h2>
+<p>Untuk menerjemahkan hasil simulasi di GTAP, seorang analis harus mempertimbangkan desain dari model ini. Asumsi “ceteris paribus” harus ditekankan karena setiap negara pasti akan memberikan reaksi terhadap potensi <em>outcome</em> dari sebuah <em>shock</em>. Ada beberapa hal yang perlu diperhatikan:</p>
+<ol type="1">
+<li><p><strong>Free flow of labor and capital</strong>. Model GTAP yang standar mempertimbangkan bahwa setiap pekerja dan kapital dapat “pindah industri” dengan mudah. Akibatnya, semua pekerja dan kapital memiliki return yang sama. Alias, hanya ada 1 upah dan 1 interest rate yang sama untuk semua industri di dalam suatu negara. Pada kenyataannya, proses adjustment ini tidak terjadi serta merta (butuh waktu), bahkan mungkin untuk faktor produksi yang sangat spesifik, perpindahan tersebut tidak dapat terjadi sama sekali.</p></li>
+<li><p><strong>Zero trade cost</strong> mengakibatkan dampak tarif yang relatif mirip meskipun negaranya letaknya cukup jauh. Misalnya, hubungan dagang Kanada dengan negara lain meningkat cukup pesat, termasuk dengan Indonesia. Karena itu hasil perubahan besar Indonesia-Kanada (dan dengan negara-negara lain juga) perlu dilihat dengan hati-hati. Meski demikian, hal ini tidak berarti tidak mungkin juga. Apalagi Kanada juga sedang menjajaki CEPA dengan Indonesia.</p></li>
+<li><p><strong>Lack of monetary module</strong>. GTAP adalah model riil yang tidak mempertimbangkan adanya pasar moneter. Artinya, tidak ada nilai tukar di model GTAP. Sebenarnya nilai tukar dapat di-<em>proxy</em> dengan <em>terms of trade</em>. Akan tetapi, yang terpenting adalah tidak adanya mekanisme eksogen untuk mengatur pasar uang. Tidak ada bank sentral di model ini yang dapat melakukan <em>quantitative easing</em> atau <em>intervensi interest rate</em> dan menciptakan surat utang. Hal ini penting karena kebijakan moneter akan mengubah alur barang dan jasa lewat nilai tukar dan neraca finansial. Akan tetapi yang lebih penting adalah karena saat ini dunia sedang berada di tengah ketidakseimbangan neraca finansial akibat dolar yang tidak hanya mendominasi, namun juga dikontrol oleh 1 institusi saja. (not a free market)</p></li>
+<li><p><strong>Bebas dari reaksi pengambil kebijakan</strong>: Model GTAP adalah model yang dibuat dengan struktur tertentu yang perlu dibaca dalam konteks. Model ini dijalankan dengan asumsi ceteris paribus, yang artinya diasumsikan bahwa negara-negara di model ini tidak menambahkan kebijakan apapun yang berpotensi mengubah arah perputaran ekonomi (misalnya subsidi, hambatan perdagangan tambahan, ataupun kebijakan industrial lain).</p></li>
+</ol>
+<p>Mengingat setidaknya empat keterbatasan di atas, laporan ini harus dibaca dengan hati-hati. Laporan ini saja tidak dapat dijadikan satu-satunya rujukan ataupun patokan dalam mengambil kebijakan. Diperlukan beberapa penyesuaian dan tambahan studi baik lapangan maupun empiris yang lebih kontekstual untuk kasus-kasus tertentu.</p>
+<p>Laporan ini masih berupa dokumen berjalan dan akan diperbarui seiring dengan perkembangan situasi. Kritik dan saran sangat kami harapkan untuk perbaikan laporan ini di masa mendatang.</p>
+</section>
+<section id="referensi" class="level2 unnumbered">
+
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referensi</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-database" class="csl-entry" role="listitem">
+Aguiar, A, M Chepeliev, Erwin Corong, and Dominique van Der Mensbrugghe. 2022. <span>“The GTAP Data Base: Version 11.”</span> Journal Article. <em>Journal of Global Economic Analysis</em> 7 (2): 37. <a href="https://www.jgea.org/ojs/index.php/jgea/article/view/181">https://www.jgea.org/ojs/index.php/jgea/article/view/181</a>.
+</div>
+<div id="ref-model" class="csl-entry" role="listitem">
+Corong, Erwin L., Thomas W. Hertel, Robert A. McDougall, Marinos E. Tsigas, and Dominique Van Der Mensbrugghe. 2017. <span>“The Standard GTAP Model, Version 7.”</span> Journal Article. <em>Journal of Global Economic Analysis</em> 2 (1): 120.
+</div>
+<div id="ref-wh" class="csl-entry" role="listitem">
+The White House. 2025. <em>Regulating Imports with a Reciprocal Tariff to Rectify Trade Practices That Contribute to Large and Persistent Annual United States Goods Trade Deficits</em>. <a href="https://www.whitehouse.gov/presidential-actions/2025/04/regulating-imports-with-a-reciprocal-tariff-to-rectify-trade-practices-that-contribute-to-large-and-persistent-annual-united-states-goods-trade-deficits/" class="uri">Https://www.whitehouse.gov/presidential-actions/2025/04/regulating-imports-with-a-reciprocal-tariff-to-rectify-trade-practices-that-contribute-to-large-and-persistent-annual-united-states-goods-trade-deficits/</a>.
+</div>
+</div></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>This work is dedicated to the Public Domain</div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{gupta2025,
+  author = {Gupta, Krisna and Anshory Yusuf, Arief and Hafizh Ghifari
+    Azizi, M. and Anjani Nindraswari, Shakuntala},
+  title = {Dampak {Tarif} {Resiprokal} {Trump} {Terhadap} {Perekonomian}
+    {Indonesia:} {GTAP} {Model}},
+  date = {2025-10-02},
+  langid = {en},
+  abstract = {“Laporan ini merupakan hasil simulasi GTAP versi 7 untuk
+    skenario tarif Trump untuk Indonesia.”}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gupta2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Gupta, Krisna, Arief Anshory Yusuf, M. Hafizh Ghifari Azizi, and
+Shakuntala Anjani Nindraswari. 2025. <span>“Dampak Tarif Resiprokal
+Trump Terhadap Perekonomian Indonesia: GTAP Model.”</span> October 2.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -255,6 +255,16 @@ models. Out of all the models used, the Vector Error Correction Model
 potential structural break between Q2 economic growth figure from BPS
 and the Q2 economic growth predicted by the nighttime lights models.
 
+This paper is a work in progress. Meaning, we are still looking to
+update and improve the paper. Among what we are trying to do is to use
+different method to use the two series. We may need to venture to other
+types of machine learning model to use, but maybe we need more leading
+indicators. Any suggestions in this space is welcomed. We also am
+looking at separating the night light into different provinces and look
+to use techniques proposed by Henderson, Storeygard, and Weil (2012) and
+Bickenbach et al. (2016). This requires updating our night light index
+which not always smooth.
+
 The paper is organised as follows. We discuss the nighttime lights data
 collection process and exploratory data analysis section two. The
 methodology and theory behind model development is covered in section
@@ -433,6 +443,12 @@ and Bhatta 2018).
 
 \end{figure}%
 
+Figure~\ref{fig-3} shows the OLS fit and the residuals. We can see that
+the predictive from OLS doesn't fit well with the actual GDP growth.
+Moreover, the elasticity parameter from the estimation of 0.047 (see
+Appendix A for the table) is well below 0.26 as in Henderson,
+Storeygard, and Weil (2012).
+
 The ADF test shows that while the nighttime lights series is stationary,
 the GDP growth series is not. We cannot reject the null hypothesis of
 non-stationarity of the GDP growth series at the 5\% level. This is
@@ -509,6 +525,17 @@ three panels repeat with quarter dummies added.
 
 \end{figure}%
 
+Figure~\ref{fig-4} shows the VECM approach. First thing to notice is how
+volatile the predictive GDP compared to the actual GDP growth. From the
+6 figures, the VECM with COVId and quarterly dummy seems to perform the
+best. We show the specification of this particular model in the notebook
+in the appendix. The model uses 12 lagsof both night light and GDP
+growth. Interestingly, all night light variables show a negative
+coefficient, with positive error correction term. This is contrary to
+the well-behaved equation according to the theory. Adding to the fact
+that we have two cointegration rank, it is safe to say that the VECM
+isn't the proper method to model these two series.
+
 \begin{figure}
 
 \centering{
@@ -521,6 +548,12 @@ three panels repeat with quarter dummies added.
 
 \end{figure}%
 
+Cointegration with two ranks suggest VAR model may be more appropriate,
+which results are presented in Figure~\ref{fig-5}. Again, models with
+COVID dummy (panel (b) and panel (e)) show better results compared to
+others. Eight lags are used in this equation. Only lag 4 of the night
+light variable is significant at 10\% level.
+
 \begin{figure}
 
 \centering{
@@ -532,6 +565,18 @@ three panels repeat with quarter dummies added.
 \caption{\label{fig-6}Economic growth prediction with ARDL}
 
 \end{figure}%
+
+Lastly, Figure~\ref{fig-6} shows the ARDL approach. This time, we see
+the panel (c) as the best performing one, the one with scarring dummy
+and no quarterly dummy. The panel (c) uses \(ARDL(p,q,r)=ARDL(7,8,5)\)
+specification where \(p,q,r\) and lags for GDP growth, night light
+growth and scarring dummy respectively. Again, we find the night light
+to be a bad predictor, where only lag 6 is significant at 10\% level.
+However, this equation seems to be the better performing one so far.
+
+Looking at unsatisfactory performance of the night light indicator, we
+move on to try to use quarterly-level data instead of growth. As
+discussed, we omit VAR amid non-stationarity.
 
 \section{Quarterly real GDP
 regression}\label{quarterly-real-gdp-regression}
@@ -561,7 +606,12 @@ case since the two series are not stationary at level.
 
 \end{figure}%
 
-awokwokwokwo
+Figure~\ref{fig-7} shows the log quarterly real GDP and log quarterly
+night light index side by side. We can see clear positive trends on both
+series, which surely denies stationarity. We run ADF test (see Appendix
+A) to confirm this. We run OLS regression to the two series as well to
+check the parameter of the night light indicator (which is 0.52, see
+Appendix A) as well as its residuals.
 
 \begin{figure}
 
@@ -575,9 +625,16 @@ awokwokwokwo
 
 \end{figure}%
 
-aokaowkoakwoakwo
+Figure~\ref{fig-8} shows the OLS-fit and residuals. Again, OLS seems to
+be a bad fit for the two series. More importantly, we can see a clear
+bias in how the predicted growth progresses. That is, the model
+overpredict GDP pre-2017 and underpredict GDP post 2017. We can see in
+the residuals as well. What happens in 2017?
 
-\subsection{VECM}\label{vecm}
+ADF test confirms that the error term is stationary and Johansen
+Cointegration test is indeed confirms the rejection at rank at most 1,
+and failed to reject the \(H_0\) of at most 2 rank of cointegration.
+This means VECM seems to be a good approach this time.
 
 \begin{figure}
 
@@ -591,7 +648,13 @@ aokaowkoakwoakwo
 
 \end{figure}%
 
-\subsection{ARDL}\label{ardl}
+We proceed with the VECM which results can be observed in
+Figure~\ref{fig-9}. Arguably, panel (f) with scarring and quarter dummy
+perform the best. Panel (f) uses 3 lags, but none of the night light
+parameters are significant. We do however have a negative error
+correction term, so a cointegration is confirmed. While panel (f) shows
+a promising model, it still fail to show the importance of night light
+index to forecast GDP.
 
 \begin{figure}
 
@@ -605,9 +668,29 @@ aokaowkoakwoakwo
 
 \end{figure}%
 
+Lastly, Figure~\ref{fig-10} shows our ARDL results. Models with scarring
+perform relatively well. Panel(f), for instance, uses 0 lag for night
+light, with parameter of \(0.0128\) and significant at 5\% level. So
+far, this seems to be the best performing model.
+
 \section{Conclusion}\label{conclusion}
 
-wqwqwq
+This paper shows three different macroeconometrics model runs at 6
+different specification each, with the goal of finding whether
+Indonesian night light index can be used to estimate quarterly GDP
+growth. We find no satisfactory model for growth, with no night light
+index show positive and significant impact on the GDP. A promising
+candidate so far is the ARDL with scarring effect for log quarterly
+data, which shows that night light coefficient to be positive and
+significant. Unfortunately at this stage we cannot test for 2025 because
+the 2025 night light data is not available yet from
+\texttt{blackmarblepy} at the time of this writing.
+
+The next step is for us to split the observation into train and test
+data. We are also still trying to collect data for provincial night
+light so we can have a cross-sectional variation. We also occassionally
+try other method. Any comments and criticisms to improve the paper is
+welcomed.
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
@@ -666,7 +749,7 @@ Lights from NASA Black Marble}}.
 \addcontentsline{toc}{section}{Appendix A}
 
 See
-\href{nitelite3stata.html}{imedkrisna.github.io/misc/nitelite/nitelite3stata.html}
+\href{appendix.html}{imedkrisna.github.io/misc/nitelite/appendix.html}
 
 
 
