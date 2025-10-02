@@ -182,7 +182,7 @@ The next step is for us to split the observation into train and test data. We ar
 
 ## Appendix A {.unnumbered}
 
-See [imedkrisna.github.io/misc/nitelite/appendix.html](appendix.html){target="_blank"}
+See [imedkrisna.github.io/nitelite/appendix.html](appendix.html){target="_blank"}
 
 
 [^1]: As discussed above, previous papers use cross-sectional regression which presents no lag. Night light is also more immune from administrative error and other kinds of potential biases.
