@@ -20,7 +20,7 @@ about:
     href: https://www.krisna.or.id/
   - icon: envelope-open
     text: email
-    href: mailto:krisna.gupta@outlook.com
+    href: mailto:imedkrisna@pm.me
   - icon: file-earmark-person
     text: CV
     href: https://www.krisna.or.id/en/#CV
