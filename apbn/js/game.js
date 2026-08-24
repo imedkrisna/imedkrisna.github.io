@@ -141,18 +141,21 @@ class GameSound {
 class Input {
   constructor() {
     this.keys = {}; this.jp = {};
+    this.t = { up:false, dn:false, lt:false, rt:false, dash:false, fire:false };
     window.addEventListener('keydown', e => { if(!this.keys[e.code]) this.jp[e.code]=true; this.keys[e.code]=true; if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code)) e.preventDefault(); });
     window.addEventListener('keyup', e => { this.keys[e.code]=false; });
   }
   down(c) { return !!this.keys[c]; }
   pressed(c) { if(this.jp[c]){this.jp[c]=false;return true;} return false; }
   clear() { this.jp={}; }
-  get up() { return this.down('KeyW')||this.down('ArrowUp'); }
-  get dn() { return this.down('KeyS')||this.down('ArrowDown'); }
-  get lt() { return this.down('KeyA')||this.down('ArrowLeft'); }
-  get rt() { return this.down('KeyD')||this.down('ArrowRight'); }
-  get fire() { return this.pressed('Space')||this.pressed('KeyJ'); }
-  get dash() { return this.down('ShiftLeft')||this.down('ShiftRight'); }
+  get up() { return this.t.up||this.down('KeyW')||this.down('ArrowUp'); }
+  get dn() { return this.t.dn||this.down('KeyS')||this.down('ArrowDown'); }
+  get lt() { return this.t.lt||this.down('KeyA')||this.down('ArrowLeft'); }
+  get rt() { return this.t.rt||this.down('KeyD')||this.down('ArrowRight'); }
+  // t.fire is consumed here rather than in clear(), so a tap landing between
+  // two frames still fires exactly one bullet.
+  get fire() { if(this.t.fire){ this.t.fire=false; return true; } return this.pressed('Space')||this.pressed('KeyJ'); }
+  get dash() { return this.t.dash||this.down('ShiftLeft')||this.down('ShiftRight'); }
 }
 
 // ============================= PARTICLES =============================
@@ -785,6 +788,8 @@ class Game {
     this.lastTime = 0;
     this.resize();
     window.addEventListener('resize', () => this.resize());
+    window.visualViewport?.addEventListener('resize', () => this.resize());
+    this.bindTouch();
 
     this.drawCharPreview('alfanPreview','alfan');
     this.drawCharPreview('andraPreview','andra');
@@ -794,9 +799,99 @@ class Game {
   get W() { return this.canvas.width; }
   get H() { return this.canvas.height; }
 
+  showTouch(v) { document.getElementById('touchControls').classList.toggle('hidden', !v); }
+
+  bindTouch() {
+    const t = this.input.t;
+    const zone = document.getElementById('stickZone');
+    const base = document.getElementById('stickBase');
+    const knob = document.getElementById('stickKnob');
+    const R = 46, DEAD = R * 0.2;
+    let stickId = null, ox = 0, oy = 0;
+
+    // Reveal the controls only once we know it is a touch device, so a desktop
+    // mouse never gets a joystick.
+    const markTouch = () => {
+      document.body.classList.add('touch');
+      window.removeEventListener('touchstart', markTouch);
+    };
+    window.addEventListener('touchstart', markTouch, { passive: true });
+
+    const setDir = (dx, dy) => {
+      const d = Math.hypot(dx, dy);
+      if (d < DEAD) {
+        t.up = t.dn = t.lt = t.rt = false;
+        knob.style.transform = 'translate(-50%,-50%)';
+        return;
+      }
+      const k = Math.min(d, R) / d;
+      knob.style.transform = `translate(calc(-50% + ${dx*k}px), calc(-50% + ${dy*k}px))`;
+      // 8 sectors: 0=right, 2=down, 4=left, 6=up
+      const s = (Math.round(Math.atan2(dy, dx) / (Math.PI/4)) + 8) % 8;
+      t.rt = (s===7||s===0||s===1);
+      t.dn = (s===1||s===2||s===3);
+      t.lt = (s===3||s===4||s===5);
+      t.up = (s===5||s===6||s===7);
+    };
+
+    const release = () => {
+      stickId = null;
+      t.up = t.dn = t.lt = t.rt = false;
+      base.classList.remove('active');
+      knob.style.transform = 'translate(-50%,-50%)';
+    };
+
+    // Track the stick by touch.identifier: reading touches[0] would drop the
+    // stick every time the other thumb hits fire.
+    zone.addEventListener('touchstart', e => {
+      e.preventDefault();
+      for (const touch of e.changedTouches) {
+        if (stickId !== null) break;
+        stickId = touch.identifier;
+        ox = touch.clientX; oy = touch.clientY;
+        base.style.left = ox + 'px';
+        base.style.top  = oy + 'px';
+        base.classList.add('active');
+        setDir(0, 0);
+      }
+    }, { passive: false });
+
+    zone.addEventListener('touchmove', e => {
+      e.preventDefault();
+      for (const touch of e.changedTouches) {
+        if (touch.identifier === stickId) setDir(touch.clientX - ox, touch.clientY - oy);
+      }
+    }, { passive: false });
+
+    const endStick = e => {
+      e.preventDefault();
+      for (const touch of e.changedTouches) if (touch.identifier === stickId) release();
+    };
+    zone.addEventListener('touchend', endStick, { passive: false });
+    zone.addEventListener('touchcancel', endStick, { passive: false });
+
+    const fire = document.getElementById('btnFire');
+    fire.addEventListener('touchstart', e => { e.preventDefault(); t.fire = true; }, { passive: false });
+
+    const dash = document.getElementById('btnDash');
+    dash.addEventListener('touchstart', e => { e.preventDefault(); t.dash = true; }, { passive: false });
+    const endDash = e => { e.preventDefault(); t.dash = false; };
+    dash.addEventListener('touchend', endDash, { passive: false });
+    dash.addEventListener('touchcancel', endDash, { passive: false });
+
+    // iPhone Safari has no Fullscreen API - hide the button rather than ship a dead one.
+    const full = document.getElementById('btnFull');
+    if (!document.documentElement.requestFullscreen) full.style.display = 'none';
+    else full.addEventListener('touchstart', e => {
+      e.preventDefault();
+      if (document.fullscreenElement) document.exitFullscreen?.();
+      else document.documentElement.requestFullscreen?.();
+    }, { passive: false });
+  }
+
   resize() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    this.canvas.width = window.visualViewport?.width ?? window.innerWidth;
+    this.canvas.height = window.visualViewport?.height ?? window.innerHeight;
     this.generateArena();
   }
 
@@ -891,6 +986,7 @@ class Game {
     document.getElementById('titleScreen').classList.add('hidden');
     document.getElementById('selectScreen').classList.add('hidden');
     document.getElementById('gameHUD').classList.remove('hidden');
+    this.showTouch(true);
 
     this.generateArena();
     this.startNextRound();
@@ -989,6 +1085,7 @@ class Game {
     document.getElementById('quizFeedback').style.display = 'none';
     document.getElementById('quizContinueBtn').classList.remove('show');
     document.getElementById('quizOverlay').classList.add('show');
+    this.showTouch(false);
   }
 
   answerQuiz(selected, btnEl) {
@@ -1021,6 +1118,7 @@ class Game {
   closeQuiz() {
     this.quizActive = false;
     document.getElementById('quizOverlay').classList.remove('show');
+    this.showTouch(true);
     this.sound.play('reload');
   }
 
@@ -1313,6 +1411,7 @@ class Game {
   victory() {
     this.state = 'victory';
     document.getElementById('gameHUD').classList.add('hidden');
+    this.showTouch(false);
     document.getElementById('bossHPBar').classList.remove('show');
     document.getElementById('victoryScreen').classList.remove('hidden');
     document.getElementById('victoryChar').textContent = {alfan:'Alfan',andra:'Andra',lala:'Lala'}[this.selectedChar];
@@ -1324,6 +1423,7 @@ class Game {
   gameOver() {
     this.state = 'gameover';
     document.getElementById('gameHUD').classList.add('hidden');
+    this.showTouch(false);
     document.getElementById('bossHPBar').classList.remove('show');
     document.getElementById('gameOverScreen').classList.remove('hidden');
   }
@@ -1332,6 +1432,7 @@ class Game {
     document.getElementById('victoryScreen').classList.add('hidden');
     document.getElementById('gameOverScreen').classList.add('hidden');
     document.getElementById('quizOverlay').classList.remove('show');
+    this.showTouch(false);
     this.quizActive = false;
     this.state = 'select';
     document.getElementById('selectScreen').classList.remove('hidden');

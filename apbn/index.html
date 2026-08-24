@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Adventure of Alfan & Andra — Wave Shooter RPG</title>
   <meta name="description" content="Game RPG top-down bergaya Zelda. Alfan & Andra melawan 9 Soni (3 per ronde) dengan peluru terbatas. Jawab kuis fiskal APBN untuk reload peluru! Boss akhir: Firman Hidayat.">
   <link rel="stylesheet" href="css/game.css">
@@ -20,9 +20,10 @@
     </p>
     <button id="titleStartBtn" class="pixel-btn btn-green">▶ TEKAN UNTUK MULAI</button>
     <div class="title-controls">
-      <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Bergerak &nbsp;•&nbsp;
+      <span class="hint-key"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Bergerak &nbsp;•&nbsp;
       <kbd>SPACE</kbd> Tembak &nbsp;•&nbsp;
-      <kbd>SHIFT</kbd> Dash<br>
+      <kbd>SHIFT</kbd> Dash</span><span class="hint-touch">Geser jempol di kiri layar untuk bergerak &nbsp;•&nbsp;
+      <kbd>🔫</kbd> Tembak &nbsp;•&nbsp; <kbd>⚡</kbd> Dash</span><br>
       Peluru: 5 | Habis → Jawab Kuis APBN → Reload!
     </div>
     <a href="/" class="pixel-btn btn-blue back-link" title="imedkrisna.github.io">🏠 Kembali ke Beranda</a>
@@ -145,6 +146,14 @@
     <p class="gameover-sub">HP habis! Jangan menyerah — pelajari kuis APBN dan coba lagi!</p>
     <button id="restartBtn2" class="pixel-btn btn-red">🔄 COBA LAGI</button>
     <a href="/" class="pixel-btn btn-blue back-link" title="imedkrisna.github.io">🏠 Kembali ke Beranda</a>
+  </div>
+
+  <!-- ===== TOUCH CONTROLS (mobile) ===== -->
+  <div id="touchControls" class="hidden">
+    <div id="stickZone"><div id="stickBase"><div id="stickKnob"></div></div></div>
+    <button id="btnDash" class="touch-btn" aria-label="Dash">⚡</button>
+    <button id="btnFire" class="touch-btn touch-btn-fire" aria-label="Tembak">🔫</button>
+    <button id="btnFull" class="touch-btn touch-btn-sm" aria-label="Layar penuh">⛶</button>
   </div>
 
   <script src="js/game.js"></script>
