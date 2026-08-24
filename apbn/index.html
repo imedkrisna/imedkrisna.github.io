@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinPintar - Edukasi Keuangan Cerdas & Kuis Interaktif</title>
+  <meta name="description" content="Platform edukasi keuangan modern Indonesia. Pelajari budgeting 50/30/20, dana darurat, investasi cerdas, simulasi compound interest, dan uji pemahaman lewat kuis interaktif berhadiah sertifikat digital.">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Confetti Canvas for Gamification -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="#" class="brand-logo" onclick="finApp.switchTab('modulTab')">
+        <div class="brand-icon">
+          <i class="fa-solid fa-coins"></i>
+        </div>
+        <span>FinPintar <span class="brand-badge">PRO</span></span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="javascript:void(0)" class="nav-link active" onclick="finApp.switchTab('modulTab')"><i class="fa-solid fa-book-open"></i> Modul Belajar</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" onclick="finApp.switchTab('kalkulatorTab')"><i class="fa-solid fa-calculator"></i> Kalkulator & Grafik</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" onclick="finApp.switchTab('kuisTab')"><i class="fa-solid fa-gamepad"></i> Kuis & Sertifikat</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" onclick="finApp.switchTab('glosariumTab')"><i class="fa-solid fa-spell-check"></i> Kamus Finansial</a></li>
+        <li><a href="javascript:void(0)" class="nav-link" onclick="finApp.switchTab('scamTab')"><i class="fa-solid fa-shield-virus"></i> Cek Investasi Bodong</a></li>
+        <li><a href="game.html" class="nav-link nav-link-game"><i class="fa-solid fa-dragon"></i> Game RPG</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="stat-pill" title="Total XP Terkumpul">
+          <i class="fa-solid fa-bolt"></i>
+          <span id="navXpCount">0 XP</span>
+        </div>
+
+        <button id="soundToggleBtn" class="icon-btn" onclick="finApp.toggleSound()" title="Nyalakan/Matikan Suara">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <button id="themeToggleBtn" class="icon-btn" onclick="finApp.toggleTheme()" title="Ubah Tema Gelap/Terang">
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="section-badge">
+            <i class="fa-solid fa-graduation-cap"></i> Gerakan Melek Finansial Indonesia
+          </div>
+          <h1>
+            Kuasai <span class="hero-gradient-text">Keuangan Pribadi</span> & Wujudkan Kebebasan Finansial
+          </h1>
+          <p class="hero-description">
+            Pelajari seni mengelola arus kas, melipatgandakan aset lewat investasi cerdas, bentengi diri dari bahaya pinjol ilegal, dan buktikan keahlianmu lewat kuis interaktif bersertifikat digital resmi.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn btn-primary btn-glow" onclick="finApp.switchTab('kuisTab'); quizEngine.startLevelQuiz('pemula');">
+              <i class="fa-solid fa-play"></i> Mulai Kuis Interaktif
+            </button>
+            <button class="btn btn-secondary" onclick="finApp.switchTab('kalkulatorTab')">
+              <i class="fa-solid fa-chart-pie"></i> Simulasi Investasi
+            </button>
+          </div>
+          <div class="hero-features-list">
+            <span><i class="fa-solid fa-circle-check"></i> 100% Gratis & Edukatif</span>
+            <span><i class="fa-solid fa-circle-check"></i> Sesuai Panduan OJK</span>
+            <span><i class="fa-solid fa-circle-check"></i> Sertifikat Terverifikasi</span>
+          </div>
+        </div>
+
+        <!-- User Progress & Quick Checkup Widget -->
+        <div class="user-card-widget">
+          <div class="user-header-profile">
+            <div class="user-avatar-wrap">
+              <div class="user-avatar">
+                <i class="fa-solid fa-user-astronaut"></i>
+              </div>
+              <div>
+                <h3 style="font-size: 1.15rem;">Profil Finansial Anda</h3>
+                <span class="user-level-tag" id="userLevelBadge">Level 1 • Calon Sultan Cerdas</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="xp-progress-wrap">
+            <div class="xp-labels">
+              <span style="font-weight: 600; color: var(--text-secondary);">Progres Level</span>
+              <span id="userXpProgressText" style="font-weight: 700; color: var(--accent-emerald-light);">0 / 250 XP (0%)</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="userXpProgressBar" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="widget-stat-grid">
+            <div class="widget-stat-item">
+              <span class="val" id="statCompletedMod">0</span>
+              <span class="lbl">Modul Tuntas</span>
+            </div>
+            <div class="widget-stat-item">
+              <span class="val">4.9/5</span>
+              <span class="lbl">Rating Materi</span>
+            </div>
+            <div class="widget-stat-item">
+              <span class="val">2L</span>
+              <span class="lbl">Legal & Logis</span>
+            </div>
+          </div>
+
+          <div class="quick-checkup-cta" onclick="finApp.openHealthCheckup()">
+            <div>
+              <div style="font-weight: 700; font-size: 0.92rem; color: var(--text-primary);">
+                🩺 Cek Kesehatan Finansial
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">
+                Uji kelayakan arus kas & rasio utangmu (1 Menit)
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-right" style="color: var(--accent-emerald-light);"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Tabs -->
+  <main class="container">
+    <div class="main-tabs-nav">
+      <button class="tab-btn active" data-tab="modulTab" onclick="finApp.switchTab('modulTab')">
+        <i class="fa-solid fa-book-open"></i> Modul Pembelajaran
+      </button>
+      <button class="tab-btn" data-tab="kalkulatorTab" onclick="finApp.switchTab('kalkulatorTab')">
+        <i class="fa-solid fa-calculator"></i> Kalkulator & Grafik
+      </button>
+      <button class="tab-btn" data-tab="kuisTab" onclick="finApp.switchTab('kuisTab')">
+        <i class="fa-solid fa-gamepad"></i> Kuis & Sertifikasi
+      </button>
+      <button class="tab-btn" data-tab="glosariumTab" onclick="finApp.switchTab('glosariumTab')">
+        <i class="fa-solid fa-spell-check"></i> Kamus Finansial
+      </button>
+      <button class="tab-btn" data-tab="scamTab" onclick="finApp.switchTab('scamTab')">
+        <i class="fa-solid fa-shield-virus"></i> Cek 2L OJK
+      </button>
+      <a href="game.html" class="tab-btn tab-btn-game">
+        <i class="fa-solid fa-dragon"></i> Game RPG
+      </a>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 1: MODUL PEMBELAJARAN                   -->
+    <!-- ========================================== -->
+    <section id="modulTab" class="tab-pane active">
+      <div class="section-title-wrap">
+        <div class="section-badge"><i class="fa-solid fa-compass"></i> Kurikulum Finansial Terstruktur</div>
+        <h2 class="section-title">4 Pilar Literasi Keuangan Praktis</h2>
+        <p class="section-subtitle">Pelajari langkah demi langkah dari pengelolaan uang saku hingga pensiun dini secara mandiri.</p>
+      </div>
+
+      <div class="tracks-grid" id="tracksGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: KALKULATOR & SIMULATOR GRAFIK       -->
+    <!-- ========================================== -->
+    <section id="kalkulatorTab" class="tab-pane">
+      <div class="section-title-wrap">
+        <div class="section-badge"><i class="fa-solid fa-chart-line"></i> Alat Perencanaan Interaktif</div>
+        <h2 class="section-title">Simulasi & Kalkulator Finansial</h2>
+        <p class="section-subtitle">Hitung proyeksi kekayaan masa depan, rasio dana darurat, dan alokasi penghasilanmu secara real-time.</p>
+      </div>
+
+      <!-- Sub-tabs for Calculators -->
+      <div class="calc-nav-tabs">
+        <button class="calc-nav-btn active" data-calc="compound" onclick="finApp.switchCalcSubtab('compound')">
+          <i class="fa-solid fa-chart-area"></i> Compound Interest (Bunga Berbunga)
+        </button>
+        <button class="calc-nav-btn" data-calc="emergency" onclick="finApp.switchCalcSubtab('emergency')">
+          <i class="fa-solid fa-shield-heart"></i> Kalkulator Dana Darurat
+        </button>
+        <button class="calc-nav-btn" data-calc="budget" onclick="finApp.switchCalcSubtab('budget')">
+          <i class="fa-solid fa-pie-chart"></i> Alokasi Gaji 50/30/20
+        </button>
+      </div>
+
+      <!-- 1. Compound Interest Simulator -->
+      <div id="calc-compound" class="calc-subpane">
+        <div class="calculator-card">
+          <div class="calc-grid">
+            <div class="calc-inputs-col">
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-sliders" style="color: var(--accent-emerald-light);"></i> Parameter Investasi</h3>
+              
+              <div class="form-group">
+                <label class="form-label" for="calcInitialPrincipal">Modal Investasi Awal (Rp)</label>
+                <input type="number" id="calcInitialPrincipal" class="form-control" value="5000000" step="500000">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="calcMonthlyContrib">Setoran Rutin Bulanan / DCA (Rp)</label>
+                <input type="number" id="calcMonthlyContrib" class="form-control" value="1000000" step="100000">
+              </div>
+
+              <div class="form-group">
+                <div class="form-label">
+                  <span>Estimasi Imbal Hasil Tahunan (%)</span>
+                  <span id="rateLabelVal" style="color: var(--accent-emerald-light); font-weight: 700;">10%</span>
+                </div>
+                <input type="range" id="calcAnnualRateSlider" class="range-slider" min="1" max="25" value="10">
+                <input type="number" id="calcAnnualRate" class="form-control" value="10" min="1" max="50" style="margin-top: 0.5rem;">
+              </div>
+
+              <div class="form-group">
+                <div class="form-label">
+                  <span>Jangka Waktu Investasi (Tahun)</span>
+                  <span id="yearsLabelVal" style="color: var(--accent-cyan); font-weight: 700;">10 Tahun</span>
+                </div>
+                <input type="range" id="calcYearsSlider" class="range-slider" min="1" max="35" value="10">
+                <input type="number" id="calcYears" class="form-control" value="10" min="1" max="40" style="margin-top: 0.5rem;">
+              </div>
+            </div>
+
+            <div class="calc-results-col">
+              <div class="result-highlight-box">
+                <div class="result-highlight-title">Estimasi Nilai Total Portofolio</div>
+                <div class="result-highlight-val" id="compoundFinalBalance">Rp 200.000.000</div>
+              </div>
+
+              <div class="calc-breakdown-list">
+                <div class="breakdown-row">
+                  <span><i class="fa-solid fa-circle-dot" style="color: #6366f1;"></i> Total Modal Pokok Disetor</span>
+                  <span id="compoundTotalPrincipal">Rp 125.000.000</span>
+                </div>
+                <div class="breakdown-row">
+                  <span><i class="fa-solid fa-circle-dot" style="color: #10b981;"></i> Total Keuntungan Bunga (Return)</span>
+                  <span id="compoundTotalInterest" style="color: var(--accent-emerald-light);">+Rp 75.000.000</span>
+                </div>
+                <div class="breakdown-row">
+                  <span><i class="fa-solid fa-rocket" style="color: var(--accent-amber);"></i> Penggandaan Modal</span>
+                  <span id="compoundGrowthMultiplier" style="color: var(--accent-amber);">1.60x Lipat</span>
+                </div>
+              </div>
+
+              <!-- Interactive Chart Canvas -->
+              <div class="chart-wrapper">
+                <canvas id="compoundChart"></canvas>
+              </div>
+              <div style="font-size: 0.75rem; text-align: center; color: var(--text-muted); margin-top: 0.5rem;">
+                Garis Hijau: Nilai Portofolio Total • Garis Putus Ungu: Akumulasi Modal Pokok
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Emergency Fund Calculator -->
+      <div id="calc-emergency" class="calc-subpane" style="display: none;">
+        <div class="calculator-card">
+          <div class="calc-grid">
+            <div class="calc-inputs-col">
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-shield-heart" style="color: var(--accent-rose);"></i> Parameter Dana Darurat</h3>
+              
+              <div class="form-group">
+                <label class="form-label" for="emExpenseInput">Total Pengeluaran Pokok Bulanan (Rp)</label>
+                <input type="number" id="emExpenseInput" class="form-control" value="4000000" step="500000">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="emStatusSelect">Status Pernikahan & Tanggungan</label>
+                <select id="emStatusSelect" class="form-control">
+                  <option value="3">Lajang / Single (3x Pengeluaran Bulanan)</option>
+                  <option value="6" selected>Lajang Siap Siaga / Menikah 0 Anak (6x)</option>
+                  <option value="9">Menikah dengan 1-2 Anak (9x)</option>
+                  <option value="12">Keluarga Besar / Pekerja Lepas-Freelance (12x)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="emCurrentFund">Dana Darurat yang Saat Ini Sudah Terkumpul (Rp)</label>
+                <input type="number" id="emCurrentFund" class="form-control" value="10000000" step="500000">
+              </div>
+            </div>
+
+            <div class="calc-results-col">
+              <div class="result-highlight-box">
+                <div class="result-highlight-title">Target Dana Darurat Ideal Anda</div>
+                <div class="result-highlight-val" id="emTargetVal">Rp 24.000.000</div>
+              </div>
+
+              <div class="xp-progress-wrap" style="margin-bottom: 1.5rem;">
+                <div class="xp-labels">
+                  <span style="font-weight: 600;">Status Kesiapan Bantalan Finansial</span>
+                  <span id="emProgressText" style="font-weight: 700; color: var(--accent-emerald-light);">42% Tercapai</span>
+                </div>
+                <div class="progress-bar-bg" style="height: 12px;">
+                  <div class="progress-bar-fill" id="emProgressBarFill" style="width: 42%;"></div>
+                </div>
+              </div>
+
+              <div class="calc-breakdown-list">
+                <div class="breakdown-row">
+                  <span>Kekurangan Dana yang Harus Ditabung</span>
+                  <span id="emShortfallVal" style="color: var(--accent-rose);">Rp 14.000.000</span>
+                </div>
+                <div class="breakdown-row">
+                  <span>Rekomendasi Penempatan</span>
+                  <span style="color: var(--accent-cyan);">RDPU & Deposito Likuid</span>
+                </div>
+              </div>
+
+              <div class="lesson-infobox" style="margin: 0; font-size: 0.85rem;">
+                💡 <b>Kunci Sukses:</b> Simpan dana ini di rekening terpisah tanpa kartu debit instan agar tidak mudah terpakai untuk belanja konsumtif.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 50/30/20 Budget Allocator -->
+      <div id="calc-budget" class="calc-subpane" style="display: none;">
+        <div class="calculator-card">
+          <div class="calc-grid">
+            <div class="calc-inputs-col">
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-wallet" style="color: var(--accent-cyan);"></i> Input Penghasilan</h3>
+              
+              <div class="form-group">
+                <label class="form-label" for="budgetSalaryInput">Gaji Bersih / Pemasukan Bulanan (Take Home Pay)</label>
+                <input type="number" id="budgetSalaryInput" class="form-control" value="6000000" step="500000">
+              </div>
+
+              <div class="lesson-action-box" style="margin: 0; font-size: 0.88rem;">
+                Aturan 50/30/20 menjaga keseimbangan antara memenuhi kebutuhan hari ini, menikmati hidup secara wajar, dan mengamankan masa depan.
+              </div>
+            </div>
+
+            <div class="calc-results-col">
+              <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">Alokasi Anggaran Rekomendasi:</h4>
+
+              <div class="calc-breakdown-list">
+                <div class="breakdown-row" style="padding: 0.75rem 0;">
+                  <div>
+                    <div style="font-weight: 700; color: #3b82f6;"><i class="fa-solid fa-house"></i> 50% Kebutuhan Pokok (Needs)</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Makan, tempat tinggal, utilitas, transportasi wajib</div>
+                  </div>
+                  <span id="budgetNeedsVal" style="font-size: 1.15rem; color: #3b82f6;">Rp 3.000.000</span>
+                </div>
+
+                <div class="breakdown-row" style="padding: 0.75rem 0;">
+                  <div>
+                    <div style="font-weight: 700; color: #f59e0b;"><i class="fa-solid fa-mug-saucer"></i> 30% Keinginan (Wants)</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Ngopi, hobi, streaming, belanja gaya hidup</div>
+                  </div>
+                  <span id="budgetWantsVal" style="font-size: 1.15rem; color: #f59e0b;">Rp 1.800.000</span>
+                </div>
+
+                <div class="breakdown-row" style="padding: 0.75rem 0;">
+                  <div>
+                    <div style="font-weight: 700; color: var(--accent-emerald-light);"><i class="fa-solid fa-piggy-bank"></i> 20% Tabungan & Investasi</div>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Dana darurat, portofolio reksa dana/saham/SBN</div>
+                  </div>
+                  <span id="budgetSavingsVal" style="font-size: 1.15rem; color: var(--accent-emerald-light);">Rp 1.200.000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 3: KUIS & SERTIFIKASI                   -->
+    <!-- ========================================== -->
+    <section id="kuisTab" class="tab-pane">
+      <div class="section-title-wrap">
+        <div class="section-badge"><i class="fa-solid fa-trophy"></i> Uji Pemahaman & Gamifikasi</div>
+        <h2 class="section-title">Kuis Finansial & Sertifikat Kelulusan</h2>
+        <p class="section-subtitle">Tantang dirimu dengan berbagai level kuis, raih XP untuk naik level, dan cetak sertifikat kelulusan digitalmu.</p>
+      </div>
+
+      <!-- Mode Selector -->
+      <div class="quiz-modes-grid" id="quizModeSelect">
+        <div class="quiz-mode-card" onclick="quizEngine.startLevelQuiz('pemula')">
+          <div class="mode-icon mode-icon-easy"><i class="fa-solid fa-seedling"></i></div>
+          <h3>Level 1: Pemula</h3>
+          <p>Dasar arus kas, aturan budgeting 50/30/20, dan pentingnya dana darurat.</p>
+          <button class="btn btn-secondary" style="width: 100%;">Mulai Kuis (5 Soal)</button>
+        </div>
+
+        <div class="quiz-mode-card" onclick="quizEngine.startLevelQuiz('menengah')">
+          <div class="mode-icon mode-icon-medium"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h3>Level 2: Menengah</h3>
+          <p>Manajemen rasio utang, prinsip 2L OJK, DCA, dan instrumen investasi aman.</p>
+          <button class="btn btn-secondary" style="width: 100%;">Mulai Kuis (5 Soal)</button>
+        </div>
+
+        <div class="quiz-mode-card" onclick="quizEngine.startLevelQuiz('mahir')">
+          <div class="mode-icon mode-icon-hard"><i class="fa-solid fa-fire"></i></div>
+          <h3>Level 3: Mahir</h3>
+          <p>Strategi FIRE (The 4% Rule), Aturan 72, diversifikasi aset & asuransi.</p>
+          <button class="btn btn-secondary" style="width: 100%;">Mulai Kuis (5 Soal)</button>
+        </div>
+
+        <div class="quiz-mode-card" onclick="quizEngine.startTimeAttack()">
+          <div class="mode-icon mode-icon-blitz"><i class="fa-solid fa-stopwatch-20"></i></div>
+          <h3>Time-Attack Blitz ⚡</h3>
+          <p>Tantangan kilat 60 detik! Jawab sebanyak mungkin soal benar secepat kilat.</p>
+          <button class="btn btn-primary" style="width: 100%;">Tantangan 60 Detik</button>
+        </div>
+
+        <div class="quiz-mode-card" onclick="quizEngine.startScenarioMode()">
+          <div class="mode-icon mode-icon-scenario"><i class="fa-solid fa-route"></i></div>
+          <h3>Simulasi Studi Kasus 🎭</h3>
+          <p>Ambil keputusan finansial di skenario nyata (THR, Gadget, Utang) dan lihat akibatnya.</p>
+          <button class="btn btn-secondary" style="width: 100%;">Mulai Simulasi Kasus</button>
+        </div>
+      </div>
+
+      <!-- Active Quiz Interface -->
+      <div class="quiz-active-box" id="quizActiveBox">
+        <div class="quiz-top-bar">
+          <div style="font-weight: 700; color: var(--accent-emerald-light);" id="quizProgressText">Pertanyaan 1 dari 5</div>
+          <div class="quiz-timer-badge" id="quizTimerBadge" style="display: none;">
+            <i class="fa-solid fa-clock"></i> <span id="timerCount">60s</span>
+          </div>
+        </div>
+
+        <div class="progress-bar-bg" style="margin-bottom: 2rem; height: 6px;">
+          <div class="progress-bar-fill" id="quizProgressBarFill" style="width: 20%;"></div>
+        </div>
+
+        <div class="question-text" id="questionText">Memuat pertanyaan...</div>
+
+        <div class="options-list" id="optionsList">
+          <!-- Injected dynamically -->
+        </div>
+
+        <div class="quiz-explanation-box" id="quizExplanationBox">
+          <h5 id="explanationTitle">💡 Penjelasan Edukasi:</h5>
+          <p id="explanationContent"></p>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+          <button class="btn btn-secondary" onclick="quizEngine.returnToSelection()">
+            <i class="fa-solid fa-arrow-left"></i> Keluar
+          </button>
+          <button class="btn btn-primary" id="quizNextBtn" style="display: none;" onclick="quizEngine.nextQuestion()">
+            Lanjut ke Soal Berikutnya <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Result Box -->
+      <div class="quiz-result-box" id="quizResultBox">
+        <div class="result-trophy-icon">🏆</div>
+        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Hasil Kuis Anda</h3>
+        <div class="result-score-circle" id="resultScoreDisplay">5 / 5 (100%)</div>
+        <div style="display: inline-block; padding: 0.35rem 1rem; border-radius: var(--radius-full); background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald-light); font-weight: 700; margin-bottom: 1rem;" id="resultXpEarned">
+          +150 XP
+        </div>
+        <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 2rem auto;" id="resultFeedbackText">
+          Pemahaman literasi keuangan Anda sangat matang!
+        </p>
+
+        <!-- Digital Certificate Preview & Download Generator -->
+        <div id="certificateGenSection" style="display: none; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem;">
+          <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--accent-emerald-light);">
+            🎖️ Klaim Sertifikat Kelulusan Digital
+          </h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Masukkan nama lengkap Anda untuk dicetak langsung pada sertifikat resmi beresolusi tinggi.
+          </p>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: center; max-width: 480px; margin: 0 auto 1.5rem auto;">
+            <input type="text" id="certUserNameInput" class="form-control" placeholder="Nama Lengkap Anda" value="Budi Santoso">
+            <button class="btn btn-secondary" onclick="quizEngine.generateCertificate()">
+              <i class="fa-solid fa-rotate"></i> Update Nama
+            </button>
+          </div>
+
+          <div class="certificate-preview-wrap">
+            <canvas id="certificateCanvas"></canvas>
+          </div>
+
+          <button class="btn btn-primary btn-glow" onclick="quizEngine.downloadCertificate()" style="margin-top: 1rem;">
+            <i class="fa-solid fa-download"></i> Unduh Sertifikat (PNG)
+          </button>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <button class="btn btn-secondary" onclick="quizEngine.returnToSelection()">
+            <i class="fa-solid fa-rotate-left"></i> Kembali ke Menu Kuis
+          </button>
+        </div>
+      </div>
+
+      <!-- Scenario RPG Box -->
+      <div class="quiz-active-box" id="scenarioBox" style="display: none;">
+        <div class="scenario-stats-bar">
+          <div class="scenario-stat-item">
+            <div class="stat-title">Saldo Tabungan</div>
+            <div class="stat-num" id="scTabunganVal" style="color: var(--accent-emerald-light);">Rp 5.000.000</div>
+          </div>
+          <div class="scenario-stat-item">
+            <div class="stat-title">Total Utang</div>
+            <div class="stat-num" id="scUtangVal" style="color: var(--accent-rose);">Rp 0</div>
+          </div>
+          <div class="scenario-stat-item">
+            <div class="stat-title">Skor Ketenangan Hidup</div>
+            <div class="stat-num" id="scKetenanganVal" style="color: var(--accent-amber);">80/100</div>
+          </div>
+        </div>
+
+        <h3 id="scenarioTitle" style="font-size: 1.35rem; margin-bottom: 0.75rem;">Kasus Finansial</h3>
+        <p id="scenarioDesc" style="color: var(--text-secondary); margin-bottom: 1.75rem; font-size: 1rem; line-height: 1.6;"></p>
+
+        <div id="scenarioChoices">
+          <!-- Choices Injected -->
+        </div>
+
+        <div id="scenarioFeedback" class="lesson-infobox" style="display: none; margin-top: 1.5rem;"></div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+          <button class="btn btn-secondary" onclick="quizEngine.returnToSelection()">
+            <i class="fa-solid fa-arrow-left"></i> Keluar
+          </button>
+          <button class="btn btn-primary" id="scenarioNextBtn" style="display: none;" onclick="quizEngine.nextScenario()">
+            Lanjut Kasus Berikutnya <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: KAMUS FINANSIAL                      -->
+    <!-- ========================================== -->
+    <section id="glosariumTab" class="tab-pane">
+      <div class="section-title-wrap">
+        <div class="section-badge"><i class="fa-solid fa-spell-check"></i> Ensiklopedia Istilah</div>
+        <h2 class="section-title">Kamus Finansial A - Z</h2>
+        <p class="section-subtitle">Pahami istilah perbankan, pasar modal, dan regulasi keuangan tanpa bahasa yang membingungkan.</p>
+      </div>
+
+      <div class="search-filter-bar">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Cari istilah finansial (misal: RDN, OJK, Compound, FIRE, SBN)..." oninput="finApp.renderGlossary(this.value)">
+        </div>
+      </div>
+
+      <div class="glossary-grid" id="glossaryGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 5: DETEKSI INVESTASI BODONG (2L OJK)   -->
+    <!-- ========================================== -->
+    <section id="scamTab" class="tab-pane">
+      <div class="section-title-wrap">
+        <div class="section-badge"><i class="fa-solid fa-shield-halved"></i> Benteng Perlindungan Diri</div>
+        <h2 class="section-title">Detektor Investasi Bodong (2L OJK)</h2>
+        <p class="section-subtitle">Centang ciri-ciri yang ada pada penawaran investasi yang Anda terima untuk mendeteksi tingkat bahaya penipuan.</p>
+      </div>
+
+      <div class="scam-checklist-card">
+        <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">
+          <i class="fa-solid fa-list-check" style="color: var(--accent-rose);"></i> Checklist Ciri Penipuan & Skema Ponzi
+        </h3>
+
+        <div id="scamChecklistWrap">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div class="scam-result-verdict" id="scamVerdictResult">
+          <!-- Evaluated live -->
+        </div>
+
+        <div style="margin-top: 2rem; padding: 1.25rem; background: rgba(0, 0, 0, 0.2); border-radius: var(--radius-md); font-size: 0.88rem; color: var(--text-secondary);">
+          <b>Saluran Resmi Pengaduan OJK:</b><br>
+          • Kontak WhatsApp OJK: <b>081-157-157-157</b><br>
+          • Telepon Hotline: <b>157</b><br>
+          • Portal Resmi Cek Legalitas: <a href="https://www.ojk.go.id" target="_blank" rel="noopener">www.ojk.go.id</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: Detail Modul Pelajaran -->
+  <div class="modal-overlay" id="lessonModalOverlay" onclick="if(event.target === this) finApp.closeTrackModal()">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modalTrackTitle" style="font-size: 1.3rem;">Detail Modul</h3>
+        <button class="modal-close-btn" onclick="finApp.closeTrackModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modalTrackBody">
+        <!-- Content Injected -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Cek Kesehatan Finansial Survey -->
+  <div class="modal-overlay" id="healthCheckModal" onclick="if(event.target === this) finApp.closeHealthCheckup()">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 style="font-size: 1.3rem;"><i class="fa-solid fa-heart-pulse" style="color: var(--accent-rose);"></i> Tes Kesehatan Keuangan Mandiri</h3>
+        <button class="modal-close-btn" onclick="finApp.closeHealthCheckup()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.92rem;">
+          Jawab 4 pertanyaan sederhana berikut secara jujur untuk mengetahui diagnosis kondisi arus kas Anda.
+        </p>
+
+        <div id="healthQuestionsWrap">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <div id="healthResultVerdict" class="lesson-infobox" style="display: none; margin: 1.5rem 0;"></div>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <button class="btn btn-primary" onclick="finApp.submitHealthCheckup()">
+            <i class="fa-solid fa-stethoscope"></i> Hitung Skor Diagnostik
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo" style="margin-bottom: 0.75rem;">
+          <div class="brand-icon"><i class="fa-solid fa-coins"></i></div>
+          <span>FinPintar</span>
+        </div>
+        <p>
+          Platform edukasi literasi keuangan dan kuis interaktif independen. Didesain untuk mencerdaskan masyarakat Indonesia dalam mengelola uang, berinvestasi sehat, dan menghindari jeratan pinjaman serta investasi ilegal.
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Navigasi Pintar</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="finApp.switchTab('modulTab')">Modul Fondasi Keuangan</a></li>
+          <li><a href="javascript:void(0)" onclick="finApp.switchTab('kalkulatorTab')">Kalkulator Compound Interest</a></li>
+          <li><a href="javascript:void(0)" onclick="finApp.switchTab('kuisTab')">Kuis & Uji Sertifikasi</a></li>
+          <li><a href="javascript:void(0)" onclick="finApp.switchTab('glosariumTab')">Kamus Finansial A-Z</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Regulator & Rujukan</h4>
+        <ul>
+          <li><a href="https://www.ojk.go.id" target="_blank" rel="noopener">Otoritas Jasa Keuangan (OJK)</a></li>
+          <li><a href="https://www.bi.go.id" target="_blank" rel="noopener">Bank Indonesia (BI)</a></li>
+          <li><a href="https://www.idx.co.id" target="_blank" rel="noopener">Bursa Efek Indonesia (BEI)</a></li>
+          <li><a href="https://bappebti.go.id" target="_blank" rel="noopener">Bappebti</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 FinPintar Indonesia. Edukasi Keuangan untuk Generasi Maju & Mandiri. Seluruh konten bertujuan edukasi finansial.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/sound.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/calculators.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
