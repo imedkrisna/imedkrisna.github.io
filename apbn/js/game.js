@@ -1054,6 +1054,9 @@ class Game {
 
   // Quiz System
   openQuiz() {
+    // The pending 400ms timer and an empty-clip fire can both land here; a
+    // second call would swap the question out from under the player's finger.
+    if(this.quizActive) return;
     this.quizActive = true;
     this.sound.play('empty');
 
@@ -1471,7 +1474,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('cardAlfan').onclick = () => game.selectChar('alfan');
   document.getElementById('cardAndra').onclick = () => game.selectChar('andra');
-  document.getElementById('cardLala').onclick = () => game.selectChar('lala');
   document.getElementById('startGameBtn').onclick = () => game.startGame();
   document.getElementById('quizContinueBtn').onclick = () => game.closeQuiz();
   document.getElementById('restartBtn1').onclick = () => game.restart();
