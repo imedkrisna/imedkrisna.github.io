@@ -91,7 +91,7 @@ a.pixel-btn { display: inline-block; text-decoration: none; text-align: center; 
 
 .select-title { font-family: var(--font-pixel); font-size: 1rem; color: var(--gold-light); margin-bottom: 2rem; text-shadow: 0 2px 0 #78350f; }
 
-.select-cards { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+.select-cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; max-width: 92vw; }
 
 .char-card {
   width: 260px; background: var(--bg-panel); border: 2px solid var(--border);
@@ -101,13 +101,16 @@ a.pixel-btn { display: inline-block; text-decoration: none; text-align: center; 
 .char-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 18px 18px 0 0; }
 .char-card.alfan::before { background: linear-gradient(90deg, #2563eb, #3b82f6); }
 .char-card.andra::before { background: linear-gradient(90deg, #059669, #10b981); }
+.char-card.lala::before  { background: linear-gradient(90deg, #db2777, #f472b6); }
 .char-card:hover, .char-card.selected { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
 .char-card.alfan:hover, .char-card.alfan.selected { border-color: #3b82f6; }
 .char-card.andra:hover, .char-card.andra.selected { border-color: #10b981; }
+.char-card.lala:hover, .char-card.lala.selected { border-color: #f472b6; }
 
 .char-preview { width: 80px; height: 80px; margin: 0 auto 1rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .char-card.alfan .char-preview { background: rgba(37,99,235,0.2); }
 .char-card.andra .char-preview { background: rgba(5,150,105,0.2); }
+.char-card.lala .char-preview { background: rgba(219,39,119,0.2); }
 .char-preview canvas { image-rendering: pixelated; }
 
 .char-name { font-family: var(--font-pixel); font-size: 1rem; color: #fff; margin-bottom: 0.4rem; }

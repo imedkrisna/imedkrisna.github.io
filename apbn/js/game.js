@@ -252,8 +252,8 @@ class Player {
   constructor(x, y, type) {
     this.x = x; this.y = y;
     this.type = type;
-    this.speed = type === 'andra' ? 180 : 155;
-    this.maxHP = type === 'alfan' ? 6 : 5;
+    this.speed = type === 'andra' ? 180 : type === 'lala' ? 200 : 155;
+    this.maxHP = type === 'alfan' ? 6 : type === 'lala' ? 4 : 5;
     this.hp = this.maxHP;
     this.dir = 2; // face up
     this.animFrame = 0; this.animTimer = 0;
@@ -295,10 +295,11 @@ class Player {
     if(this.iFrames>0 && Math.floor(this.iFrames*10)%2===0) return;
 
     const sx=this.x, sy=this.y;
-    const isA = this.type==='alfan';
-    const body = isA?'#2563eb':'#059669';
-    const bodyL = isA?'#3b82f6':'#10b981';
-    const hair = isA?'#92400e':'#1c1917';
+    const isA = this.type==='alfan', isL = this.type==='lala';
+    const body = isA?'#2563eb':isL?'#db2777':'#059669';
+    const bodyL = isA?'#3b82f6':isL?'#f472b6':'#10b981';
+    const hair = isA?'#92400e':isL?'#fde68a':'#1c1917';
+    const hairL = isA?'#b45309':isL?'#fffbeb':'#44403c';
 
     // Shadow
     ctx.fillStyle='rgba(0,0,0,0.3)';
@@ -313,12 +314,30 @@ class Player {
     ctx.fillStyle=body; ctx.fillRect(sx-8,sy-7,16,16);
     ctx.fillStyle=bodyL; ctx.fillRect(sx-6,sy-5,5,7);
 
+    // Andra / Lala: skirted tunic (Lala's gown is fuller)
+    if(!isA){ const w=isL?10:9, h=isL?8:6, ty=isL?3:4;
+      ctx.fillStyle=body; ctx.fillRect(sx-w,sy+ty,w*2,h);
+      ctx.fillStyle=bodyL; ctx.fillRect(sx-w,sy+ty,w*2,2); }
+
     // Head
     ctx.fillStyle='#fbbf24'; ctx.fillRect(sx-7,sy-19,14,13);
     // Hair
     ctx.fillStyle=hair; ctx.fillRect(sx-8,sy-21,16,6);
     if(isA) ctx.fillRect(sx-8,sy-19,3,9);
-    else { ctx.fillRect(sx+5,sy-19,3,11); ctx.fillRect(sx-8,sy-19,3,7); }
+    else {
+      ctx.fillRect(sx-9,sy-22,18,6);                                 // crown
+      ctx.fillRect(sx-10,sy-19,3,14); ctx.fillRect(sx+7,sy-19,3,14);  // locks past the shoulders
+      ctx.fillRect(sx-9,sy-5,2,8);    ctx.fillRect(sx+7,sy-5,2,8);    // ...narrowing to the waist
+      ctx.fillRect(sx-7,sy-19,4,4);   ctx.fillRect(sx+3,sy-19,4,4);   // fringe framing the face
+      ctx.fillStyle=hairL; ctx.fillRect(sx-6,sy-21,9,1);              // sheen
+      if(isL){                                                       // Lala's tiara
+        ctx.fillStyle='#f59e0b';
+        ctx.fillRect(sx-8,sy-24,16,3);
+        ctx.fillRect(sx-6,sy-26,2,2); ctx.fillRect(sx-1,sy-27,2,3); ctx.fillRect(sx+4,sy-26,2,2);
+        ctx.fillStyle='#ec4899'; ctx.fillRect(sx-1,sy-23,2,2);
+        ctx.fillStyle='#fbbf24'; ctx.fillRect(sx-8,sy-24,16,1);
+      }
+    }
 
     // Eyes
     ctx.fillStyle='#1a1a2e';
@@ -769,6 +788,7 @@ class Game {
 
     this.drawCharPreview('alfanPreview','alfan');
     this.drawCharPreview('andraPreview','andra');
+    this.drawCharPreview('lalaPreview','lala');
   }
 
   get W() { return this.canvas.width; }
@@ -803,17 +823,37 @@ class Game {
 
   drawCharPreview(id,type) {
     const c=document.getElementById(id); if(!c) return;
-    c.width=64;c.height=64;
+    c.width=64;c.height=72;
     const cx=c.getContext('2d');
-    const isA=type==='alfan';
-    cx.save(); cx.translate(32,40); cx.scale(2,2);
+    const isA=type==='alfan', isL=type==='lala';
+    const body  = isA?'#2563eb':isL?'#db2777':'#059669';
+    const bodyL = isA?'#3b82f6':isL?'#f472b6':'#10b981';
+    const hair  = isA?'#92400e':isL?'#fde68a':'#1c1917';
+    const hairL = isA?'#b45309':isL?'#fffbeb':'#44403c';
+    cx.save(); cx.translate(32,48); cx.scale(2,2);
     cx.fillStyle='rgba(0,0,0,0.3)'; cx.beginPath(); cx.ellipse(0,10,8,4,0,0,Math.PI*2); cx.fill();
     cx.fillStyle='#1e3a5f'; cx.fillRect(-4,4,4,8); cx.fillRect(1,4,4,8);
-    cx.fillStyle=isA?'#2563eb':'#059669'; cx.fillRect(-7,-6,14,14);
-    cx.fillStyle=isA?'#3b82f6':'#10b981'; cx.fillRect(-5,-4,4,6);
+    cx.fillStyle=body; cx.fillRect(-7,-6,14,14);
+    cx.fillStyle=bodyL; cx.fillRect(-5,-4,4,6);
+    if(!isA){ const w=isL?9:8, h=isL?7:5, ty=isL?2:3;
+      cx.fillStyle=body; cx.fillRect(-w,ty,w*2,h); cx.fillStyle=bodyL; cx.fillRect(-w,ty,w*2,2); }
     cx.fillStyle='#fbbf24'; cx.fillRect(-6,-16,12,12);
-    cx.fillStyle=isA?'#92400e':'#1c1917'; cx.fillRect(-7,-18,14,6);
-    if(isA) cx.fillRect(-7,-16,3,8); else { cx.fillRect(4,-16,3,10); cx.fillRect(-7,-16,3,6); }
+    cx.fillStyle=hair; cx.fillRect(-7,-18,14,6);
+    if(isA) cx.fillRect(-7,-16,3,8);
+    else {
+      cx.fillRect(-8,-19,16,6);
+      cx.fillRect(-9,-16,3,13); cx.fillRect(6,-16,3,13);
+      cx.fillRect(-8,-3,2,6);   cx.fillRect(6,-3,2,6);
+      cx.fillRect(-6,-16,4,3);  cx.fillRect(2,-16,4,3);
+      cx.fillStyle=hairL; cx.fillRect(-5,-18,8,1);
+      if(isL){
+        cx.fillStyle='#f59e0b';
+        cx.fillRect(-7,-21,14,3);
+        cx.fillRect(-5,-23,2,2); cx.fillRect(-1,-24,2,3); cx.fillRect(3,-23,2,2);
+        cx.fillStyle='#ec4899'; cx.fillRect(-1,-20,2,2);
+        cx.fillStyle='#fbbf24'; cx.fillRect(-7,-21,14,1);
+      }
+    }
     cx.fillStyle='#1a1a2e'; cx.fillRect(-3,-11,2,2); cx.fillRect(2,-11,2,2);
     // Gun
     cx.fillStyle='#6b7280'; cx.fillRect(8,-2,5,5);
@@ -995,7 +1035,7 @@ class Game {
     h.innerHTML=hhtml;
 
     // Name
-    document.getElementById('hudName').textContent = this.selectedChar==='alfan'?'⚔️ ALFAN':'🗡️ ANDRA';
+    document.getElementById('hudName').textContent = {alfan:'⚔️ ALFAN',andra:'🗡️ ANDRA',lala:'👑 LALA'}[this.selectedChar];
 
     // Round
     document.getElementById('hudRound').textContent = this.bossPhase ? '👑 BOSS FIGHT' : `RONDE ${this.round}/${this.maxRounds}`;
@@ -1275,7 +1315,7 @@ class Game {
     document.getElementById('gameHUD').classList.add('hidden');
     document.getElementById('bossHPBar').classList.remove('show');
     document.getElementById('victoryScreen').classList.remove('hidden');
-    document.getElementById('victoryChar').textContent = this.selectedChar==='alfan'?'Alfan':'Andra';
+    document.getElementById('victoryChar').textContent = {alfan:'Alfan',andra:'Andra',lala:'Lala'}[this.selectedChar];
     document.getElementById('victoryKills').textContent = this.totalKills;
     document.getElementById('victoryRevenue').textContent = `${Math.floor(this.taxRevenue)} Triliun`;
     document.getElementById('victoryTime').textContent = `${Math.floor(this.gameTime)} detik`;
@@ -1330,6 +1370,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('cardAlfan').onclick = () => game.selectChar('alfan');
   document.getElementById('cardAndra').onclick = () => game.selectChar('andra');
+  document.getElementById('cardLala').onclick = () => game.selectChar('lala');
   document.getElementById('startGameBtn').onclick = () => game.startGame();
   document.getElementById('quizContinueBtn').onclick = () => game.closeQuiz();
   document.getElementById('restartBtn1').onclick = () => game.restart();
