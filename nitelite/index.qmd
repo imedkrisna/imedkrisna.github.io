@@ -167,6 +167,14 @@ We proceed with the VECM which results can be observed in @fig-9. Arguably, pane
 
 Lastly, @fig-10 shows our ARDL results. Models with scarring perform relatively well. Panel(f), for instance, uses 0 lag for night light, with parameter of $0.0128$ and significant at 5% level. So far, this seems to be the best performing model.
 
+Below is a table summarizing the model results: 
+
+![Table Summary of ARDL and VECM Results](fig/tablesummary.png){#fig-11}
+
+What is immediately apparent from the results table is that the model error is quite low, with the ARDL model incorporating quarterly dummies posting both MAE and RMSE of 0.005. It must be noted, however, that the results come with some caveats. The ARDL model results are very promising, but the model's forecasting capabilities are limited only to one step ahead, or one quarter within this context. Because the model contains lagged values of both the independent and dependent variables, it cannot forecast multiple steps ahead without first forecasting the independent variable separately (in an exogenous variable forecast) or assuming the independent variable stays constant, and neither option is ideal. To properly use the ARDL model, updated nighttime lights data is required. 
+
+Most VECM models are also posting a relatively low error value, but this may be due in large part to the fact that much of the VECM fit is driven by the previous GDP values. Unfortunately, the nighttime lights variable is not significant at the 0.05 level in most of the models. The model is experiencing a large amount of assistance in its predictions based on prior GDP data, instead of nighttime lights data.
+
 ## Conclusion
 
 This paper shows three different macroeconometrics model runs at 6 different specification each, with the goal of finding whether Indonesian night light index can be used to estimate quarterly GDP growth. We find no satisfactory model for growth, with no night light index show positive and significant impact on the GDP. A promising candidate so far is the ARDL with scarring effect for log quarterly data, which shows that night light coefficient to be positive and significant. Unfortunately at this stage we cannot test for 2025 because the 2025 night light data is not available yet from `blackmarblepy` at the time of this writing.
